@@ -1,0 +1,4 @@
+.vscode*
+miniRT
+*.o
+
