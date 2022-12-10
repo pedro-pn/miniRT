@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate.c                                         :+:      :+:    :+:   */
+/*   val_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:11:52 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/08 16:37:06 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/10 11:27:31 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file.h"
 
-int	validate_camera(char *line)
+int	camera_count(char id)
 {
-	static int	count = 0;
+	static int count = 0;
 	
-	if (*line != 'C')
+	if (id != 'C')
 		return (FALSE);
 	count++;
 	if (count > 1)
+		return (FALSE);
+	return (TRUE);
+}
+
+int	validate_camera(char *line)
+{
+	if (camera_count(*line) == FALSE)
 		return (FALSE);
 	line++;
 	line = jump_spaces(line);
