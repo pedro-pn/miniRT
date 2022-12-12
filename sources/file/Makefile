@@ -1,4 +1,4 @@
-SOURCES =	clean.c file.c  utils_file.c validate.c main_teste.c
+SOURCES =	clean.c file.c  utils_file.c val_camera.c main_teste.c val_ambient.c
 NAME = file_test
 LIBFT = ../../libs/libft/libft.a
 SRCS_PATH = sources
