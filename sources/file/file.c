@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:13:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 19:52:10 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:11:12 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	validate_line(char *line)
 	if (validate_sphere(line))
 		return (TRUE);
 	if (validate_plane(line))
+		return (TRUE);
+	if (validate_cylinder(line))
 		return (TRUE);
 	return (FALSE);
 }
