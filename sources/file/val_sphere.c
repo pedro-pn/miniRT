@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:43:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 18:32:33 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:49:08 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	validate_sphere(char *line)
 {
-	if (!ft_strncmp(line, "sp ", 3) && !ft_strncmp(line, "sp\t", 3))
+	if (ft_strncmp(line, "sp ", 3) && ft_strncmp(line, "sp\t", 3))
 		return (FALSE);
 	line = get_next_info(line);
 	if (check_coordinate(line) == FALSE)
