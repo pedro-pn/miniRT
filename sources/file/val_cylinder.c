@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:03:39 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 20:18:42 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:39:37 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	validate_cylinder(char *line)
 	if (check_coordinate(line) == FALSE)
 		return (FALSE);
 	line = get_next_info(line);
-	if (check_coordinate(line) == FALSE)
-		return (FALSE);
 	if (check_norm_coordinate(line) == FALSE)
 		return (FALSE);
 	line = get_next_info(line);

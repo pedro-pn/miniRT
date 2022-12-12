@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:35:56 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 19:50:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:40:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	validate_plane(char *line)
 	if (check_coordinate(line) == FALSE)
 		return (FALSE);
 	line = get_next_info(line);
-	if (check_coordinate(line) == FALSE)
-		return (FALSE);
 	if (check_norm_coordinate(line) == FALSE)
 		return (FALSE);
 	line = get_next_info(line);

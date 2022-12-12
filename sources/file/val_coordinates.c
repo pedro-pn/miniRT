@@ -6,13 +6,24 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:58:20 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 20:10:50 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:39:45 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file.h"
 
+static int	val_norm_coordinate(char *line);
+
 int	check_norm_coordinate(char *line)
+{
+	if (check_coordinate(line) == FALSE)
+		return (FALSE);
+	if (val_norm_coordinate(line) == FALSE)
+		return (FALSE);
+	return (TRUE);
+}
+
+static int	val_norm_coordinate(char *line)
 {
 	char		**cord;
 	double		x;
