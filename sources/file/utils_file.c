@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:52:45 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 13:00:05 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:15:19 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*jump_spaces(char *line)
 {
-	while (ft_strchr(SPACES, *line))
+	while (*line && ft_strchr(SPACES, *line))
 		line++;
 	return (line);
 }
@@ -45,5 +45,15 @@ char	*jump_info(char *line)
 	while (*line && !ft_strchr(" \t\n", *line))
 		line++;
 	return (line);
+}
+
+char	*get_next_info(char *line)
+{
+	char	*info;
+
+	info = jump_info(line);
+	if (*info)
+		info = jump_spaces(info);
+	return (info);
 }
 

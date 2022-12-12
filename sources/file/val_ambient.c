@@ -6,14 +6,13 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:55:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 13:00:27 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:05:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file.h"
 
 static int	ambient_count(char id);
-static int	check_amb_light(char *line);
 
 static int	ambient_count(char id)
 {
@@ -39,13 +38,13 @@ int	validate_ambient(char *line)
 	line = jump_spaces(line);
 	if (check_color(line) == FALSE)
 		return (FALSE);
-	line = jump_info(line);
+	line = get_next_info(line);
 	if (*line && !ft_strchr("\n", *line))
 		return (FALSE);
 	return (TRUE);
 }
 
-static int	check_amb_light(char *line)
+int	check_amb_light(char *line)
 {
 	char	*hold_line;
 	double	ambient_light;

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:13:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 11:38:30 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:14:18 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	validate_line(char *line)
 	line = jump_spaces(line);
 	if (*line == '#')
 		return (TRUE);
-	else if (*line == '\n')
+	else if (*line == '\n' || !*line)
 		return (TRUE);
 	if (validate_camera(line) == TRUE)
 		return (TRUE);
