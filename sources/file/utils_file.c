@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:52:45 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 14:15:19 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:29:37 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	ft_isfloat(char **nptr)
 		(*nptr)++;
 	if (**nptr == '.')
 		(*nptr)++;
-	else if (ft_strchr(", \t", **nptr))
+	else if (ft_strchr(", \t\n", **nptr) || !**nptr)
 		return (TRUE);
 	if (!ft_isdigit(**nptr))
 		return (FALSE);
 	while (ft_isdigit(**nptr))
 		(*nptr)++;
-	if (ft_strchr(", \t", **nptr))
+	if (ft_strchr(", \t\n", **nptr) || !**nptr)
 		return (TRUE);
 	return (FALSE);
 }

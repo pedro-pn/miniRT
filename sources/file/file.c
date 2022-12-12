@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:13:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 14:14:18 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:18:27 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	validate_line(char *line)
 		return (TRUE);
 	if (validate_camera(line) == TRUE)
 		return (TRUE);
-	// if (!validate_light(line))
-	// 	return ;
+	if (validate_light(line))
+		return (TRUE);
 	 if (validate_ambient(line))
 		return (TRUE);
 	// if (!validate_sphere(line))
