@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 14:18:17 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:28:50 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ int	is_rgb(char *line);
 int	check_amb_light(char *line);
 char	*get_next_info(char *line);
 int	validate_light(char *line);
+int	validate_sphere(char *line);
+
 
 #endif
