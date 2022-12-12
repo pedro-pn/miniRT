@@ -1,5 +1,5 @@
 SOURCES =	clean.c file.c  utils_file.c val_camera.c main_teste.c val_ambient.c \
-			val_light.c val_color.c val_sphere.c val_plane.c
+			val_light.c val_color.c val_sphere.c val_plane.c val_coordinates.c
 NAME = file_test
 LIBFT = ../../libs/libft/libft.a
 SRCS_PATH = sources
