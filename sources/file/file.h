@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 11:24:41 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 13:00:30 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	validate_scene(char *filename);
 int	validate_line(char *line);
 char	*jump_spaces(char *line);
 int	ft_isfloat(char **nptr);
-char	*jump_coordinate(char *line);
+char	*jump_info(char *line);
 int	validate_camera(char *line);
 int check_coordinate(char *line);
 int	check_norm_coordinate(char *line);
