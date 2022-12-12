@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:11:52 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 13:00:23 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:41:33 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,35 +32,16 @@ int	validate_camera(char *line)
 	line = jump_spaces(line);
 	if (check_coordinate(line) == FALSE)
 		return (FALSE);
-	line = jump_info(line);
-	line = jump_spaces(line);
+	line = get_next_info(line);
 	if (check_coordinate(line) == FALSE)
 		return (FALSE);
 	if (check_norm_coordinate(line) == FALSE)
 		return (FALSE);
-	line = jump_info(line);
-	line = jump_spaces(line);
+	line = get_next_info(line);
 	if (validate_fov(line) == FALSE)
 		return (FALSE);
 	line = jump_info(line);
 	if ((!ft_strchr(" \n", *line)))
-		return (FALSE);
-	return (TRUE);
-}
-
-int check_coordinate(char *line)
-{
-	if (!*line)
-		return (FALSE);
-	if (ft_isfloat(&line) == FALSE)
-		return (FALSE);
-	line++;
-	if (ft_isfloat(&line) == FALSE)
-		return (FALSE);
-	line++;
-	if (ft_isfloat(&line) == FALSE)
-		return (FALSE);
-	if (*line != ' ' && *line != '\t')
 		return (FALSE);
 	return (TRUE);
 }
