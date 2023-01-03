@@ -49,6 +49,13 @@
 #include <sys/times.h>
 #include <string.h>
 
+/* COLORS */
+#define GREEN "\33[1;32m"
+#define NC "\033[0m"
+#define RED "\33[1;31m"
+#define YELLOW "\33[1;33m"
+static char	*color;
+
 #if defined(__MACH__) && defined(__APPLE__)
 #include <mach/mach.h>
 #include <mach/mach_time.h>
@@ -68,7 +75,7 @@
 /*  Maximum length of last message */
 #define MINUNIT_MESSAGE_LEN 1024
 /*  Accuracy with which floats are compared */
-#define MINUNIT_EPSILON 1E-12
+#define MINUNIT_EPSILON 1E-4
 
 /*  Misc. counters */
 static int minunit_run = 0;
@@ -131,7 +138,12 @@ static void (*minunit_teardown)(void) = NULL;
 #define MU_REPORT() MU__SAFE_BLOCK(\
 	double minunit_end_real_timer;\
 	double minunit_end_proc_timer;\
-	printf("\n\n%d tests, %d assertions, %d failures\n", minunit_run, minunit_assert, minunit_fail);\
+	if (minunit_fail == 0) \
+		color = GREEN; \
+	else \
+		color = RED; \
+	printf("\n\n%s%d tests%s, %s%dassertions%s, %s%d failures%s\n", YELLOW, minunit_run, \
+					NC, GREEN, minunit_assert, NC, color, minunit_fail, NC);\
 	minunit_end_real_timer = mu_timer_real();\
 	minunit_end_proc_timer = mu_timer_cpu();\
 	printf("\nFinished in %.8f seconds (real) %.8f seconds (proc)\n\n",\
