@@ -2,12 +2,12 @@ SOURCES =	main.c args.c
 NAME = miniRT
 LIBFT = libs/libft/libft.a
 MLX = libs/minilibs/libmlx_Linux.a
-SRCS_PATH = sources
-OBJS_PATH = objects
+SRCS_PATH = ./sources
+OBJS_PATH = ./objects
 MY_SRCS = ${addprefix ${SRCS_PATH}/, ${notdir ${MY_SOURCES}}}
 SRCS = ${addprefix ${SRCS_PATH}/, ${SOURCES}}
 OBJS = ${addprefix ${OBJS_PATH}/, ${notdir ${SOURCES:.c=.o}}}
-VPATH :=	${SRCS_PATH} ${SRCS_PATH}/mainextendi 
+#VPATH :=	${SRCS_PATH} ${SRCS_PATH}/main ${SRCS_PATH}/file
 CC = cc
 FLAGS = -g
 
@@ -23,7 +23,7 @@ all: ${NAME}
 
 bonus: ${BONUS}
 
-${OBJS_PATH}/%.o: %.c
+${OBJS_PATH}/%.o: ${SRCS_PATH}/%.c
 	@ mkdir -p ${OBJS_PATH}
 	@ printf "Compiling: $< %10s\r"
 	@ ${CC} ${FLAGS} -I libs/libft/include/ -I includes/ -Ilibs/minilibx -c $< -o $@
@@ -41,15 +41,37 @@ ${MLX}:
 		@ clear
 		@ echo "$(L_GREEN)Minilibx successufully compiled!$(NC)"
 
+
+# ***********************WILDCARD COMPILATION******************* # 
+NAME_WILD = minirt
+NAME_ARCHIVE = minirt.a
+SOURCES_W = $(wildcard $(SRCS_PATH)/**/*.c) $(wildcard $(SRCS_PATH)/*.c)
+OBJECTS_W = $(patsubst $(SRCS_PATH)/%.c, $(OBJS_PATH)/%.o, $(SOURCES_W))
+OBJECTS_W_PATH = ${dir ${OBJECTS_W}}
+
+m: ${NAME_WILD}
+
+
+${NAME_WILD}: ${LIBFT} ${NAME_ARCHIVE}
+				${CC} ${FLAGS} ${NAME_ARCHIVE} -Llibs/minilibx -lmlx_Linux -lXext -lX11 -lm ${LIBFT} -o ${NAME_WILD}
+
+${NAME_ARCHIVE}: ${OBJECTS_W}
+				ar -rcs ${NAME_ARCHIVE} ${OBJECTS_W}
+
+dirs:
+		mkdir -p ${OBJECTS_W_PATH}
+
+# ============================================================ #
+
 clean:
 	@ rm -rf ${OBJS_PATH}
 	@ echo "${L_CYAN}Objects deleted!${NC}"
 
 fclean: clean
 	@ make fclean -C libs/libft/ --no-print-directory
-	@ rm -rf ${NAME}
+	@ rm -rf ${NAME} ${NAME_ARCHIVE} ${NAME_WILD}
 	@ echo "${L_BLUE}miniRT deleted!${NC}"
-	
+
 re: fclean all
 
 .PHONY: clean re all fclean

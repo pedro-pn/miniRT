@@ -1,4 +1,5 @@
 .vscode*
 miniRT
 *.o
-
+minirt
+minirt.a
