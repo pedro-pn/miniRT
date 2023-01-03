@@ -3,3 +3,4 @@ miniRT
 *.o
 minirt
 minirt.a
+*.out

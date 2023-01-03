@@ -1,12 +1,13 @@
 SOURCES =	main.c args.c
 NAME = miniRT
 LIBFT = libs/libft/libft.a
-MLX = libs/minilibs/libmlx_Linux.a
+MLX = libs/minilibx/libmlx_Linux.a
 SRCS_PATH = ./sources
 OBJS_PATH = ./objects
 MY_SRCS = ${addprefix ${SRCS_PATH}/, ${notdir ${MY_SOURCES}}}
 SRCS = ${addprefix ${SRCS_PATH}/, ${SOURCES}}
 OBJS = ${addprefix ${OBJS_PATH}/, ${notdir ${SOURCES:.c=.o}}}
+CC_LIBS = -I libs/libft/include/ -I includes/ -Ilibs/minilibx -Llibs/minilibx -lmlx_Linux -lXext -lX11 -lm
 #VPATH :=	${SRCS_PATH} ${SRCS_PATH}/main ${SRCS_PATH}/file
 CC = cc
 FLAGS = -g
@@ -26,10 +27,10 @@ bonus: ${BONUS}
 ${OBJS_PATH}/%.o: ${SRCS_PATH}/%.c
 	@ mkdir -p ${OBJS_PATH}
 	@ printf "Compiling: $< %10s\r"
-	@ ${CC} ${FLAGS} -I libs/libft/include/ -I includes/ -Ilibs/minilibx -c $< -o $@
+	@ ${CC} ${CC_LIBS} ${FLAGS} -c $< -o $@
 
 ${NAME}: ${MLX} ${LIBFT} ${OBJS}
-	@ ${CC} ${FLAGS} ${OBJS} -Llibs/minilibx -lmlx_Linux -lXext -lX11 -lm ${LIBFT} -o ${NAME} 
+	@ ${CC} ${FLAGS} ${OBJS} ${CC_LIBS} ${LIBFT} -o ${NAME} 
 	@ echo "\12${GREEN}${NAME} successfully compiled!${NC}"
 
 ${LIBFT}:
@@ -45,6 +46,7 @@ ${MLX}:
 # ***********************WILDCARD COMPILATION******************* # 
 NAME_WILD = minirt
 NAME_ARCHIVE = minirt.a
+MAIN_W = ./main.c
 SOURCES_W = $(wildcard $(SRCS_PATH)/**/*.c) $(wildcard $(SRCS_PATH)/*.c)
 OBJECTS_W = $(patsubst $(SRCS_PATH)/%.c, $(OBJS_PATH)/%.o, $(SOURCES_W))
 OBJECTS_W_PATH = ${dir ${OBJECTS_W}}
@@ -58,8 +60,22 @@ ${NAME_WILD}: ${LIBFT} ${NAME_ARCHIVE}
 ${NAME_ARCHIVE}: ${OBJECTS_W}
 				ar -rcs ${NAME_ARCHIVE} ${OBJECTS_W}
 
-dirs:
-		mkdir -p ${OBJECTS_W_PATH}
+
+# ============================================================ #
+
+# ***********************TESTS******************* # 
+
+TEST_PATH = ./tests
+SOURCES_T = $(wildcard $(TEST_PATH)/*.c) $(wildcard ${TEST_PATH}/**/*.c)
+TESTS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/%.out, $(SOURCES_T))
+test: test_clean ${TEST_PATH}/$t.out
+
+${TEST_PATH}/%.out: ${TEST_PATH}/%.c
+			${CC} ${CC_LIBS} ${NAME_ARCHIVE} $< -o $@
+			./$@
+
+test_clean:
+			rm -rf ${wildcard ${TEST_PATH}/*.out} ${wildcard $(TEST_PATH)/**/*.out}
 
 # ============================================================ #
 
@@ -74,4 +90,6 @@ fclean: clean
 
 re: fclean all
 
+dirs:
+		mkdir -p ${OBJECTS_W_PATH} ${OBJECTS_T_PATH}
 .PHONY: clean re all fclean
