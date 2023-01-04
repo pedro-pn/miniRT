@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/04 11:32:13 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:00:39 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,9 @@ typedef struct s_scene_val
 
 int		check_args(int argc, char **argv);
 void	file_init(t_file *file);
+
+/* utils_temp*/
+
+void	tuple_inspect(t_t3d tuple);
 
 #endif
