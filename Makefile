@@ -7,7 +7,7 @@ OBJS_PATH = ./objects
 MY_SRCS = ${addprefix ${SRCS_PATH}/, ${notdir ${MY_SOURCES}}}
 SRCS = ${addprefix ${SRCS_PATH}/, ${SOURCES}}
 OBJS = ${addprefix ${OBJS_PATH}/, ${notdir ${SOURCES:.c=.o}}}
-CC_LIBS = -I libs/libft/include/ -I includes/ -Ilibs/minilibx -Llibs/minilibx -lmlx_Linux -lXext -lX11 -lm
+CC_LIBS = ${LIBFT} -I libs/libft/include -I includes -Ilibs/minilibx -Llibs/minilibx -lmlx_Linux -lXext -lX11 -lm
 #VPATH :=	${SRCS_PATH} ${SRCS_PATH}/main ${SRCS_PATH}/file
 CC = cc
 FLAGS = -g
@@ -30,7 +30,7 @@ ${OBJS_PATH}/%.o: ${SRCS_PATH}/%.c
 	@ ${CC} ${CC_LIBS} ${FLAGS} -c $< -o $@
 
 ${NAME}: ${MLX} ${LIBFT} ${OBJS}
-	@ ${CC} ${FLAGS} ${OBJS} ${CC_LIBS} ${LIBFT} -o ${NAME} 
+	@ ${CC} ${FLAGS} ${OBJS} ${CC_LIBS} -o ${NAME} 
 	@ echo "\12${GREEN}${NAME} successfully compiled!${NC}"
 
 ${LIBFT}:
@@ -46,7 +46,8 @@ ${MLX}:
 # ***********************WILDCARD COMPILATION******************* # 
 NAME_WILD = minirt
 NAME_ARCHIVE = minirt.a
-MAIN_W = ./main.c
+MAIN_W = main.c
+MAIN_OBJS = ${OBJS_PATH}/main.o
 SOURCES_W = $(wildcard $(SRCS_PATH)/**/*.c) $(wildcard $(SRCS_PATH)/*.c)
 OBJECTS_W = $(patsubst $(SRCS_PATH)/%.c, $(OBJS_PATH)/%.o, $(SOURCES_W))
 OBJECTS_W_PATH = ${dir ${OBJECTS_W}}
@@ -54,9 +55,13 @@ OBJECTS_W_PATH = ${dir ${OBJECTS_W}}
 m: ${NAME_WILD}
 
 
-${NAME_WILD}: ${LIBFT} ${NAME_ARCHIVE}
-				${CC} ${FLAGS} ${NAME_ARCHIVE} -Llibs/minilibx -lmlx_Linux -lXext -lX11 -lm ${LIBFT} -o ${NAME_WILD}
+${NAME_WILD}: ${LIBFT} ${NAME_ARCHIVE} ${MAIN_OBJS}
+				${CC} ${CC_LIBS} ${FLAGS} ${NAME_ARCHIVE} ${MAIN_W} -o ${NAME_WILD}
 
+${MAIN_OBJS}: ${MAIN_W}
+		 @ printf "Compiling: $< %10s\r"
+		 @ ${CC} ${CC_LIBS} ${FLAGS} -c $< -o $@
+			
 ${NAME_ARCHIVE}: ${OBJECTS_W}
 				ar -rcs ${NAME_ARCHIVE} ${OBJECTS_W}
 
@@ -71,10 +76,10 @@ TESTS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/%.out, $(SOURCES_T))
 test: test_clean ${TEST_PATH}/$t.out
 
 ${TEST_PATH}/%.out: ${TEST_PATH}/%.c
-			${CC} ${CC_LIBS} ${NAME_ARCHIVE} $< -o $@
+			${CC} $<  ${NAME_ARCHIVE} ${CC_LIBS} -o $@
 			./$@
 
-test_clean:
+test_clean: 
 			rm -rf ${wildcard ${TEST_PATH}/*.out} ${wildcard $(TEST_PATH)/**/*.out}
 
 # ============================================================ #

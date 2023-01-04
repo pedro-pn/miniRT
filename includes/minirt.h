@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/07 18:14:15 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/03 16:59:06 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <fcntl.h>
 # include "mlx.h"
+# include "algebra.h"
 
 # define ERRARG 1
 # define ERRFMT 2
