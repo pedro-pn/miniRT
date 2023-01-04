@@ -7,7 +7,8 @@ OBJS_PATH = ./objects
 MY_SRCS = ${addprefix ${SRCS_PATH}/, ${notdir ${MY_SOURCES}}}
 SRCS = ${addprefix ${SRCS_PATH}/, ${SOURCES}}
 OBJS = ${addprefix ${OBJS_PATH}/, ${notdir ${SOURCES:.c=.o}}}
-CC_LIBS = ${LIBFT} -I libs/libft/include -I includes -Ilibs/minilibx -Llibs/minilibx -lmlx_Linux -lXext -lX11 -lm
+CC_LIBS = ${LIBFT} 
+CC_INCLUDES = -I libs/libft/include -I includes -Ilibs/minilibx -Llibs/minilibx -lmlx_Linux -lXext -lX11 -lm
 #VPATH :=	${SRCS_PATH} ${SRCS_PATH}/main ${SRCS_PATH}/file
 CC = cc
 FLAGS = -g
@@ -27,7 +28,7 @@ bonus: ${BONUS}
 ${OBJS_PATH}/%.o: ${SRCS_PATH}/%.c
 	@ mkdir -p ${OBJS_PATH}
 	@ printf "Compiling: $< %10s\r"
-	@ ${CC} ${CC_LIBS} ${FLAGS} -c $< -o $@
+	@ ${CC} ${CC_INCLUDES} ${FLAGS} -c $< -o $@
 
 ${NAME}: ${MLX} ${LIBFT} ${OBJS}
 	@ ${CC} ${FLAGS} ${OBJS} ${CC_LIBS} -o ${NAME} 
@@ -56,11 +57,11 @@ m: ${NAME_WILD}
 
 
 ${NAME_WILD}: ${LIBFT} ${NAME_ARCHIVE} ${MAIN_OBJS}
-				${CC} ${CC_LIBS} ${FLAGS} ${NAME_ARCHIVE} ${MAIN_W} -o ${NAME_WILD}
+				${CC} ${CC_LIBS} ${CC_INCLUDES} ${FLAGS} ${NAME_ARCHIVE} ${MAIN_W} -o ${NAME_WILD}
 
 ${MAIN_OBJS}: ${MAIN_W}
 		 @ printf "Compiling: $< %10s\r"
-		 @ ${CC} ${CC_LIBS} ${FLAGS} -c $< -o $@
+		 @ ${CC} ${CC_INCLUDES} ${FLAGS} -c $< -o $@
 			
 ${NAME_ARCHIVE}: ${OBJECTS_W}
 				ar -rcs ${NAME_ARCHIVE} ${OBJECTS_W}
@@ -76,10 +77,10 @@ TESTS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/%.out, $(SOURCES_T))
 test: test_clean ${TEST_PATH}/$t.out
 
 ${TEST_PATH}/%.out: ${TEST_PATH}/%.c
-			${CC} $<  ${NAME_ARCHIVE} ${CC_LIBS} -o $@
+			${CC} $<  ${NAME_ARCHIVE} ${CC_LIBS} ${CC_INCLUDES} -o $@
 			./$@
 
-test_clean: 
+test_clean: clean dirs m
 			rm -rf ${wildcard ${TEST_PATH}/*.out} ${wildcard $(TEST_PATH)/**/*.out}
 
 # ============================================================ #
