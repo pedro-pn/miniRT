@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:26:12 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 16:18:55 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:54:54 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # include "mlx.h"
 # include "libft.h"
 # include <fcntl.h>
+
+/* MLX*/
+
+void		*mlx_data(void);
+void		start_mlx(void);
+void		*window(void);
+
+/* IMAGE */
 
 typedef struct	s_mlx_img
 {
@@ -28,10 +36,7 @@ typedef struct	s_mlx_img
 	int		height;
 }			t_mlx_img;
 
-void		*mlx_data(void);
 void		img_init(void);
-void		start_mlx(void);
-void		*window(void);
 t_mlx_img	*image(void);
 
 void		mlx_draw_pixel(t_mlx_img *img, int x, int y, int color);
@@ -46,11 +51,12 @@ typedef struct s_rgb
 	int	b;
 }			t_rgb;
 
-int	get_red(int color);
-int	get_green(int color);
-int	get_blue(int color);
-int	get_color(int red, int green, int blue);
-int	get_rgb_color(t_rgb rgb);
+int		get_red(int color);
+int		get_green(int color);
+int		get_blue(int color);
+int		get_color(int red, int green, int blue);
+int		get_rgb_color(t_rgb rgb);
+t_rgb	color_rgb(int red, int green,  int blue);
 
 /* PPM file*/
 

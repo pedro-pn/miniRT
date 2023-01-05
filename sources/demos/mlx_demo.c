@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:22:46 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 16:10:08 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:52:19 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	mlx_demo(void)
 		y = 0;
 		while (y < img->height)
 		{
-			mlx_draw_pixel(img, x, y, 255 << 8);
+			mlx_draw_pixel(img, x, y, 255);
 			y++;
 		}
 		x++;

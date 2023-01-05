@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:45:13 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 15:54:29 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:56:01 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ int	get_color(int red, int green, int blue)
 {
 	return (red << 16 | green << 16 | blue);
 }
-

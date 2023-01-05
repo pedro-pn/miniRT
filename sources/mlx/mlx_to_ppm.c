@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:04:55 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 16:48:33 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:52:00 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,6 @@ char	*make_ppm_img(t_mlx_img *img, char *cursor)
 	return (cursor);
 }
 
-void	build_buffer(t_mlx_img *img, char *cursor)
-{
-
-	cursor = make_ppm_header(img, cursor);
-	cursor = make_ppm_img(img, cursor);
-}
-
 void	mlx_save_img_to_ppm(t_mlx_img *img, char *filename)
 {
 	char	*buffer;
@@ -98,7 +91,8 @@ void	mlx_save_img_to_ppm(t_mlx_img *img, char *filename)
 	buffer_size = 250 + (12 * img->width + 1) * img->height;
 	buffer = ft_calloc(buffer_size, sizeof(char));
 	cursor = buffer;
-	build_buffer(img, cursor);
+	cursor = make_ppm_header(img, cursor);
+	cursor = make_ppm_img(img, cursor);
 	save_ppm_file(buffer, filename);
 	free(buffer);
 }
