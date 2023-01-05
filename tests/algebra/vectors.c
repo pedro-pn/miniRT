@@ -1,7 +1,9 @@
 #include "../test.h"
 
-t_t3d   result;
-t_t3d   expected;
+t_v3d	result;
+t_v3d	expected;
+double	res_mag;
+double	result_dot;
 
 void test_setup(void) {
 	
@@ -10,40 +12,69 @@ void test_setup(void) {
 void test_teardown(void) {
 	
 }
-// Scenario : A tuple with w=1.0 is a point
-// Given a ← tuple(4.3, -4.2, 3.1, 1.0)
-// Then a.x = 4.3
-// And a.y = -4.2
-// And a.z = 3.1
-// And a.w = 1.0
-// And a is a point
-// And a is not a vector
-MU_TEST(tuple_tst) {
-	result = tuple_3d(4.3, -4.2, 3.1, 1.0);
-    expected.x = 4.3;
-    expected.y = -4.2;
-    expected.z = 3.1;
-    expected.w = 1.0;
-    mu_assert_tuple_eq(expected, result);
+
+MU_TEST(magnitude_tst){
+	res_mag = magnitude(vector(1, 0, 0));
+	mu_assert_double_eq(1, res_mag);
+
+	res_mag = magnitude(vector(0, 1, 0));
+	mu_assert_double_eq(1, res_mag);
+
+	res_mag = magnitude(vector(0, 0, 1));
+	mu_assert_double_eq(1, res_mag);
+
+	res_mag = magnitude(vector(1, 2, 3));
+	mu_assert_double_eq(sqrt(14), res_mag);
+
+	res_mag = magnitude(vector(-1, -2, -3));
+	mu_assert_double_eq(sqrt(14), res_mag);
 }
 
-// Scenario : A tuple with w=0 is a vector
-// Given a ← tuple(4.3, -4.2, 3.1, 0.0)
-// Then a.x = 4.3
-// And a.y = -4.2
-// And a.z = 3.1
-// And a.w = 0.0
-// And a is not a point
-// MU_TEST(test_check) {
-// 	;
-// }
+MU_TEST(normalization_tst){
+	result = normalize(vector(4, 0, 0));
+	expected = vector(1, 0, 0);
+	mu_assert_tuple_eq(expected, result);
 
+	result = normalize(vector(1, 2, 3));
+	expected = vector(1/sqrt(14), 2.0/sqrt(14), 3.0/sqrt(14));
+	mu_assert_tuple_eq(expected, result);
+
+	res_mag = magnitude(expected);
+	mu_assert_double_eq(1, res_mag);
+}
+
+MU_TEST(dot_tst)
+{
+	result_dot = dotp(vector(1, 2, 3), vector(2, 3, 4));
+	mu_assert_double_eq(20, result_dot);
+}
+
+// 	Scenario : The cross product of two vectors
+// Given a ← vector(1, 2, 3)
+// And b ← vector(2, 3, 4)
+// Then cross(a, b) = vector(-1, 2, -1)
+// And cross(b, a) = vector(1, -2, 1)
+
+MU_TEST(cross_tst)
+{
+	result = cross(vector(1, 2, 3), vector(2, 3, 4));
+	expected = vector(-1, 2, -1);
+	mu_assert_tuple_eq(expected, result);
+
+	result = cross(vector(2, 3, 4), vector(1, 2, 3));
+	expected = vector(1, -2, 1);
+	mu_assert_tuple_eq(expected, result);
+}
 
 MU_TEST_SUITE(vector_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
-	MU_RUN_TEST(tuple_tst);
+	MU_RUN_TEST(magnitude_tst);
+	MU_RUN_TEST(normalization_tst);
+	MU_RUN_TEST(dot_tst);
+	MU_RUN_TEST(cross_tst);
 }
+
 
 int main(int argc, char *argv[]) {
 	MU_RUN_SUITE(vector_suite);

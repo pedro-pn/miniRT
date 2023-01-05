@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:43:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/04 14:09:31 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:20:36 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,8 @@ t_t3d	scalar_div(double scalar, t_t3d tuple);
 /* Vectors */
 
 double	magnitude(t_v3d vector);
+t_v3d	normalize(t_v3d vector);
+double	dotp(t_v3d v1, t_v3d v2);
+t_v3d	cross(t_v3d v1, t_v3d v2);
 
 #endif
