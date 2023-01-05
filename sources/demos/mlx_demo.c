@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:22:46 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 13:23:05 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:10:08 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	mlx_demo(void)
 		}
 		x++;
 	}
-	mlx_put_image_to_window(data()->mlx, data()->mlx_win, img->img, 0, 0);
-	mlx_loop(data()->mlx);
+	// mlx_put_image_to_window(data()->mlx, data()->mlx_win, img->img, 0, 0);
+	// mlx_loop(data()->mlx);
+	mlx_save_img_to_ppm(img, "teste.ppm");
 }

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 14:54:20 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:52:32 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define ERRFILE 3
 # define SPACES " \t"
 
-# define SCREEN_WIDTH 800
-# define SCREEN_HEIGHT 800
+# define SCREEN_WIDTH 100
+# define SCREEN_HEIGHT 100
 
 typedef	struct s_data
 {
