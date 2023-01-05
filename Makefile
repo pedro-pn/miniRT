@@ -7,8 +7,8 @@ OBJS_PATH = ./objects
 MY_SRCS = ${addprefix ${SRCS_PATH}/, ${notdir ${MY_SOURCES}}}
 SRCS = ${addprefix ${SRCS_PATH}/, ${SOURCES}}
 OBJS = ${addprefix ${OBJS_PATH}/, ${notdir ${SOURCES:.c=.o}}}
-CC_LIBS = ${LIBFT} 
-CC_INCLUDES = -I libs/libft/include -I includes -Ilibs/minilibx -Llibs/minilibx -lmlx_Linux -lXext -lX11 -lm
+CC_LIBS = ${LIBFT} ${MLX}
+CC_INCLUDES = -I libs/libft/include -I includes -I libs/minilibx
 #VPATH :=	${SRCS_PATH} ${SRCS_PATH}/main ${SRCS_PATH}/file
 CC = cc
 FLAGS = -g
@@ -48,7 +48,7 @@ ${MLX}:
 NAME_WILD = minirt
 NAME_ARCHIVE = minirt.a
 MAIN_W = main.c
-MAIN_OBJS = ${OBJS_PATH}/main.o
+MAIN_OBJ = ${OBJS_PATH}/main.o
 SOURCES_W = $(wildcard $(SRCS_PATH)/**/*.c) $(wildcard $(SRCS_PATH)/*.c)
 OBJECTS_W = $(patsubst $(SRCS_PATH)/%.c, $(OBJS_PATH)/%.o, $(SOURCES_W))
 OBJECTS_W_PATH = ${dir ${OBJECTS_W}}
@@ -56,15 +56,18 @@ OBJECTS_W_PATH = ${dir ${OBJECTS_W}}
 m: ${NAME_WILD}
 
 
-${NAME_WILD}: ${LIBFT} ${NAME_ARCHIVE} ${MAIN_OBJS}
-				${CC} ${CC_LIBS} ${CC_INCLUDES} ${FLAGS} ${NAME_ARCHIVE} ${MAIN_W} -o ${NAME_WILD}
+${NAME_WILD}: ${LIBFT} ${NAME_ARCHIVE} ${MAIN_OBJ}
+				${CC} ${MAIN_OBJ} ${NAME_ARCHIVE} ${CC_LIBS} ${CC_INCLUDES} -lXext -lX11 -lm ${FLAGS} -o ${NAME_WILD}
 
-${MAIN_OBJS}: ${MAIN_W}
+${MAIN_OBJ}: ${MAIN_W}
 		 @ printf "Compiling: $< %10s\r"
 		 @ ${CC} ${CC_INCLUDES} ${FLAGS} -c $< -o $@
 			
 ${NAME_ARCHIVE}: ${OBJECTS_W}
 				ar -rcs ${NAME_ARCHIVE} ${OBJECTS_W}
+
+run: m
+	./${NAME_WILD}
 
 
 # ============================================================ #
@@ -94,8 +97,11 @@ fclean: clean
 	@ rm -rf ${NAME} ${NAME_ARCHIVE} ${NAME_WILD}
 	@ echo "${L_BLUE}miniRT deleted!${NC}"
 
-re: fclean all
+re: fclean dirs m
 
 dirs:
 		mkdir -p ${OBJECTS_W_PATH} ${OBJECTS_T_PATH}
+
+norma:
+		norminette sources/
 .PHONY: clean re all fclean

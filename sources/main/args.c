@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:07:31 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/07 17:52:41 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:36:49 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	handle_arg_error(int argc)
 static void	handle_invalid_format(void)
 {
 	ft_putendl_fd("Error\nminiRT: invalid format!\nExpected .rt format file.",
-					2);
+		2);
 	exit(ERRFMT);
 }
 

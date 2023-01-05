@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   comp.c                                             :+:      :+:    :+:   */
+/*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 11:04:32 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 14:34:41 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/01/05 12:04:41 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/01/05 13:24:36 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static double	abs_double(int a)
+t_data	*data(void)
 {
-	if (a < 0)
-		return (-a);
-	return (a);
-}
+	static t_data	data;
 
-t_bool	comp(double a, double b)
-{
-	double	diff;
-
-	diff = abs_double(a) - abs_double(b);
-	if (abs_double(diff) < EPSILON)
-		return (true);
-	return (false);
+	return (&data);
 }

@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   comp.c                                             :+:      :+:    :+:   */
+/*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 11:04:32 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 14:34:41 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/01/05 11:30:20 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/01/05 14:53:59 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static double	abs_double(int a)
+void	start_mlx(void)
 {
-	if (a < 0)
-		return (-a);
-	return (a);
+	t_data	*_data;
+
+	_data = data();
+	_data->mlx = mlx_init();
+	_data->mlx_win = mlx_new_window(_data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT,
+			"minirt");
 }
 
-t_bool	comp(double a, double b)
-{
-	double	diff;
+t_mlx_img	*image(void)
+{	
+	return (&(data()->img));
+}
 
-	diff = abs_double(a) - abs_double(b);
-	if (abs_double(diff) < EPSILON)
-		return (true);
-	return (false);
+void	*window(void)
+{
+	return (data()->mlx_win);
 }

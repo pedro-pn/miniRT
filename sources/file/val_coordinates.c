@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:58:20 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 20:39:45 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:34:49 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	val_norm_coordinate(char *line)
 	return (TRUE);
 }
 
-int check_coordinate(char *line)
+int	check_coordinate(char *line)
 {
 	if (!*line)
 		return (FALSE);

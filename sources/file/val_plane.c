@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:35:56 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 20:40:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:33:42 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ int	validate_plane(char *line)
 		return (FALSE);
 	return (TRUE);
 }
-

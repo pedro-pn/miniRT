@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:17:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 14:30:23 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:34:48 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	light_counter(char id)
 {
-	static int count = 0;
+	static int	count = 0;
 
 	if (id != 'L')
 		return (FALSE);

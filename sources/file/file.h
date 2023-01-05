@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 20:14:06 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:32:12 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,24 @@
 # define FALSE 0
 
 void	validate_scene(char *filename);
-int	validate_line(char *line);
+int		validate_line(char *line);
 char	*jump_spaces(char *line);
-int	ft_isfloat(char **nptr);
+int		ft_isfloat(char **nptr);
 char	*jump_info(char *line);
-int	validate_camera(char *line);
-int check_coordinate(char *line);
-int	check_norm_coordinate(char *line);
-int	validate_fov(char *line);
+int		validate_camera(char *line);
+int		check_coordinate(char *line);
+int		check_norm_coordinate(char *line);
+int		validate_fov(char *line);
 void	error_validate(char *line, int fd);
 void	free_array(void **array);
-int	validate_ambient(char *line);
-int	check_color(char *line);
-int	is_rgb(char *line);
-int	check_amb_light(char *line);
+int		validate_ambient(char *line);
+int		check_color(char *line);
+int		is_rgb(char *line);
+int		check_amb_light(char *line);
 char	*get_next_info(char *line);
-int	validate_light(char *line);
-int	validate_sphere(char *line);
-int	validate_plane(char *line);
-int	validate_cylinder(char *line);
-
+int		validate_light(char *line);
+int		validate_sphere(char *line);
+int		validate_plane(char *line);
+int		validate_cylinder(char *line);
 
 #endif
