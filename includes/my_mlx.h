@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:26:12 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 17:54:54 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:18:47 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 void		*mlx_data(void);
 void		start_mlx(void);
 void		*window(void);
+void		my_mlx_destroy(void);
+void		my_mlx_img_destroy(void);
 
 /* IMAGE */
 

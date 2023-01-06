@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 18:24:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 18:20:17 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/01/05 18:19:45 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/01/05 21:25:01 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-
-void	initialize_minirt(void)
+void	clean_mlx(t_data *_data)
 {
-	start_mlx();
-	img_init();
-	
+//	mlx_destroy_window(_data->mlx, _data->mlx_win);
+	mlx_destroy_image(_data->mlx, _data->img.img);
+	mlx_destroy_display(_data->mlx);
+	free(_data->mlx);
 }
 
-void	run(void)
+void	clean_program(void)
 {
-	mlx_demo();
-	clean_program();
-}
+	t_data	*_data;
 
-int	main(int argc, char *argv[])
-{
-	t_file	file;
-	
-	(void)argc;
-	
-	initialize_minirt();
-	run();
-	// if (check_args(argc, argv))
-	// 	exit(ERRARG);
-//	file = check_file(argv[1]);
-	
+	_data = data();
+	clean_mlx(_data);
 }
