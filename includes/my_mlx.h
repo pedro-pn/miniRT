@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:26:12 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 18:18:47 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:03:07 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct	s_mlx_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		width;
-	int		height;
+	int		_width;
+	int		_height;
 }			t_mlx_img;
 
 void		img_init(void);
@@ -56,9 +56,10 @@ typedef struct s_rgb
 int		get_red(int color);
 int		get_green(int color);
 int		get_blue(int color);
-int		get_color(int red, int green, int blue);
+int		get_color(int _red, int _green, int _blue);
 int		get_rgb_color(t_rgb rgb);
-t_rgb	color_rgb(int red, int green,  int blue);
+void	mlx_draw_pixel_rgb(t_mlx_img *img, int x, int y, t_rgb color_rgb);
+t_rgb	color_rgb(int _red, int _green,  int _blue);
 
 /* PPM file*/
 
