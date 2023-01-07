@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 21:15:24 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:20:51 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define ERRFILE 3
 # define SPACES " \t"
 
-# define SCREEN_WIDTH 10
-# define SCREEN_HEIGHT 10
+# define SCREEN_WIDTH 256
+# define SCREEN_HEIGHT 256
 
 typedef	struct s_data
 {
@@ -74,6 +74,7 @@ void	tuple_inspect(t_t3d tuple);
 /* DEMOS*/
 
 void	mlx_demo(void);
+void	hello_world_img(void);
 
 /* CLEAN*/
 

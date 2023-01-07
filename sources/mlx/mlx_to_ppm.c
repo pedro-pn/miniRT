@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:04:55 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 17:52:00 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/06 19:09:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ char	*make_ppm_header(t_mlx_img *img, char *cursor)
 	char	*_width;
 	char	*_height;
 
-	_width = ft_itoa(img->width);
-	_height = ft_itoa(img->height);
+	_width = ft_itoa(img->_width);
+	_height = ft_itoa(img->_height);
 	cursor = ft_strcpy_end(cursor, "P3\n");
 	cursor = ft_strcpy_end(cursor, _width);
 	cursor = ft_strcpy_end(cursor, " ");
@@ -68,10 +68,10 @@ char	*make_ppm_img(t_mlx_img *img, char *cursor)
 	int	y;
 
 	x = 0;
-	while (x < img->width)
+	while (x < img->_width)
 	{
 		y = 0;
-		while (y < img->height)
+		while (y < img->_height)
 		{
 			cursor = write_pixel_to_buffer(img, cursor, x, y);
 			y++;
@@ -88,7 +88,7 @@ void	mlx_save_img_to_ppm(t_mlx_img *img, char *filename)
 	char	*cursor;
 	size_t	buffer_size;
 
-	buffer_size = 250 + (12 * img->width + 1) * img->height;
+	buffer_size = 250 + (12 * img->_width + 1) * img->_height;
 	buffer = ft_calloc(buffer_size, sizeof(char));
 	cursor = buffer;
 	cursor = make_ppm_header(img, cursor);
