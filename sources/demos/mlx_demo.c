@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:22:46 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/07 14:40:25 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:16:47 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,26 @@ void	mlx_demo(void)
 
 void	hello_world_img(void)
 {
-	t_mlx_img	*img;
 	int			x;
 	int			y;
 	int			x2;
-	double		_red;
-	double		_green;
+	t_rgb		color;
 
-	img = image();
-	x = 0;
-	x2 = x;
-	while (x < img->_width)
+	x = image()->_width - 1;
+	x2 = 0;
+	color.b = 0.25 * 255.999;
+	while (x > 0)
 	{
-		y = img->_height - 1;
-		x2 = 0;
-		while (y > 0)
+		y = 0;
+		while (y < image()->_height)
 		{
-			_red = (double) x / (img->_width - 1);
-			_green = (double) y / (img->_height - 1);
-			mlx_draw_pixel_rgb(img, x, x2, color_rgb(_red * 255.999, _green * 255.999, 0.25 * 255.999));
-			y--;
-			x2++;
+			color.r = (double) y * 255.999/ (image()->_width - 1);
+			color.g = (double) x * 255.999/ (image()->_height - 1);
+			mlx_draw_pixel_rgb(image(), x2, y, color);
+			y++;
 		}
-		x++;
+		x--;
+		x2++;
 	}
-	// mlx_put_image_to_window(data()->mlx, data()->mlx_win, img->img, 0, 0);
-	// mlx_loop(data()->mlx);
-	mlx_save_img_to_ppm(img, "teste2.ppm");
+	mlx_save_img_to_ppm(image(), "teste4.ppm");
 }
