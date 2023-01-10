@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/07 14:20:51 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:52:19 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define ERRFILE 3
 # define SPACES " \t"
 
-# define SCREEN_WIDTH 256
-# define SCREEN_HEIGHT 256
+# define SCREEN_WIDTH 100
+# define SCREEN_HEIGHT 100
 
 typedef	struct s_data
 {
@@ -71,13 +71,29 @@ void	file_init(t_file *file);
 
 void	tuple_inspect(t_t3d tuple);
 
+
+/* CLEAN*/
+
+void	clean_program(void);
+
 /* DEMOS*/
 
 void	mlx_demo(void);
 void	hello_world_img(void);
 
-/* CLEAN*/
+typedef struct s_projectile
+{
+	t_p3d	position;
+	t_v3d	velocity;
+}			t_projectile;
 
-void	clean_program(void);
+typedef struct s_environment
+{
+	t_v3d	gravity;
+	t_v3d	wind;
+}			t_environment;
+
+t_projectile	tick(t_environment env, t_projectile proj);
+void			projectile_demo(void);
 
 #endif
