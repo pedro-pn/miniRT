@@ -6,11 +6,12 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 14:05:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/04 16:20:49 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:13:26 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algebra.h"
+#include <math.h>
 
 double	magnitude(t_v3d vector)
 {

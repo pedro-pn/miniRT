@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/09 20:52:19 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:18:32 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 
 # include "libft.h"
 # include "mlx.h"
-# include "maths.h"
 # include "algebra.h"
 # include "my_mlx.h"
 # include <fcntl.h>
-# include <math.h>
 
 # define EPSILON 1E-4
 

@@ -80,7 +80,7 @@ TESTS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/%.out, $(SOURCES_T))
 test: test_clean ${TEST_PATH}/$t.out
 
 ${TEST_PATH}/%.out: ${TEST_PATH}/%.c
-			${CC} $<  ${NAME_ARCHIVE} ${CC_LIBS} ${CC_INCLUDES} -o $@
+			${CC} $<  ${NAME_ARCHIVE} ${CC_LIBS} ${CC_INCLUDES} -lm -o $@
 			./$@
 
 test_clean: clean dirs m
