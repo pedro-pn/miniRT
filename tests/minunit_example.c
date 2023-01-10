@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 void test_setup(void) {
 }
@@ -6,7 +6,6 @@ void test_setup(void) {
 void test_teardown(void) {
 	/* Nothing */
 }
-
 
 MU_TEST(test_check) {
 }
