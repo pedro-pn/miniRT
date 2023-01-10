@@ -6,11 +6,11 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:17:44 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 13:23:13 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 22:43:26 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "algebra.h"
 
 t_t3d	add(t_t3d t1, t_t3d t2)
 {
