@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:04:55 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/06 19:09:35 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 21:06:22 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,17 @@ char	*make_ppm_img(t_mlx_img *img, char *cursor)
 	int	x;
 	int	y;
 
-	x = 0;
-	while (x < img->_width)
+	y = 0;
+	while (y < img->_height)
 	{
-		y = 0;
-		while (y < img->_height)
+		x = 0;
+		while (x < img->_width)
 		{
 			cursor = write_pixel_to_buffer(img, cursor, x, y);
-			y++;
+			x++;
 		}
 		cursor = ft_strcpy_end(cursor, "\n");
-		x++;
+		y++;
 	}
 	return (cursor);
 }
