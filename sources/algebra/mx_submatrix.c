@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:18:40 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/11 12:39:44 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/11 13:12:49 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,6 @@ void	mx_submatrix(t_matrix mx, int row, int column, t_matrix *result)
 		ft_bzero(&(*result)[i][3], sizeof(double));
 		i++;
 	}
-}
-
-double	mx_minor(t_matrix matrix, int row, int column)
-{
-	t_matrix	submatrix;
-
-	mx_submatrix(matrix, row, column, &submatrix);
-	return (mx_2by2_determinant(submatrix));
 }
 
 void	inspect_matrix(t_matrix matrix)

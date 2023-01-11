@@ -215,6 +215,21 @@ MU_TEST(minor_3by3_test){
 	mu_assert_double_eq(25, result_db);
 }
 
+MU_TEST(cofactor_tst){
+	set_matrix(&matrix, (t_set_matrix){
+		3, 5, 0, 0,
+		2, -1, -7, 0,
+		6, -1, 5, 0,
+		0, 0, 0, 0
+	});
+
+	result_db = mx_cofactor(matrix, 0, 0);
+	mu_assert_double_eq(-12, result_db);
+
+	result_db = mx_cofactor(matrix, 1, 0);
+	mu_assert_double_eq(-25, result_db);
+}
+
 MU_TEST_SUITE(matrix_ops_tst) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -228,6 +243,7 @@ MU_TEST_SUITE(matrix_ops_tst) {
 	MU_RUN_TEST(submatrix_3by3_tst);
 	MU_RUN_TEST(submatrix_4by4_tst);
 	MU_RUN_TEST(minor_3by3_test);
+	MU_RUN_TEST(cofactor_tst);
 }
 
 
@@ -236,4 +252,3 @@ int main(int argc, char *argv[]) {
 	MU_REPORT();
 	return MU_EXIT_CODE;
 }
-
