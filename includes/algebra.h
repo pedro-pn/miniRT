@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:43:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/10 16:10:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 22:39:04 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ALGEBRA_H
 
 # include "my_math.h"
+# include "libft.h"
 
 /* TUPLE */
 
@@ -29,6 +30,7 @@ typedef t_t3d	t_p3d;
 
 t_t3d	tuple_3d(double x, double y, double z, double w);
 t_p3d	point(double x, double y , double z);
+t_t3d	null_tuple(void);
 
 
 /* OPERATIONS */
@@ -93,15 +95,24 @@ typedef t_t3d	t_row;
 typedef t_t3d	t_column;
 
 void		set_matrix(t_matrix *matrix, t_set_matrix set_mx);
+void		mx_copy(t_matrix matrix, t_matrix *result);
 void		mx_identity(t_matrix *matrix);
+void		mx_switch_rows(t_matrix *matrix, int row_1, int row_2);
+void		mx_switch_columns(t_matrix *matrix, int column_1, int column_2);
 t_bool		matrix_compare(t_matrix mx1, t_matrix mx2);
 t_row		mx_get_row(t_matrix mx, int i);
 t_column	mx_get_column(t_matrix mx, int j);
+void		mx_submatrix(t_matrix mx, int row, int column, t_matrix *result);
 
 /* MATRIX OPERATIONS */
 
 void	mx_transpose(t_matrix matrix, t_matrix *result);
 void	mx_product(t_matrix mx1, t_matrix mx2, t_matrix *result);
 t_t3d	mx_tuple_product(t_matrix mx, t_t3d tuple);
+double	mx_2by2_determinant(t_matrix matrix);
+
+/* TO DELETE*/
+
+void	inspect_matrix(t_matrix matrix);
 
 #endif

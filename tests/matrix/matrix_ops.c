@@ -7,6 +7,8 @@ t_matrix	result;
 t_matrix	expected;
 t_t3d		result_tuple;
 t_t3d		expected_tuple;
+double		result_db;
+double		expected_db;
 
 void test_setup(void) {
 }
@@ -96,6 +98,129 @@ MU_TEST(transpose_tst){
 	mu_check(matrix_compare(expected, result));
 }
 
+// Scenario : Calculating the determinant of a 2x2 matrix
+// Given the following 2x2 matrix A:
+// | 1 | 5 |
+// | -3 | 2 |
+// Then determinant(A) = 17
+
+
+MU_TEST(determinant_2by2_tst){
+	set_matrix(&matrix, (t_set_matrix){
+		1, 5, 0, 0,
+		-3, 2, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0
+	});
+	result_db = mx_2by2_determinant(matrix);
+	mu_assert_double_eq(17, result_db);
+}
+
+MU_TEST(swtich_row_tst){
+	set_matrix(&matrix, (t_set_matrix){
+		0, 9, 3, 0,
+		9, 8, 0, 8,
+		1, 8, 5, 3,
+		0, 0, 5, 8
+	});
+	set_matrix(&expected, (t_set_matrix){
+		0, 9, 3, 0,
+		0, 0, 5, 8,
+		1, 8, 5, 3,
+		9, 8, 0, 8
+	});
+	mx_switch_rows(&matrix, 1, 3);
+
+	mu_check(matrix_compare(matrix, expected));
+
+	set_matrix(&matrix, (t_set_matrix){
+		0, 9, 3, 0,
+		9, 8, 0, 8,
+		1, 8, 5, 3,
+		0, 0, 5, 8
+	});
+	set_matrix(&expected, (t_set_matrix){
+		1, 8, 5, 3,
+		9, 8, 0, 8,
+		0, 9, 3, 0,
+		0, 0, 5, 8
+	});
+	mx_switch_rows(&matrix, 0, 2);
+	
+	mu_check(matrix_compare(matrix, expected));
+}
+
+MU_TEST(swtich_column_tst){
+	set_matrix(&matrix, (t_set_matrix){
+		0, 9, 3, 0,
+		9, 8, 0, 8,
+		1, 8, 5, 3,
+		0, 0, 5, 8
+	});
+	set_matrix(&expected, (t_set_matrix){
+		3, 9, 0, 0,
+		0, 8, 9, 8,
+		5, 8, 1, 3,
+		5, 0, 0, 8
+	});
+	mx_switch_columns(&matrix, 0, 2);
+
+	mu_check(matrix_compare(matrix, expected));
+
+	set_matrix(&matrix, (t_set_matrix){
+		0, 9, 3, 0,
+		9, 8, 0, 8,
+		1, 8, 5, 3,
+		0, 0, 5, 8
+	});
+	set_matrix(&expected, (t_set_matrix){
+		0, 0, 3, 9,
+		9, 8, 0, 8,
+		1, 3, 5, 8,
+		0, 8, 5, 0
+	});
+	mx_switch_columns(&matrix, 1, 3);
+	
+	mu_check(matrix_compare(matrix, expected));
+}
+// Scenario : A submatrix of a 3x3 matrix is a 2x2 matrix
+// Given the following 3x3 matrix A:
+// | 1 | 5 | 0 |
+// | -3 | 2 | 7 |
+// | 0 | 6 | -3 |
+// Then submatrix(A, 0, 2) is the following 2x2 matrix:
+// | -3 | 2 |
+// | 0 | 6 |
+
+MU_TEST(submatrix_3by3_tst){
+	set_matrix(&matrix, (t_set_matrix){
+		1.0, 5.0, 0, 0,
+		-3.0, 2.0, 7.0, 0,
+		0, 6.0, -3.0, 0,
+		0, 0, 0, 0
+	});
+	mx_submatrix(matrix, 0, 2, &result);
+	set_matrix(&expected, (t_set_matrix){
+		-3.0, 2.0, 0, 0,
+		0, 6.0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0
+	});
+	mu_check(matrix_compare(expected, result));
+}
+
+// Scenario : A submatrix of a 4x4 matrix is a 3x3 matrix
+// Given the following 4x4 matrix A:
+//, -6 | 1 | 1 | 6 |
+// | -8 | 5 | 8 | 6 |
+// | -1 | 0 | 8 | 2 |
+// | -7 | 1 | -1 | 1 |
+// Then submatrix(A, 2, 1) is the following 3x3 matrix:
+// | -6 | 1 | 6 |
+// | -8 | 8 | 6 |
+// | -7 | -1 | 1 |
+
+
 MU_TEST_SUITE(matrix_ops_tst) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -103,6 +228,10 @@ MU_TEST_SUITE(matrix_ops_tst) {
 	MU_RUN_TEST(mx_tuple_multiply_tst);
 	MU_RUN_TEST(identity_tst);
 	MU_RUN_TEST(transpose_tst);
+	MU_RUN_TEST(determinant_2by2_tst);
+	MU_RUN_TEST(swtich_row_tst);
+	MU_RUN_TEST(swtich_column_tst);
+	MU_RUN_TEST(submatrix_3by3_tst);
 }
 
 
