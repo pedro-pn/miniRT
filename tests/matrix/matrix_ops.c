@@ -40,15 +40,6 @@ MU_TEST(mx_multiplying_tst) {
 	mu_check(matrix_compare(result, expected));
 }
 
-// Scenario : A matrix multiplied by a tuple
-// Given the following matrix A:
-//, 1 | 2 | 3 | 4 |
-// | 2 | 4 | 4 | 2 |
-// | 8 | 6 | 4 | 1 |
-// | 0 | 0 | 0 | 1 |
-// And b ← tuple(1, 2, 3, 1)
-// Then A * b = tuple(18, 24, 33, 1)
-
 MU_TEST(mx_tuple_multiply_tst){
 	set_matrix(&matrix, (t_set_matrix){
 		1, 2, 3, 4,
@@ -97,13 +88,6 @@ MU_TEST(transpose_tst){
 	mx_transpose(matrix, &result);
 	mu_check(matrix_compare(expected, result));
 }
-
-// Scenario : Calculating the determinant of a 2x2 matrix
-// Given the following 2x2 matrix A:
-// | 1 | 5 |
-// | -3 | 2 |
-// Then determinant(A) = 17
-
 
 MU_TEST(determinant_2by2_tst){
 	set_matrix(&matrix, (t_set_matrix){
@@ -183,14 +167,6 @@ MU_TEST(swtich_column_tst){
 	
 	mu_check(matrix_compare(matrix, expected));
 }
-// Scenario : A submatrix of a 3x3 matrix is a 2x2 matrix
-// Given the following 3x3 matrix A:
-// | 1 | 5 | 0 |
-// | -3 | 2 | 7 |
-// | 0 | 6 | -3 |
-// Then submatrix(A, 0, 2) is the following 2x2 matrix:
-// | -3 | 2 |
-// | 0 | 6 |
 
 MU_TEST(submatrix_3by3_tst){
 	set_matrix(&matrix, (t_set_matrix){
@@ -209,17 +185,35 @@ MU_TEST(submatrix_3by3_tst){
 	mu_check(matrix_compare(expected, result));
 }
 
-// Scenario : A submatrix of a 4x4 matrix is a 3x3 matrix
-// Given the following 4x4 matrix A:
-//, -6 | 1 | 1 | 6 |
-// | -8 | 5 | 8 | 6 |
-// | -1 | 0 | 8 | 2 |
-// | -7 | 1 | -1 | 1 |
-// Then submatrix(A, 2, 1) is the following 3x3 matrix:
-// | -6 | 1 | 6 |
-// | -8 | 8 | 6 |
-// | -7 | -1 | 1 |
+MU_TEST(submatrix_4by4_tst){
+	set_matrix(&matrix, (t_set_matrix){
+		-6, 1, 1, 6,
+		-8, 5, 8, 6,
+		-1, 0, 8, 2,
+		-7, 1, -1, 1
+	});
+	set_matrix(&expected, (t_set_matrix){
+		-6, 1, 6, 0,
+		-8, 8, 6, 0,
+		-7, -1, 1, 0,
+		0, 0, 0, 0
+	});
+	mx_submatrix(matrix, 2, 1, &result);
 
+	mu_check(matrix_compare(expected, result));
+}
+
+MU_TEST(minor_3by3_test){
+	set_matrix(&matrix, (t_set_matrix){
+		3, 5, 0, 0,
+		2, -1, -7, 0,
+		6, -1, 5, 0,
+		0, 0, 0, 0
+	});
+	result_db = mx_minor(matrix, 1, 0);
+	
+	mu_assert_double_eq(25, result_db);
+}
 
 MU_TEST_SUITE(matrix_ops_tst) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -232,6 +226,8 @@ MU_TEST_SUITE(matrix_ops_tst) {
 	MU_RUN_TEST(swtich_row_tst);
 	MU_RUN_TEST(swtich_column_tst);
 	MU_RUN_TEST(submatrix_3by3_tst);
+	MU_RUN_TEST(submatrix_4by4_tst);
+	MU_RUN_TEST(minor_3by3_test);
 }
 
 

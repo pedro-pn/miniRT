@@ -6,22 +6,11 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:18:40 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/10 23:01:37 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:39:44 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algebra.h"
-#include <stdio.h>
-
-// 1, 5, 0, 0,
-// -3, 2, 7, 0,
-// 0, 6, -3, 0,
-// 0, 0, 0, 0
-
-// 	-3, 2, 0, 0,
-// 	0, 6, 0, 0,
-// 	0, 0, 0, 0,
-// 	0, 0, 0, 0
 
 static void	mx_switch_row_end(t_matrix *mx, int row)
 {
@@ -57,13 +46,21 @@ void	mx_submatrix(t_matrix mx, int row, int column, t_matrix *result)
 	}
 }
 
+double	mx_minor(t_matrix matrix, int row, int column)
+{
+	t_matrix	submatrix;
+
+	mx_submatrix(matrix, row, column, &submatrix);
+	return (mx_2by2_determinant(submatrix));
+}
+
 void	inspect_matrix(t_matrix matrix)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	ft_printf("MATRIX:\n");
+	ft_putendl_fd("MATRIX:", 1);
 	while (i < 4)
 	{
 		j = 0;
