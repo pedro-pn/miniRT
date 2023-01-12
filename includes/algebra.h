@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:43:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/12 11:36:56 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:00:39 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,19 @@ void		mx_submatrix(t_matrix mx, int row, int column, t_matrix *result);
 void	mx_transpose(t_matrix matrix, t_matrix *result);
 void	mx_product(t_matrix mx1, t_matrix mx2, t_matrix *result);
 t_t3d	mx_tuple_product(t_matrix mx, t_t3d tuple);
+
+// determinant
 double	mx_2by2_determinant(t_matrix matrix);
 double	mx_minor(t_matrix matrix, int row, int column);
 double	mx_3by3_cofactor(t_matrix matrix, int row, int column);
 double	mx_determinant(t_matrix matrix, int size);
 double	mx_cofactor(t_matrix matrix, int size, int row, int column);
+
+// inverse
+
+t_bool	mx_is_invertible(t_matrix matrix, int size);
+void	mx_inverse(t_matrix matrix, t_matrix *result);
+
 
 /* TO DELETE*/
 
