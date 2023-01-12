@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:45:45 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/12 14:07:17 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:02:18 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool	mx_is_invertible(t_matrix matrix, int size)
 {
-	if (mx_determinant(matrix, size) == 0)
+	if (comp(mx_determinant(matrix, size), 0))
 		return (false);
 	return (true);
 }

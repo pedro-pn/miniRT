@@ -3,6 +3,7 @@
 t_matrix	matrix;
 t_matrix	mx1;
 t_matrix	mx2;
+t_matrix	inverse_b;
 t_matrix	result;
 t_matrix	expected;
 t_t3d		result_tuple;
@@ -36,24 +37,6 @@ MU_TEST(is_invertible_tst){
 	mu_check(!mx_is_invertible(matrix, 4));
 }
 
-// Scenario : Calculating the inverse of a matrix
-// Given the following 4x4 matrix A:
-// | -5 | 2 | 6 | -8 |
-// | 1 | -5 | 1 | 8 |
-// | 7 | 7 | -6 | -7 |
-// | 1 | -3 | 7 | 4 |
-// And B ← inverse(A)
-// Then determinant(A) = 532
-// And cofactor(A, 2, 3) = -160
-// And B[3,2] = -160/532
-// And cofactor(A, 3, 2) = 105
-// And B[2,3] = 105/532
-// And B is the following 4x4 matrix:
-// | 0.21805 | 0.45113 | 0.24060 | -0.04511 |
-// | -0.80827 | -1.45677 | -0.44361 | 0.52068 |
-// | -0.07895 | -0.22368 | -0.05263 | 0.19737 |
-// | -0.52256 | -0.81391 | -0.30075 | 0.30639 |
-
 MU_TEST(inverse_tst){
 	set_matrix(&matrix, (t_set_matrix){
 		-5, 2, 6, -8,
@@ -79,11 +62,87 @@ MU_TEST(inverse_tst){
 	
 }
 
+MU_TEST(inverse_2nd_tst){
+	set_matrix(&matrix, (t_set_matrix){
+		9, 3, 0, 9,
+		-5, -2, -6, -3,
+		-4, 9, 6, 4,
+		-7, 6, 6, 2
+	});
+	set_matrix(&expected, (t_set_matrix){
+		-0.04074, -0.07778, 0.14444, -0.22222,
+		-0.07778, 0.03333, 0.36667, -0.33333,
+		-0.02901, -0.14630, -0.10926, 0.12963,
+		0.17778, 0.06667, -0.26667, 0.33333
+	});
+	mx_inverse(matrix, &result);
+	
+	mu_check(matrix_compare(expected, result));
+}
+
+MU_TEST(inverse_3rd_tst){
+	set_matrix(&matrix, (t_set_matrix){
+		8, -5, 9, 2,
+		7, 5, 6, 1,
+		-6, 0, 9, 6,
+		-3, 0, -9, -4
+	});
+	set_matrix(&expected, (t_set_matrix){
+		-0.15385, -0.15385, -0.28205, -0.53846,
+		-0.07692, 0.12308, 0.02564, 0.03077,
+		0.35897, 0.35897, 0.43590, 0.92308,
+		-0.69231, -0.69231, -0.76923, -1.92308
+	});
+	mx_inverse(matrix, &result);
+	
+	mu_check(matrix_compare(expected, result));
+}
+
+// Scenario : Multiplying a product by its inverse
+// Given the following 4x4 matrix A:
+// | 3 | -9 | 7 | 3 |
+// | 3 | -8 | 2 | -9 |
+// | -4 | 4 | 4 | 1 |
+// | -6 | 5 | -1 | 1 |
+// And the following 4x4 matrix B:
+// | 8 | 2 | 2 | 2 |
+// | 3 | -1 | 7 | 0 |
+// | 7 | 0 | 5 | 4 |
+// | 6 | -2 | 0 | 5 |
+// And C ← A * B
+// Then C * inverse(B) = A
+
+MU_TEST(inverse_multiply_tst){
+	set_matrix(&mx1, (t_set_matrix){
+		3, -9, 7, 3,
+		3, -8, 2, -9,
+		-4, 4, 4, 1,
+		-6, 5, -1, 1
+	});
+	set_matrix(&mx2, (t_set_matrix){
+		8, 2, 2, 2,
+		3, -1, 7, 0,
+		7, 0, 5, 4,
+		6, -2, 0, 5
+	});
+	
+	mx_product(mx1, mx2, &matrix);
+	mx_inverse(mx2, &inverse_b);
+	mx_product(matrix, inverse_b, &result);
+	inspect_matrix(mx1);
+	inspect_matrix(result);
+	mu_check(matrix_compare(mx1, result));
+
+}
+
 MU_TEST_SUITE(inverse_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(is_invertible_tst);
 	MU_RUN_TEST(inverse_tst);
+	MU_RUN_TEST(inverse_2nd_tst);
+	MU_RUN_TEST(inverse_3rd_tst);
+	MU_RUN_TEST(inverse_multiply_tst);
 }
 
 int main(int argc, char *argv[]) {
