@@ -166,16 +166,16 @@ MU_TEST(determinant_3by3_tst){
 		0, 0, 0, 0
 	});
 
-	result_db = mx_3by3_cofactor(matrix, 0, 0);
+	result_db = mx_cofactor(matrix, 3, 0, 0);
 	mu_assert_double_eq(56, result_db);
 
-	result_db = mx_3by3_cofactor(matrix, 0, 1);
+	result_db = mx_cofactor(matrix, 3, 0, 1);
 	mu_assert_double_eq(12, result_db);
 
-	result_db = mx_3by3_cofactor(matrix, 0, 2);
+	result_db = mx_cofactor(matrix, 3, 0, 2);
 	mu_assert_double_eq(-46, result_db);
 
-	result_db = mx_3by3_determinant(matrix);
+	result_db = mx_determinant(matrix, 3);
 	mu_assert_double_eq(-196, result_db);
 }
 
@@ -187,19 +187,19 @@ MU_TEST(determinant_4by4_tst){
 		-6, 7, 7, -9
 	});
 
-	result_db = mx_4by4_cofactor(matrix, 0, 0);
+	result_db = mx_cofactor(matrix, 4, 0, 0);
 	mu_assert_double_eq(690, result_db);
 
-	result_db = mx_4by4_cofactor(matrix, 0, 1);
+	result_db = mx_cofactor(matrix, 4, 0, 1);
 	mu_assert_double_eq(447, result_db);
 
-	result_db = mx_4by4_cofactor(matrix, 0, 2);
+	result_db = mx_cofactor(matrix, 4, 0, 2);
 	mu_assert_double_eq(210, result_db);
 
-	result_db = mx_4by4_cofactor(matrix, 0, 3);
+	result_db = mx_cofactor(matrix, 4, 0, 3);
 	mu_assert_double_eq(51, result_db);
 
-	result_db = mx_4by4_determinant(matrix);
+	result_db = mx_determinant(matrix, 4);
 	mu_assert_double_eq(-4071, result_db);
 }
 

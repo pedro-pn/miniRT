@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:53:55 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/12 11:00:02 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:36:04 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,18 @@ double	mx_2by2_determinant(t_matrix matrix)
 	return (ad - bc);
 }
 
-double	mx_3by3_determinant(t_matrix matrix)
+double	mx_determinant(t_matrix matrix, int size)
 {
 	double	determinant;
 	int		j;
 
-	determinant = 0;
+	if (size == 2)
+		return (mx_2by2_determinant(matrix));
 	j = 0;
-	while (j < 3)
-	{
-		determinant += mx_3by3_cofactor(matrix, 0, j) * matrix[0][j];
-		j++;
-	}
-	return (determinant);
-}
-
-double	mx_4by4_determinant(t_matrix matrix)
-{
-	double	determinant;
-	int		j;
-
 	determinant = 0;
-	j = 0;
-	while (j < 4)
+	while (j < size)
 	{
-		determinant += mx_4by4_cofactor(matrix, 0, j) * matrix[0][j];
+		determinant += mx_cofactor(matrix, size, 0, j) * matrix[0][j];
 		j++;
 	}
 	return (determinant);
