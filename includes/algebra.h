@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:43:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/11 13:12:28 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:00:07 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,11 @@ void	mx_product(t_matrix mx1, t_matrix mx2, t_matrix *result);
 t_t3d	mx_tuple_product(t_matrix mx, t_t3d tuple);
 double	mx_2by2_determinant(t_matrix matrix);
 double	mx_minor(t_matrix matrix, int row, int column);
-double	mx_cofactor(t_matrix matrix, int row, int column);
+double	mx_3by3_cofactor(t_matrix matrix, int row, int column);
+double	mx_4by4_cofactor(t_matrix matrix, int row, int column);
+double	mx_3by3_determinant(t_matrix matrix);
+double	mx_4by4_determinant(t_matrix matrix);
+
 
 /* TO DELETE*/
 
