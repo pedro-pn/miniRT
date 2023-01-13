@@ -98,20 +98,6 @@ MU_TEST(inverse_3rd_tst){
 	mu_check(matrix_compare(expected, result));
 }
 
-// Scenario : Multiplying a product by its inverse
-// Given the following 4x4 matrix A:
-// | 3 | -9 | 7 | 3 |
-// | 3 | -8 | 2 | -9 |
-// | -4 | 4 | 4 | 1 |
-// | -6 | 5 | -1 | 1 |
-// And the following 4x4 matrix B:
-// | 8 | 2 | 2 | 2 |
-// | 3 | -1 | 7 | 0 |
-// | 7 | 0 | 5 | 4 |
-// | 6 | -2 | 0 | 5 |
-// And C ← A * B
-// Then C * inverse(B) = A
-
 MU_TEST(inverse_multiply_tst){
 	set_matrix(&mx1, (t_set_matrix){
 		3, -9, 7, 3,
@@ -129,8 +115,6 @@ MU_TEST(inverse_multiply_tst){
 	mx_product(mx1, mx2, &matrix);
 	mx_inverse(mx2, &inverse_b);
 	mx_product(matrix, inverse_b, &result);
-	inspect_matrix(mx1);
-	inspect_matrix(result);
 	mu_check(matrix_compare(mx1, result));
 
 }

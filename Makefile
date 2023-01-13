@@ -49,7 +49,8 @@ NAME_WILD = minirt
 NAME_ARCHIVE = minirt.a
 MAIN_W = main.c
 MAIN_OBJ = ${OBJS_PATH}/main.o
-SOURCES_W = $(wildcard $(SRCS_PATH)/**/*.c) $(wildcard $(SRCS_PATH)/*.c)
+SOURCES_W = $(wildcard $(SRCS_PATH)/**/*.c) $(wildcard $(SRCS_PATH)/*.c) \
+			$(wildcard $(SRCS_PATH)/**/**/*.c)
 OBJECTS_W = $(patsubst $(SRCS_PATH)/%.c, $(OBJS_PATH)/%.o, $(SOURCES_W))
 OBJECTS_W_PATH = ${dir ${OBJECTS_W}}
 
