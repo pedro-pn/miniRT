@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:43:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/12 14:00:39 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:31:48 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,10 @@ double	mx_cofactor(t_matrix matrix, int size, int row, int column);
 t_bool	mx_is_invertible(t_matrix matrix, int size);
 void	mx_inverse(t_matrix matrix, t_matrix *result);
 
+/* TRANSFORMATION */
+
+void	translation(t_v3d direction, t_matrix *transform);
+void	scaling(t_v3d direction, t_matrix *transform);
 
 /* TO DELETE*/
 
