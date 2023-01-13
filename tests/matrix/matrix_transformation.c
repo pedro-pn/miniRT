@@ -6,6 +6,9 @@ t_matrix	mx2;
 t_matrix	result;
 t_matrix	expected;
 t_matrix	transform;
+t_matrix	mx_rotation;
+t_matrix	mx_translation;
+t_matrix	mx_scaling;
 t_p3d		_point;
 t_p3d		result_point;
 t_v3d		_vector;
@@ -138,6 +141,34 @@ MU_TEST(shearing_tst){
 	mu_assert_tuple_eq(point(2, 3, 7), result_point);
 }
 
+MU_TEST(individual_transformations_tst){
+	_point = point(1, 0, 1);
+	rotation_x(MY_PI / 2, &mx_rotation);
+	scaling(vector(5, 5, 5), &mx_scaling);
+	translation(vector(10, 5, 7), &mx_translation);
+
+	result_point = mx_tuple_product(mx_rotation, _point);
+	mu_assert_tuple_eq(point(1, -1, 0), result_point);
+
+	result_point = mx_tuple_product(mx_scaling, result_point);
+	mu_assert_tuple_eq(point(5, -5, 0), result_point);
+	
+	result_point = mx_tuple_product(mx_translation, result_point);
+	mu_assert_tuple_eq(point(15, 0, 7), result_point);
+}
+
+MU_TEST(chained_transformation_tst){
+	_point = point(1, 0, 1);
+	rotation_x(MY_PI / 2, &mx_rotation);
+	scaling(vector(5, 5, 5), &mx_scaling);
+	translation(vector(10, 5, 7), &mx_translation);
+	mx_product(mx_translation, mx_scaling, &matrix);
+	mx_product(matrix, mx_rotation, &transform);
+	result_point = mx_tuple_product(transform, _point);
+
+	mu_assert_tuple_eq(point(15, 0, 7), result_point);
+}
+
 MU_TEST_SUITE(transformation_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -152,6 +183,8 @@ MU_TEST_SUITE(transformation_suite) {
 	MU_RUN_TEST(rotation_y_tst);
 	MU_RUN_TEST(rotation_z_tst);
 	MU_RUN_TEST(shearing_tst);
+	MU_RUN_TEST(individual_transformations_tst);
+	MU_RUN_TEST(chained_transformation_tst);
 }
 
 
