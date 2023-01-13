@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/10 13:18:32 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:14:49 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define ERRFILE 3
 # define SPACES " \t"
 
-# define SCREEN_WIDTH 100
-# define SCREEN_HEIGHT 100
+# define SCREEN_WIDTH 200
+# define SCREEN_HEIGHT 200
 
 typedef	struct s_data
 {
@@ -78,6 +78,7 @@ void	clean_program(void);
 
 void	mlx_demo(void);
 void	hello_world_img(void);
+void	clock_demo(void);
 
 typedef struct s_projectile
 {
