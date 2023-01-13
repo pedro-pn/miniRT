@@ -77,13 +77,6 @@ MU_TEST(scaling_neg_tst){
 	mu_assert_tuple_eq(point(-2, 3, 4), result_point);
 }
 
-// Scenario : Rotating a point around the x axis
-// Given p ← point(0, 1, 0)
-// And half_quarter ← rotation_x(π / 4)
-// And full_quarter ← rotation_x(π / 2)
-// Then half_quarter * p = point(0, √2/2, √2/2)
-// And full_quarter * p = point(0, 0, 1)
-
 MU_TEST(rotation_x_tst){
 	rotation_x(MY_PI / 4, &transform);
 	result_point = mx_tuple_product(transform, point(0, 1, 0));
@@ -109,13 +102,6 @@ MU_TEST(rotation_y_tst){
 	mu_assert_tuple_eq(point(1, 0, 0), result_point);
 }
 
-// Scenario : Rotating a point around the z axis
-// Given p ← point(0, 1, 0)
-// And half_quarter ← rotation_z(π / 4)
-// And full_quarter ← rotation_z(π / 2)
-// Then half_quarter * p = point(-√2/2, √2/2, 0)
-// And full_quarter * p = point(-1, 0, 0)
-
 MU_TEST(rotation_z_tst){
 	rotation_z(MY_PI / 4, &transform);
 	result_point = mx_tuple_product(transform, point(0, 1, 0));
@@ -124,6 +110,32 @@ MU_TEST(rotation_z_tst){
 	rotation_z(MY_PI / 2, &transform);
 	result_point = mx_tuple_product(transform, point(0, 1, 0));
 	mu_assert_tuple_eq(point(-1, 0, 0), result_point);
+}
+
+MU_TEST(shearing_tst){
+	shearing((t_shearing){1, 0, 0, 0, 0, 0}, &transform);
+	result_point = mx_tuple_product(transform, point(2, 3, 4));
+	mu_assert_tuple_eq(point(5, 3, 4), result_point);
+
+	shearing((t_shearing){0, 1, 0, 0, 0, 0}, &transform);
+	result_point = mx_tuple_product(transform, point(2, 3, 4));
+	mu_assert_tuple_eq(point(6, 3, 4), result_point);
+
+	shearing((t_shearing){0, 0, 1, 0, 0, 0}, &transform);
+	result_point = mx_tuple_product(transform, point(2, 3, 4));
+	mu_assert_tuple_eq(point(2, 5, 4), result_point);
+
+	shearing((t_shearing){0, 0, 0, 1, 0, 0}, &transform);
+	result_point = mx_tuple_product(transform, point(2, 3, 4));
+	mu_assert_tuple_eq(point(2, 7, 4), result_point);
+
+	shearing((t_shearing){0, 0, 0, 0, 1, 0}, &transform);
+	result_point = mx_tuple_product(transform, point(2, 3, 4));
+	mu_assert_tuple_eq(point(2, 3, 6), result_point);
+
+	shearing((t_shearing){0, 0, 0, 0, 0, 1}, &transform);
+	result_point = mx_tuple_product(transform, point(2, 3, 4));
+	mu_assert_tuple_eq(point(2, 3, 7), result_point);
 }
 
 MU_TEST_SUITE(transformation_suite) {
@@ -139,6 +151,7 @@ MU_TEST_SUITE(transformation_suite) {
 	MU_RUN_TEST(rotation_x_tst);
 	MU_RUN_TEST(rotation_y_tst);
 	MU_RUN_TEST(rotation_z_tst);
+	MU_RUN_TEST(shearing_tst);
 }
 
 

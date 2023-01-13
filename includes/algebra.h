@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:43:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/13 12:23:02 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:46:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,22 @@ void	mx_inverse(t_matrix matrix, t_matrix *result);
 
 /* TRANSFORMATION */
 
+typedef struct s_shearing
+{
+	double	xy;
+	double	xz;
+	double	yx;
+	double	yz;
+	double	zx;
+	double	zy;
+}			t_shearing;
+
 void	translation(t_v3d direction, t_matrix *transform);
 void	scaling(t_v3d direction, t_matrix *transform);
 void	rotation_x(double ang, t_matrix *result);
 void	rotation_y(double ang, t_matrix *result);
 void	rotation_z(double ang, t_matrix *result);
+void	shearing(t_shearing shear, t_matrix *result);
 
 /* TO DELETE*/
 
