@@ -1,44 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_math.h                                          :+:      :+:    :+:   */
+/*   quadratic.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 11:10:28 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/16 19:55:12 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/01/16 19:45:19 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/01/16 19:56:46 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MY_MATH_H
-# define MY_MATH_H
+#include "my_math.h"
 
-# include <math.h>
-
-# define MY_PI 3.14159265358979323846
-
-/* bool type */
-
-typedef enum e_bool
+double	discriminant(double a, double b, double c)
 {
-	false,
-	true
-}			t_bool;
+	return (b * b - 4 * a * c);
+}
 
-
-t_bool    comp(double a, double b);
-
-/* QUADRATIC */
-
-typedef struct s_quad
+t_quad	quadratic(double a, double b, double c)
 {
-	double	det;
+	t_quad	quad;
 
-	double	root_a;
-	double	root_b;
-}			t_quad;
-
-t_quad	quadratic(double a, double b, double c);
-double	discriminant(double a, double b, double c);
-
-#endif
+	quad.det = discriminant(a, b, c);
+	if (quad.det < 0)
+		return (quad);
+	quad.root_a = (- b + sqrt(quad.det)) / (2 * a);
+	quad.root_b = (- b - sqrt(quad.det)) / (2 * a);
+	return (quad);
+}
