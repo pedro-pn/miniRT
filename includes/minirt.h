@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/17 00:28:02 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:38:48 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,15 @@ typedef enum e_objs
 
 typedef struct s_object
 {
-	int		id;
-	int		type;
+	int			id;
+	int			type;
 
 	t_p3d	origin;
 
-	double	radius;
-	t_rgb	color;
+	double		radius;
+	t_rgb		color;
+
+	t_matrix	transform;
 }			t_object;
 
 t_object	*sphere(void);
@@ -125,6 +127,7 @@ t_ray	ray(t_p3d origin, t_v3d vector);
 t_p3d	position(double scalar, t_ray _ray);
 
 t_intx	*hit(t_intxs intersections);
+t_ray	transform(t_matrix mx, t_ray _ray);
 
 /* CLEAN*/
 

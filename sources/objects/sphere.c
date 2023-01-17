@@ -6,17 +6,26 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/16 21:32:19 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:53:33 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static	t_ray	ray_transf_inverse(t_matrix _transform, t_ray _ray)
+{
+	t_matrix	mx_inv;
+
+	mx_inverse(_transform, &mx_inv);
+	return (transform(mx_inv, _ray));
+}
 
 static t_quad_param	sphere_params(t_object *obj, t_ray _ray)
 {
 	t_quad_param	params;
 	t_v3d			sphere_to_ray;
 
+	_ray = ray_transf_inverse(obj->transform, _ray);
 	sphere_to_ray = sub(_ray.origin, obj->origin);
 	params.a = dotp(_ray.direction, _ray.direction);
 	params.b = 2 * dotp(_ray.direction, sphere_to_ray);
@@ -76,5 +85,6 @@ t_object	*sphere(void)
 	_sphere->origin = point(0, 0, 0);
 	_sphere->radius = 1.0;
 	_sphere->color = color_rgb(255, 0, 0);
+	mx_identity(&_sphere->transform);
 	return (_sphere);
 }
