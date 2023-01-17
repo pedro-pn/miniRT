@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/17 16:05:42 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:20:00 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ void	clean_program(void);
 void	mlx_demo(void);
 void	hello_world_img(void);
 void	clock_demo(void);
-void	sphere_demo(void);
 
 typedef struct s_projectile
 {
@@ -154,5 +153,19 @@ typedef struct s_environment
 
 t_projectile	tick(t_environment env, t_projectile proj);
 void			projectile_demo(void);
+
+typedef struct s_sdemo
+{
+	t_object	*_sphere;
+	double		wall_size;
+	double		wall_z;
+	double		pixel_size;
+	double		half_wall;
+	double		world_x;
+	double		world_y;
+	t_p3d		ray_origin;
+}			t_sdemo;
+
+void	sphere_demo(void);
 
 #endif

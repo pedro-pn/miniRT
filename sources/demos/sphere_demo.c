@@ -6,58 +6,81 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:47:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/17 16:22:59 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:37:24 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include <stdio.h>
 
-void	sphere_demo(void)
+static t_intxs	*xs(void)
 {
-	t_mlx_img	*img;
-	t_ray		_ray;
-	t_object	*_sphere;
-	t_p3d		_point;
-	double		wall_size;
-	double		wall_z;
-	double		pixel_size;
-	double		half_wall;
-	int			x;
-	int			y;
-	double		world_x;
-	double		world_y;
-	t_p3d		ray_origin;
-	t_intxs		xs;
-	t_intx		*inter;
+	static t_intxs	_xs;
+	
+	return (&_xs);
+}
 
+static t_sdemo	sdemo_init(int _width)
+{
+	t_sdemo	sdemo;
 
-	img = image();
-	_sphere = sphere();
-	wall_z = 10;
-	wall_size = 15;
-	pixel_size = wall_size / img->_width;
-	half_wall = wall_size / 2;
+	sdemo._sphere = sphere();
+	sdemo.wall_z = 10;
+	sdemo.wall_size = 15;
+	sdemo.pixel_size = sdemo.wall_size / _width;
+	sdemo.half_wall = sdemo.wall_size / 2;
+	sdemo.ray_origin = point(0, 0, -5);
+
+	return (sdemo);
+}
+
+static t_intx	*cast_ray(t_sdemo sdemo)
+{
+	t_p3d	_point;
+	t_ray	_ray;
+	t_intxs	*_xs;
+
+	_xs = xs();
+	_point = point(sdemo.world_x, sdemo.world_y, sdemo.wall_z);
+	_ray = ray(sdemo.ray_origin, normalize(sub(_point, sdemo.ray_origin)));
+	*_xs = intersect(sdemo._sphere, _ray);
+	return (hit(*_xs));
+}
+
+static void	draw_sdemo(t_mlx_img *img, t_sdemo sdemo)
+{
+	t_intx	*inter;
+	int	x;
+	int	y;
+
 	x = 0;
-	ray_origin = point(0, 0, -5);
 	while (x < img->_width)
 	{
-		world_x = half_wall - pixel_size * x;
+		sdemo.world_x = sdemo.half_wall - sdemo.pixel_size * x;
 		y = 0;
 		while (y < img->_height)
 		{
-			world_y = half_wall - pixel_size * y;
-			_point = point(world_x, world_y, wall_z);
-			_ray = ray(ray_origin, normalize(sub(_point, ray_origin)));
-			xs = intersect(_sphere, _ray);
-			inter = hit(xs);
+			sdemo.world_y = sdemo.half_wall - sdemo.pixel_size * y;
+			inter = cast_ray(sdemo);
 			if (inter != NULL)
-				mlx_draw_pixel_rgb(img, x, y, _sphere->color);
-			else
-				mlx_draw_pixel_rgb(img, x, y, color_rgb(255, 255, 255));
+			{
+				ft_lstclear(&xs()->intersections, free);
+				mlx_draw_pixel_rgb(img, x, y, sdemo._sphere->color);
+			}
 			y++;
 		}
 		x++;
 	}
+}
+
+void	sphere_demo(void)
+{
+	t_mlx_img	*img;
+	t_sdemo		sdemo;
+
+	img = image();
+	sdemo = sdemo_init(img->_width);
+	draw_sdemo(img, sdemo);
+	free(sdemo._sphere);
 	mlx_save_img_to_ppm(img, "sphere.ppm");
 }
