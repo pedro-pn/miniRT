@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:24:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/13 14:14:58 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:07:01 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	run(void)
 	//mlx_demo();
 	//hello_world_img();
 	//projectile_demo();
-	clock_demo();
+	//clock_demo();
+	sphere_demo();
 	clean_program();
 }
 

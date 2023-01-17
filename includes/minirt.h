@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/17 14:38:48 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:05:42 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void	clean_program(void);
 void	mlx_demo(void);
 void	hello_world_img(void);
 void	clock_demo(void);
+void	sphere_demo(void);
 
 typedef struct s_projectile
 {
