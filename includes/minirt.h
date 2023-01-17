@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:46:36 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:17:47 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef	struct s_data
 	void		*mlx;
 	void		*mlx_win;
 	t_mlx_img	img;
+
+	t_list		*objects;
 
 }			t_data;
 
@@ -76,6 +78,46 @@ typedef struct s_ray
 	t_p3d	origin;
 	t_v3d	direction;
 }			t_ray;
+
+/* OBJECTS */
+
+typedef enum e_objs
+{
+	SPHERE,
+	PLANE,
+	CYLINDER,
+}		t_objs;
+
+typedef struct s_object
+{
+	int		id;
+	int		type;
+
+	t_p3d	origin;
+
+	double	radius;
+	t_rgb	color;
+}			t_object;
+
+t_object	*sphere(void);
+
+// intersection
+
+typedef struct s_intx
+{
+	double		t;
+	t_object	*object;
+}			t_intx;
+
+typedef struct t_intxs
+{
+	int		count;
+	t_list	*intersections;
+}			t_intxs;
+
+t_intx	*new_intersection(double t, t_object *obj);
+void	create_intersection(t_list **list, double t, t_object *obj);
+t_intxs	intersect(t_object *obj, t_ray _ray);
 
 t_ray	ray(t_p3d origin, t_v3d vector);
 t_p3d	position(double scalar, t_ray _ray);

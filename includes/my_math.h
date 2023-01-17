@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:10:28 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/16 19:55:12 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:22:34 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ typedef enum e_bool
 t_bool    comp(double a, double b);
 
 /* QUADRATIC */
+
+typedef struct s_quad_param
+{
+	double	a;
+	double	b;
+	double	c;
+}			t_quad_param;
 
 typedef struct s_quad
 {
