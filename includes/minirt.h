@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/16 21:17:47 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:28:02 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 
 # define SCREEN_WIDTH 200
 # define SCREEN_HEIGHT 200
+
+# define INTER_MAX 
 
 typedef	struct s_data
 {
@@ -121,6 +123,8 @@ t_intxs	intersect(t_object *obj, t_ray _ray);
 
 t_ray	ray(t_p3d origin, t_v3d vector);
 t_p3d	position(double scalar, t_ray _ray);
+
+t_intx	*hit(t_intxs intersections);
 
 /* CLEAN*/
 
