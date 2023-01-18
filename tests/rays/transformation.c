@@ -33,21 +33,12 @@ MU_TEST(scaling_ray_tst) {
 	mu_assert_tuple_eq(vector(0, 3, 0), ray_result.direction);
 }
 
-// Scenario : A sphere's default transformation
-// Given s ← sphere()
-// Then s.transform = identity_matrix
-
 MU_TEST(default_trans_sphere_tst){
 	_sphere = sphere();
 	mx_identity(&mx_id);
 
 	mu_check(matrix_compare(mx_id, _sphere->transform));
 }
-// Scenario : Changing a sphere's transformation
-// Given s ← sphere()
-// And t ← translation(2, 3, 4)
-// When set_transform(s, t)
-// Then s.transform = t
 
 MU_TEST(sphere_transf_tst){
 	_sphere = sphere();
@@ -56,15 +47,6 @@ MU_TEST(sphere_transf_tst){
 	
 	mu_check(matrix_compare(mx_trans, _sphere->transform));
 }
-
-// Scenario : Intersecting a scaled sphere with a ray
-// Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
-// And s ← sphere()
-// When set_transform(s, scaling(2, 2, 2))
-// And xs ← intersect(s, r)
-// Then xs.count = 2
-// And xs[0].t = 3
-// And xs[1].t = 7
 
 MU_TEST(intersect_scaled_sphere_tst){
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
@@ -80,13 +62,6 @@ MU_TEST(intersect_scaled_sphere_tst){
 	inter = xs.intersections->next->content;
 	mu_assert_double_eq(7, inter->t);
 }
-
-// Scenario : Intersecting a translated sphere with a ray
-// Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
-// And s ← sphere()
-// When set_transform(s, translation(5, 0, 0))
-// And xs ← intersect(s, r)
-// Then xs.count = 0
 
 MU_TEST(intersect_translated_sphere_tst){
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
