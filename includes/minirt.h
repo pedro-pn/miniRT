@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/18 15:25:36 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:05:30 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_object
 
 t_object	*sphere(void);
 t_v3d		normal_at(t_object obj, t_p3d _point);
+t_v3d		reflect(t_v3d in, t_v3d normal);
 
 // intersection
 

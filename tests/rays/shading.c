@@ -1,5 +1,4 @@
 #include "../test.h"
-#include <stdio.h>
 
 t_ray		_ray;
 t_ray		ray_result;
