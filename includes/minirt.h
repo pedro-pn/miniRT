@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 10:50:25 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 12:07:15 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "algebra.h"
+# include "structs.h"
 # include "my_mlx.h"
 # include <fcntl.h>
 
@@ -31,12 +32,7 @@
 
 # define INTER_MAX 
 
-typedef struct s_light
-{
-	t_p3d	position;
-	t_c3d	color;
 
-}			t_light;
 
 typedef	struct s_data
 {
@@ -70,47 +66,25 @@ typedef struct s_scene_val
 
 /* control */
 
-t_data	*data(void);
-t_light	*light(void);
+t_data		*data(void);
+t_light		*light(void);
 
 /* args.c file */
 
-int		check_args(int argc, char **argv);
-void	file_init(t_file *file);
+int			check_args(int argc, char **argv);
+void		file_init(t_file *file);
 
 /* utils_temp*/
 
-void	tuple_inspect(t_t3d tuple);
+void		tuple_inspect(t_t3d tuple);
 
 /* RAYS */
 
-typedef struct s_ray
-{
-	t_p3d	origin;
-	t_v3d	direction;
-}			t_ray;
+/* MATERIAL */
+
+t_material	material(void);
 
 /* OBJECTS */
-
-typedef enum e_objs
-{
-	SPHERE,
-	PLANE,
-	CYLINDER,
-}		t_objs;
-
-typedef struct s_object
-{
-	int			id;
-	int			type;
-
-	t_p3d		origin;
-
-	double		radius;
-	t_rgb		color;
-
-	t_matrix	transform;
-}			t_object;
 
 t_object	*sphere(void);
 t_v3d		normal_at(t_object obj, t_p3d _point);
@@ -118,41 +92,31 @@ t_v3d		reflect(t_v3d in, t_v3d normal);
 
 // intersection
 
-typedef struct s_intx
-{
-	double		t;
-	t_object	*object;
-}			t_intx;
 
-typedef struct t_intxs
-{
-	int		count;
-	t_list	*intersections;
-}			t_intxs;
 
-t_intx	*new_intersection(double t, t_object *obj);
-void	create_intersection(t_list **list, double t, t_object *obj);
-t_intxs	intersect(t_object *obj, t_ray _ray);
+t_intx		*new_intersection(double t, t_object *obj);
+void		create_intersection(t_list **list, double t, t_object *obj);
+t_intxs		intersect(t_object *obj, t_ray _ray);
 
-t_ray	ray(t_p3d origin, t_v3d vector);
-t_p3d	position(double scalar, t_ray _ray);
+t_ray		ray(t_p3d origin, t_v3d vector);
+t_p3d		position(double scalar, t_ray _ray);
 
-t_intx	*hit(t_intxs intersections);
-t_ray	transform(t_matrix mx, t_ray _ray);
+t_intx		*hit(t_intxs intersections);
+t_ray		transform(t_matrix mx, t_ray _ray);
 
 /* LIGHT */
 
-void	point_light(t_p3d position, t_c3d color);
+void		point_light(t_p3d position, t_c3d color);
 
 /* CLEAN*/
 
-void	clean_program(void);
+void		clean_program(void);
 
 /* DEMOS*/
 
-void	mlx_demo(void);
-void	hello_world_img(void);
-void	clock_demo(void);
+void		mlx_demo(void);
+void		hello_world_img(void);
+void		clock_demo(void);
 
 typedef struct s_projectile
 {
@@ -181,6 +145,6 @@ typedef struct s_sdemo
 	t_p3d		ray_origin;
 }			t_sdemo;
 
-void	sphere_demo(void);
+void		sphere_demo(void);
 
 #endif

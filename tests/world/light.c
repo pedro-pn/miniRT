@@ -36,11 +36,24 @@ MU_TEST(point_light_tst){
 	mu_assert_tuple_eq(tcolor(1, 1, 1), _light->color);
 }
 
+MU_TEST(material_tst){
+	_sphere = sphere();
+	_sphere->material = material();
+
+	mu_assert_tuple_eq(tcolor(1, 1, 1), _sphere->material.color);
+	mu_assert_double_eq(0.1, _sphere->material.ambient);
+	mu_assert_double_eq(0.9, _sphere->material.diffuse);
+	mu_assert_double_eq(0.9, _sphere->material.specular);
+	mu_assert_double_eq(200.0, _sphere->material.shininess);
+}
+
+
+
 MU_TEST_SUITE(light_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(point_light_tst);
-
+	MU_RUN_TEST(material_tst);
 }
 
 int main(int argc, char *argv[]) {
