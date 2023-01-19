@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/18 17:05:30 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 10:50:25 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@
 
 # define INTER_MAX 
 
+typedef struct s_light
+{
+	t_p3d	position;
+	t_c3d	color;
+
+}			t_light;
+
 typedef	struct s_data
 {
 	void		*mlx;
@@ -38,6 +45,7 @@ typedef	struct s_data
 	t_mlx_img	img;
 
 	t_list		*objects;
+	t_light		light;
 
 }			t_data;
 
@@ -63,6 +71,7 @@ typedef struct s_scene_val
 /* control */
 
 t_data	*data(void);
+t_light	*light(void);
 
 /* args.c file */
 
@@ -95,7 +104,7 @@ typedef struct s_object
 	int			id;
 	int			type;
 
-	t_p3d	origin;
+	t_p3d		origin;
 
 	double		radius;
 	t_rgb		color;
@@ -130,6 +139,10 @@ t_p3d	position(double scalar, t_ray _ray);
 
 t_intx	*hit(t_intxs intersections);
 t_ray	transform(t_matrix mx, t_ray _ray);
+
+/* LIGHT */
+
+void	point_light(t_p3d position, t_c3d color);
 
 /* CLEAN*/
 
