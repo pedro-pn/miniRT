@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 12:07:49 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:51:36 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ typedef struct s_light
 	t_c3d	color;
 
 }			t_light;
+
+typedef struct s_lgt_param
+{
+	t_p3d	position;
+	t_v3d	eyev;
+	t_v3d	normalv;
+}			t_lgt_param;
 
 /* RAY */
 typedef struct s_ray

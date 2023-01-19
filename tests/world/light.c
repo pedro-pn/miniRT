@@ -11,11 +11,9 @@ t_intxs		xs;
 t_intx		*inter;
 t_v3d		vec_result;
 t_c3d		intensity;
-t_p3d		_position;
 t_light		*_light;
-t_v3d		eyev;
-t_v3d		normalv;
 t_material	_material;
+t_lgt_param	params;
 
 
 void test_setup(void) {
@@ -47,57 +45,57 @@ MU_TEST(material_tst){
 }
 
 MU_TEST(eye_btwn_light_surf_tst){
-	_position = point(0, 0, 0);
-	eyev = vector(0, 0, -1);
-	normalv = vector(0, 0, -1);
+	params.position = point(0, 0, 0);
+	params.eyev = vector(0, 0, -1);
+	params.normalv = vector(0, 0, -1);
 	point_light(point(0, 0, -10), tcolor(1, 1, 1));
 	_material = material();
-	intensity = lightning(_material, *light(), _position, eyev, normalv);
+	intensity = lightning(_material, *light(), params);
 
 	mu_assert_tuple_eq(tcolor(1.9, 1.9, 1.9), intensity);
 	
 }
 
 MU_TEST(eye_45_degree_tst){
-	_position = point(0, 0, 0);
-	eyev = vector(0, sqrt(2) / 2, -sqrt(2) / 2);
-	normalv = vector(0, 0, -1);
+	params.position = point(0, 0, 0);
+	params.eyev = vector(0, sqrt(2) / 2, -sqrt(2) / 2);
+	params.normalv = vector(0, 0, -1);
 	point_light(point(0, 0, -10), tcolor(1, 1, 1));
 	_material = material();
-	intensity = lightning(_material, *light(), _position, eyev, normalv);
+	intensity = lightning(_material, *light(), params);
 
 	mu_assert_tuple_eq(tcolor(1.0, 1.0, 1.0), intensity);
 }
 
 MU_TEST(light_45_degree_tst){
-	_position = point(0, 0, 0);
-	eyev = vector(0, 0, -1);
-	normalv = vector(0, 0, -1);
+	params.position = point(0, 0, 0);
+	params.eyev = vector(0, 0, -1);
+	params.normalv = vector(0, 0, -1);
 	point_light(point(0, 10, -10), tcolor(1, 1, 1));
 	_material = material();
-	intensity = lightning(_material, *light(), _position, eyev, normalv);
+	intensity = lightning(_material, *light(), params);
 
 	mu_assert_tuple_eq(tcolor(0.7364, 0.7364, 0.7364), intensity);
 }
 
 MU_TEST(eye_in_light_path_tst){
-	_position = point(0, 0, 0);
-	eyev = vector(0, -sqrt(2) / 2, -sqrt(2) / 2);
-	normalv = vector(0, 0, -1);
+	params.position = point(0, 0, 0);
+	params.eyev = vector(0, -sqrt(2) / 2, -sqrt(2) / 2);
+	params.normalv = vector(0, 0, -1);
 	point_light(point(0, 10, -10), tcolor(1, 1, 1));
 	_material = material();
-	intensity = lightning(_material, *light(), _position, eyev, normalv);
+	intensity = lightning(_material, *light(), params);
 
 	mu_assert_tuple_eq(tcolor(1.6364, 1.6364, 1.6364), intensity);
 }
 
 MU_TEST(light_behind_surface_tst){
-	_position = point(0, 0, 0);
-	eyev = vector(0, 0, -1);
-	normalv = vector(0, 0, -1);
+	params.position = point(0, 0, 0);
+	params.eyev = vector(0, 0, -1);
+	params.normalv = vector(0, 0, -1);
 	point_light(point(0, 0, 10), tcolor(1, 1, 1));
 	_material = material();
-	intensity = lightning(_material, *light(), _position, eyev, normalv);
+	intensity = lightning(_material, *light(), params);
 
 	mu_assert_tuple_eq(tcolor(0.1, 0.1, 0.1), intensity);
 }

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 16:06:50 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:23:08 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,20 @@ t_ray		transform(t_matrix mx, t_ray _ray);
 
 /* LIGHT */
 
+typedef struct s_lgt
+{
+	t_c3d		effective_color;;
+	t_c3d		diffuse_color;
+	t_c3d		specular_color;
+	t_c3d		ambient_color;
+	t_c3d		result_color;
+	t_v3d		lightv;;
+	double		light_dot_normal;
+	t_lgt_param	params;
+}			t_lgt;
+
 void		point_light(t_p3d position, t_c3d color);
-t_c3d		lightning(t_material m, t_light light, t_p3d position, t_v3d eyev, t_v3d normalv);
+t_c3d	lightning(t_material m, t_light light, t_lgt_param params);
 
 /* CLEAN*/
 
