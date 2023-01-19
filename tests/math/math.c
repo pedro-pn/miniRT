@@ -2,6 +2,7 @@
 
 
 t_quad	quad;
+double	result;
 
 void test_setup(void) {
 }
@@ -18,11 +19,17 @@ MU_TEST(quadratic_tst) {
 	mu_assert_double_eq(-3, quad.root_b);
 }
 
+MU_TEST(pow_tst){
+	mu_assert_double_eq(32, dpow(2, 5));
+	mu_assert_double_eq(1, dpow(50, 0));
+	mu_assert_double_eq(10000, dpow(10, 4));
+}
 
 MU_TEST_SUITE(math_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(quadratic_tst);
+	MU_RUN_TEST(pow_tst);
 
 }
 

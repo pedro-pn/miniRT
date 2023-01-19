@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:10:28 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/16 20:22:34 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:52:17 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,9 @@ typedef struct s_quad
 
 t_quad	quadratic(double a, double b, double c);
 double	discriminant(double a, double b, double c);
+
+/* POW */
+
+double	dpow(double base, double n);
 
 #endif
