@@ -6,12 +6,11 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:47:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/17 17:37:24 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:19:45 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include <stdio.h>
 
 static t_intxs	*xs(void)
 {

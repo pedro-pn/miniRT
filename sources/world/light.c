@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:43:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 17:23:14 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:16:56 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ static t_c3d	set_specular_color(t_material m, t_light light, t_lgt lgt)
 
 	reflection = reflect(neg(lgt.lightv), lgt.params.normalv);
 	reflect_dot_eye = dotp(reflection, lgt.params.eyev);
-	if (reflect_dot_eye < 0)
+	if (reflect_dot_eye <= 0.0)
 		lgt.specular_color = tcolor(0, 0, 0);
 	else
 	{
-		factor = pow(reflect_dot_eye, m.shininess);
+		factor = dpow(reflect_dot_eye, m.shininess);
 		specular_color = scalar_times(factor * m.specular, light.color);
 	}
 	return (specular_color);
@@ -54,7 +54,7 @@ static void	get_diff_spec_color(t_material m, t_light light, t_lgt *lgt)
 	t_v3d	reflection;
 
 	lgt->light_dot_normal = dotp(lgt->lightv, lgt->params.normalv);
-	if (lgt->light_dot_normal < 0)
+	if (lgt->light_dot_normal < 0.0)
 	{
 		lgt->diffuse_color = tcolor(0, 0, 0);
 		lgt->specular_color = tcolor(0, 0, 0);

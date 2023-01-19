@@ -1,46 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 18:24:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 18:20:23 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/01/19 18:17:03 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/01/19 18:32:48 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-
-void	initialize_minirt(void)
+static unsigned char	tcolor_to_char(double color)
 {
-	start_mlx();
-	img_init();
-	
+	if (color >= 1.0)
+		return (COLOR_MAX);
+	else if (color <= 0)
+		return (COLOR_MIN);
+	return ((unsigned char) (color * COLOR_MAX));
 }
 
-void	run(void)
+t_rgb	tcolor_to_rgb(t_c3d color)
 {
-	//mlx_demo();
-	//hello_world_img();
-	//projectile_demo();
-	//clock_demo();
-	//sphere_demo();
-	sphere_3d_demo();
-	clean_program();
-}
+	t_rgb	color_rgb;
 
-int	main(int argc, char *argv[])
-{
-	t_file	file;
-	
-	(void)argc;
-	
-	initialize_minirt();
-	run();
-	// if (check_args(argc, argv))
-	// 	exit(ERRARG);
-//	file = check_file(argv[1]);
-	
+	color_rgb.r = tcolor_to_char(color.x);
+	color_rgb.g = tcolor_to_char(color.y);
+	color_rgb.b = tcolor_to_char(color.z);
+	return (color_rgb);
 }

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 17:23:08 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:32:49 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,11 @@ typedef struct s_lgt
 }			t_lgt;
 
 void		point_light(t_p3d position, t_c3d color);
-t_c3d	lightning(t_material m, t_light light, t_lgt_param params);
+t_c3d		lightning(t_material m, t_light light, t_lgt_param params);
+
+/* COLORS */
+
+t_rgb		tcolor_to_rgb(t_c3d color);
 
 /* CLEAN*/
 
@@ -159,5 +163,6 @@ typedef struct s_sdemo
 }			t_sdemo;
 
 void		sphere_demo(void);
+void		sphere_3d_demo(void);
 
 #endif

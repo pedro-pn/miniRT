@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:26:12 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/07 14:03:07 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:26:22 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "mlx.h"
 # include "libft.h"
 # include <fcntl.h>
+
+# define COLOR_MAX 255
+# define COLOR_MIN 0
 
 /* MLX*/
 
@@ -48,9 +51,9 @@ int			mlx_get_pixel_from_img(t_mlx_img *img, int x, int y);
 
 typedef struct s_rgb
 {
-	int	r;
-	int	g;
-	int	b;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 }			t_rgb;
 
 int		get_red(int color);
