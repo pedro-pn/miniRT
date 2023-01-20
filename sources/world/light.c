@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:43:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 19:16:56 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 21:59:15 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ static t_c3d	set_specular_color(t_material m, t_light light, t_lgt lgt)
 	reflection = reflect(neg(lgt.lightv), lgt.params.normalv);
 	reflect_dot_eye = dotp(reflection, lgt.params.eyev);
 	if (reflect_dot_eye <= 0.0)
-		lgt.specular_color = tcolor(0, 0, 0);
+		specular_color = tcolor(0, 0, 0);
 	else
 	{
-		factor = dpow(reflect_dot_eye, m.shininess);
+		factor = pow(reflect_dot_eye, m.shininess);
 		specular_color = scalar_times(factor * m.specular, light.color);
 	}
 	return (specular_color);
@@ -66,14 +66,14 @@ static void	get_diff_spec_color(t_material m, t_light light, t_lgt *lgt)
 	}
 }
 
-t_c3d	lightning(t_material m, t_light light, t_lgt_param params)
+t_c3d	lighting(t_material m, t_light light, t_lgt_param params)
 {
 	t_c3d	result;
 	t_lgt	lgt;
 
-	lgt.params = params;
-	lgt.effective_color = haddamard(m.color, light.color);
 	lgt.lightv = normalize(sub(light.position, params.position));
+	lgt.effective_color = haddamard(m.color, light.color);
+	lgt.params = params;
 	lgt.ambient_color = scalar_times(m.ambient, lgt.effective_color);
 	get_diff_spec_color(m, light, &lgt);
 	result = add(lgt.ambient_color, lgt.diffuse_color);
