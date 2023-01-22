@@ -18,7 +18,7 @@ static t_sdemo	sdemo_init(int _width)
 	sdemo.half_wall = sdemo.wall_size / 2;
 	sdemo.ray_origin = point(0, 0, -5);
 	sdemo._sphere->material = material();
-	sdemo._sphere->material.color = tcolor(1, 0.2, 1);
+	sdemo._sphere->material.color = tcolor(81.0/255.0, 2.0/255.0, 2.0/255.0);
 
 	return (sdemo);
 }
@@ -76,7 +76,7 @@ void	sphere_3d_demo(void)
 	t_sdemo		sdemo;
 
 	img = image();
-	point_light(point(-10, 10, -10), tcolor(1.0, 1.0, 1.0));
+	point_light(point(5, 0, -5), tcolor(1.0, 1.0, 1.0));
 	sdemo = sdemo_init(img->_width);
 	draw_sdemo(img, sdemo);
 	free(sdemo._sphere);

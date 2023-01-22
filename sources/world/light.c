@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:43:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 21:59:15 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 12:43:32 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	point_light(t_p3d position, t_c3d color)
 	_light->color = color;
 }
 
-static	t_c3d	set_diffuse_color(t_material m, t_lgt lgt)
+static	t_c3d	get_diffuse_color(t_material m, t_lgt lgt)
 {
 	t_c3d	diffuse_color;
 
@@ -30,7 +30,7 @@ static	t_c3d	set_diffuse_color(t_material m, t_lgt lgt)
 	return (diffuse_color);
 }
 
-static t_c3d	set_specular_color(t_material m, t_light light, t_lgt lgt)
+static t_c3d	get_specular_color(t_material m, t_light light, t_lgt lgt)
 {
 	t_v3d	reflection;
 	t_c3d	specular_color;
@@ -61,8 +61,8 @@ static void	get_diff_spec_color(t_material m, t_light light, t_lgt *lgt)
 	}
 	else
 	{
-		lgt->diffuse_color = set_diffuse_color(m, *lgt);
-		lgt->specular_color = set_specular_color(m, light, *lgt);
+		lgt->diffuse_color = get_diffuse_color(m, *lgt);
+		lgt->specular_color = get_specular_color(m, light, *lgt);
 	}
 }
 

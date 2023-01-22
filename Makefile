@@ -78,14 +78,17 @@ run: m
 TEST_PATH = ./tests
 SOURCES_T = $(wildcard $(TEST_PATH)/*.c) $(wildcard ${TEST_PATH}/**/*.c)
 TESTS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/%.out, $(SOURCES_T))
+
 test:	test_clean ${TEST_PATH}/$t.out
-		./${TEST_PATH}/$t.out
+
+tests: test_clean ${TESTS}
 
 ${TEST_PATH}/%.out: ${TEST_PATH}/%.c
 			${CC} $<  ${NAME_ARCHIVE} ${CC_LIBS} ${CC_INCLUDES} -lm -o $@
+			-./$@
 
-test_clean: clean dirs m
-			rm -rf ${wildcard ${TEST_PATH}/*.out} ${wildcard $(TEST_PATH)/**/*.out}
+test_clean: clean
+			rm -rf ${TESTS}
 
 vgtest: test_clean ${TEST_PATH}/$t.out
 		valgrind --leak-check=full --show-leak-kinds=all ./${TEST_PATH}/$t.out

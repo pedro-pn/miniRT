@@ -223,10 +223,10 @@ MU_TEST(cofactor_tst){
 		0, 0, 0, 0
 	});
 
-	result_db = mx_cofactor(matrix, 0, 0);
+	result_db = mx_cofactor(matrix, 3, 0, 0);
 	mu_assert_double_eq(-12, result_db);
 
-	result_db = mx_cofactor(matrix, 1, 0);
+	result_db = mx_cofactor(matrix, 3, 1, 0);
 	mu_assert_double_eq(-25, result_db);
 }
 
