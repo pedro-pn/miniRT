@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 16:51:36 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/22 20:48:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ typedef struct t_intxs
 	t_list	*intersections;
 }			t_intxs;
 
+/* WORLD */
 
+typedef struct s_world
+{
+	t_list	*objects;
+	t_light	light;
+}			t_world;
 
 #endif

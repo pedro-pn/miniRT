@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 10:43:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/21 19:35:47 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/01/22 17:49:38 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/01/22 20:48:43 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_light	*light(void)
+t_list	*objects(void)
 {
-	return (&data()->world.light);
+	return (data()->world.objects);
 }

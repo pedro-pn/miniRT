@@ -26,16 +26,16 @@ all: ${NAME}
 bonus: ${BONUS}
 
 ${OBJS_PATH}/%.o: ${SRCS_PATH}/%.c
-	@ mkdir -p ${OBJS_PATH}
-	@ printf "Compiling: $< %10s\r"
-	@ ${CC} ${CC_INCLUDES} ${FLAGS} -c $< -o $@
+		@ mkdir -p ${OBJS_PATH}
+		@ printf "Compiling: $< %10s\r"
+		@ ${CC} ${CC_INCLUDES} ${FLAGS} -c $< -o $@
 
 ${NAME}: ${MLX} ${LIBFT} ${OBJS}
-	@ ${CC} ${FLAGS} ${OBJS} ${CC_LIBS} -o ${NAME} 
-	@ echo "\12${GREEN}${NAME} successfully compiled!${NC}"
+		@ ${CC} ${FLAGS} ${OBJS} ${CC_LIBS} -o ${NAME} 
+		@ echo "\12${GREEN}${NAME} successfully compiled!${NC}"
 
 ${LIBFT}:
-	@ make -C libs/libft/ --no-print-directory
+		@ make -C libs/libft/ --no-print-directory
 
 ${MLX}:
 		@ echo "Compiling Minilibx..."
@@ -84,10 +84,10 @@ test:	test_clean ${TEST_PATH}/$t.out
 tests: test_clean ${TESTS}
 
 ${TEST_PATH}/%.out: ${TEST_PATH}/%.c
-			${CC} $<  ${NAME_ARCHIVE} ${CC_LIBS} ${CC_INCLUDES} -lm -o $@
+			${CC} $< ${NAME_ARCHIVE} -g ${CC_LIBS} ${CC_INCLUDES} -lm -o $@
 			-./$@
 
-test_clean: clean
+test_clean: clean dirs m
 			rm -rf ${TESTS}
 
 vgtest: test_clean ${TEST_PATH}/$t.out

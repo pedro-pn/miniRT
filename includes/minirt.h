@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 21:59:17 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/22 21:43:53 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,13 @@
 
 # define INTER_MAX 
 
-
-
 typedef	struct s_data
 {
 	void		*mlx;
 	void		*mlx_win;
 	t_mlx_img	img;
 
-	t_list		*objects;
-	t_light		light;
-
+	t_world		world;
 }			t_data;
 
 
@@ -68,6 +64,8 @@ typedef struct s_scene_val
 
 t_data		*data(void);
 t_light		*light(void);
+t_world		*world(void);
+t_list		*objects(void);
 
 /* args.c file */
 
@@ -90,9 +88,8 @@ t_object	*sphere(void);
 t_v3d		normal_at(t_object obj, t_p3d _point);
 t_v3d		reflect(t_v3d in, t_v3d normal);
 
+
 // intersection
-
-
 
 t_intx		*new_intersection(double t, t_object *obj);
 void		create_intersection(t_list **list, double t, t_object *obj);
@@ -124,6 +121,13 @@ t_c3d		lighting(t_material m, t_light light, t_lgt_param params);
 /* COLORS */
 
 t_rgb		tcolor_to_rgb(t_c3d color);
+
+/* WORLD */
+
+void		default_world(void);
+
+void		create_object(t_object	*object);
+
 
 /* CLEAN*/
 

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 10:43:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/21 19:35:47 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/01/22 21:44:26 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/01/22 21:44:39 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_light	*light(void)
+void	create_object(t_object	*object)
 {
-	return (&data()->world.light);
+	ft_lstadd_back(&world()->objects, ft_lstnew(object));
 }
