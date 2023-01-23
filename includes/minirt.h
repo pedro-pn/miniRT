@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/22 21:43:53 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:08:42 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,16 @@ t_rgb		tcolor_to_rgb(t_c3d color);
 
 /* WORLD */
 
+typedef struct s_sort
+{
+	int		init;
+	t_list	*partition;
+}			t_sort;
+
 void		default_world(void);
 
 void		create_object(t_object	*object);
+t_intxs		intersect_world(t_ray _ray);
 
 
 /* CLEAN*/
