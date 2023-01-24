@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:20:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 18:56:35 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:06:52 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ t_c3d	color_at(t_ray ray)
 	xs = intersect_world(ray);
 	hit_inter = hit(xs);
 	if (hit_inter == NULL)
+	{
+		ft_lstclear(&xs.intersections, free);
 		return (tcolor(0.0, 0.0, 0.0));
+	}
 	comps = prepare_computations(*hit_inter, ray);
+	ft_lstclear(&xs.intersections, free);
 	return (shade_hit(comps));
 }
