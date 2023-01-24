@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 19:36:49 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 20:34:42 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef	struct s_data
 	t_mlx_img	img;
 
 	t_world		world;
+	t_camera	camera;
 }			t_data;
 
 
@@ -66,6 +67,7 @@ t_data		*data(void);
 t_light		*light(void);
 t_world		*world(void);
 t_list		*objects(void);
+t_camera	*camera(void);
 
 /* args.c file */
 
@@ -141,6 +143,10 @@ t_comp		prepare_computations(t_intx inter, t_ray ray);
 t_c3d		shade_hit(t_comp comps);
 
 void		view_transformation(t_view view, t_matrix *result);
+
+/* CAMERA */
+
+void	set_camera(int hsize, int vsize, double field_of_view);
 
 /* CLEAN*/
 

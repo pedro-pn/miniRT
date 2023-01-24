@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 19:35:35 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 20:36:11 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,21 @@ typedef struct s_view
 	t_p3d	to;
 	t_v3d	up;
 }			t_view;
+
+/* CAMERA */
+
+typedef struct s_camera
+{
+	int			hsize;
+	int			vsize;
+
+	double		half_width;
+	double		half_height;
+
+	double		field_of_view;
+	double		pixel_size;
+
+	t_matrix	transform;
+}			t_camera;
 
 #endif
