@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 12:41:10 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:35:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,12 @@ typedef struct s_comp
 	double		t;
 	t_bool		inside;
 }			t_comp;
+
+typedef struct s_view
+{
+	t_p3d	from;
+	t_p3d	to;
+	t_v3d	up;
+}			t_view;
 
 #endif
