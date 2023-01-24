@@ -27,7 +27,6 @@ static t_c3d	cast_ray(t_sdemo sdemo)
 {
 	t_c3d		color;
 	t_p3d		_point;
-	t_p3d		intersect_point;
 	t_ray		_ray;
 	t_intxs		*_xs;
 	t_intx		*inter;

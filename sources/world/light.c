@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:43:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/20 12:43:32 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:45:15 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static t_c3d	get_specular_color(t_material m, t_light light, t_lgt lgt)
 
 static void	get_diff_spec_color(t_material m, t_light light, t_lgt *lgt)
 {
-	t_v3d	reflection;
-
 	lgt->light_dot_normal = dotp(lgt->lightv, lgt->params.normalv);
 	if (lgt->light_dot_normal < 0.0)
 	{

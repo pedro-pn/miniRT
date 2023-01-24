@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:24:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 18:20:23 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:50:30 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,12 @@ void	run(void)
 
 int	main(int argc, char *argv[])
 {
-	t_file	file;
-	
 	(void)argc;
+	(void)argv;
 	
 	initialize_minirt();
 	run();
 	// if (check_args(argc, argv))
 	// 	exit(ERRARG);
 //	file = check_file(argv[1]);
-	
 }

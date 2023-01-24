@@ -10,8 +10,8 @@ OBJS = ${addprefix ${OBJS_PATH}/, ${notdir ${SOURCES:.c=.o}}}
 CC_LIBS = ${LIBFT} ${MLX}
 CC_INCLUDES = -I libs/libft/include -I includes -I libs/minilibx
 #VPATH :=	${SRCS_PATH} ${SRCS_PATH}/main ${SRCS_PATH}/file
-CC = cc
-FLAGS = -g
+CC = clang-12
+FLAGS = -Werror -Wextra -Wall -g
 
 # Colors
 GREEN = \33[1;32m
@@ -27,11 +27,10 @@ bonus: ${BONUS}
 
 ${OBJS_PATH}/%.o: ${SRCS_PATH}/%.c
 		@ mkdir -p ${OBJS_PATH}
-		@ printf "Compiling: $< %10s\r"
-		@ ${CC} ${CC_INCLUDES} ${FLAGS} -c $< -o $@
+		 ${CC} ${CC_INCLUDES} ${FLAGS} -c $< -o $@
 
 ${NAME}: ${MLX} ${LIBFT} ${OBJS}
-		@ ${CC} ${FLAGS} ${OBJS} ${CC_LIBS} -o ${NAME} 
+		${CC} ${FLAGS} ${OBJS} ${CC_LIBS} -o ${NAME} 
 		@ echo "\12${GREEN}${NAME} successfully compiled!${NC}"
 
 ${LIBFT}:
@@ -61,7 +60,6 @@ ${NAME_WILD}: ${LIBFT} ${NAME_ARCHIVE} ${MAIN_OBJ}
 				${CC} ${MAIN_OBJ} ${NAME_ARCHIVE} ${CC_LIBS} ${CC_INCLUDES} -lXext -lX11 -lm ${FLAGS} -o ${NAME_WILD}
 
 ${MAIN_OBJ}: ${MAIN_W}
-		 @ printf "Compiling: $< %10s\r"
 		 @ ${CC} ${CC_INCLUDES} ${FLAGS} -c $< -o $@
 			
 ${NAME_ARCHIVE}: ${OBJECTS_W}
