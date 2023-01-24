@@ -3,6 +3,7 @@
  
 # include "minunit.h"
 # include "minirt.h"
+# include <stdio.h>
 
 
 void    mu_assert_tuple_eq(t_t3d expected, t_t3d result)

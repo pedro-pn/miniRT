@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/23 16:08:42 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/23 23:01:31 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,9 @@ typedef struct s_sort
 void		default_world(void);
 
 void		create_object(t_object	*object);
+
 t_intxs		intersect_world(t_ray _ray);
+void		sort_intersections(t_list *lst);
 
 
 /* CLEAN*/

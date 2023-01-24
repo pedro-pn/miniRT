@@ -8,6 +8,7 @@ t_matrix	expected_scal;
 t_ray		_ray;
 t_intxs		xs;
 t_intx		*inter;
+t_list		*intersections;
 t_list		*node;
 
 void test_setup(void) {
@@ -24,6 +25,28 @@ MU_TEST(world_tst) {
 	_world = world();
 
 	mu_check(_world->objects == NULL);
+}
+
+MU_TEST(sort_tst){
+	ft_lstadd_back(&intersections, ft_lstnew(new_intersection(9.0, NULL)));
+	ft_lstadd_back(&intersections, ft_lstnew(new_intersection(2.0, NULL)));
+	ft_lstadd_back(&intersections, ft_lstnew(new_intersection(4.0, NULL)));
+	ft_lstadd_back(&intersections, ft_lstnew(new_intersection(1.0, NULL)));
+	ft_lstadd_back(&intersections, ft_lstnew(new_intersection(2.0, NULL)));
+	ft_lstadd_back(&intersections, ft_lstnew(new_intersection(454.0, NULL)));
+	ft_lstadd_back(&intersections, ft_lstnew(new_intersection(3.0, NULL)));
+	ft_lstadd_back(&intersections, ft_lstnew(new_intersection(-2.0, NULL)));
+	ft_lstadd_back(&intersections, ft_lstnew(new_intersection(3.4, NULL)));
+
+	node = intersections;
+	sort_intersections(intersections);
+	while (node)
+	{
+		printf("%f\n", ((t_intx *)node->content)->t);
+		node = node->next;
+	}
+	mu_assert_double_eq(-2.0, ((t_intx *)intersections->content)->t);
+	ft_lstclear(&intersections, free);
 }
 
 MU_TEST(default_word){
@@ -54,7 +77,7 @@ MU_TEST(intersect_world_tst){
 	xs = intersect_world(_ray);
 	node = xs.intersections;
 
-	mu_assert_int_eq(4, xs.count);
+	mu_assert_int_eq(4.0, xs.count);
 
 	inter = node->content;
 	mu_assert_double_eq(4.0, inter->t);
@@ -70,6 +93,7 @@ MU_TEST(intersect_world_tst){
 	node = node->next;
 	inter = node->content;
 	mu_assert_double_eq(6.0, inter->t);
+	ft_lstclear(&xs.intersections, free);
 }
 
 MU_TEST_SUITE(world_suite) {
@@ -77,6 +101,7 @@ MU_TEST_SUITE(world_suite) {
 
 	MU_RUN_TEST(world_tst);
 	MU_RUN_TEST(default_word);
+	MU_RUN_TEST(sort_tst);
 	MU_RUN_TEST(intersect_world_tst);
 
 }
