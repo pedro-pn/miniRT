@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/22 21:44:40 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:39:27 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ t_object	*sphere(void)
 	_sphere->origin = point(0, 0, 0);
 	_sphere->radius = 1.0;
 	_sphere->color = color_rgb(255, 0, 0);
+	_sphere->material = material();
 	mx_identity(&_sphere->transform);
 	return (_sphere);
 }
