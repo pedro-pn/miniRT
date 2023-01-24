@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/22 20:48:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:41:10 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,15 @@ typedef struct s_world
 	t_list	*objects;
 	t_light	light;
 }			t_world;
+
+typedef struct s_comp
+{
+	t_p3d		point;
+	t_v3d		eyev;
+	t_v3d		normalv;
+	t_object	*object;
+	double		t;
+	t_bool		inside;
+}			t_comp;
 
 #endif

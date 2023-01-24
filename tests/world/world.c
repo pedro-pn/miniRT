@@ -3,6 +3,7 @@
 t_world		*_world;
 t_object	*_object;
 t_list		*_objects;
+t_object	*_sphere;
 t_light		expected_light;
 t_matrix	expected_scal;
 t_ray		_ray;
@@ -10,15 +11,18 @@ t_intxs		xs;
 t_intx		*inter;
 t_list		*intersections;
 t_list		*node;
+t_comp		comps;
 
 void test_setup(void) {
 	point_light(point(-10, 10, -10), tcolor(1, 1, 1));
 	world()->objects = NULL;
+	_sphere = sphere();
 }
 
 void test_teardown(void) {
 	/* Nothing */
 	ft_lstclear(&world()->objects, free);
+	free(_sphere);
 }
 
 MU_TEST(world_tst) {
@@ -96,6 +100,37 @@ MU_TEST(intersect_world_tst){
 	ft_lstclear(&xs.intersections, free);
 }
 
+MU_TEST(precomputing_state_tst){
+	_ray = ray(point(0, 0, -5), vector(0, 0,  1));
+	*inter = (t_intx){4.0, _sphere};
+	comps = prepare_computations(*inter, _ray);
+	
+	mu_check(_sphere == comps.object);
+	mu_assert_double_eq(inter->t, comps.t);
+	mu_assert_tuple_eq(point(0, 0, -1), comps.point);
+	mu_assert_tuple_eq(vector(0, 0, -1), comps.eyev);
+	mu_assert_tuple_eq(vector(0, 0, -1), comps.normalv);
+}
+
+MU_TEST(hit_outside_tst){
+	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
+	*inter = (t_intx){4, _sphere};
+	comps = prepare_computations(*inter, _ray);
+
+	mu_check(comps.inside == false);
+}
+
+MU_TEST(hit_inside_tst){
+	_ray = ray(point(0, 0, 0), vector(0, 0, 1));
+	*inter = (t_intx){1, _sphere};
+	comps = prepare_computations(*inter, _ray);
+
+	mu_check(comps.inside == true);
+	mu_assert_tuple_eq(point(0, 0, 1), comps.point);
+	mu_assert_tuple_eq(vector(0, 0, -1), comps.eyev);
+	mu_assert_tuple_eq(vector(0, 0, -1), comps.normalv);
+}
+
 MU_TEST_SUITE(world_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -103,7 +138,9 @@ MU_TEST_SUITE(world_suite) {
 	MU_RUN_TEST(default_word);
 	MU_RUN_TEST(sort_tst);
 	MU_RUN_TEST(intersect_world_tst);
-
+	MU_RUN_TEST(precomputing_state_tst);
+	MU_RUN_TEST(hit_outside_tst);
+	MU_RUN_TEST(hit_inside_tst);
 }
 
 int main(int argc, char *argv[]) {
