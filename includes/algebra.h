@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:43:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/13 12:46:35 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:23:58 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "my_math.h"
 # include "libft.h"
+# include <stdio.h>
 
 /* TUPLE */
 
@@ -144,5 +145,6 @@ void	shearing(t_shearing shear, t_matrix *result);
 /* TO DELETE*/
 
 void	inspect_matrix(t_matrix matrix);
+void	inspect_tuple(t_t3d tuple, const char *name);
 
 #endif

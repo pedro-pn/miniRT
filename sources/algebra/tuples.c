@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:48:39 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/10 22:21:59 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:23:53 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,9 @@ t_p3d	point(double x, double y, double z)
 t_v3d	vector(double x, double y, double z)
 {
 	return ((t_v3d)tuple_3d(x, y, z, 0));
+}
+
+void	inspect_tuple(t_t3d tuple, const char *name)
+{
+	printf("%s: (%f, %f, %f, %f)\n", name, tuple.x, tuple.y, tuple.z, tuple.w);
 }
