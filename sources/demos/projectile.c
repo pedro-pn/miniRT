@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 20:23:34 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/09 21:13:28 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:11:36 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	projectile_demo(void)
 	t_projectile	proj;
 	t_environment	env;
 
+	set_camera(200, 200, MY_PI / 2);
 	proj.position = point(0, 1, 0);
 	proj.velocity = normalize(vector(1, 1, 0));
 	proj.velocity = scalar_times(2.0, proj.velocity);

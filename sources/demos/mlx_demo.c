@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:22:46 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/09 20:16:47 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:11:32 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	hello_world_img(void)
 	int			x2;
 	t_rgb		color;
 
+	set_camera(200, 200, MY_PI / 2);
 	x = image()->_width - 1;
 	x2 = 0;
 	color.b = 0.25 * 255.999;

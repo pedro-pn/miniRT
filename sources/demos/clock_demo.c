@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:06:28 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/13 14:39:10 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:10:20 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	clock_demo(void)
 	t_mlx_img	*img;
 	t_matrix	rotation;
 
+	set_camera(200, 200, MY_PI / 2);
 	img = image();
 	count = 0;
 	origin = point(0, 50, 0);

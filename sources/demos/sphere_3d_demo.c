@@ -74,6 +74,7 @@ void	sphere_3d_demo(void)
 	t_mlx_img	*img;
 	t_sdemo		sdemo;
 
+	set_camera(1000, 1000, MY_PI / 2);
 	img = image();
 	point_light(point(5, 0, -5), tcolor(1.0, 1.0, 1.0));
 	sdemo = sdemo_init(img->_width);

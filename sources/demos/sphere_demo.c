@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:47:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 18:19:45 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:26:02 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	sphere_demo(void)
 	t_mlx_img	*img;
 	t_sdemo		sdemo;
 
+	set_camera(200, 200, MY_PI / 2);
 	img = image();
 	sdemo = sdemo_init(img->_width);
 	draw_sdemo(img, sdemo);
