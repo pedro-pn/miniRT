@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 20:36:11 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 10:45:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ typedef struct s_camera
 	double		pixel_size;
 
 	t_matrix	transform;
+	t_mlx_img	img;
 }			t_camera;
 
 #endif

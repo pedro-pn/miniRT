@@ -7,10 +7,12 @@ t_matrix	mx_expected;
 t_ray		_ray;
 
 void test_setup(void) {
+	start_mlx();
 }
 
 void test_teardown(void) {
 	/* Nothing */
+	clean_program();
 }
 
 MU_TEST(camera_tst){

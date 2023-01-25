@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:30:20 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 17:47:15 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 10:46:10 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_mlx_img	*image(void)
 {	
-	return (&(data()->img));
+	return (&(data()->camera.img));
 }
 
 void	*window(void)

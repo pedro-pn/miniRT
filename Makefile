@@ -76,6 +76,7 @@ run: m
 TEST_PATH = ./tests
 SOURCES_T = $(wildcard $(TEST_PATH)/*.c) $(wildcard ${TEST_PATH}/**/*.c)
 TESTS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/%.out, $(SOURCES_T))
+VGTESTS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/%vg.out, $(SOURCES_T))
 
 test:	test_clean ${TEST_PATH}/$t.out
 
@@ -85,11 +86,16 @@ ${TEST_PATH}/%.out: ${TEST_PATH}/%.c
 			${CC} $< ${NAME_ARCHIVE} -g ${CC_LIBS} ${CC_INCLUDES} -lXext -lX11 -lm -o $@
 			-./$@
 
-test_clean: clean dirs m
-			rm -rf ${TESTS}
+${TEST_PATH}/%vg.out: ${TEST_PATH}/%.c
+			${CC} $< ${NAME_ARCHIVE} -g ${CC_LIBS} ${CC_INCLUDES} -lXext -lX11 -lm -o $@
+			-valgrind --leak-check=full --show-leak-kinds=all ./$@
 
-vgtest: test_clean ${TEST_PATH}/$t.out
-		valgrind --leak-check=full --show-leak-kinds=all ./${TEST_PATH}/$t.out
+test_clean: clean dirs m
+			rm -rf ${TESTS} ${VGTESTS}
+
+vgtest: test_clean ${TEST_PATH}/$tvg.out
+
+vgtests: test_clean ${VGTESTS}
 # ============================================================ #
 
 clean:

@@ -9,10 +9,13 @@ t_intxs		xs;
 t_intx		*inter;
 
 void test_setup(void) {
+	_sphere = NULL;
 }
 
 void test_teardown(void) {
 	/* Nothing */
+	free(_sphere);
+	ft_lstclear(&xs.intersections, free);
 }
 
 MU_TEST(trans_ray_tst) {

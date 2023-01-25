@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 17:59:49 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/23 22:53:40 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 10:56:52 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	default_world(void)
 {
 	t_object	*_sphere;
 
+	world()->objects = NULL;
 	_sphere = sphere();
 	_sphere->material.color = tcolor(0.8, 1.0, 0.6);
 	_sphere->material.diffuse = 0.7;
