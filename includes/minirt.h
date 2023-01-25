@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 20:34:42 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 22:53:51 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ void		tuple_inspect(t_t3d tuple);
 
 /* RAYS */
 
+t_ray		ray(t_p3d origin, t_v3d vector);
+
+t_p3d		position(double scalar, t_ray _ray);
+
+t_ray		ray_for_pixel(int x, int y);
+
 /* MATERIAL */
 
 t_material	material(void);
@@ -96,9 +102,6 @@ t_v3d		reflect(t_v3d in, t_v3d normal);
 t_intx		*new_intersection(double t, t_object *obj);
 void		create_intersection(t_list **list, double t, t_object *obj);
 t_intxs		intersect(t_object *obj, t_ray _ray);
-
-t_ray		ray(t_p3d origin, t_v3d vector);
-t_p3d		position(double scalar, t_ray _ray);
 
 t_intx		*hit(t_intxs intersections);
 t_ray		transform(t_matrix mx, t_ray _ray);

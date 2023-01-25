@@ -1,7 +1,10 @@
 #include "../test.h"
 
 t_camera	*cam;
+t_matrix	mx_rot;
+t_matrix	mx_trans;
 t_matrix	mx_expected;
+t_ray		_ray;
 
 void test_setup(void) {
 }
@@ -35,12 +38,46 @@ MU_TEST(vertival_canvas_tst){
 	mu_assert_double_eq(0.01, cam->pixel_size);
 }
 
+MU_TEST(ray_center_canvas_tst){
+	set_camera(201, 101, MY_PI / 2);
+	cam = camera();
+	_ray = ray_for_pixel(100, 50);
+
+	mu_assert_tuple_eq(point(0, 0, 0), _ray.origin);
+	mu_assert_tuple_eq(vector(0, 0, -1), _ray.direction);
+}
+
+MU_TEST(ray_corner_canvas_tst){
+	set_camera(201, 101, MY_PI / 2);
+	cam = camera();
+	_ray = ray_for_pixel(0, 0);
+
+	mu_assert_tuple_eq(point(0, 0, 0), _ray.origin);
+	mu_assert_tuple_eq(vector(0.66519, 0.33259, -0.66851), _ray.direction);
+}
+
+MU_TEST(ray_transformed_camera_tst){
+	set_camera(201, 101, MY_PI / 2);
+	cam = camera();
+	rotation_y(MY_PI / 4, &mx_rot);
+	translation(vector(0, -2, 5), &mx_trans);
+	mx_product(mx_rot, mx_trans, &cam->transform);
+	_ray = ray_for_pixel(100, 50);
+
+	mu_assert_tuple_eq(point(0, 2, -5), _ray.origin);
+	mu_assert_tuple_eq(vector(sqrt(2) / 2, 0, -sqrt(2) / 2), _ray.direction);
+}
+
 MU_TEST_SUITE(camera_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(camera_tst);
 	MU_RUN_TEST(horizontal_canvas_tst);
 	MU_RUN_TEST(vertival_canvas_tst);
+
+	MU_RUN_TEST(ray_center_canvas_tst);
+	MU_RUN_TEST(ray_corner_canvas_tst);
+	MU_RUN_TEST(ray_transformed_camera_tst);
 }
 
 int main(int argc, char *argv[]) {
