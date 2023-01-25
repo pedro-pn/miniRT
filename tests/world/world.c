@@ -14,17 +14,26 @@ t_list		*node;
 t_comp		comps;
 t_c3d		result_color;
 t_intx		intx;
+t_view		view;
+void		*mlx;
+t_mlx_img	img;
+t_rgb		_color;
+
 
 void test_setup(void) {
 	point_light(point(-10.0, 10.0, -10.0), tcolor(1.0, 1.0, 1.0));
 	world()->objects = NULL;
 	_sphere = sphere();
+	start_mlx();
+	img_init();
 }
 
 void test_teardown(void) {
 	/* Nothing */
 	ft_lstclear(&world()->objects, free);
 	free(_sphere);
+	clean_program();
+	
 }
 
 MU_TEST(world_tst) {
@@ -184,6 +193,26 @@ MU_TEST(color_intersection_behind_ray_tst){
 	mu_assert_tuple_eq(_sphere->material.color, result_color);
 }
 
+MU_TEST(render_tst)
+{
+	default_world();
+	set_camera(11, 11, MY_PI / 2);
+	view.from = point(0, 0, -5);
+	view.to = point(0, 0, 0);
+	view.up = vector(0, 1, 0);
+	view_transformation(view, &camera()->transform);
+	render();
+	_color = int_to_rgb(mlx_get_pixel_from_img(image(), 5, 5));
+
+	mu_assert_int_eq(97, _color.r);
+	mu_assert_int_eq(121, _color.g);
+	mu_assert_int_eq(72, _color.b);
+
+	// printf("Result_color: (%f, %f, %f)\n", result_color.x, result_color.y, result_color.z);
+	// mu_assert_tuple_eq(tcolor(0.38066, 0.47583, 0.2855), result_color);
+	
+}
+
 MU_TEST_SUITE(world_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -203,6 +232,8 @@ MU_TEST_SUITE(world_suite) {
 	MU_RUN_TEST(color_ray_misses_tst);
 	MU_RUN_TEST(color_ray_hits_tst);
 	MU_RUN_TEST(color_intersection_behind_ray_tst);
+
+	MU_RUN_TEST(render_tst);
 }
 
 int main(int argc, char *argv[]) {

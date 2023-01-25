@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 22:53:51 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 23:54:50 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define ERRFILE 3
 # define SPACES " \t"
 
-# define SCREEN_WIDTH 200
-# define SCREEN_HEIGHT 200
+# define SCREEN_WIDTH 11
+# define SCREEN_HEIGHT 11
 
 # define INTER_MAX 
 
@@ -126,6 +126,7 @@ t_c3d		lighting(t_material m, t_light light, t_lgt_param params);
 /* COLORS */
 
 t_rgb		tcolor_to_rgb(t_c3d color);
+t_c3d		rgb_to_tcolor(t_rgb rgb);
 
 /* WORLD */
 
@@ -146,6 +147,8 @@ t_comp		prepare_computations(t_intx inter, t_ray ray);
 t_c3d		shade_hit(t_comp comps);
 
 void		view_transformation(t_view view, t_matrix *result);
+
+void		render(void);
 
 /* CAMERA */
 

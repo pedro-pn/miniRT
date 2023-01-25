@@ -82,7 +82,7 @@ test:	test_clean ${TEST_PATH}/$t.out
 tests: test_clean ${TESTS}
 
 ${TEST_PATH}/%.out: ${TEST_PATH}/%.c
-			${CC} $< ${NAME_ARCHIVE} -g ${CC_LIBS} ${CC_INCLUDES} -lm -o $@
+			${CC} $< ${NAME_ARCHIVE} -g ${CC_LIBS} ${CC_INCLUDES} -lXext -lX11 -lm -o $@
 			-./$@
 
 test_clean: clean dirs m

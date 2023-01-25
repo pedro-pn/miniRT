@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_rgb.c                                        :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 15:53:11 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 23:31:16 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/01/24 23:41:55 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/01/24 23:54:06 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_mlx.h"
+#include "minirt.h"
 
-int	get_rgb_color(t_rgb rgb)
+void	render(void)
 {
-	return (get_color(rgb.r, rgb.g, rgb.b));
-}
+	t_ray		_ray;
+	t_rgb		color;
+	int			x;
+	int			y;
 
-t_rgb	color_rgb(int _red, int _green,  int _blue)
-{
-	return ((t_rgb){_red, _green, _blue});
-}
-
-t_rgb	int_to_rgb(int color)
-{
-	t_rgb	rgb;
-
-	rgb.r = get_red(color);
-	rgb.g = get_green(color);
-	rgb.b = get_blue(color);
-	return (rgb);
+	x = 0;
+	while (x < camera()->hsize)
+	{
+		y = 0;
+		while (y < camera()->vsize)
+		{
+			_ray = ray_for_pixel(x, y);
+			color = tcolor_to_rgb(color_at(_ray));
+			mlx_draw_pixel_rgb(image(), x, y, color);
+			y++;
+		}
+		x++;
+	}
 }

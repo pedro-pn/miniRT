@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:26:12 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 18:26:22 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/24 23:31:25 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		get_color(int _red, int _green, int _blue);
 int		get_rgb_color(t_rgb rgb);
 void	mlx_draw_pixel_rgb(t_mlx_img *img, int x, int y, t_rgb color_rgb);
 t_rgb	color_rgb(int _red, int _green,  int _blue);
+t_rgb	int_to_rgb(int color);
 
 /* PPM file*/
 
