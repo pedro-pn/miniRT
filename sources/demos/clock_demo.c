@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:06:28 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 12:10:20 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:41:07 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	clock_demo(void)
 	while (count < 30)
 	{
 		mlx_draw_pixel_rgb(img,
-				round(origin.x + img->_width / 2),
-				round(origin.y + img->_height / 2), color_rgb(255, 255,255));
+			round(origin.x + img->_width / 2),
+			round(origin.y + img->_height / 2), color_rgb(255, 255,255));
 		origin = mx_tuple_product(rotation, origin);
 		count++;
 	}

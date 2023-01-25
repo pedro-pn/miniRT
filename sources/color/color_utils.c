@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:17:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 23:34:29 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:40:56 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static unsigned char	tcolor_to_char(double color)
 		return (COLOR_MAX);
 	else if (color <= 0)
 		return (COLOR_MIN);
-	return ((unsigned char) (color * COLOR_MAX));
+	return ((unsigned char)(color * COLOR_MAX));
 }
 
 static double	char_to_tcolor(unsigned char color)

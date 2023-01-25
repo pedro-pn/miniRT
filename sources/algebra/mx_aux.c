@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 12:56:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/10 22:22:24 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:39:30 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	mx_copy(t_matrix matrix, t_matrix *result)
 		while (j < 4)
 		{
 			(*result)[i][j] = matrix[i][j];
-			j++; 
+			j++;
 		}
 		i++;
 	}

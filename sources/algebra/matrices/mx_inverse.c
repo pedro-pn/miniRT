@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:45:45 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/12 18:02:18 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:40:29 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_bool	mx_is_invertible(t_matrix matrix, int size)
 		return (false);
 	return (true);
 }
-
 
 static void	mx_make_inverse(t_matrix matrix, double det, t_matrix *result)
 {

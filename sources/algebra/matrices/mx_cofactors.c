@@ -6,13 +6,13 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:08:33 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/12 18:27:34 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:40:21 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algebra.h"
 
-static double cofactor(double _cofactor, int row, int column)
+static double	cofactor(double _cofactor, int row, int column)
 {
 	if ((row + column) % 2 == 0)
 		return (_cofactor);

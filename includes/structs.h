@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 10:45:35 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:51:19 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,11 @@ typedef struct s_camera
 
 	double		field_of_view;
 	double		pixel_size;
+
+	double		xoffset;
+	double		yoffset;
+	double		world_x;
+	double		world_y;
 
 	t_matrix	transform;
 	t_mlx_img	img;

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:22:46 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 12:11:32 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:41:41 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	mlx_demo(void)
 		}
 		x++;
 	}
-	// mlx_put_image_to_window(data()->mlx, data()->mlx_win, img->img, 0, 0);
-	// mlx_loop(data()->mlx);
 	mlx_save_img_to_ppm(img, "teste.ppm");
 }
 
@@ -51,8 +49,8 @@ void	hello_world_img(void)
 		y = 0;
 		while (y < image()->_height)
 		{
-			color.r = (double) y * 255.999/ (image()->_width - 1);
-			color.g = (double) x * 255.999/ (image()->_height - 1);
+			color.r = (double) y * 255.999 / (image()->_width - 1);
+			color.g = (double) x * 255.999 / (image()->_height - 1);
 			mlx_draw_pixel_rgb(image(), x2, y, color);
 			y++;
 		}

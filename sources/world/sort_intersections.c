@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:02:16 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/23 23:01:46 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:44:39 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static int	partition(t_intx **intxs_lst, int start, int end)
 static void	quick_sort(t_intx **intxs_lst, int start, int end)
 {
 	int	_partition;
+
 	if (start < end)
 	{
 		_partition = partition(intxs_lst, start, end);
@@ -70,7 +71,7 @@ void	sort_intersections(t_list *intxs_lst)
 	t_intx	**intxs;
 	int		intxs_list_size;
 	int		i;
-	
+
 	intxs_list_size = ft_lstsize(intxs_lst);
 	intxs = ft_calloc(intxs_list_size, sizeof(*intxs));
 	get_intxs_array(intxs, intxs_lst);

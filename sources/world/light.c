@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:43:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 14:45:15 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:44:17 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static	t_c3d	get_diffuse_color(t_material m, t_lgt lgt)
 {
 	t_c3d	diffuse_color;
 
-	diffuse_color =  scalar_times(lgt.light_dot_normal * m.diffuse,
+	diffuse_color = scalar_times(lgt.light_dot_normal * m.diffuse,
 			lgt.effective_color);
 	return (diffuse_color);
 }
