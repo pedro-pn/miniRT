@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 10:45:27 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:09:14 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,5 +192,6 @@ typedef struct s_sdemo
 
 void		sphere_demo(void);
 void		sphere_3d_demo(void);
+void		world_demo(void);
 
 #endif
