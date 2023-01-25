@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 14:05:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/10 13:13:26 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:17:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ t_v3d	cross(t_v3d v1, t_v3d v2)
 	product.x = v1.y * v2.z - v1.z * v2.y;
 	product.y = v1.z * v2.x - v1.x * v2.z;
 	product.z = v1.x * v2.y - v1.y * v2.x;
+	product.w = 0;
 	return (product);
 }
