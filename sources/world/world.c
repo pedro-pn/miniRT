@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 17:59:49 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 10:56:52 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 23:13:51 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_intxs	intersect_world(t_ray _ray)
 		ft_lstadd_back(&result.intersections, xs.intersections);
 		node_objs = node_objs->next;
 	}
-	sort_intersections(result.intersections);
+	if (result.intersections != NULL)
+		sort_intersections(result.intersections);
 	return (result);
 }
