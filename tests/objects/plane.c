@@ -32,7 +32,7 @@ MU_TEST(plane_normal_tst) {
 MU_TEST(intersect_parallel_tst){
 	_plane = plane();
 	_ray = ray(point(0, 10, 0), vector(0, 0, 1));
-	xs = intersect_plane(_plane, _ray);
+	xs = _plane->intersect(_plane, _ray);
 
 	mu_check(xs.count == 0);
 	mu_check(xs.intersections == NULL);
@@ -41,7 +41,7 @@ MU_TEST(intersect_parallel_tst){
 MU_TEST(intersect_coplanar_tst){
 	_plane = plane();
 	_ray = ray(point(0, 0, 0), vector(0, 0, 1));
-	xs = intersect_plane(_plane, _ray);
+	xs = _plane->intersect(_plane, _ray);
 
 	mu_check(xs.count == 0);
 	mu_check(xs.intersections == NULL);
@@ -50,7 +50,7 @@ MU_TEST(intersect_coplanar_tst){
 MU_TEST(intersecting_above_tst){
 	_plane = plane();
 	_ray = ray(point(0, 1, 0), vector(0, -1, 0));
-	xs = intersect_plane(_plane, _ray);
+	xs = _plane->intersect(_plane, _ray);
 	inter = xs.intersections->content;
 
 	mu_assert_int_eq(1, xs.count);
@@ -60,7 +60,7 @@ MU_TEST(intersecting_above_tst){
 MU_TEST(intersecting_below_tst){
 	_plane = plane();
 	_ray = ray(point(0, -1, 0), vector(0, 1, 0));
-	xs = intersect_plane(_plane, _ray);
+	xs = _plane->intersect(_plane, _ray);
 	inter = xs.intersections->content;
 
 	mu_assert_int_eq(1, xs.count);

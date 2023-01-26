@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   world_demo.c                                       :+:      :+:    :+:   */
+/*   world_demo_v2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 12:34:27 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 14:31:06 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/01/26 14:28:30 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/01/26 17:05:26 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	set_floor(void)
 {
 	t_object	*floor;
 
-	floor = sphere();
-	scaling(vector(10, 0.01, 10), &floor->transform);
+	floor = plane();
 	floor->material.color = tcolor(1, 0.9, 0.9);
 	floor->material.specular = 0;
 	create_object(floor);
@@ -29,18 +28,14 @@ static void	left_wall(void)
 	t_matrix	rot_y;
 	t_matrix	rot_x;
 	t_matrix	trans;
-	t_matrix	scal;
 	t_matrix	mx1;
-	t_matrix	mx2;
 
-	left_wall = sphere();
-	scaling(vector(10, 0.01, 10), &scal);
-	translation(vector(0, 0, 5), &trans);
-	rotation_y(-MY_PI / 4.0, &rot_y);
+	left_wall = plane();
+	translation(vector(-5, 0, 0), &trans);
 	rotation_x(MY_PI / 2.0, &rot_x);
+	rotation_y(-MY_PI / 4.0, &rot_y);
 	mx_product(trans, rot_y, &mx1);
-	mx_product(mx1, rot_x, &mx2);
-	mx_product(mx2, scal, &left_wall->transform);
+	mx_product(mx1, rot_x, &left_wall->transform);
 	left_wall->material.color = tcolor(1, 0.9, 0.9);
 	left_wall->material.specular = 0;
 	create_object(left_wall);
@@ -52,18 +47,14 @@ static void	right_wall(void)
 	t_matrix	rot_y;
 	t_matrix	rot_x;
 	t_matrix	trans;
-	t_matrix	scal;
 	t_matrix	mx1;
-	t_matrix	mx2;
 
-	right_wall = sphere();
-	scaling(vector(10, 0.01, 10), &scal);
-	translation(vector(0, 0, 5), &trans);
-	rotation_y(MY_PI / 4.0, &rot_y);
+	right_wall = plane();
+	translation(vector(5, 0, 0), &trans);
 	rotation_x(MY_PI / 2.0, &rot_x);
+	rotation_y(MY_PI / 4.0, &rot_y);
 	mx_product(trans, rot_y, &mx1);
-	mx_product(mx1, rot_x, &mx2);
-	mx_product(mx2, scal, &right_wall->transform);
+	mx_product(mx1, rot_x, &right_wall->transform);
 	right_wall->material.color = tcolor(1, 0.9, 0.9);
 	right_wall->material.specular = 0;
 	create_object(right_wall);
@@ -128,18 +119,18 @@ static void	create_world_camera(void)
 {
 	t_view	view;
 
-	set_camera(100, 100, MY_PI / 3);
+	set_camera(150, 150, MY_PI / 3);
 	view.from = point(0, 1.5, -5);
 	view.to = point(0, 1, 0);
 	view.up = vector(0, 1, 0);
 	view_transformation(view, &camera()->transform);
 }
 
-void	world_demo(void)
+void	world_demo_v2(void)
 {
 	create_world_objects();
 	create_world_camera();
 	render();
 	ft_lstclear(&world()->objects, free);
-	mlx_save_img_to_ppm(image(), "world_demo.ppm");
+	mlx_save_img_to_ppm(image(), "world_demo_plane.ppm");
 }
