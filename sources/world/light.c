@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:43:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 22:55:58 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 00:15:47 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ t_c3d	lighting(t_material m, t_light light, t_lgt_param params)
 	lgt.effective_color = haddamard(m.color, light.color);
 	lgt.params = params;
 	lgt.ambient_color = scalar_times(m.ambient, lgt.effective_color);
-	if (params.in_shadow == false)
-		get_diff_spec_color(m, light, &lgt);
+	if (params.in_shadow == true)
+		return(lgt.ambient_color);
+	get_diff_spec_color(m, light, &lgt);
 	result = add(lgt.ambient_color, lgt.diffuse_color);
 	result = add(result, lgt.specular_color);
 	result.w = 0;

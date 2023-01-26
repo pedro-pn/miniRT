@@ -161,6 +161,32 @@ MU_TEST(shading_inside_tst){
 	mu_assert_tuple_eq(tcolor(0.90498, 0.90498, 0.90498), result_color);
 }
 
+MU_TEST(shadow_intersection_tst){
+	default_world();
+	point_light(point(0, 0, -10), tcolor(1, 1, 1));
+	_object = sphere();
+	create_object(_object);
+	_object = sphere();
+	translation(vector(0, 0, 10), &_object->transform);
+	create_object(_object);
+	_ray = ray(point(0, 0, 5), vector(0, 0, 1));
+	intx = (t_intx){4, _object};
+	comps = prepare_computations(intx, _ray);
+	result_color = shade_hit(comps);
+
+	mu_assert_tuple_eq(tcolor(0.1, 0.1, 0.1), result_color);
+}
+
+MU_TEST(hit_offset_point){
+	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
+	translation(vector(0, 0, 1), &_sphere->transform);
+	intx = (t_intx){5, _sphere};
+	comps = prepare_computations(intx, _ray);
+
+	mu_check(comps.over_point.z < (-EPSILON / 2));
+	mu_check(comps.point.z > comps.over_point.z);
+}
+
 MU_TEST(color_ray_misses_tst){
 	default_world();
 	_ray = ray(point(0, 0, -5), vector(0, 1, 0));
@@ -204,6 +230,9 @@ MU_TEST_SUITE(world_suite) {
 
 	MU_RUN_TEST(shading_tst);
 	MU_RUN_TEST(shading_inside_tst);
+	MU_RUN_TEST(shadow_intersection_tst);
+
+	MU_RUN_TEST(hit_offset_point);
 
 	MU_RUN_TEST(color_ray_misses_tst);
 	MU_RUN_TEST(color_ray_hits_tst);

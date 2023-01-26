@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:20:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 19:06:52 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 00:59:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_comp	prepare_computations(t_intx inter, t_ray ray)
 	}
 	else
 		comps.inside = false;
+	comps.over_point = add(comps.point, scalar_times(EPSILON, comps.normalv));
 	return (comps);
 }
 
