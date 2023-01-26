@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 13:51:19 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 22:54:31 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_lgt_param
 	t_p3d	position;
 	t_v3d	eyev;
 	t_v3d	normalv;
+	t_bool	in_shadow;
 }			t_lgt_param;
 
 /* RAY */

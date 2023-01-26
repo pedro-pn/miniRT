@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 13:09:14 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/25 23:20:38 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ t_intxs		intersect_world(t_ray _ray);
 void		sort_intersections(t_list *lst);
 t_comp		prepare_computations(t_intx inter, t_ray ray);
 t_c3d		shade_hit(t_comp comps);
+t_bool		is_shadowed(t_p3d point);
 
 void		view_transformation(t_view view, t_matrix *result);
 

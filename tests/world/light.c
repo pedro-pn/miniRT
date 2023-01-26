@@ -44,22 +44,31 @@ MU_TEST(material_tst){
 	free(_sphere);
 }
 
+// Scenario : Lighting with the surface in shadow
+// Given eyev ← vector(0, 0, -1)
+// And normalv ← vector(0, 0, -1)
+// And light ← point_light(point(0, 0, -10), color(1, 1, 1))
+// And in_shadow ← true
+// When result ← lighting(m, light, position, eyev, normalv, in_shadow)
+// Then result = color(0.1, 0.1, 0.1)
+
 MU_TEST(eye_btwn_light_surf_tst){
 	params.position = point(0, 0, 0);
 	params.eyev = vector(0, 0, -1);
 	params.normalv = vector(0, 0, -1);
+	params.in_shadow = true;
 	point_light(point(0, 0, -10), tcolor(1, 1, 1));
 	_material = material();
 	intensity = lighting(_material, *light(), params);
 
-	mu_assert_tuple_eq(tcolor(1.9, 1.9, 1.9), intensity);
-	
+	mu_assert_tuple_eq(tcolor(0.1, 0.1, 0.1), intensity);
 }
 
 MU_TEST(eye_45_degree_tst){
 	params.position = point(0, 0, 0);
 	params.eyev = vector(0, sqrt(2) / 2, -sqrt(2) / 2);
 	params.normalv = vector(0, 0, -1);
+	params.in_shadow = false;
 	point_light(point(0, 0, -10), tcolor(1, 1, 1));
 	_material = material();
 	intensity = lighting(_material, *light(), params);
@@ -71,6 +80,7 @@ MU_TEST(light_45_degree_tst){
 	params.position = point(0, 0, 0);
 	params.eyev = vector(0, 0, -1);
 	params.normalv = vector(0, 0, -1);
+	params.in_shadow = false;
 	point_light(point(0, 10, -10), tcolor(1, 1, 1));
 	_material = material();
 	intensity = lighting(_material, *light(), params);
@@ -82,6 +92,7 @@ MU_TEST(eye_in_light_path_tst){
 	params.position = point(0, 0, 0);
 	params.eyev = vector(0, -sqrt(2) / 2, -sqrt(2) / 2);
 	params.normalv = vector(0, 0, -1);
+	params.in_shadow = false;
 	point_light(point(0, 10, -10), tcolor(1, 1, 1));
 	_material = material();
 	intensity = lighting(_material, *light(), params);
@@ -93,6 +104,7 @@ MU_TEST(light_behind_surface_tst){
 	params.position = point(0, 0, 0);
 	params.eyev = vector(0, 0, -1);
 	params.normalv = vector(0, 0, -1);
+	params.in_shadow = false;
 	point_light(point(0, 0, 10), tcolor(1, 1, 1));
 	_material = material();
 	intensity = lighting(_material, *light(), params);
