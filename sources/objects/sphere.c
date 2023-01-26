@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 12:56:50 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 13:53:50 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,10 @@ t_v3d	sphere_normal_at(t_object obj, t_p3d point)
 /* Creates a standard sphere for test purpose*/
 t_object	*sphere(void)
 {
-	static int	count;
 	t_object	*_sphere;
 
-	count++;
 	_sphere = ft_calloc(1, sizeof(*_sphere));
 	_sphere->type = SPHERE;
-	_sphere->id = count;
 	_sphere->origin = point(0, 0, 0);
 	_sphere->radius = 1.0;
 	_sphere->color = color_rgb(255, 0, 0);
