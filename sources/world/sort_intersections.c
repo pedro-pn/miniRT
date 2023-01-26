@@ -6,12 +6,11 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:02:16 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 13:44:39 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 00:02:09 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include <stdio.h>
 
 static void	swap(t_intx **a, t_intx **b)
 {
