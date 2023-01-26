@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 23:20:38 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 12:54:38 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,19 @@ t_material	material(void);
 
 /* OBJECTS */
 
-t_object	*sphere(void);
 t_v3d		normal_at(t_object obj, t_p3d _point);
 t_v3d		reflect(t_v3d in, t_v3d normal);
+
+// spheres
+t_object	*sphere(void);
+t_v3d		sphere_normal_at(t_object obj, t_p3d point);
 
 
 // intersection
 
 t_intx		*new_intersection(double t, t_object *obj);
 void		create_intersection(t_list **list, double t, t_object *obj);
-t_intxs		intersect(t_object *obj, t_ray _ray);
+t_intxs		intersect_sphere(t_object *obj, t_ray _ray);
 
 t_intx		*hit(t_intxs intersections);
 t_ray		transform(t_matrix mx, t_ray _ray);

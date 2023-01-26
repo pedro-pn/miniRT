@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 00:27:59 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 12:57:00 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,13 @@ typedef enum e_objs
 	CYLINDER,
 }		t_objs;
 
-typedef struct s_object
+typedef struct s_object	t_object;
+typedef struct s_intxs	t_intxs;
+
+typedef t_intxs	(*t_intersect)(t_object *, t_ray);
+typedef t_v3d	(*t_normal_at)(t_object, t_p3d);
+
+struct s_object
 {
 	int			id;
 	int			type;
@@ -72,7 +78,10 @@ typedef struct s_object
 	t_matrix	transform;
 
 	t_material	material;
-}			t_object;
+
+	t_intersect	intersect;
+	t_normal_at	normal;
+};
 
 /* INTERSECTIONS */
 
@@ -82,11 +91,11 @@ typedef struct s_intx
 	t_object	*object;
 }			t_intx;
 
-typedef struct t_intxs
+struct s_intxs
 {
 	int		count;
 	t_list	*intersections;
-}			t_intxs;
+};
 
 /* WORLD */
 

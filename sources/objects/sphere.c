@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 14:39:27 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 12:56:50 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,7 @@ static t_quad_param	sphere_params(t_object *obj, t_ray _ray)
 	return (params);
 }
 
-t_intx	*new_intersection(double t, t_object *obj)
-{
-	t_intx	*inter;
-
-	inter = ft_calloc(1, sizeof(*inter));
-	inter->object = obj;
-	inter->t = t;
-	return (inter);
-}
-
-void	create_intersection(t_list **list, double t, t_object *obj)
-{
-	t_intx	*inter;
-
-	inter = new_intersection(t, obj);
-	ft_lstadd_back(list, ft_lstnew(inter));
-}
-
-t_intxs	intersect(t_object *obj, t_ray _ray)
+t_intxs	intersect_sphere(t_object *obj, t_ray _ray)
 {
 	t_quad_param	params;
 	t_intxs			intxs;
@@ -72,6 +54,11 @@ t_intxs	intersect(t_object *obj, t_ray _ray)
 	return (intxs);
 }
 
+t_v3d	sphere_normal_at(t_object obj, t_p3d point)
+{
+	return (sub(point, obj.origin));
+}
+
 /* Creates a standard sphere for test purpose*/
 t_object	*sphere(void)
 {
@@ -86,6 +73,8 @@ t_object	*sphere(void)
 	_sphere->radius = 1.0;
 	_sphere->color = color_rgb(255, 0, 0);
 	_sphere->material = material();
+	_sphere->intersect = intersect_sphere;
+	_sphere->normal = sphere_normal_at;
 	mx_identity(&_sphere->transform);
 	return (_sphere);
 }

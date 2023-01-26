@@ -35,7 +35,7 @@ static t_c3d	cast_ray(t_sdemo sdemo)
 	_xs = xs();
 	_point = point(sdemo.world_x, sdemo.world_y, sdemo.wall_z);
 	_ray = ray(sdemo.ray_origin, normalize(sub(_point, sdemo.ray_origin)));
-	*_xs = intersect(sdemo._sphere, _ray);
+	*_xs = intersect_sphere(sdemo._sphere, _ray);
 	inter = hit(*xs());
 	if (inter == NULL)
 		return (tcolor(0, 0, 0));

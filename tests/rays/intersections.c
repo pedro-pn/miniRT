@@ -19,7 +19,7 @@ MU_TEST(sphere_inter_tst)
 {
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
 	_sphere = sphere();
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
 
@@ -33,7 +33,7 @@ MU_TEST(sphere_inter_tst)
 MU_TEST(sphere_tan_inter_tst){
 	_ray = ray(point(0, 1, -5), vector (0, 0, 1));
 	_sphere = sphere();
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
 	
@@ -47,7 +47,7 @@ MU_TEST(sphere_tan_inter_tst){
 MU_TEST(ray_miss_sphere_tst){
 	_ray = ray(point(0, 2, -5), vector(0, 0, 1));
 	_sphere = sphere();
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(0, xs.count);
 }
@@ -56,7 +56,7 @@ MU_TEST(ray_miss_sphere_tst){
 MU_TEST(ray_sphere_center_tst){
 	_ray = ray(point(0, 0, 0), vector(0, 0, 1));
 	_sphere = sphere();
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
 
@@ -70,7 +70,7 @@ MU_TEST(ray_sphere_center_tst){
 MU_TEST(sphere_behind_ray_tst){
 	_ray = ray(point(0, 0, 5), vector(0, 0, 1));
 	_sphere = sphere();
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
 
@@ -81,15 +81,6 @@ MU_TEST(sphere_behind_ray_tst){
 	mu_assert_double_eq(-4.0, inter->t);
 
 }
-
-// Scenario : The hit, when all intersections have positive t
-// Given s ← sphere()
-// And i1 ← intersection(1, s)
-// And i2 ← intersection(2, s)
-// And xs ← intersections(i2, i1)
-// When i ← hit(xs)
-// Then i = i1
-
 MU_TEST(hit_all_positive_tst){
 	_sphere = sphere();
 	create_intersection(&xs.intersections, 2, _sphere);
@@ -98,15 +89,6 @@ MU_TEST(hit_all_positive_tst){
 	inter = hit(xs);
 	mu_check(inter == xs.intersections->next->content);
 }
-
-
-// Scenario : The hit, when some intersections have negative t
-// Given s ← sphere()
-// And i1 ← intersection(-1, s)
-// And i2 ← intersection(1, s)
-// And xs ← intersections(i2, i1)
-// When i ← hit(xs)
-// Then i = i2
 
 MU_TEST(hit_some_negative_tst){
 	_sphere = sphere();
@@ -117,15 +99,6 @@ MU_TEST(hit_some_negative_tst){
 	mu_check(inter == xs.intersections->next->content);
 }
 
-
-// Scenario : The hit, when all intersections have negative t
-// Given s ← sphere()
-// And i1 ← intersection(-2, s)
-// And i2 ← intersection(-1, s)
-// And xs ← intersections(i2, i1)
-// When i ← hit(xs)
-// Then i is nothing
-
 MU_TEST(hit_all_negative_tst){
 	_sphere = sphere();
 	create_intersection(&xs.intersections, -2, _sphere);
@@ -134,16 +107,6 @@ MU_TEST(hit_all_negative_tst){
 	inter = hit(xs);
 	mu_check(inter == NULL);
 }
-
-// Scenario : The hit is always the lowest nonnegative intersection
-// Given s ← sphere()
-// And i1 ← intersection(5, s)
-// And i2 ← intersection(7, s)
-// And i3 ← intersection(-3, s)
-// And i4 ← intersection(2, s)
-// And xs ← intersections(i1, i2, i3, i4)
-// When i ← hit(xs)
-// Then i = i4
 
 MU_TEST(hit_all_kind_tst){
 	_sphere = sphere();

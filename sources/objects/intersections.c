@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normal.c                                           :+:      :+:    :+:   */
+/*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 15:23:10 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 12:55:06 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/01/26 12:42:58 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/01/26 12:43:13 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_v3d	normal_at(t_object obj, t_p3d _point)
+t_intx	*new_intersection(double t, t_object *obj)
 {
-	t_matrix	transpose;
-	t_matrix	inverse;
-	t_v3d		normal;
+	t_intx	*inter;
 
-	mx_inverse(obj.transform, &inverse);
-	_point = mx_tuple_product(inverse, _point);
-	normal = obj.normal(obj, _point);
-	mx_transpose(inverse, &transpose);
-	normal = mx_tuple_product(transpose, normal);
-	normal.w = 0;
-	return (normalize(normal));
+	inter = ft_calloc(1, sizeof(*inter));
+	inter->object = obj;
+	inter->t = t;
+	return (inter);
+}
+
+void	create_intersection(t_list **list, double t, t_object *obj)
+{
+	t_intx	*inter;
+
+	inter = new_intersection(t, obj);
+	ft_lstadd_back(list, ft_lstnew(inter));
 }
