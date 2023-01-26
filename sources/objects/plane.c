@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:50:49 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 14:27:16 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:25:34 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_v3d	plane_normal_at(t_object plane, t_p3d point)
 {
 	(void)plane;
 	(void)point;
-	return (vector(0, 1, 0));
+	return (vector(0.0, 1.0, 0.0));
 }
 
 t_intxs	intersect_plane(t_object *plane, t_ray ray)
@@ -24,6 +24,7 @@ t_intxs	intersect_plane(t_object *plane, t_ray ray)
 	t_intxs	xs;
 	double	t;
 
+	ray = ray_transf_inverse(plane->transform, ray);
 	xs.count = 0;
 	xs.intersections = NULL;
 	if (comp(ray.direction.y, 0))

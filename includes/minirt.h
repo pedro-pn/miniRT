@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 14:10:18 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:24:54 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void		tuple_inspect(t_t3d tuple);
 t_ray		ray(t_p3d origin, t_v3d vector);
 
 t_p3d		position(double scalar, t_ray _ray);
+t_ray		ray_transf_inverse(t_matrix _transform, t_ray _ray);
 
 t_ray		ray_for_pixel(int x, int y);
 
@@ -205,5 +206,6 @@ typedef struct s_sdemo
 void		sphere_demo(void);
 void		sphere_3d_demo(void);
 void		world_demo(void);
+void		world_demo_v2(void);
 
 #endif

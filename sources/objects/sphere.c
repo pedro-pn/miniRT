@@ -6,19 +6,11 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 13:53:50 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:25:01 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-static	t_ray	ray_transf_inverse(t_matrix _transform, t_ray _ray)
-{
-	t_matrix	mx_inv;
-
-	mx_inverse(_transform, &mx_inv);
-	return (transform(mx_inv, _ray));
-}
 
 static t_quad_param	sphere_params(t_object *obj, t_ray _ray)
 {
