@@ -55,7 +55,7 @@ MU_TEST(intersect_scaled_sphere_tst){
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
 	_sphere = sphere();
 	scaling(vector(2, 2, 2), &_sphere->transform);
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
 
@@ -70,7 +70,7 @@ MU_TEST(intersect_translated_sphere_tst){
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
 	_sphere = sphere();
 	translation(vector(5, 0, 0), &_sphere->transform);
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(0, xs.count);
 }

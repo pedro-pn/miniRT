@@ -19,7 +19,7 @@ MU_TEST(sphere_inter_tst)
 {
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
 	_sphere = sphere();
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
 
@@ -33,7 +33,7 @@ MU_TEST(sphere_inter_tst)
 MU_TEST(sphere_tan_inter_tst){
 	_ray = ray(point(0, 1, -5), vector (0, 0, 1));
 	_sphere = sphere();
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
 	
@@ -47,7 +47,7 @@ MU_TEST(sphere_tan_inter_tst){
 MU_TEST(ray_miss_sphere_tst){
 	_ray = ray(point(0, 2, -5), vector(0, 0, 1));
 	_sphere = sphere();
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(0, xs.count);
 }
@@ -56,7 +56,7 @@ MU_TEST(ray_miss_sphere_tst){
 MU_TEST(ray_sphere_center_tst){
 	_ray = ray(point(0, 0, 0), vector(0, 0, 1));
 	_sphere = sphere();
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
 
@@ -70,7 +70,7 @@ MU_TEST(ray_sphere_center_tst){
 MU_TEST(sphere_behind_ray_tst){
 	_ray = ray(point(0, 0, 5), vector(0, 0, 1));
 	_sphere = sphere();
-	xs = intersect(_sphere, _ray);
+	xs = _sphere->intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
 
@@ -80,7 +80,6 @@ MU_TEST(sphere_behind_ray_tst){
 	inter = xs.intersections->next->content;
 	mu_assert_double_eq(-4.0, inter->t);
 }
-
 MU_TEST(hit_all_positive_tst){
 	_sphere = sphere();
 	create_intersection(&xs.intersections, 2, _sphere);
@@ -89,7 +88,6 @@ MU_TEST(hit_all_positive_tst){
 	inter = hit(xs);
 	mu_check(inter == xs.intersections->next->content);
 }
-
 MU_TEST(hit_some_negative_tst){
 	_sphere = sphere();
 	create_intersection(&xs.intersections, -1, _sphere);
@@ -107,7 +105,6 @@ MU_TEST(hit_all_negative_tst){
 	inter = hit(xs);
 	mu_check(inter == NULL);
 }
-
 MU_TEST(hit_all_kind_tst){
 	_sphere = sphere();
 	create_intersection(&xs.intersections, 5, _sphere);

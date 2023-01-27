@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 13:09:14 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:10:40 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ t_camera	*camera(void);
 int			check_args(int argc, char **argv);
 void		file_init(t_file *file);
 
+/* UTILS */
+
+void		print_progress(int x, int y);
+
 /* utils_temp*/
 
 void		tuple_inspect(t_t3d tuple);
@@ -82,6 +86,7 @@ void		tuple_inspect(t_t3d tuple);
 t_ray		ray(t_p3d origin, t_v3d vector);
 
 t_p3d		position(double scalar, t_ray _ray);
+t_ray		ray_transf_inverse(t_matrix _transform, t_ray _ray);
 
 t_ray		ray_for_pixel(int x, int y);
 
@@ -91,16 +96,27 @@ t_material	material(void);
 
 /* OBJECTS */
 
-t_object	*sphere(void);
+int			object_count(void);
 t_v3d		normal_at(t_object obj, t_p3d _point);
 t_v3d		reflect(t_v3d in, t_v3d normal);
+
+// spheres
+t_object	*sphere(void);
+t_v3d		sphere_normal_at(t_object obj, t_p3d point);
+
+// planes
+
+t_object	*plane(void);
+
+t_v3d		plane_normal_at(t_object plane, t_p3d point);
+t_intxs		intersect_plane(t_object *plane, t_ray ray);
 
 
 // intersection
 
 t_intx		*new_intersection(double t, t_object *obj);
 void		create_intersection(t_list **list, double t, t_object *obj);
-t_intxs		intersect(t_object *obj, t_ray _ray);
+t_intxs		intersect_sphere(t_object *obj, t_ray _ray);
 
 t_intx		*hit(t_intxs intersections);
 t_ray		transform(t_matrix mx, t_ray _ray);
@@ -144,6 +160,7 @@ t_intxs		intersect_world(t_ray _ray);
 void		sort_intersections(t_list *lst);
 t_comp		prepare_computations(t_intx inter, t_ray ray);
 t_c3d		shade_hit(t_comp comps);
+t_bool		is_shadowed(t_p3d point);
 
 void		view_transformation(t_view view, t_matrix *result);
 
@@ -193,5 +210,6 @@ typedef struct s_sdemo
 void		sphere_demo(void);
 void		sphere_3d_demo(void);
 void		world_demo(void);
+void		world_demo_v2(void);
 
 #endif

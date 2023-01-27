@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:23:10 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/18 16:29:01 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 12:55:06 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_v3d	normal_at(t_object obj, t_p3d _point)
 
 	mx_inverse(obj.transform, &inverse);
 	_point = mx_tuple_product(inverse, _point);
-	normal = sub(_point, obj.origin);
+	normal = obj.normal(obj, _point);
 	mx_transpose(inverse, &transpose);
 	normal = mx_tuple_product(transpose, normal);
 	normal.w = 0;

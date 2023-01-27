@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:47:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 11:26:02 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/26 12:11:42 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_intx	*cast_ray(t_sdemo sdemo)
 	_xs = xs();
 	_point = point(sdemo.world_x, sdemo.world_y, sdemo.wall_z);
 	_ray = ray(sdemo.ray_origin, normalize(sub(_point, sdemo.ray_origin)));
-	*_xs = intersect(sdemo._sphere, _ray);
+	*_xs = intersect_sphere(sdemo._sphere, _ray);
 	return (hit(*_xs));
 }
 

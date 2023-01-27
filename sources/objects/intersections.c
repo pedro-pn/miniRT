@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 00:12:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/08/06 23:54:19 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/01/26 12:42:58 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/01/26 12:43:13 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minirt.h"
 
-/** Counts the number of nodes in a t_list.
- * @param lst The beginning of the list.
- * @return The length of the list.*/
-int	ft_lstsize(t_list *lst)
+t_intx	*new_intersection(double t, t_object *obj)
 {
-	if (lst != NULL)
-		return (1 + ft_lstsize(lst -> next));
-	return (0);
+	t_intx	*inter;
+
+	inter = ft_calloc(1, sizeof(*inter));
+	inter->object = obj;
+	inter->t = t;
+	return (inter);
+}
+
+void	create_intersection(t_list **list, double t, t_object *obj)
+{
+	t_intx	*inter;
+
+	inter = new_intersection(t, obj);
+	ft_lstadd_back(list, ft_lstnew(inter));
 }
