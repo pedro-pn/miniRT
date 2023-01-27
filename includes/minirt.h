@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 15:24:54 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:10:40 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ t_camera	*camera(void);
 
 int			check_args(int argc, char **argv);
 void		file_init(t_file *file);
+
+/* UTILS */
+
+void		print_progress(int x, int y);
 
 /* utils_temp*/
 
