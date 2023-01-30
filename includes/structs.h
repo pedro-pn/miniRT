@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/30 12:44:22 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:22:10 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,19 @@ typedef struct s_light
 
 /* PATTERN */
 
-typedef struct s_patt
+typedef struct s_patt	t_patt;
+typedef t_c3d	(*t_patt_at)(t_patt, t_p3d);
+
+struct s_patt
 {
 	t_c3d		a;
 	t_c3d		b;
 
 	t_matrix	transform;
+	t_patt_at	patt_at;
 
 	t_bool		has_pattern;
-}			t_patt;
+};
 
 typedef struct s_lgt_param
 {

@@ -106,7 +106,7 @@ MU_TEST(lighting_patt_tst){
 MU_TEST(obj_transformation_tst){
 	scaling(vector(2, 2, 2), &obj->transform);
 	obj->pattern = stripe_pattern(white(), black());
-	result = stripe_at_object(*obj, point(1.5, 0, 0));
+	result = pattern_at_object(*obj, point(1.5, 0, 0));
 
 	mu_assert_tuple_eq(white(), result);
 }
@@ -114,7 +114,7 @@ MU_TEST(obj_transformation_tst){
 MU_TEST(stripe_transformation_tst){
 	obj->pattern = stripe_pattern(white(), black());
 	scaling(vector(2, 2, 2), &obj->pattern.transform);
-	result = stripe_at_object(*obj, point(1.5, 0, 0));
+	result = pattern_at_object(*obj, point(1.5, 0, 0));
 
 	mu_assert_tuple_eq(white(), result);
 }
@@ -123,7 +123,7 @@ MU_TEST(stripe_obj_transformation_tst){
 	obj->pattern = stripe_pattern(white(), black());
 	scaling(vector(2, 2, 2), &obj->transform);
 	translation(vector(0.5, 0, 0), &obj->pattern.transform);
-	result = stripe_at_object(*obj, point(2.5, 0, 0));
+	result = pattern_at_object(*obj, point(2.5, 0, 0));
 
 	mu_assert_tuple_eq(white(), result);
 }

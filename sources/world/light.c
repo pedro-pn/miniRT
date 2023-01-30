@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:43:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/30 12:43:53 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:38:29 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_c3d	lighting(t_object obj, t_light light, t_lgt_param params)
 	t_lgt	lgt;
 
 	if (obj.pattern.has_pattern == true)
-		obj.material.color = stripe_at_object(obj, params.position);
+		obj.material.color = pattern_at_object(obj, params.position);
 	lgt.lightv = normalize(sub(light.position, params.position));
 	lgt.effective_color = haddamard(obj.material.color, light.color);
 	lgt.params = params;
