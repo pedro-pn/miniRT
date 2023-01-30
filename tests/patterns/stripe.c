@@ -1,7 +1,7 @@
 #include "../test.h"
 
 t_c3d			result;
-t_patt			pattern;
+t_patt			_pattern;
 t_material		m;
 t_v3d			eye;
 t_v3d			normal;
@@ -31,57 +31,57 @@ MU_TEST(black_white_tst) {
 }
 
 MU_TEST(stripe_pattern_tst){
-	pattern = stripe_pattern(black(), white());
+	_pattern = stripe_pattern(black(), white());
 
-	mu_assert_tuple_eq(tcolor(0, 0, 0), pattern.a);
-	mu_assert_tuple_eq(tcolor(1, 1, 1), pattern.b);
+	mu_assert_tuple_eq(tcolor(0, 0, 0), _pattern.a);
+	mu_assert_tuple_eq(tcolor(1, 1, 1), _pattern.b);
 }
 
 MU_TEST(stripe_y_constant_tst){
-	pattern = stripe_pattern(white(), black());
+	_pattern = stripe_pattern(white(), black());
 
-	result = stripe_at(pattern, point(0, 0, 0));
+	result = stripe_at(_pattern, point(0, 0, 0));
 	mu_assert_tuple_eq(white(), result);
 
-	result = stripe_at(pattern, point(0, 1, 0));
+	result = stripe_at(_pattern, point(0, 1, 0));
 	mu_assert_tuple_eq(white(), result);
 
-	result = stripe_at(pattern, point(0, 2, 0));
+	result = stripe_at(_pattern, point(0, 2, 0));
 	mu_assert_tuple_eq(white(), result);
 }
 
 MU_TEST(stripe_z_constant_tst){
-	pattern = stripe_pattern(white(), black());
+	_pattern = stripe_pattern(white(), black());
 
-	result = stripe_at(pattern, point(0, 0, 0));
+	result = stripe_at(_pattern, point(0, 0, 0));
 	mu_assert_tuple_eq(white(), result);
 
-	result = stripe_at(pattern, point(0, 0, 1));
+	result = stripe_at(_pattern, point(0, 0, 1));
 	mu_assert_tuple_eq(white(), result);
 
-	result = stripe_at(pattern, point(0, 0, 2));
+	result = stripe_at(_pattern, point(0, 0, 2));
 	mu_assert_tuple_eq(white(), result);
 }
 
 MU_TEST(patt_alt_x_tst){
-	pattern = stripe_pattern(white(), black());
+	_pattern = stripe_pattern(white(), black());
 
-	result = stripe_at(pattern, point(0, 0, 0));
+	result = stripe_at(_pattern, point(0, 0, 0));
 	mu_assert_tuple_eq(white(), result);
 
-	result = stripe_at(pattern, point(0.9, 0, 0));
+	result = stripe_at(_pattern, point(0.9, 0, 0));
 	mu_assert_tuple_eq(white(), result);
 
-	result = stripe_at(pattern, point(1, 0, 0));
+	result = stripe_at(_pattern, point(1, 0, 0));
 	mu_assert_tuple_eq(black(), result);
 
-	result = stripe_at(pattern, point(-0.1, 0, 0));
+	result = stripe_at(_pattern, point(-0.1, 0, 0));
 	mu_assert_tuple_eq(black(), result);
 
-	result = stripe_at(pattern, point(-1, 0, 0));
+	result = stripe_at(_pattern, point(-1, 0, 0));
 	mu_assert_tuple_eq(black(), result);
 
-	result = stripe_at(pattern, point(-1.1, 0, 0));
+	result = stripe_at(_pattern, point(-1.1, 0, 0));
 	mu_assert_tuple_eq(white(), result);
 }
 
@@ -128,7 +128,7 @@ MU_TEST(stripe_obj_transformation_tst){
 	mu_assert_tuple_eq(white(), result);
 }
 
-MU_TEST_SUITE(color_suite) {
+MU_TEST_SUITE(stripe_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(black_white_tst);
@@ -147,7 +147,7 @@ MU_TEST_SUITE(color_suite) {
 }
 
 int main(int argc, char *argv[]) {
-	MU_RUN_SUITE(color_suite);
+	MU_RUN_SUITE(stripe_suite);
 	MU_REPORT();
 	return MU_EXIT_CODE;
 }
