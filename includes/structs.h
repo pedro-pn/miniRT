@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/30 10:42:05 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:44:22 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ typedef struct s_light
 
 typedef struct s_patt
 {
-	t_c3d	a;
-	t_c3d	b;
+	t_c3d		a;
+	t_c3d		b;
 
-	t_bool	has_pattern;
+	t_matrix	transform;
+
+	t_bool		has_pattern;
 }			t_patt;
 
 typedef struct s_lgt_param
@@ -58,7 +60,6 @@ typedef struct s_material
 	double	diffuse;
 	double	specular;
 	double	shininess;
-	t_patt	pattern;
 }			t_material;
 
 /* OBJECTS */
@@ -91,6 +92,7 @@ struct s_object
 	t_matrix	transform;
 
 	t_material	material;
+	t_patt		pattern;
 
 	t_intersect	intersect;
 	t_normal_at	normal;

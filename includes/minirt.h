@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/30 10:03:59 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:29:33 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ typedef struct s_lgt
 }			t_lgt;
 
 void		point_light(t_p3d position, t_c3d color);
-t_c3d		lighting(t_material m, t_light light, t_lgt_param params);
+t_c3d		lighting(t_object obj, t_light light, t_lgt_param params);
 
 /* COLORS */
 
@@ -148,7 +148,10 @@ t_c3d		white(void);
 // patterns
 
 t_patt		stripe_pattern(t_c3d color_a, t_c3d color_b);
+
+t_c3d		stripe_at_object(t_object obj, t_p3d point);
 t_c3d		stripe_at(t_patt patt, t_p3d point);
+
 
 /* WORLD */
 

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:43:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/30 10:43:04 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:43:53 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,20 @@ static void	get_diff_spec_color(t_material m, t_light light, t_lgt *lgt)
 	}
 }
 
-t_c3d	lighting(t_material m, t_light light, t_lgt_param params)
+t_c3d	lighting(t_object obj, t_light light, t_lgt_param params)
 {
 	t_c3d	result;
 	t_lgt	lgt;
 
-	if (m.pattern.has_pattern == true)
-		m.color = stripe_at(m.pattern, params.position);
+	if (obj.pattern.has_pattern == true)
+		obj.material.color = stripe_at_object(obj, params.position);
 	lgt.lightv = normalize(sub(light.position, params.position));
-	lgt.effective_color = haddamard(m.color, light.color);
+	lgt.effective_color = haddamard(obj.material.color, light.color);
 	lgt.params = params;
-	lgt.ambient_color = scalar_times(m.ambient, lgt.effective_color);
+	lgt.ambient_color = scalar_times(obj.material.ambient, lgt.effective_color);
 	if (params.in_shadow == true)
 		return(lgt.ambient_color);
-	get_diff_spec_color(m, light, &lgt);
+	get_diff_spec_color(obj.material, light, &lgt);
 	result = add(lgt.ambient_color, lgt.diffuse_color);
 	result = add(result, lgt.specular_color);
 	result.w = 0;

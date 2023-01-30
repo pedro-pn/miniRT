@@ -6,12 +6,20 @@ t_material		m;
 t_v3d			eye;
 t_v3d			normal;
 t_lgt_param		params;
+t_matrix		mx;
+t_object		*obj;
 
 void test_setup(void) {
+	obj = sphere();
+	obj->material.ambient = 1;
+	obj->material.diffuse = 0;
+	obj->material.shininess = 0;
+	obj->material.specular = 0;
 }
 
 void test_teardown(void) {
 	/* Nothing */
+	free(obj);
 }
 
 MU_TEST(black_white_tst) {
@@ -78,33 +86,85 @@ MU_TEST(patt_alt_x_tst){
 }
 
 MU_TEST(lighting_patt_tst){
-	m.pattern = stripe_pattern(white(), black());
-	m.ambient = 1;
-	m.diffuse = 0;
-	m.specular = 0;
+	obj->pattern = stripe_pattern(white(), black());
+	obj->material.ambient = 1;
+	obj->material.diffuse = 0;
+	obj->material.specular = 0;
 	params.eyev = vector(0, 0, -1);
 	params.normalv = vector(0, 0, -1);
 	params.position = point(0.9, 0, 0);
 	point_light(point(0, 0, -10), white());
 
-	result = lighting(m, *light(), params);
+	result = lighting(*obj, *light(), params);
 	mu_assert_tuple_eq(white(), result);
 
 	params.position = point(1.1, 0, 0);
-	result = lighting(m, *light(), params);
+	result = lighting(*obj, *light(), params);
 	mu_assert_tuple_eq(black(), result);
+}
+
+// Scenario : Stripes with an object transformation
+// Given object ← sphere()
+// And set_transform(object, scaling(2, 2, 2))
+// And pattern ← stripe_pattern(white, black)
+// When c ← stripe_at_object(pattern, object, point(1.5, 0, 0))
+// Then c = white
+
+MU_TEST(obj_transformation_tst){
+	scaling(vector(2, 2, 2), &obj->transform);
+	obj->pattern = stripe_pattern(white(), black());
+	result = stripe_at_object(*obj, point(1.5, 0, 0));
+
+	mu_assert_tuple_eq(white(), result);
+}
+
+// Scenario : Stripes with a pattern transformation
+// Given object ← sphere()
+// And pattern ← stripe_pattern(white, black)
+// And set_pattern_transform(pattern, scaling(2, 2, 2))
+// When c ← stripe_at_object(pattern, object, point(1.5, 0, 0))
+// Then c = white
+
+MU_TEST(stripe_transformation_tst){
+	obj->pattern = stripe_pattern(white(), black());
+	scaling(vector(2, 2, 2), &obj->pattern.transform);
+	result = stripe_at_object(*obj, point(1.5, 0, 0));
+
+	mu_assert_tuple_eq(white(), result);
+}
+
+// Scenario : Stripes with both an object and a pattern transformation
+// Given object ← sphere()
+// And set_transform(object, scaling(2, 2, 2))
+// And pattern ← stripe_pattern(white, black)
+// And set_pattern_transform(pattern, translation(0.5, 0, 0))
+// When c ← stripe_at_object(pattern, object, point(2.5, 0, 0))
+// Then c = white
+
+MU_TEST(stripe_obj_transformation_tst){
+	obj->pattern = stripe_pattern(white(), black());
+	scaling(vector(2, 2, 2), &obj->transform);
+	translation(vector(0.5, 0, 0), &obj->pattern.transform);
+	result = stripe_at_object(*obj, point(2.5, 0, 0));
+
+	mu_assert_tuple_eq(white(), result);
 }
 
 MU_TEST_SUITE(color_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(black_white_tst);
+
 	MU_RUN_TEST(stripe_pattern_tst);
 	MU_RUN_TEST(stripe_y_constant_tst);
 	MU_RUN_TEST(stripe_z_constant_tst);
 	MU_RUN_TEST(patt_alt_x_tst);
 
 	MU_RUN_TEST(lighting_patt_tst);
+
+	MU_RUN_TEST(obj_transformation_tst);
+	MU_RUN_TEST(stripe_transformation_tst);
+	MU_RUN_TEST(stripe_obj_transformation_tst);
 
 }
 

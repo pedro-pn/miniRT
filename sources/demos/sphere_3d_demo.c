@@ -42,7 +42,7 @@ static t_c3d	cast_ray(t_sdemo sdemo)
 	params.position = position(inter->t, _ray);
 	params.normalv = normal_at(*inter->object, params.position);
 	params.eyev = neg(_ray.direction);
-	color = lighting(inter->object->material, *light(), params);
+	color = lighting(*inter->object, *light(), params);
 	ft_lstclear(&xs()->intersections, free);
 	return (color);
 }
