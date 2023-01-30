@@ -103,13 +103,6 @@ MU_TEST(lighting_patt_tst){
 	mu_assert_tuple_eq(black(), result);
 }
 
-// Scenario : Stripes with an object transformation
-// Given object ← sphere()
-// And set_transform(object, scaling(2, 2, 2))
-// And pattern ← stripe_pattern(white, black)
-// When c ← stripe_at_object(pattern, object, point(1.5, 0, 0))
-// Then c = white
-
 MU_TEST(obj_transformation_tst){
 	scaling(vector(2, 2, 2), &obj->transform);
 	obj->pattern = stripe_pattern(white(), black());
@@ -118,13 +111,6 @@ MU_TEST(obj_transformation_tst){
 	mu_assert_tuple_eq(white(), result);
 }
 
-// Scenario : Stripes with a pattern transformation
-// Given object ← sphere()
-// And pattern ← stripe_pattern(white, black)
-// And set_pattern_transform(pattern, scaling(2, 2, 2))
-// When c ← stripe_at_object(pattern, object, point(1.5, 0, 0))
-// Then c = white
-
 MU_TEST(stripe_transformation_tst){
 	obj->pattern = stripe_pattern(white(), black());
 	scaling(vector(2, 2, 2), &obj->pattern.transform);
@@ -132,14 +118,6 @@ MU_TEST(stripe_transformation_tst){
 
 	mu_assert_tuple_eq(white(), result);
 }
-
-// Scenario : Stripes with both an object and a pattern transformation
-// Given object ← sphere()
-// And set_transform(object, scaling(2, 2, 2))
-// And pattern ← stripe_pattern(white, black)
-// And set_pattern_transform(pattern, translation(0.5, 0, 0))
-// When c ← stripe_at_object(pattern, object, point(2.5, 0, 0))
-// Then c = white
 
 MU_TEST(stripe_obj_transformation_tst){
 	obj->pattern = stripe_pattern(white(), black());
@@ -173,4 +151,3 @@ int main(int argc, char *argv[]) {
 	MU_REPORT();
 	return MU_EXIT_CODE;
 }
-

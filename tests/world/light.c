@@ -17,11 +17,13 @@ t_lgt_param	params;
 
 
 void test_setup(void) {
+	_sphere = sphere();
 	
 }
 
 void test_teardown(void) {
 	/* Nothing */
+	free(_sphere);
 }
 
 MU_TEST(point_light_tst){
@@ -33,7 +35,6 @@ MU_TEST(point_light_tst){
 }
 
 MU_TEST(material_tst){
-	_sphere = sphere();
 	_sphere->material = material();
 
 	mu_assert_tuple_eq(tcolor(1, 1, 1), _sphere->material.color);
@@ -41,16 +42,7 @@ MU_TEST(material_tst){
 	mu_assert_double_eq(0.9, _sphere->material.diffuse);
 	mu_assert_double_eq(0.9, _sphere->material.specular);
 	mu_assert_double_eq(200.0, _sphere->material.shininess);
-	free(_sphere);
 }
-
-// Scenario : Lighting with the surface in shadow
-// Given eyev ← vector(0, 0, -1)
-// And normalv ← vector(0, 0, -1)
-// And light ← point_light(point(0, 0, -10), color(1, 1, 1))
-// And in_shadow ← true
-// When result ← lighting(m, light, position, eyev, normalv, in_shadow)
-// Then result = color(0.1, 0.1, 0.1)
 
 MU_TEST(eye_btwn_light_surf_tst){
 	params.position = point(0, 0, 0);
@@ -58,8 +50,8 @@ MU_TEST(eye_btwn_light_surf_tst){
 	params.normalv = vector(0, 0, -1);
 	params.in_shadow = true;
 	point_light(point(0, 0, -10), tcolor(1, 1, 1));
-	_material = material();
-	intensity = lighting(_material, *light(), params);
+	_sphere->material = material();
+	intensity = lighting(*_sphere, *light(), params);
 
 	mu_assert_tuple_eq(tcolor(0.1, 0.1, 0.1), intensity);
 }
@@ -70,8 +62,8 @@ MU_TEST(eye_45_degree_tst){
 	params.normalv = vector(0, 0, -1);
 	params.in_shadow = false;
 	point_light(point(0, 0, -10), tcolor(1, 1, 1));
-	_material = material();
-	intensity = lighting(_material, *light(), params);
+	_sphere->material = material();
+	intensity = lighting(*_sphere, *light(), params);
 
 	mu_assert_tuple_eq(tcolor(1.0, 1.0, 1.0), intensity);
 }
@@ -82,8 +74,8 @@ MU_TEST(light_45_degree_tst){
 	params.normalv = vector(0, 0, -1);
 	params.in_shadow = false;
 	point_light(point(0, 10, -10), tcolor(1, 1, 1));
-	_material = material();
-	intensity = lighting(_material, *light(), params);
+	_sphere->material = material();
+	intensity = lighting(*_sphere, *light(), params);
 
 	mu_assert_tuple_eq(tcolor(0.7364, 0.7364, 0.7364), intensity);
 }
@@ -94,8 +86,8 @@ MU_TEST(eye_in_light_path_tst){
 	params.normalv = vector(0, 0, -1);
 	params.in_shadow = false;
 	point_light(point(0, 10, -10), tcolor(1, 1, 1));
-	_material = material();
-	intensity = lighting(_material, *light(), params);
+	_sphere->material = material();
+	intensity = lighting(*_sphere, *light(), params);
 
 	mu_assert_tuple_eq(tcolor(1.6364, 1.6364, 1.6364), intensity);
 }
@@ -106,8 +98,8 @@ MU_TEST(light_behind_surface_tst){
 	params.normalv = vector(0, 0, -1);
 	params.in_shadow = false;
 	point_light(point(0, 0, 10), tcolor(1, 1, 1));
-	_material = material();
-	intensity = lighting(_material, *light(), params);
+	_sphere->material = material();
+	intensity = lighting(*_sphere, *light(), params);
 
 	mu_assert_tuple_eq(tcolor(0.1, 0.1, 0.1), intensity);
 }
