@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 12:57:00 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/30 09:51:59 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ typedef struct s_light
 	t_c3d	color;
 
 }			t_light;
+
+/* PATTERN */
+
+typedef struct s_patt
+{
+	t_c3d	a;
+	t_c3d	b;
+}			t_patt;
 
 typedef struct s_lgt_param
 {
@@ -54,9 +62,11 @@ typedef struct s_material
 
 typedef enum e_objs
 {
+	COLOR,
 	SPHERE,
 	PLANE,
 	CYLINDER,
+
 }		t_objs;
 
 typedef struct s_object	t_object;

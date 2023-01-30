@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/27 11:10:40 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/30 10:03:59 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,13 @@ t_c3d		lighting(t_material m, t_light light, t_lgt_param params);
 
 t_rgb		tcolor_to_rgb(t_c3d color);
 t_c3d		rgb_to_tcolor(t_rgb rgb);
+t_c3d		black(void);
+t_c3d		white(void);
+
+// patterns
+
+t_patt		stripe_pattern(t_c3d color_a, t_c3d color_b);
+t_c3d		stripe_at(t_patt patt, t_p3d point);
 
 /* WORLD */
 
