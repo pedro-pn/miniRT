@@ -24,16 +24,16 @@ void test_teardown(void) {
 MU_TEST(gradient_tst) {
 	obj->pattern = gradient_pattern(white(), black());
 
-	result = pattern_at_object(*obj, point(0, 0, 0));
+	result = pattern_at(*obj, point(0, 0, 0));
 	mu_assert_tuple_eq(white(), result);
 
-	result = pattern_at_object(*obj, point(0.25, 0, 0));
+	result = pattern_at(*obj, point(0.25, 0, 0));
 	mu_assert_tuple_eq(tcolor(0.75, 0.75, 0.75), result);
 
-	result = pattern_at_object(*obj, point(0.5, 0, 0));
+	result = pattern_at(*obj, point(0.5, 0, 0));
 	mu_assert_tuple_eq(tcolor(0.5, 0.5, 0.5), result);
 
-	result = pattern_at_object(*obj, point(0.75, 0, 0));
+	result = pattern_at(*obj, point(0.75, 0, 0));
 	mu_assert_tuple_eq(tcolor(0.25, 0.25, 0.25), result);
 }
 

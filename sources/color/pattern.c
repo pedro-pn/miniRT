@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:18:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/30 14:50:36 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/30 21:41:58 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_patt	pattern(t_c3d color_a, t_c3d color_b)
 	return (patt);
 }
 
-t_c3d	pattern_at_object(t_object obj, t_p3d point)
+t_c3d	pattern_at(t_object obj, t_p3d point)
 {
 	t_matrix	mx_inv;
 	t_p3d		obj_point;

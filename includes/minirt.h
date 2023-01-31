@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/30 14:58:35 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/30 21:50:14 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ t_c3d		white(void);
 /* PATTERNS*/
 
 t_patt		pattern(t_c3d color_a, t_c3d color_b);
-t_c3d		pattern_at_object(t_object obj, t_p3d point);
+t_c3d		pattern_at(t_object obj, t_p3d point);
 
 //stripes
 
@@ -159,6 +159,11 @@ t_c3d		stripe_at(t_patt patt, t_p3d point);
 
 t_patt		gradient_pattern(t_c3d color_a, t_c3d color_b);
 t_c3d		gradient_at(t_patt patt, t_p3d point);
+
+// ring
+
+t_patt		ring_pattern(t_c3d color_a, t_c3d color_b);
+t_c3d		ring_at(t_patt patt, t_p3d point);
 
 /* WORLD */
 
