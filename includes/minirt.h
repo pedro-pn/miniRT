@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/30 21:50:14 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/31 11:06:29 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,11 @@ t_c3d		gradient_at(t_patt patt, t_p3d point);
 
 t_patt		ring_pattern(t_c3d color_a, t_c3d color_b);
 t_c3d		ring_at(t_patt patt, t_p3d point);
+
+// checker
+
+t_patt		checkers_pattern(t_c3d color_a, t_c3d color_b);
+t_c3d		checkers_at(t_patt patt, t_p3d point);
 
 /* WORLD */
 
