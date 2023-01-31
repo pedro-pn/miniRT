@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/30 13:22:10 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/01/31 12:43:24 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ struct s_patt
 {
 	t_c3d		a;
 	t_c3d		b;
+
+	double		width;
+	double		height;
 
 	t_matrix	transform;
 	t_patt_at	patt_at;
