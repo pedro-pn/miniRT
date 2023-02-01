@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:43:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/24 14:23:58 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/01 11:55:05 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef t_t3d	t_c3d;
 
 t_c3d	tcolor(double red, double green, double blue);
 t_c3d	haddamard(t_c3d c1, t_c3d c2);
+t_c3d	color_avarage(t_c3d	c1, t_c3d c2);
 
 /* MATRIX */
 
