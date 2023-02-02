@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/01 11:35:32 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/02 16:12:36 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,9 +172,10 @@ t_c3d		checkers_at(t_patt patt, t_p3d point);
 
 // uv chckers
 
-t_patt		sphere_checkers(double wdt, double hgt, t_c3d color_a, t_c3d color_b);
-t_c3d		sphere_checkers_at(t_patt patt, t_p3d point);
-t_p3d		spherical_map(t_p3d	point);
+t_patt			sphere_checkers(double wdt, double hgt, t_c3d color_a, t_c3d color_b);
+t_c3d			sphere_checkers_at(t_patt patt, t_p3d point);
+t_p3d			spherical_map(t_p3d	point);
+
 
 // radial
 
@@ -185,6 +186,10 @@ t_c3d		radial_at(t_patt patt, t_p3d point);
 
 t_patt		blended_strp_pattern(t_c3d color_a, t_c3d color_b);
 t_c3d		blended_strp_at(t_patt patt, t_p3d point);
+
+/* REFLECTIONS */
+
+t_c3d		reflected_color(t_comp comps);
 
 /* WORLD */
 

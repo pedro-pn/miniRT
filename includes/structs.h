@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/31 12:43:24 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/02 15:08:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_material
 	double	diffuse;
 	double	specular;
 	double	shininess;
+	double	reflective;
 }			t_material;
 
 /* OBJECTS */
@@ -133,6 +134,7 @@ typedef struct s_comp
 	t_p3d		over_point;
 	t_v3d		eyev;
 	t_v3d		normalv;
+	t_v3d		reflectv;
 
 	t_object	*object;
 	double		t;
