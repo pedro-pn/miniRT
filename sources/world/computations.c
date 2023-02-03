@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:20:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/02 16:08:46 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:16:45 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_comp	prepare_computations(t_intx inter, t_ray ray)
 	return (comps);
 }
 
-t_c3d	color_at(t_ray ray)
+t_c3d	color_at(t_ray ray, int remaining)
 {
 	t_intxs	xs;
 	t_intx	*hit_inter;
@@ -48,5 +48,5 @@ t_c3d	color_at(t_ray ray)
 	}
 	comps = prepare_computations(*hit_inter, ray);
 	ft_lstclear(&xs.intersections, free);
-	return (shade_hit(comps));
+	return (shade_hit(comps, remaining));
 }

@@ -144,7 +144,7 @@ MU_TEST(shading_tst){
 	_object = world()->objects->content;
 	intx = (t_intx){4.0, _object};
 	comps = prepare_computations(intx, _ray);
-	result_color = shade_hit(comps);
+	result_color = shade_hit(comps, 0);
 
 	mu_assert_tuple_eq(tcolor(0.38066, 0.47583, 0.2855), result_color);
 }
@@ -156,7 +156,7 @@ MU_TEST(shading_inside_tst){
 	_object = world()->objects->next->content;
 	intx = (t_intx){0.5, _object};
 	comps = prepare_computations(intx, _ray);
-	result_color = shade_hit(comps);
+	result_color = shade_hit(comps, 0);
 
 	mu_assert_tuple_eq(tcolor(0.90498, 0.90498, 0.90498), result_color);
 }
@@ -172,7 +172,7 @@ MU_TEST(shadow_intersection_tst){
 	_ray = ray(point(0, 0, 5), vector(0, 0, 1));
 	intx = (t_intx){4, _object};
 	comps = prepare_computations(intx, _ray);
-	result_color = shade_hit(comps);
+	result_color = shade_hit(comps, 0);
 
 	mu_assert_tuple_eq(tcolor(0.1, 0.1, 0.1), result_color);
 }
@@ -190,7 +190,7 @@ MU_TEST(hit_offset_point){
 MU_TEST(color_ray_misses_tst){
 	default_world();
 	_ray = ray(point(0, 0, -5), vector(0, 1, 0));
-	result_color = color_at(_ray);
+	result_color = color_at(_ray, 0);
 
 	mu_assert_tuple_eq(tcolor(0, 0, 0), result_color);
 }
@@ -198,7 +198,7 @@ MU_TEST(color_ray_misses_tst){
 MU_TEST(color_ray_hits_tst){
 	default_world();
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
-	result_color = color_at(_ray);
+	result_color = color_at(_ray, 0);
 
 	mu_assert_tuple_eq(tcolor(0.38066, 0.47583, 0.2855), result_color);
 }
@@ -210,7 +210,7 @@ MU_TEST(color_intersection_behind_ray_tst){
 	_object = world()->objects->next->content;
 	_object->material.ambient = 1;
 	_ray = ray(point(0, 0, 0.75), vector(0, 0, -1));
-	result_color = color_at(_ray);
+	result_color = color_at(_ray, 0);
 
 	mu_assert_tuple_eq(_sphere->material.color, result_color);
 }

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/02 16:12:36 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:16:13 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ t_c3d		blended_strp_at(t_patt patt, t_p3d point);
 
 /* REFLECTIONS */
 
-t_c3d		reflected_color(t_comp comps);
+t_c3d		reflected_color(t_comp comps, int remaining);
 
 /* WORLD */
 
@@ -200,14 +200,14 @@ typedef struct s_sort
 }			t_sort;
 
 void		default_world(void);
-t_c3d		color_at(t_ray ray);
+t_c3d		color_at(t_ray ray, int remaining);
 
 void		create_object(t_object	*object);
 
 t_intxs		intersect_world(t_ray _ray);
 void		sort_intersections(t_list *lst);
 t_comp		prepare_computations(t_intx inter, t_ray ray);
-t_c3d		shade_hit(t_comp comps);
+t_c3d		shade_hit(t_comp comps, int remaining);
 t_bool		is_shadowed(t_p3d point);
 
 void		view_transformation(t_view view, t_matrix *result);
