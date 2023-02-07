@@ -16,11 +16,16 @@ t_intx		intr;
 t_list		*node;
 t_comp		comps;
 t_list		*lst;
+t_c3d		result_color;
+t_object	*_floor;
+t_object	*_sphere;
 
 void test_setup(void) {
 	obj = NULL;
 	xs.intersections = NULL;
 	lst = NULL;
+	default_world();
+	point_light(point(-10, 10, -10), white());
 }
 
 void test_teardown(void) {
@@ -28,6 +33,7 @@ void test_teardown(void) {
 	free(obj);
 	ft_lstclear(&xs.intersections, free);
 	ft_lstclear(&lst, free);
+	ft_lstclear(&world()->objects, free);
 }
 
 MU_TEST(refractive_transp_tst) {
@@ -141,16 +147,100 @@ MU_TEST(under_point_tst){
 	mu_check(comps.point.z < comps.under_point.z);
 }
 
+MU_TEST(refracted_color_opaque_tst){
+	_sphere = world()->objects->content;
+	r = ray(point(0, 0, -5), vector(0, 0, 1));
+	create_intersection(&xs.intersections, 4, _sphere);
+	create_intersection(&xs.intersections, 6, _sphere);
+	comps = prepare_computations(xs.intersections->content, r, xs);
+	result_color = refracted_color(comps, 5);
+
+	assert_tuple_eq(black(), result_color);
+}
+
+MU_TEST(refracted_color_maximum_recursive_tst){
+	_sphere = world()->objects->content;
+	_sphere->material.transparency = 1.0;
+	_sphere->material.refractive_index = 1.5;
+	r = ray(point(0, 0, -5), vector(0, 0, 1));
+	create_intersection(&xs.intersections, 4, _sphere);
+	create_intersection(&xs.intersections, 6, _sphere);
+	comps = prepare_computations(xs.intersections->content, r, xs);
+	result_color = refracted_color(comps, 0);
+
+	assert_tuple_eq(black(), result_color);
+}
+
+MU_TEST(refracted_color_total_reflection_tst){
+	_sphere = world()->objects->content;
+	_sphere->material.transparency = 1.0;
+	_sphere->material.refractive_index = 1.5;
+	r = ray(point(0, 0, sqrt(2)/2), vector(0, 1, 0));
+	create_intersection(&xs.intersections, -sqrt(2)/2, _sphere);
+	create_intersection(&xs.intersections, sqrt(2)/2, _sphere);
+	comps = prepare_computations(xs.intersections->next->content, r, xs);
+	result_color = refracted_color(comps, 5);
+
+	assert_tuple_eq(black(), result_color);
+}
+
+MU_TEST(refracted_color_refracted_ray_tst){ // broken test
+	_sphere = world()->objects->content;
+	_sphere->material.ambient = 1.0;
+	// _sphere->pattern = ; // what pattern?
+	_sphere = world()->objects->next->content;
+	_sphere->material.transparency = 1.0;
+	_sphere->material.refractive_index = 1.5;
+	r = ray(point(0, 0, 0.1), vector(0, 1, 0));
+	create_intersection(&xs.intersections, -0.9899, world()->objects->content);
+	create_intersection(&xs.intersections, -0.4899, _sphere);
+	create_intersection(&xs.intersections, 0.4899, _sphere);
+	create_intersection(&xs.intersections, 0.9899, world()->objects->content);
+	comps = prepare_computations(xs.intersections->next->next->content, r, xs);
+	result_color = refracted_color(comps, 5);
+
+	assert_tuple_eq(tcolor(0, 0.99888, 0.04725), result_color);
+}
+
+MU_TEST(shade_hit_transparent_tst){
+	_floor = plane();
+	translation(vector(0, -1, 0), &_floor->transform);
+	_floor->material.transparency = 0.5;
+	_floor->material.refractive_index = 1.5;
+	create_object(_floor);
+	_sphere = sphere();
+	_sphere->material.color = tcolor(1, 0, 0);
+	_sphere->material.ambient = 0.5;
+	translation(vector(0, -3.5, -0.5), &_sphere->transform);
+	create_object(_sphere);
+	r = ray(point(0, 0, -3), vector(0, -sqrt(2)/2, sqrt(2)/2));
+	create_intersection(&xs.intersections, sqrt(2), _floor);
+	comps = prepare_computations(xs.intersections->content, r, xs);
+	result_color = shade_hit(comps, 5);
+
+	assert_tuple_eq(tcolor(0.93642, 0.68642, 0.68642), result_color);
+}
+
 MU_TEST_SUITE(refraction_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(refractive_transp_tst);
 	MU_RUN_TEST(glass_sphere_tst);
+
 	MU_RUN_TEST(lstfind_tst);
 	MU_RUN_TEST(lstdeletenode_tst);
 	MU_RUN_TEST(lstremove_tst);
+
 	MU_RUN_TEST(finding_refraction_tst);
 	MU_RUN_TEST(under_point_tst);
+
+	MU_RUN_TEST(refracted_color_opaque_tst);
+	MU_RUN_TEST(refracted_color_maximum_recursive_tst);
+	MU_RUN_TEST(refracted_color_total_reflection_tst);
+	// MU_RUN_TEST(refracted_color_refracted_ray_tst); //what pattern?
+	MU_RUN_TEST(shade_hit_transparent_tst);
+
+
 }
 
 int main(int argc, char *argv[]) {

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/07 18:39:43 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:36:02 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,10 @@ typedef struct s_comp
 
 	double		n1;
 	double		n2;
+	double		n_ratio;
+	double		cos_i;
+	double		cos_t;
+	double		sin2_t;
 }			t_comp;
 
 typedef struct s_view
