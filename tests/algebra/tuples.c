@@ -21,7 +21,7 @@ MU_TEST(tuple_tst) {
     expected.y = -4.2;
     expected.z = 3.1;
     expected.w = 1.0;
-    mu_assert_tuple_eq(expected, result);
+    assert_tuple_eq(expected, result);
 }
 
 MU_TEST(point_tst){
@@ -30,7 +30,7 @@ MU_TEST(point_tst){
     expected_p.y = -4.2;
     expected_p.z = 3.1;
     expected_p.w = 1.0;
-	mu_assert_tuple_eq(expected_p, result_p);
+	assert_tuple_eq(expected_p, result_p);
 }
 
 MU_TEST(vector_tst){
@@ -39,13 +39,13 @@ MU_TEST(vector_tst){
     expected_v.y = -4.2;
     expected_v.z = 3.1;
     expected_v.w = 0.0;
-	mu_assert_tuple_eq(expected_v, result_v);
+	assert_tuple_eq(expected_v, result_v);
 }
 
 MU_TEST(add_tuple_tst){
 	result = add(tuple_3d(3, -2, 5, 1), tuple_3d(-2, 3, 1, 0));
 	expected = tuple_3d(1, 1, 6, 1);
-	mu_assert_tuple_eq(expected, result);
+	assert_tuple_eq(expected, result);
 }
 
 MU_TEST_SUITE(vector_suite) {

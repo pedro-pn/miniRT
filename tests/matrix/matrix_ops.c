@@ -49,7 +49,7 @@ MU_TEST(mx_tuple_multiply_tst){
 	});
 	result_tuple = mx_tuple_product(matrix, tuple_3d(1, 2, 3, 1));
 	expected_tuple = tuple_3d(18, 24, 33, 1);
-	mu_assert_tuple_eq(expected_tuple, result_tuple);
+	assert_tuple_eq(expected_tuple, result_tuple);
 }
 
 MU_TEST(identity_tst){

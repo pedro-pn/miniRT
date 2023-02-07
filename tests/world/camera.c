@@ -45,8 +45,8 @@ MU_TEST(ray_center_canvas_tst){
 	cam = camera();
 	_ray = ray_for_pixel(100, 50);
 
-	mu_assert_tuple_eq(point(0, 0, 0), _ray.origin);
-	mu_assert_tuple_eq(vector(0, 0, -1), _ray.direction);
+	assert_tuple_eq(point(0, 0, 0), _ray.origin);
+	assert_tuple_eq(vector(0, 0, -1), _ray.direction);
 }
 
 MU_TEST(ray_corner_canvas_tst){
@@ -54,8 +54,8 @@ MU_TEST(ray_corner_canvas_tst){
 	cam = camera();
 	_ray = ray_for_pixel(0, 0);
 
-	mu_assert_tuple_eq(point(0, 0, 0), _ray.origin);
-	mu_assert_tuple_eq(vector(0.66519, 0.33259, -0.66851), _ray.direction);
+	assert_tuple_eq(point(0, 0, 0), _ray.origin);
+	assert_tuple_eq(vector(0.66519, 0.33259, -0.66851), _ray.direction);
 }
 
 MU_TEST(ray_transformed_camera_tst){
@@ -66,8 +66,8 @@ MU_TEST(ray_transformed_camera_tst){
 	mx_product(mx_rot, mx_trans, &cam->transform);
 	_ray = ray_for_pixel(100, 50);
 
-	mu_assert_tuple_eq(point(0, 2, -5), _ray.origin);
-	mu_assert_tuple_eq(vector(sqrt(2) / 2, 0, -sqrt(2) / 2), _ray.direction);
+	assert_tuple_eq(point(0, 2, -5), _ray.origin);
+	assert_tuple_eq(vector(sqrt(2) / 2, 0, -sqrt(2) / 2), _ray.direction);
 }
 
 MU_TEST_SUITE(camera_suite) {

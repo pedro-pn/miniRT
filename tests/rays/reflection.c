@@ -21,13 +21,13 @@ void test_teardown(void) {
 MU_TEST(reflection_45_tst) {
 	vec_result = reflect(vector(1, -1, 0), vector(0, 1, 0));
 
-	mu_assert_tuple_eq(vector(1, 1, 0), vec_result);
+	assert_tuple_eq(vector(1, 1, 0), vec_result);
 }
 
 MU_TEST(reflection_slanted_tst) {
 	vec_result = reflect(vector(0, -1, 0), vector(sqrt(2) / 2, sqrt(2) / 2, 0));
 
-	mu_assert_tuple_eq(vector(1, 0, 0), vec_result);
+	assert_tuple_eq(vector(1, 0, 0), vec_result);
 }
 
 MU_TEST_SUITE(reflection_suite) {

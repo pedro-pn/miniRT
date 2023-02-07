@@ -17,24 +17,24 @@ void test_teardown(void) {
 MU_TEST(ray_tst){
 	_ray = ray(point(1, 2, 3), vector(4, 5, 6));
 	
-	mu_assert_tuple_eq(point(1, 2, 3), _ray.origin);
-	mu_assert_tuple_eq(vector(4, 5, 6), _ray.direction);
+	assert_tuple_eq(point(1, 2, 3), _ray.origin);
+	assert_tuple_eq(vector(4, 5, 6), _ray.direction);
 }
 
 MU_TEST(ray_t_tst){
 	_ray = ray(point(2, 3, 4), vector(1, 0, 0));
 	
 	_position = position(0, _ray);
-	mu_assert_tuple_eq(point(2, 3, 4), _position);
+	assert_tuple_eq(point(2, 3, 4), _position);
 
 	_position = position(1, _ray);
-	mu_assert_tuple_eq(point(3, 3, 4), _position);
+	assert_tuple_eq(point(3, 3, 4), _position);
 
 	_position = position(-1, _ray);
-	mu_assert_tuple_eq(point(1, 3, 4), _position);
+	assert_tuple_eq(point(1, 3, 4), _position);
 
 	_position = position(2.5, _ray);
-	mu_assert_tuple_eq(point(4.5, 3, 4), _position);
+	assert_tuple_eq(point(4.5, 3, 4), _position);
 }
 
 MU_TEST(sphere_inter_tst)

@@ -20,13 +20,13 @@ MU_TEST(plane_normal_tst) {
 	_plane = plane();
 	
 	normal = plane_normal_at(*_plane, point(0, 0,  0));
-	mu_assert_tuple_eq(vector(0, 1, 0), normal);
+	assert_tuple_eq(vector(0, 1, 0), normal);
 
 	normal = plane_normal_at(*_plane, point(10, 0,  -10));
-	mu_assert_tuple_eq(vector(0, 1, 0), normal);
+	assert_tuple_eq(vector(0, 1, 0), normal);
 
 	normal = plane_normal_at(*_plane, point(-5, 0,  150));
-	mu_assert_tuple_eq(vector(0, 1, 0), normal);
+	assert_tuple_eq(vector(0, 1, 0), normal);
 }
 
 MU_TEST(intersect_parallel_tst){

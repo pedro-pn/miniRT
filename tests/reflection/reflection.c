@@ -42,7 +42,7 @@ MU_TEST(reflection_vector_tst){
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	free(obj);
 
-	mu_assert_tuple_eq(vector(0, sqrt(2) / 2, sqrt(2) / 2), comps.reflectv);
+	assert_tuple_eq(vector(0, sqrt(2) / 2, sqrt(2) / 2), comps.reflectv);
 
 }
 
@@ -55,7 +55,7 @@ MU_TEST(nonreflective_material_tst){
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	result_color = reflected_color(comps, 1);
 
-	mu_assert_tuple_eq(tcolor(0, 0, 0), result_color);
+	assert_tuple_eq(tcolor(0, 0, 0), result_color);
 }
 
 MU_TEST(reflective_material_tst){
@@ -69,7 +69,7 @@ MU_TEST(reflective_material_tst){
 	result_color = reflected_color(comps, 1);
 
 	mu_check((t_object *)world()->objects->next->next->content == obj);
-	mu_assert_tuple_eq(tcolor(0.19032, 0.2379, 0.14274), result_color);
+	assert_tuple_eq(tcolor(0.19032, 0.2379, 0.14274), result_color);
 }
 
 MU_TEST(reflective_material_shade_hit_tst){
@@ -83,7 +83,7 @@ MU_TEST(reflective_material_shade_hit_tst){
 	result_color = shade_hit(comps, 1);
 
 	mu_check((t_object *)world()->objects->next->next->content == obj);
-	mu_assert_tuple_eq(tcolor(0.87677, 0.92436, 0.82918), result_color);
+	assert_tuple_eq(tcolor(0.87677, 0.92436, 0.82918), result_color);
 }
 
 // void catch_segfault(int sig) {
@@ -128,7 +128,7 @@ MU_TEST(reflection_recursive_depth_tst){
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	result_color = reflected_color(comps, 0);
 
-	mu_assert_tuple_eq(black(), result_color);
+	assert_tuple_eq(black(), result_color);
 }
 
 MU_TEST_SUITE(reflection_suite) {

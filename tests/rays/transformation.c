@@ -23,8 +23,8 @@ MU_TEST(trans_ray_tst) {
 	translation(vector(3, 4, 5), &mx_trans);
 	ray_result = transform(mx_trans, _ray);
 
-	mu_assert_tuple_eq(point(4, 6, 8), ray_result.origin);
-	mu_assert_tuple_eq(vector(0, 1, 0), ray_result.direction);
+	assert_tuple_eq(point(4, 6, 8), ray_result.origin);
+	assert_tuple_eq(vector(0, 1, 0), ray_result.direction);
 }
 
 MU_TEST(scaling_ray_tst) {
@@ -32,8 +32,8 @@ MU_TEST(scaling_ray_tst) {
 	scaling(vector(2, 3, 4), &mx_trans);
 	ray_result = transform(mx_trans, _ray);
 
-	mu_assert_tuple_eq(point(2, 6, 12), ray_result.origin);
-	mu_assert_tuple_eq(vector(0, 3, 0), ray_result.direction);
+	assert_tuple_eq(point(2, 6, 12), ray_result.origin);
+	assert_tuple_eq(vector(0, 3, 0), ray_result.direction);
 }
 
 MU_TEST(default_trans_sphere_tst){

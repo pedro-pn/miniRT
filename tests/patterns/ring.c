@@ -20,16 +20,16 @@ MU_TEST(ring_tst) {
 	obj->pattern = ring_pattern(white(), black());
 	
 	result = pattern_at(*obj, point(0, 0, 0));
-	mu_assert_tuple_eq(white(), result);
+	assert_tuple_eq(white(), result);
 
 	result = pattern_at(*obj, point(1, 0, 0));
-	mu_assert_tuple_eq(black(), result);
+	assert_tuple_eq(black(), result);
 
 	result = pattern_at(*obj, point(0, 0, 1));
-	mu_assert_tuple_eq(black(), result);
+	assert_tuple_eq(black(), result);
 	
 	result = pattern_at(*obj, point(0.708, 0, 0.708));
-	mu_assert_tuple_eq(black(), result);
+	assert_tuple_eq(black(), result);
 }
 
 

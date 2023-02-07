@@ -25,39 +25,39 @@ MU_TEST(checker_x_tst) {
 	obj->pattern = checkers_pattern(white(), black());
 
 	result = pattern_at(*obj, point(0, 0, 0));
-	mu_assert_tuple_eq(white(), result);
+	assert_tuple_eq(white(), result);
 
 	result = pattern_at(*obj, point(0.99, 0, 0));
-	mu_assert_tuple_eq(white(), result);
+	assert_tuple_eq(white(), result);
 
 	result = pattern_at(*obj, point(1.01, 0, 0));
-	mu_assert_tuple_eq(black(), result);
+	assert_tuple_eq(black(), result);
 }
 
 MU_TEST(checker_y_tst) {
 	obj->pattern = checkers_pattern(white(), black());
 
 	result = pattern_at(*obj, point(0, 0, 0));
-	mu_assert_tuple_eq(white(), result);
+	assert_tuple_eq(white(), result);
 
 	result = pattern_at(*obj, point(0, 0.99, 0));
-	mu_assert_tuple_eq(white(), result);
+	assert_tuple_eq(white(), result);
 
 	result = pattern_at(*obj, point(0, 1.01, 0));
-	mu_assert_tuple_eq(black(), result);
+	assert_tuple_eq(black(), result);
 }
 
 MU_TEST(checker_z_tst) {
 	obj->pattern = checkers_pattern(white(), black());
 
 	result = pattern_at(*obj, point(0, 0, 0));
-	mu_assert_tuple_eq(white(), result);
+	assert_tuple_eq(white(), result);
 
 	result = pattern_at(*obj, point(0, 0, 0.99));
-	mu_assert_tuple_eq(white(), result);
+	assert_tuple_eq(white(), result);
 
 	result = pattern_at(*obj, point(0, 0, 1.01));
-	mu_assert_tuple_eq(black(), result);
+	assert_tuple_eq(black(), result);
 }
 
 MU_TEST_SUITE(checker_suite) {

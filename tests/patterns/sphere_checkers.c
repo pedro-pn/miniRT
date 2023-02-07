@@ -24,25 +24,25 @@ void test_teardown(void) {
 
 MU_TEST(spherical_map_tst){
 	presult = spherical_map(point(0, 0, -1));
-	mu_assert_tuple_eq(point(0, 0.5, 0), presult);
+	assert_tuple_eq(point(0, 0.5, 0), presult);
 
 	presult = spherical_map(point(1, 0, 0));
-	mu_assert_tuple_eq(point(0.25, 0.5, 0), presult);
+	assert_tuple_eq(point(0.25, 0.5, 0), presult);
 
 	presult = spherical_map(point(0, 0, 1));
-	mu_assert_tuple_eq(point(0.5, 0.5, 0), presult);
+	assert_tuple_eq(point(0.5, 0.5, 0), presult);
 
 	presult = spherical_map(point(-1, 0, 0));
-	mu_assert_tuple_eq(point(0.75, 0.5, 0), presult);
+	assert_tuple_eq(point(0.75, 0.5, 0), presult);
 
 	presult = spherical_map(point(0, 1, 0));
-	mu_assert_tuple_eq(point(0.5, 1.0, 0), presult);
+	assert_tuple_eq(point(0.5, 1.0, 0), presult);
 
 	presult = spherical_map(point(0, -1, 0));
-	mu_assert_tuple_eq(point(0.5, 0, 0), presult);
+	assert_tuple_eq(point(0.5, 0, 0), presult);
 
 	presult = spherical_map(point(sqrt(2) / 2, sqrt(2) / 2, 0));
-	mu_assert_tuple_eq(point(0.25, 0.75, 0), presult);
+	assert_tuple_eq(point(0.25, 0.75, 0), presult);
 }
 
 MU_TEST_SUITE(uv_suite) {

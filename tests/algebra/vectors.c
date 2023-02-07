@@ -33,11 +33,11 @@ MU_TEST(magnitude_tst){
 MU_TEST(normalization_tst){
 	result = normalize(vector(4, 0, 0));
 	expected = vector(1, 0, 0);
-	mu_assert_tuple_eq(expected, result);
+	assert_tuple_eq(expected, result);
 
 	result = normalize(vector(1, 2, 3));
 	expected = vector(1/sqrt(14), 2.0/sqrt(14), 3.0/sqrt(14));
-	mu_assert_tuple_eq(expected, result);
+	assert_tuple_eq(expected, result);
 
 	res_mag = magnitude(expected);
 	mu_assert_double_eq(1, res_mag);
@@ -59,11 +59,11 @@ MU_TEST(cross_tst)
 {
 	result = cross(vector(1, 2, 3), vector(2, 3, 4));
 	expected = vector(-1, 2, -1);
-	mu_assert_tuple_eq(expected, result);
+	assert_tuple_eq(expected, result);
 
 	result = cross(vector(2, 3, 4), vector(1, 2, 3));
 	expected = vector(1, -2, 1);
-	mu_assert_tuple_eq(expected, result);
+	assert_tuple_eq(expected, result);
 }
 
 MU_TEST_SUITE(vector_suite) {

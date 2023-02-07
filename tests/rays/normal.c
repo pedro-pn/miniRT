@@ -23,13 +23,13 @@ MU_TEST(axial_sphere_normal_tst) {
 	_sphere = sphere();
 
 	vec_result = normal_at(*_sphere, point(1, 0, 0));
-	mu_assert_tuple_eq(vector(1, 0, 0), vec_result);
+	assert_tuple_eq(vector(1, 0, 0), vec_result);
 
 	vec_result = normal_at(*_sphere, point(0, 1, 0));
-	mu_assert_tuple_eq(vector(0, 1, 0), vec_result);
+	assert_tuple_eq(vector(0, 1, 0), vec_result);
 
 	vec_result = normal_at(*_sphere, point(0, 0, 1));
-	mu_assert_tuple_eq(vector(0, 0, 1), vec_result);
+	assert_tuple_eq(vector(0, 0, 1), vec_result);
 }
 
 MU_TEST(non_axial_normal_tst){
@@ -37,7 +37,7 @@ MU_TEST(non_axial_normal_tst){
 	_sphere = sphere();
 
 	vec_result = normal_at(*_sphere, point(sqrt_3by3, sqrt_3by3, sqrt_3by3));
-	mu_assert_tuple_eq(vector(sqrt_3by3, sqrt_3by3, sqrt_3by3), vec_result);
+	assert_tuple_eq(vector(sqrt_3by3, sqrt_3by3, sqrt_3by3), vec_result);
 }
 
 MU_TEST(normal_is_normalized_tst){
@@ -45,7 +45,7 @@ MU_TEST(normal_is_normalized_tst){
 	_sphere = sphere();
 
 	vec_result = normal_at(*_sphere, point(sqrt_3by3, sqrt_3by3, sqrt_3by3));
-	mu_assert_tuple_eq(normalize(vector(sqrt_3by3, sqrt_3by3, sqrt_3by3)),
+	assert_tuple_eq(normalize(vector(sqrt_3by3, sqrt_3by3, sqrt_3by3)),
 			vec_result);
 }
 
@@ -54,7 +54,7 @@ MU_TEST(normal_translated_sphere_tst){
 	translation(vector(0, 1, 0), &_sphere->transform);
 
 	vec_result = normal_at(*_sphere, point(0, 1.70711, -0.70711));
-	mu_assert_tuple_eq(vector(0, 0.70711, -0.70711), vec_result);
+	assert_tuple_eq(vector(0, 0.70711, -0.70711), vec_result);
 }
 
 MU_TEST(normal_transf_sphere_tst){
@@ -64,7 +64,7 @@ MU_TEST(normal_transf_sphere_tst){
 	mx_product(mx_scal, mx_rot, &_sphere->transform);
 
 	vec_result = normal_at(*_sphere, point(0, sqrt(2) / 2, -sqrt(2) / 2));
-	mu_assert_tuple_eq(vector(0, 0.97014, -0.24254), vec_result);
+	assert_tuple_eq(vector(0, 0.97014, -0.24254), vec_result);
 }
 
 MU_TEST_SUITE(shading_suite) {

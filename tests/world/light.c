@@ -30,14 +30,14 @@ MU_TEST(point_light_tst){
 	_light = light();
 	point_light(point(0, 0,  0), tcolor(1, 1, 1));
 
-	mu_assert_tuple_eq(point(0, 0, 0), _light->position);
-	mu_assert_tuple_eq(tcolor(1, 1, 1), _light->color);
+	assert_tuple_eq(point(0, 0, 0), _light->position);
+	assert_tuple_eq(tcolor(1, 1, 1), _light->color);
 }
 
 MU_TEST(material_tst){
 	_sphere->material = material();
 
-	mu_assert_tuple_eq(tcolor(1, 1, 1), _sphere->material.color);
+	assert_tuple_eq(tcolor(1, 1, 1), _sphere->material.color);
 	mu_assert_double_eq(0.1, _sphere->material.ambient);
 	mu_assert_double_eq(0.9, _sphere->material.diffuse);
 	mu_assert_double_eq(0.9, _sphere->material.specular);
@@ -53,7 +53,7 @@ MU_TEST(eye_btwn_light_surf_tst){
 	_sphere->material = material();
 	intensity = lighting(*_sphere, *light(), params);
 
-	mu_assert_tuple_eq(tcolor(0.1, 0.1, 0.1), intensity);
+	assert_tuple_eq(tcolor(0.1, 0.1, 0.1), intensity);
 }
 
 MU_TEST(eye_45_degree_tst){
@@ -65,7 +65,7 @@ MU_TEST(eye_45_degree_tst){
 	_sphere->material = material();
 	intensity = lighting(*_sphere, *light(), params);
 
-	mu_assert_tuple_eq(tcolor(1.0, 1.0, 1.0), intensity);
+	assert_tuple_eq(tcolor(1.0, 1.0, 1.0), intensity);
 }
 
 MU_TEST(light_45_degree_tst){
@@ -77,7 +77,7 @@ MU_TEST(light_45_degree_tst){
 	_sphere->material = material();
 	intensity = lighting(*_sphere, *light(), params);
 
-	mu_assert_tuple_eq(tcolor(0.7364, 0.7364, 0.7364), intensity);
+	assert_tuple_eq(tcolor(0.7364, 0.7364, 0.7364), intensity);
 }
 
 MU_TEST(eye_in_light_path_tst){
@@ -89,7 +89,7 @@ MU_TEST(eye_in_light_path_tst){
 	_sphere->material = material();
 	intensity = lighting(*_sphere, *light(), params);
 
-	mu_assert_tuple_eq(tcolor(1.6364, 1.6364, 1.6364), intensity);
+	assert_tuple_eq(tcolor(1.6364, 1.6364, 1.6364), intensity);
 }
 
 MU_TEST(light_behind_surface_tst){
@@ -101,7 +101,7 @@ MU_TEST(light_behind_surface_tst){
 	_sphere->material = material();
 	intensity = lighting(*_sphere, *light(), params);
 
-	mu_assert_tuple_eq(tcolor(0.1, 0.1, 0.1), intensity);
+	assert_tuple_eq(tcolor(0.1, 0.1, 0.1), intensity);
 }
 
 MU_TEST_SUITE(light_suite) {
