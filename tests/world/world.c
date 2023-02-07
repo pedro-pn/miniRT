@@ -23,11 +23,13 @@ t_rgb		_color;
 void test_setup(void) {
 	point_light(point(-10.0, 10.0, -10.0), tcolor(1.0, 1.0, 1.0));
 	_sphere = sphere();
+	xs.intersections = NULL;
 }
 
 void test_teardown(void) {
 	/* Nothing */
 	ft_lstclear(&world()->objects, free);
+	ft_lstclear(&xs.intersections, free);
 	free(_sphere);
 	
 }
@@ -109,11 +111,12 @@ MU_TEST(intersect_world_tst){
 
 MU_TEST(precomputing_state_tst){
 	_ray = ray(point(0, 0, -5), vector(0, 0,  1));
-	intx = (t_intx){4.0, _sphere};
-	comps = prepare_computations(intx, _ray);
+	create_intersection(&xs.intersections, 4.0, _sphere);
+	inter = xs.intersections->content;
+	comps = prepare_computations(inter, _ray, xs);
 	
 	mu_check(_sphere == comps.object);
-	mu_assert_double_eq(intx.t, comps.t);
+	mu_assert_double_eq(inter->t, comps.t);
 	mu_assert_tuple_eq(point(0, 0, -1), comps.point);
 	mu_assert_tuple_eq(vector(0, 0, -1), comps.eyev);
 	mu_assert_tuple_eq(vector(0, 0, -1), comps.normalv);
@@ -121,16 +124,18 @@ MU_TEST(precomputing_state_tst){
 
 MU_TEST(hit_outside_tst){
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
-	intx = (t_intx){4, _sphere};
-	comps = prepare_computations(intx, _ray);
+	create_intersection(&xs.intersections, 4.0, _sphere);
+	inter = xs.intersections->content;
+	comps = prepare_computations(inter, _ray, xs);
 
 	mu_check(comps.inside == false);
 }
 
 MU_TEST(hit_inside_tst){
 	_ray = ray(point(0, 0, 0), vector(0, 0, 1));
-	intx = (t_intx){1, _sphere};
-	comps = prepare_computations(intx, _ray);
+	create_intersection(&xs.intersections, 1.0, _sphere);
+	inter = xs.intersections->content;
+	comps = prepare_computations(inter, _ray, xs);
 
 	mu_check(comps.inside == true);
 	mu_assert_tuple_eq(point(0, 0, 1), comps.point);
@@ -142,8 +147,9 @@ MU_TEST(shading_tst){
 	default_world();
 	_ray = ray(point(0, 0, -5.0), vector(0, 0, 1.0));
 	_object = world()->objects->content;
-	intx = (t_intx){4.0, _object};
-	comps = prepare_computations(intx, _ray);
+	create_intersection(&xs.intersections, 4.0, _object);
+	inter = xs.intersections->content;
+	comps = prepare_computations(inter, _ray, xs);
 	result_color = shade_hit(comps, 0);
 
 	mu_assert_tuple_eq(tcolor(0.38066, 0.47583, 0.2855), result_color);
@@ -154,8 +160,9 @@ MU_TEST(shading_inside_tst){
 	_ray = ray(point(0, 0, 0), vector(0, 0, 1));
 	point_light(point(0, 0.25, 0), tcolor(1, 1, 1));
 	_object = world()->objects->next->content;
-	intx = (t_intx){0.5, _object};
-	comps = prepare_computations(intx, _ray);
+	create_intersection(&xs.intersections, 0.5, _object);
+	inter = xs.intersections->content;
+	comps = prepare_computations(inter, _ray, xs);
 	result_color = shade_hit(comps, 0);
 
 	mu_assert_tuple_eq(tcolor(0.90498, 0.90498, 0.90498), result_color);
@@ -170,8 +177,9 @@ MU_TEST(shadow_intersection_tst){
 	translation(vector(0, 0, 10), &_object->transform);
 	create_object(_object);
 	_ray = ray(point(0, 0, 5), vector(0, 0, 1));
-	intx = (t_intx){4, _object};
-	comps = prepare_computations(intx, _ray);
+	create_intersection(&xs.intersections, 4.0, _object);
+	inter = xs.intersections->content;
+	comps = prepare_computations(inter, _ray, xs);
 	result_color = shade_hit(comps, 0);
 
 	mu_assert_tuple_eq(tcolor(0.1, 0.1, 0.1), result_color);
@@ -180,8 +188,9 @@ MU_TEST(shadow_intersection_tst){
 MU_TEST(hit_offset_point){
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
 	translation(vector(0, 0, 1), &_sphere->transform);
-	intx = (t_intx){5, _sphere};
-	comps = prepare_computations(intx, _ray);
+	create_intersection(&xs.intersections, 5.0, _sphere);
+	inter = xs.intersections->content;
+	comps = prepare_computations(inter, _ray, xs);
 
 	mu_check(comps.over_point.z < (-EPSILON / 2));
 	mu_check(comps.point.z > comps.over_point.z);

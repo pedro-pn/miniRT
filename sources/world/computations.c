@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:20:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/07 13:11:28 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/07 13:32:14 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	compute_refractive_index(t_comp *comps, t_intx *intx, t_intxs xs)
 			comps->n2 = get_refractive_index(containers);
 		node = node->next;
 	}
-	ft_lstclear(&containers, free);
+	ft_lstclear(&containers, NULL);
 }
 
 t_comp	prepare_computations(t_intx *inter, t_ray ray, t_intxs xs)
