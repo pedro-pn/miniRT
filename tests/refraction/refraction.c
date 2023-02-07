@@ -130,6 +130,16 @@ MU_TEST(finding_refraction_tst){
 	free(obj_c);
 }
 
+MU_TEST(under_point_tst){
+	r = ray(point(0, 0, -5), vector(0, 0, 1));
+	obj = glass_sphere();
+	translation(vector(0, 0, 1), &obj->transform);
+	create_intersection(&xs.intersections, 5, obj);
+	comps = prepare_computations(xs.intersections->content, r, xs);
+
+	mu_check((EPSILON / 2) < comps.under_point.z);
+	mu_check(comps.point.z < comps.under_point.z);
+}
 
 MU_TEST_SUITE(refraction_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -140,6 +150,7 @@ MU_TEST_SUITE(refraction_suite) {
 	MU_RUN_TEST(lstdeletenode_tst);
 	MU_RUN_TEST(lstremove_tst);
 	MU_RUN_TEST(finding_refraction_tst);
+	MU_RUN_TEST(under_point_tst);
 }
 
 int main(int argc, char *argv[]) {

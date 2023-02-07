@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:20:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/07 13:32:14 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/07 18:40:28 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_comp	prepare_computations(t_intx *inter, t_ray ray, t_intxs xs)
 	else
 		comps.inside = false;
 	comps.over_point = add(comps.point, scalar_times(EPSILON, comps.normalv));
+	comps.under_point = sub(comps.point, scalar_times(EPSILON, comps.normalv));
 	comps.reflectv = reflect(ray.direction, comps.normalv);
 	compute_refractive_index(&comps, inter, xs);
 	return (comps);
