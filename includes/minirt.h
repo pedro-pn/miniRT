@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/03 11:16:13 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/07 12:45:55 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ t_v3d		reflect(t_v3d in, t_v3d normal);
 
 // spheres
 t_object	*sphere(void);
+t_object	*glass_sphere(void);
 t_v3d		sphere_normal_at(t_object obj, t_p3d point);
 
 // planes
@@ -206,7 +207,7 @@ void		create_object(t_object	*object);
 
 t_intxs		intersect_world(t_ray _ray);
 void		sort_intersections(t_list *lst);
-t_comp		prepare_computations(t_intx inter, t_ray ray);
+t_comp		prepare_computations(t_intx *inter, t_ray ray, t_intxs xs);
 t_c3d		shade_hit(t_comp comps, int remaining);
 t_bool		is_shadowed(t_p3d point);
 

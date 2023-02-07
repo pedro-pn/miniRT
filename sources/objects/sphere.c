@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 15:25:01 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/07 11:20:04 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,20 @@ t_object	*sphere(void)
 	_sphere->normal = sphere_normal_at;
 	mx_identity(&_sphere->transform);
 	return (_sphere);
+}
+
+t_object	*glass_sphere(void)
+{
+	t_object	*s;
+
+	s = ft_calloc(1, sizeof(*s));
+	s->origin = point(0, 0, 0);
+	s->radius = 1.0;
+	mx_identity(&s->transform);
+	s->material = material();
+	s->material.transparency = 1.0;
+	s->material.refractive_index = 1.5;
+	s->normal = sphere_normal_at;
+	s->intersect = intersect_sphere;
+	return (s);
 }

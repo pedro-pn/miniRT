@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:05:24 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/02 15:03:41 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/06 21:05:10 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ t_material	material(void)
 	_material.specular = 0.9;
 	_material.shininess = 200.0;
 	_material.reflective = 0;
+	_material.transparency = 0;
+	_material.refractive_index = 1.0;
 	return (_material);
 }

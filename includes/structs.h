@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/02 15:08:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/07 10:09:34 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_material
 	double	specular;
 	double	shininess;
 	double	reflective;
+	double	transparency;
+	double	refractive_index;
 }			t_material;
 
 /* OBJECTS */
@@ -139,6 +141,9 @@ typedef struct s_comp
 	t_object	*object;
 	double		t;
 	t_bool		inside;
+
+	double		n1;
+	double		n2;
 }			t_comp;
 
 typedef struct s_view
