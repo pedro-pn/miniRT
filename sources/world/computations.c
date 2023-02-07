@@ -6,11 +6,22 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:20:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/07 12:47:02 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/07 13:11:28 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static double	get_refractive_index(t_list *containers)
+{
+	t_object	*obj;
+
+	if (containers == NULL)
+		return (1.0);
+	obj = ft_lstlast(containers)->content;
+	return obj->material.refractive_index;
+	
+}
 
 static void	compute_refractive_index(t_comp *comps, t_intx *intx, t_intxs xs)
 {
@@ -22,30 +33,15 @@ static void	compute_refractive_index(t_comp *comps, t_intx *intx, t_intxs xs)
 	containers = NULL;
 	while (node != NULL)
 	{
-		if ((t_intx *)node->content == intx)
-		{
-			if (containers == NULL)
-				comps->n1 = 1.0;
-			else
-			{
-				obj = ft_lstlast(containers)->content;
-				comps->n1 = obj->material.refractive_index;
-			}
-		}
-		if (ft_lstfind(containers, ((t_intx *)node->content)->object) != NULL)
-			ft_lstremove(&containers, ((t_intx *)node->content)->object);
+		obj = ((t_intx *)node->content)->object;
+		if (node->content == intx)
+			comps->n1 = get_refractive_index(containers);
+		if (ft_lstfind(containers, obj) != NULL)
+			ft_lstremove(&containers, obj);
 		else
-			ft_lstadd_back(&containers, ft_lstnew(((t_intx *)node->content)->object));
-		if ((t_intx *)node->content == intx)
-		{
-			if (containers == NULL)
-				comps->n2 = 1.0;
-			else
-			{
-				obj = ft_lstlast(containers)->content;
-				comps->n2 = obj->material.refractive_index;
-			}
-		}
+			ft_lstadd_back(&containers, ft_lstnew(obj));
+		if (node->content == intx)
+			comps->n2 = get_refractive_index(containers);
 		node = node->next;
 	}
 	ft_lstclear(&containers, free);

@@ -15,14 +15,19 @@ t_intx		*inter;
 t_intx		intr;
 t_list		*node;
 t_comp		comps;
+t_list		*lst;
 
 void test_setup(void) {
 	obj = NULL;
+	xs.intersections = NULL;
+	lst = NULL;
 }
 
 void test_teardown(void) {
 	/* Nothing */
 	free(obj);
+	ft_lstclear(&xs.intersections, free);
+	ft_lstclear(&lst, free);
 }
 
 MU_TEST(refractive_transp_tst) {
@@ -41,7 +46,7 @@ MU_TEST(glass_sphere_tst){
 
 MU_TEST(lstfind_tst)
 {
-	t_list *lst = NULL;
+	
 	obj_a = glass_sphere();
 	obj_b = glass_sphere();
 	obj_c = glass_sphere();
@@ -58,7 +63,6 @@ MU_TEST(lstfind_tst)
 
 MU_TEST(lstremove_tst)
 {
-	t_list *lst = NULL;
 	obj_a = glass_sphere();
 	obj_b = glass_sphere();
 	obj_c = glass_sphere();
@@ -69,6 +73,24 @@ MU_TEST(lstremove_tst)
 	ft_lstadd_back(&lst, ft_lstnew(obj_c));
 
 	ft_lstremove(&lst, obj_b);
+	mu_check(ft_lstfind(lst, obj_a)->content == obj_a);
+	mu_check(ft_lstfind(lst, obj_b) == NULL);
+	mu_check(ft_lstfind(lst, obj_c)->content == obj_c);
+	free(obj_b);
+}
+
+MU_TEST(lstdeletenode_tst)
+{
+	obj_a = glass_sphere();
+	obj_b = glass_sphere();
+	obj_c = glass_sphere();
+
+
+	ft_lstadd_back(&lst, ft_lstnew(obj_a));
+	ft_lstadd_back(&lst, ft_lstnew(obj_b));
+	ft_lstadd_back(&lst, ft_lstnew(obj_c));
+
+	ft_lstdelnode(&lst, obj_b, free);
 	mu_check(ft_lstfind(lst, obj_a)->content == obj_a);
 	mu_check(ft_lstfind(lst, obj_b) == NULL);
 	mu_check(ft_lstfind(lst, obj_c)->content == obj_c);
@@ -103,6 +125,9 @@ MU_TEST(finding_refraction_tst){
 		mu_assert_double_eq(n2[i], comps.n2);
 		node = node->next;
 	}
+	free(obj_a);
+	free(obj_b);
+	free(obj_c);
 }
 
 
@@ -111,9 +136,10 @@ MU_TEST_SUITE(refraction_suite) {
 
 	MU_RUN_TEST(refractive_transp_tst);
 	MU_RUN_TEST(glass_sphere_tst);
-	MU_RUN_TEST(finding_refraction_tst);
 	MU_RUN_TEST(lstfind_tst);
+	MU_RUN_TEST(lstdeletenode_tst);
 	MU_RUN_TEST(lstremove_tst);
+	MU_RUN_TEST(finding_refraction_tst);
 }
 
 int main(int argc, char *argv[]) {
