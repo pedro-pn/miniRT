@@ -6,13 +6,13 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:47:58 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/07 20:23:42 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/08 11:46:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	snell_law(t_comp *comps)
+void	snell_law(t_comp *comps)
 {
 	comps->n_ratio = comps->n1 / comps->n2;
 	comps->cos_i = dotp(comps->eyev, comps->normalv);

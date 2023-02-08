@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/07 19:42:43 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/08 11:46:44 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,11 @@ t_c3d		reflected_color(t_comp comps, int remaining);
 /* REFRACTION*/
 
 t_c3d		refracted_color(t_comp comps, int remaining);
+void		snell_law(t_comp *comps);
+
+/* FRESNEL*/
+
+double		schlick(t_comp comps);
 
 /* WORLD */
 
