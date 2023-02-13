@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 21:51:07 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/13 11:01:37 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/13 11:29:55 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_intxs	intersect_cube(t_object *cube, t_ray ray)
 	double	t[2];
 
 	xs.intersections = NULL;
+	ray = ray_transf_inverse(cube->transform, ray);
 	check_axis(ray.origin.x, ray.direction.x, t);
 	min.x = t[0];
 	max.x = t[1];
@@ -108,6 +109,7 @@ t_object	*cube(void)
 	t_object	*_cube;
 
 	_cube = ft_calloc(1, sizeof(*_cube));
+	_cube->material = material();
 	mx_identity(&_cube->transform);
 	_cube->intersect = intersect_cube;
 	_cube->normal = cube_normal_at;
