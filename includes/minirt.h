@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/13 10:34:24 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/13 10:54:20 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ t_intxs		intersect_plane(t_object *plane, t_ray ray);
 
 t_object	*cube(void);
 t_intxs		intersect_cube(t_object *cube, t_ray ray);
+t_v3d		cube_normal_at(t_object cube, t_p3d point);
 
 // intersection
 

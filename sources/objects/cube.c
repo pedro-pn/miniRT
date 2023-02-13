@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 21:51:07 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/13 10:34:41 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/13 11:01:37 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,29 @@ t_intxs	intersect_cube(t_object *cube, t_ray ray)
 	return (xs);
 }
 
+t_v3d	cube_normal_at(t_object cube, t_p3d point)
+{
+	t_tuple	tuple;
+	double	maxc;
+	int		i;
+
+	(void)cube;
+	tuple.point = point;
+	maxc = -__DBL_MAX__;
+	i = 0;
+	while(i < 3)
+	{
+		if (abs_double(tuple.points[i]) > maxc)
+			maxc = abs_double(tuple.points[i]);
+		i++;
+	}
+	if (maxc == abs_double(point.x))
+		return (vector(point.x, 0, 0));
+	else if (maxc == abs_double(point.y))
+		return (vector(0, point.y, 0));
+	return (vector(0, 0, point.z));
+}
+
 t_object	*cube(void)
 {
 	t_object	*_cube;
@@ -87,5 +110,6 @@ t_object	*cube(void)
 	_cube = ft_calloc(1, sizeof(*_cube));
 	mx_identity(&_cube->transform);
 	_cube->intersect = intersect_cube;
+	_cube->normal = cube_normal_at;
 	return (_cube);
 }
