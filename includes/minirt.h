@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/13 10:54:20 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:30:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,5 +278,6 @@ void		sphere_3d_demo(void);
 void		world_demo(void);
 void		world_demo_v2(void);
 void		world_demo_v3(void);
+void		book_cover(void);
 
 #endif
