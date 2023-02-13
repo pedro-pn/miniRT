@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:10:28 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/19 15:52:17 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:15:42 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef enum e_bool
 }			t_bool;
 
 
-t_bool    comp(double a, double b);
+t_bool	comp(double a, double b);
+double	abs_double(double a);
 
 /* QUADRATIC */
 

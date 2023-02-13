@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:43:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/01 11:55:05 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:56:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ typedef struct s_t3d
 	double	z;
 	double	w;
 }			t_t3d;
+
+typedef union u_tuple
+{
+	t_t3d	point;
+	double	points[4];
+}			t_tuple;
 
 typedef t_t3d	t_p3d;
 

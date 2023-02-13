@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/08 12:42:46 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/13 10:34:24 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ t_v3d		reflect(t_v3d in, t_v3d normal);
 // spheres
 t_object	*sphere(void);
 t_object	*glass_sphere(void);
+
+t_intxs		intersect_sphere(t_object *obj, t_ray _ray);
 t_v3d		sphere_normal_at(t_object obj, t_p3d point);
 
 // planes
@@ -112,12 +114,17 @@ t_object	*plane(void);
 t_v3d		plane_normal_at(t_object plane, t_p3d point);
 t_intxs		intersect_plane(t_object *plane, t_ray ray);
 
+// cubes
+
+t_object	*cube(void);
+t_intxs		intersect_cube(t_object *cube, t_ray ray);
 
 // intersection
 
 t_intx		*new_intersection(double t, t_object *obj);
 void		create_intersection(t_list **list, double t, t_object *obj);
-t_intxs		intersect_sphere(t_object *obj, t_ray _ray);
+t_intxs		empty_intersection(void);
+
 
 t_intx		*hit(t_intxs intersections);
 t_ray		transform(t_matrix mx, t_ray _ray);

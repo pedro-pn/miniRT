@@ -6,13 +6,13 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:04:32 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/13 02:59:26 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:56:22 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static double	abs_double(double a)
+double	abs_double(double a)
 {
 	if (a < 0)
 		return (-a);
