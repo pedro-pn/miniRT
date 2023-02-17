@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 23:41:55 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/17 13:51:54 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:01:21 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ void	*render_threads(void *pixel)
 		pthread_mutex_unlock(buffer_mutex());
 		y++;
 	}
+	pthread_mutex_lock(buffer_mutex());
 	print_progress();
+	pthread_mutex_unlock(buffer_mutex());
 	return (NULL);
 }
 
