@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 23:41:55 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/17 11:37:23 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:51:54 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	*render_threads(void *pixel)
 		pthread_mutex_unlock(buffer_mutex());
 		y++;
 	}
+	print_progress();
 	return (NULL);
 }
 
@@ -45,17 +46,17 @@ void	*render_threads(void *pixel)
 void	render(void)
 {
 	int			x;
-	int			*xis;
+	int			*x_ptr;
 	int			i;
 	pthread_t	thread[camera()->hsize];
 
 	x = 0;
+	x_ptr = malloc(camera()->hsize * sizeof(int));
 	pthread_mutex_init(buffer_mutex(), NULL);
 	while (x < camera()->hsize)
 	{
-		xis = malloc(sizeof(int));
-		*xis = x;
-		pthread_create(&thread[x], NULL, &render_threads, (void *) xis);
+		x_ptr[x] = x;
+		pthread_create(&thread[x], NULL, &render_threads, (void *)&x_ptr[x]);
 		x++;
 	}
 	i = 0;
@@ -64,6 +65,6 @@ void	render(void)
 		pthread_join(thread[i], NULL);
 		i++;
 	}
+	pthread_mutex_destroy(buffer_mutex());
+	free(x_ptr);
 }
-
-
