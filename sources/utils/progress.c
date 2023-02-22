@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:48:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/17 13:44:49 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:27:39 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ void	print_progress(void)
 		buffer = malloc(10 * sizeof(char));
 	ft_bzero(buffer, 10);
 	cursor = ft_strcpy_end(buffer, "\r");
-	percentage = ((double)(counter * cam.vsize)) * 100.0 /
+	percentage = ((double)(counter)) * 100.0 /
 		(double)(cam.vsize * cam.hsize);
 	cursor = write_double(percentage, cursor);
 	*cursor++ = '%';
-	if (counter == cam.hsize)
+	if (counter == (cam.hsize * cam.hsize))
 		cursor = ft_strcpy_end(cursor, "\n");
 	ft_putstr_fd(buffer, 1);
-	if (counter == cam.hsize)
+	if (counter == (cam.hsize * cam.vsize))
 		free(buffer);
 	counter++;
 }

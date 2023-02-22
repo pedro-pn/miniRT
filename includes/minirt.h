@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/17 13:44:56 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:29:34 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,15 @@ t_bool		is_shadowed(t_p3d point);
 void		view_transformation(t_view view, t_matrix *result);
 
 void		render(void);
+
+/* THREADS*/
+
+typedef struct s_task
+{
+	int	x;
+	int	y;
+}			t_task;
+
 
 /* CAMERA */
 
