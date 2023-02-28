@@ -11,7 +11,7 @@ CC_LIBS = ${LIBFT} ${MLX}
 CC_INCLUDES = -I libs/libft/include -I includes -I libs/minilibx
 #VPATH :=	${SRCS_PATH} ${SRCS_PATH}/main ${SRCS_PATH}/file
 CC = clang-12
-FLAGS = -Werror -Wextra -Wall -g
+FLAGS = -Werror -Wextra -Wall -O3
 
 # Colors
 GREEN = \33[1;32m
