@@ -14,7 +14,6 @@ This project is a Ray Tracer coded in C using [minilibx](https://github.com/42Pa
 
 ---
 
-#### Work in progress...
 
 ### Implemented:
 - [x] Spheres;
@@ -25,6 +24,7 @@ This project is a Ray Tracer coded in C using [minilibx](https://github.com/42Pa
 - [x] Patterns;
 - [x] Reflection;
 - [x] Refraction;
+- [x] Multi-thread renderization;
 
 ### To implement:
 
@@ -38,6 +38,9 @@ This project is a Ray Tracer coded in C using [minilibx](https://github.com/42Pa
 - [ ] Anti-aliasing;
 - [ ] Texture maps;
 - [ ] Parser scene;
+
+---
+#### Work in progress...
 ---
 
 ### Rendered images
