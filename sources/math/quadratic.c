@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:45:19 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 13:43:07 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/09 13:05:20 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ double	discriminant(double a, double b, double c)
 	return (b * b - 4 * a * c);
 }
 
-t_quad	quadratic(double a, double b, double c)
+t_quad	quadratic(t_quad_param params)
 {
 	t_quad	quad;
 
-	quad.det = discriminant(a, b, c);
+	quad.det = discriminant(params.a, params.b, params.c);
 	if (quad.det < 0)
 		return (quad);
-	quad.root_a = (-b + sqrt(quad.det)) / (2 * a);
-	quad.root_b = (-b - sqrt(quad.det)) / (2 * a);
+	quad.root_a = (-params.b + sqrt(quad.det)) / (2 * params.a);
+	quad.root_b = (-params.b - sqrt(quad.det)) / (2 * params.a);
 	return (quad);
 }

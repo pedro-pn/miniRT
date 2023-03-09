@@ -6,35 +6,40 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:18:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/09 12:18:26 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/09 13:06:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+static t_quad_param	cylinder_params(t_object *cylinder, t_ray ray)
+{
+	t_quad_param	params;
+
+	ray = ray_transf_inverse(cylinder->transform, ray);
+	params.a = pow(ray.direction.x, 2) + pow(ray.direction.z, 2);
+	params.b = 2 * ray.origin.x * ray.direction.x +
+		2 * ray.origin.z * ray.direction.z;
+	params.c = pow(ray.origin.x, 2) + pow(ray.origin.z, 2) - 1;
+	return (params);
+}
+
 t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 {
-	double	a;
-	double	b;
-	double	c;
-	double	disc;
-	t_quad	params;
 	t_intxs	xs;
+	t_quad	quad;
+	t_quad_param params;
 	
 	xs.intersections = NULL;
-	ray = ray_transf_inverse(cylinder->transform, ray);
-	a = pow(ray.direction.x, 2) + pow(ray.direction.z, 2);
-	if (comp(a, 0.0))
+	params = cylinder_params(cylinder, ray);
+	quad = quadratic(params);
+	if (comp(params.a, 0.0))
 		return (empty_intersection());
-	b = 2 * ray.origin.x * ray.direction.x + 2 * ray.origin.z * ray.direction.z;
-	c = pow(ray.origin.x, 2) + pow(ray.origin.z, 2) - 1;
-	disc = discriminant(a, b, c);
-	if (disc < 0)
+	if (quad.det < 0)
 		return (empty_intersection());
-	params = quadratic(a, b, c);
 	xs.count = 2;
-	create_intersection(&xs.intersections, params.root_b, cylinder);
-	create_intersection(&xs.intersections, params.root_a, cylinder);
+	create_intersection(&xs.intersections, quad.root_b, cylinder);
+	create_intersection(&xs.intersections, quad.root_a, cylinder);
 	return (xs);
 }
 

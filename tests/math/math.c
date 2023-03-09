@@ -1,8 +1,8 @@
 #include "../test.h"
 
 
-t_quad	quad;
-double	result;
+t_quad			quad;
+double			result;
 
 void test_setup(void) {
 }
@@ -12,7 +12,7 @@ void test_teardown(void) {
 }
 
 MU_TEST(quadratic_tst) {
-	quad = quadratic(1, 2, -3);
+	quad = quadratic((t_quad_param){1, 2, -3});
 
 	mu_assert_double_eq(16, quad.det);
 	mu_assert_double_eq(1, quad.root_a);
