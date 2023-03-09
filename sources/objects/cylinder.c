@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:18:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/09 10:28:52 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/09 12:18:26 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,24 @@ t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 	double	b;
 	double	c;
 	double	disc;
+	t_quad	params;
+	t_intxs	xs;
 	
-	(void)cylinder;
+	xs.intersections = NULL;
+	ray = ray_transf_inverse(cylinder->transform, ray);
 	a = pow(ray.direction.x, 2) + pow(ray.direction.z, 2);
 	if (comp(a, 0.0))
 		return (empty_intersection());
 	b = 2 * ray.origin.x * ray.direction.x + 2 * ray.origin.z * ray.direction.z;
-	c = pow(ray.origin.x, 2) + pow(ray.origin.z, 2);
+	c = pow(ray.origin.x, 2) + pow(ray.origin.z, 2) - 1;
 	disc = discriminant(a, b, c);
 	if (disc < 0)
 		return (empty_intersection());
-	return ((t_intxs){1, NULL});
+	params = quadratic(a, b, c);
+	xs.count = 2;
+	create_intersection(&xs.intersections, params.root_b, cylinder);
+	create_intersection(&xs.intersections, params.root_a, cylinder);
+	return (xs);
 }
 
 t_object	*cylinder(void)
