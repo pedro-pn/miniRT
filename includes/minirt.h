@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/15 18:44:43 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:12:31 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define SCREEN_HEIGHT 11
 
 # define ITER_MAX 5
-# define THREAD_NUM 10
+# define THREAD_NUM 12
 
 typedef	struct s_data
 {

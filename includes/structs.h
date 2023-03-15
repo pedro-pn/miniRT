@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/07 19:36:02 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:30:36 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ struct s_object
 
 	double		radius;
 	t_rgb		color;
+
+	double		maximum;
+	double		minimum;
 
 	t_matrix	transform;
 
