@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/09 10:27:47 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:44:43 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ t_v3d			cube_normal_at(t_object cube, t_p3d point);
 
 t_object		*cylinder(void);
 t_intxs			intersect_cylinder(t_object *cylinder, t_ray ray);
+t_v3d			cylinder_normal_at(t_object object, t_p3d point);
 
 
 // intersection

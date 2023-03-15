@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:18:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/09 13:06:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:45:11 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 	return (xs);
 }
 
+t_v3d	cylinder_normal_at(t_object object, t_p3d point)
+{
+	(void)object;
+	return (vector(point.x, 0, point.z));
+}
+
 t_object	*cylinder(void)
 {
 	t_object	*_cylinder;
@@ -51,6 +57,6 @@ t_object	*cylinder(void)
 	_cylinder->material = material();
 	mx_identity(&_cylinder->transform);
 	_cylinder->intersect = intersect_cylinder;
-	// _cylinder->normal = cube_normal_at;
+	_cylinder->normal = cylinder_normal_at;
 	return (_cylinder);
 }
