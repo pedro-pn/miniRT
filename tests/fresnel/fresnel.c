@@ -26,8 +26,8 @@ void test_teardown(void) {
 
 MU_TEST(schlick_total_reflection_tst){
 	r = ray(point(0, 0, sqrt(2) / 2), vector(0, 1, 0));
-	create_intersection(&xs.intersections, -sqrt(2) / 2, obj);
-	create_intersection(&xs.intersections, sqrt(2) / 2, obj);
+	create_intersection(&xs, -sqrt(2) / 2, obj);
+	create_intersection(&xs, sqrt(2) / 2, obj);
 	comps = prepare_computations(xs.intersections->next->content, r, xs);
 	reflectance = schlick(comps);
 
@@ -36,8 +36,8 @@ MU_TEST(schlick_total_reflection_tst){
 
 MU_TEST(schlick_perpendicular_tst){
 	r = ray(point(0, 0, 0), vector(0, 1, 0));
-	create_intersection(&xs.intersections, -1, obj);
-	create_intersection(&xs.intersections, 1, obj);
+	create_intersection(&xs, -1, obj);
+	create_intersection(&xs, 1, obj);
 	comps = prepare_computations(xs.intersections->next->content, r, xs);
 	reflectance = schlick(comps);
 
@@ -46,7 +46,7 @@ MU_TEST(schlick_perpendicular_tst){
 
 MU_TEST(schlick_small_angle_tst){
 	r = ray(point(0, 0.99, -2.0), vector(0, 0, 1.0));
-	create_intersection(&xs.intersections, 1.8589, obj);
+	create_intersection(&xs, 1.8589, obj);
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	reflectance = schlick(comps);
 
@@ -66,7 +66,7 @@ MU_TEST(shade_hit_reflective_tst){
 	ball->material.ambient = 0.5;
 	translation(vector(0, -3.5, -0.5), &ball->transform);
 	create_object(ball);
-	create_intersection(&xs.intersections, sqrt(2), _floor);
+	create_intersection(&xs, sqrt(2), _floor);
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	result_color = shade_hit(comps, 5);
 

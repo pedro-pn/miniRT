@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 21:51:07 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/13 11:29:55 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:26:44 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_intxs	intersect_cube(t_object *cube, t_ray ray)
 	t_p3d	max;
 	double	t[2];
 
-	xs.intersections = NULL;
+	xs = empty_intersection();
 	ray = ray_transf_inverse(cube->transform, ray);
 	check_axis(ray.origin.x, ray.direction.x, t);
 	min.x = t[0];
@@ -74,10 +74,9 @@ t_intxs	intersect_cube(t_object *cube, t_ray ray)
 	max.z = t[1];
 	get_cube_t(min, max, t);
 	if (t[0] > t[1])
-		return (empty_intersection());
-	xs.count = 2;
-	create_intersection(&xs.intersections, t[0], cube);
-	create_intersection(&xs.intersections, t[1], cube);
+		return (xs);
+	create_intersection(&xs, t[0], cube);
+	create_intersection(&xs, t[1], cube);
 	return (xs);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/09 13:05:42 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:25:11 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ t_intxs	intersect_sphere(t_object *obj, t_ray _ray)
 	t_intxs			intxs;
 	t_quad			quad;
 
+	intxs = empty_intersection();
 	params = sphere_params(obj, _ray);
 	quad = quadratic(params);
 	if (quad.det < 0)
-		return (empty_intersection());
-	intxs.count = 2;
-	intxs.intersections = NULL;
-	create_intersection(&intxs.intersections, quad.root_b, obj);
-	create_intersection(&intxs.intersections, quad.root_a, obj);
+		return (intxs);
+	create_intersection(&intxs, quad.root_b, obj);
+	create_intersection(&intxs, quad.root_a, obj);
 	return (intxs);
 }
 

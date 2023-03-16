@@ -38,7 +38,7 @@ MU_TEST(reflection_tst) {
 MU_TEST(reflection_vector_tst){
 	obj = plane();
 	r = ray(point(0, 1, -1), vector(0, -sqrt(2)/2, sqrt(2)/2));
-	create_intersection(&xs.intersections, sqrt(2), obj);
+	create_intersection(&xs, sqrt(2), obj);
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	free(obj);
 
@@ -51,7 +51,7 @@ MU_TEST(nonreflective_material_tst){
 	r = ray(point(0, 0, 0), vector(0, 0, 1));
 	obj = w->objects->next->content;
 	obj->material.ambient = 1;
-	create_intersection(&xs.intersections, 1, obj);
+	create_intersection(&xs, 1, obj);
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	result_color = reflected_color(comps, 1);
 
@@ -64,7 +64,7 @@ MU_TEST(reflective_material_tst){
 	translation(vector(0, -1, 0), &obj->transform);
 	create_object(obj);
 	r = ray(point(0, 0, -3), vector(0, -sqrt(2) / 2, sqrt(2) / 2));
-	create_intersection(&xs.intersections, sqrt(2.0), obj);
+	create_intersection(&xs, sqrt(2.0), obj);
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	result_color = reflected_color(comps, 1);
 
@@ -78,7 +78,7 @@ MU_TEST(reflective_material_shade_hit_tst){
 	translation(vector(0, -1, 0), &obj->transform);
 	create_object(obj);
 	r = ray(point(0, 0, -3), vector(0, -sqrt(2) / 2, sqrt(2) / 2));
-	create_intersection(&xs.intersections, sqrt(2.0), obj);
+	create_intersection(&xs, sqrt(2.0), obj);
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	result_color = shade_hit(comps, 1);
 
@@ -124,7 +124,7 @@ MU_TEST(reflection_recursive_depth_tst){
 	translation(vector(0, -1, 0), &obj->transform);
 	create_object(obj);
 	r = ray(point(0, 0, -3), vector(0, -sqrt(2) / 2, sqrt(2) / 2));
-	create_intersection(&xs.intersections, sqrt(2.0), obj);
+	create_intersection(&xs, sqrt(2.0), obj);
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	result_color = reflected_color(comps, 0);
 

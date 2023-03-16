@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:18:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/15 19:58:32 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:25:40 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,18 @@ t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 	t_quad	quad;
 	t_quad_param params;
 	
-	xs.intersections = NULL;
-	xs.count = 0;
+	xs = empty_intersection();
 	ray = ray_transf_inverse(cylinder->transform, ray);
 	params = cylinder_params(ray);
 	quad = quadratic(params);
 	if (comp(params.a, 0.0) == true)
-		return (empty_intersection());
+		return (xs);
 	if (quad.det < 0)
-		return (empty_intersection());
+		return (xs);
 	if (check_valid_intersection(*cylinder, ray, quad.root_b))
-	{
-		create_intersection(&xs.intersections, quad.root_b, cylinder);
-		xs.count += 1;
-	}
+		create_intersection(&xs, quad.root_b, cylinder);
 	if (check_valid_intersection(*cylinder, ray, quad.root_a))
-	{
-		create_intersection(&xs.intersections, quad.root_a, cylinder);
-		xs.count += 1;
-	}
+		create_intersection(&xs, quad.root_a, cylinder);
 	return (xs);
 }
 

@@ -82,16 +82,16 @@ MU_TEST(sphere_behind_ray_tst){
 }
 MU_TEST(hit_all_positive_tst){
 	_sphere = sphere();
-	create_intersection(&xs.intersections, 2, _sphere);
-	create_intersection(&xs.intersections, 1, _sphere);
+	create_intersection(&xs, 2, _sphere);
+	create_intersection(&xs, 1, _sphere);
 
 	inter = hit(xs);
 	mu_check(inter == xs.intersections->next->content);
 }
 MU_TEST(hit_some_negative_tst){
 	_sphere = sphere();
-	create_intersection(&xs.intersections, -1, _sphere);
-	create_intersection(&xs.intersections, 1, _sphere);
+	create_intersection(&xs, -1, _sphere);
+	create_intersection(&xs, 1, _sphere);
 
 	inter = hit(xs);
 	mu_check(inter == xs.intersections->next->content);
@@ -99,18 +99,18 @@ MU_TEST(hit_some_negative_tst){
 
 MU_TEST(hit_all_negative_tst){
 	_sphere = sphere();
-	create_intersection(&xs.intersections, -2, _sphere);
-	create_intersection(&xs.intersections, -1, _sphere);
+	create_intersection(&xs, -2, _sphere);
+	create_intersection(&xs, -1, _sphere);
 
 	inter = hit(xs);
 	mu_check(inter == NULL);
 }
 MU_TEST(hit_all_kind_tst){
 	_sphere = sphere();
-	create_intersection(&xs.intersections, 5, _sphere);
-	create_intersection(&xs.intersections, 7, _sphere);
-	create_intersection(&xs.intersections, -3, _sphere);
-	create_intersection(&xs.intersections, 2, _sphere);
+	create_intersection(&xs, 5, _sphere);
+	create_intersection(&xs, 7, _sphere);
+	create_intersection(&xs, -3, _sphere);
+	create_intersection(&xs, 2, _sphere);
 
 	inter = hit(xs);
 	mu_check(inter == xs.intersections->next->next->next->content);

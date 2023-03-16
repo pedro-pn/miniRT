@@ -111,7 +111,7 @@ MU_TEST(intersect_world_tst){
 
 MU_TEST(precomputing_state_tst){
 	_ray = ray(point(0, 0, -5), vector(0, 0,  1));
-	create_intersection(&xs.intersections, 4.0, _sphere);
+	create_intersection(&xs, 4.0, _sphere);
 	inter = xs.intersections->content;
 	comps = prepare_computations(inter, _ray, xs);
 	
@@ -124,7 +124,7 @@ MU_TEST(precomputing_state_tst){
 
 MU_TEST(hit_outside_tst){
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
-	create_intersection(&xs.intersections, 4.0, _sphere);
+	create_intersection(&xs, 4.0, _sphere);
 	inter = xs.intersections->content;
 	comps = prepare_computations(inter, _ray, xs);
 
@@ -133,7 +133,7 @@ MU_TEST(hit_outside_tst){
 
 MU_TEST(hit_inside_tst){
 	_ray = ray(point(0, 0, 0), vector(0, 0, 1));
-	create_intersection(&xs.intersections, 1.0, _sphere);
+	create_intersection(&xs, 1.0, _sphere);
 	inter = xs.intersections->content;
 	comps = prepare_computations(inter, _ray, xs);
 
@@ -147,7 +147,7 @@ MU_TEST(shading_tst){
 	default_world();
 	_ray = ray(point(0, 0, -5.0), vector(0, 0, 1.0));
 	_object = world()->objects->content;
-	create_intersection(&xs.intersections, 4.0, _object);
+	create_intersection(&xs, 4.0, _object);
 	inter = xs.intersections->content;
 	comps = prepare_computations(inter, _ray, xs);
 	result_color = shade_hit(comps, 0);
@@ -160,7 +160,7 @@ MU_TEST(shading_inside_tst){
 	_ray = ray(point(0, 0, 0), vector(0, 0, 1));
 	point_light(point(0, 0.25, 0), tcolor(1, 1, 1));
 	_object = world()->objects->next->content;
-	create_intersection(&xs.intersections, 0.5, _object);
+	create_intersection(&xs, 0.5, _object);
 	inter = xs.intersections->content;
 	comps = prepare_computations(inter, _ray, xs);
 	result_color = shade_hit(comps, 0);
@@ -177,7 +177,7 @@ MU_TEST(shadow_intersection_tst){
 	translation(vector(0, 0, 10), &_object->transform);
 	create_object(_object);
 	_ray = ray(point(0, 0, 5), vector(0, 0, 1));
-	create_intersection(&xs.intersections, 4.0, _object);
+	create_intersection(&xs, 4.0, _object);
 	inter = xs.intersections->content;
 	comps = prepare_computations(inter, _ray, xs);
 	result_color = shade_hit(comps, 0);
@@ -188,7 +188,7 @@ MU_TEST(shadow_intersection_tst){
 MU_TEST(hit_offset_point){
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
 	translation(vector(0, 0, 1), &_sphere->transform);
-	create_intersection(&xs.intersections, 5.0, _sphere);
+	create_intersection(&xs, 5.0, _sphere);
 	inter = xs.intersections->content;
 	comps = prepare_computations(inter, _ray, xs);
 

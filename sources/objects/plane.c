@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:50:49 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 15:25:34 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:25:22 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ t_intxs	intersect_plane(t_object *plane, t_ray ray)
 	double	t;
 
 	ray = ray_transf_inverse(plane->transform, ray);
-	xs.count = 0;
-	xs.intersections = NULL;
+	xs = empty_intersection();
 	if (comp(ray.direction.y, 0))
 		return (xs);
 	t = -ray.origin.y / ray.direction.y;
-	xs.count = 1;
-	create_intersection(&xs.intersections, t, plane);
+	create_intersection(&xs, t, plane);
 	return (xs);
 }
 

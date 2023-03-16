@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/15 19:12:31 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:18:56 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ t_v3d			cylinder_normal_at(t_object object, t_p3d point);
 // intersection
 
 t_intx			*new_intersection(double t, t_object *obj);
-void			create_intersection(t_list **list, double t, t_object *obj);
+void			create_intersection(t_intxs *xs, double t, t_object *obj);
 t_intxs			empty_intersection(void);
 
 

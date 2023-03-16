@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 12:42:58 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/13 10:34:28 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:25:52 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ t_intx	*new_intersection(double t, t_object *obj)
 	return (inter);
 }
 
-void	create_intersection(t_list **list, double t, t_object *obj)
+void	create_intersection(t_intxs *xs, double t, t_object *obj)
 {
 	t_intx	*inter;
 
+	xs->count++;
 	inter = new_intersection(t, obj);
-	ft_lstadd_back(list, ft_lstnew(inter));
+	ft_lstadd_back(&xs->intersections, ft_lstnew(inter));
 }
 
 t_intxs	empty_intersection(void)

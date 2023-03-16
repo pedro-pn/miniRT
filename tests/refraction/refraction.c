@@ -116,12 +116,12 @@ MU_TEST(finding_refraction_tst){
 	obj_c->material.refractive_index = 2.5;
 	translation(vector(0, 0, 0.25), &obj_c->transform);
 	r = ray(point(0, 0, -4), vector(0, 0, 1));
-	create_intersection(&xs.intersections, 2.0, obj_a);
-	create_intersection(&xs.intersections, 2.75, obj_b);
-	create_intersection(&xs.intersections, 3.25, obj_c);
-	create_intersection(&xs.intersections, 4.75, obj_b);
-	create_intersection(&xs.intersections, 5.25, obj_c);
-	create_intersection(&xs.intersections, 6.0, obj_a);
+	create_intersection(&xs, 2.0, obj_a);
+	create_intersection(&xs, 2.75, obj_b);
+	create_intersection(&xs, 3.25, obj_c);
+	create_intersection(&xs, 4.75, obj_b);
+	create_intersection(&xs, 5.25, obj_c);
+	create_intersection(&xs, 6.0, obj_a);
 	node = xs.intersections;
 	for (int i = 0; i < 6; i++)
 	{
@@ -140,7 +140,7 @@ MU_TEST(under_point_tst){
 	r = ray(point(0, 0, -5), vector(0, 0, 1));
 	obj = glass_sphere();
 	translation(vector(0, 0, 1), &obj->transform);
-	create_intersection(&xs.intersections, 5, obj);
+	create_intersection(&xs, 5, obj);
 	comps = prepare_computations(xs.intersections->content, r, xs);
 
 	mu_check((EPSILON / 2) < comps.under_point.z);
@@ -150,8 +150,8 @@ MU_TEST(under_point_tst){
 MU_TEST(refracted_color_opaque_tst){
 	_sphere = world()->objects->content;
 	r = ray(point(0, 0, -5), vector(0, 0, 1));
-	create_intersection(&xs.intersections, 4, _sphere);
-	create_intersection(&xs.intersections, 6, _sphere);
+	create_intersection(&xs, 4, _sphere);
+	create_intersection(&xs, 6, _sphere);
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	result_color = refracted_color(comps, 5);
 
@@ -163,8 +163,8 @@ MU_TEST(refracted_color_maximum_recursive_tst){
 	_sphere->material.transparency = 1.0;
 	_sphere->material.refractive_index = 1.5;
 	r = ray(point(0, 0, -5), vector(0, 0, 1));
-	create_intersection(&xs.intersections, 4, _sphere);
-	create_intersection(&xs.intersections, 6, _sphere);
+	create_intersection(&xs, 4, _sphere);
+	create_intersection(&xs, 6, _sphere);
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	result_color = refracted_color(comps, 0);
 
@@ -176,8 +176,8 @@ MU_TEST(refracted_color_total_reflection_tst){
 	_sphere->material.transparency = 1.0;
 	_sphere->material.refractive_index = 1.5;
 	r = ray(point(0, 0, sqrt(2)/2), vector(0, 1, 0));
-	create_intersection(&xs.intersections, -sqrt(2)/2, _sphere);
-	create_intersection(&xs.intersections, sqrt(2)/2, _sphere);
+	create_intersection(&xs, -sqrt(2)/2, _sphere);
+	create_intersection(&xs, sqrt(2)/2, _sphere);
 	comps = prepare_computations(xs.intersections->next->content, r, xs);
 	result_color = refracted_color(comps, 5);
 
@@ -192,10 +192,10 @@ MU_TEST(refracted_color_refracted_ray_tst){ // broken test
 	_sphere->material.transparency = 1.0;
 	_sphere->material.refractive_index = 1.5;
 	r = ray(point(0, 0, 0.1), vector(0, 1, 0));
-	create_intersection(&xs.intersections, -0.9899, world()->objects->content);
-	create_intersection(&xs.intersections, -0.4899, _sphere);
-	create_intersection(&xs.intersections, 0.4899, _sphere);
-	create_intersection(&xs.intersections, 0.9899, world()->objects->content);
+	create_intersection(&xs, -0.9899, world()->objects->content);
+	create_intersection(&xs, -0.4899, _sphere);
+	create_intersection(&xs, 0.4899, _sphere);
+	create_intersection(&xs, 0.9899, world()->objects->content);
 	comps = prepare_computations(xs.intersections->next->next->content, r, xs);
 	result_color = refracted_color(comps, 5);
 
@@ -214,7 +214,7 @@ MU_TEST(shade_hit_transparent_tst){
 	translation(vector(0, -3.5, -0.5), &_sphere->transform);
 	create_object(_sphere);
 	r = ray(point(0, 0, -3), vector(0, -sqrt(2)/2, sqrt(2)/2));
-	create_intersection(&xs.intersections, sqrt(2), _floor);
+	create_intersection(&xs, sqrt(2), _floor);
 	comps = prepare_computations(xs.intersections->content, r, xs);
 	result_color = shade_hit(comps, 5);
 
