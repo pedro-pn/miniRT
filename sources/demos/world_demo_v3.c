@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:28:30 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/08 13:38:30 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:09:40 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,22 @@ void	right_sphere(void)
 	create_object(right);
 }
 
+void	right_cylinder(void)
+{
+	t_object	*right;
+	t_matrix	trans;
+	t_matrix	scal;
+
+	right = cylinder();
+	translation(vector(1.5, 0.5, -0.5), &trans);
+	scaling(vector(0.5, 0.5, 0.5), &scal);
+	mx_product(trans, scal, &right->transform);
+	right->material.color = tcolor(0.5, 1, 0.1);
+	right->material.diffuse = 0.7;
+	right->material.specular = 0.3;
+	create_object(right);
+}
+
 void	left_sphere(void)
 {
 	t_object	*left;
@@ -133,7 +149,8 @@ static void create_world_objects(void)
 	middle_sphere();
 	background();
 	//left_sphere();
-	//right_sphere();
+	// right_sphere();
+	right_cylinder();
 	point_light(point(-10, 10, -10), tcolor(1, 1, 1));
 }
 
@@ -141,7 +158,7 @@ static void	create_world_camera(void)
 {
 	t_view	view;
 
-	set_camera(1920, 1080, MY_PI / 3);
+	set_camera(500, 500, MY_PI / 3);
 	view.from = point(0, 1.5, -5);
 	view.to = point(0, 1, 0);
 	view.up = vector(0, 1, 0);
