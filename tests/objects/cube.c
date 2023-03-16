@@ -11,7 +11,6 @@ void test_setup(void) {
 }
 
 void test_teardown(void) {
-	free(_cube);
 }
 
 void	cube_intersect(t_p3d origin, t_v3d direction, double t1, double t2, double count)
@@ -30,6 +29,8 @@ void	cube_intersect(t_p3d origin, t_v3d direction, double t1, double t2, double 
 	}
 
 	mu_assert_double_eq(count, xs.count);
+	free(_cube);
+	ft_lstclear(&xs.intersections, free);
 }
 
 void	cube_normal(t_p3d p, t_v3d expected)
@@ -38,6 +39,7 @@ void	cube_normal(t_p3d p, t_v3d expected)
 	normal = _cube->normal(*_cube, p);
 
 	assert_tuple_eq(expected, normal);
+	free(_cube);
 }
 
 MU_TEST(cube_tst) {
