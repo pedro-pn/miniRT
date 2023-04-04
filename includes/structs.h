@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/07 19:36:02 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:15:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 
 # include "algebra.h"
 # include "my_mlx.h"
+
+/* BUFFER */
+
+typedef struct s_buffer
+{
+	char	*img;
+	int		line_length;
+	int		_width;
+	int		_height;
+}			t_buffer;
 
 /* LIGHT */
 typedef struct s_light
@@ -178,6 +188,7 @@ typedef struct s_camera
 
 	t_matrix	transform;
 	t_mlx_img	img;
+	t_buffer	buffer;
 }			t_camera;
 
 #endif

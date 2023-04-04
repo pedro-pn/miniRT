@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:28:30 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/08 13:38:30 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:30:38 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ static void	create_world_camera(void)
 {
 	t_view	view;
 
-	set_camera(1920, 1080, MY_PI / 3);
+	set_camera(10, 10, MY_PI / 3);
 	view.from = point(0, 1.5, -5);
 	view.to = point(0, 1, 0);
 	view.up = vector(0, 1, 0);
@@ -154,5 +154,6 @@ void	world_demo_v3(void)
 	create_world_camera();
 	render();
 	ft_lstclear(&world()->objects, free);
+	buffer_to_mlx_img(buffer(), image());
 	mlx_save_img_to_ppm(image(), "world_demo_refs2.ppm");
 }

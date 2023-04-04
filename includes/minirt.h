@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/13 13:30:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:30:33 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define ERRFILE 3
 # define SPACES " \t"
 
-# define SCREEN_WIDTH 11
-# define SCREEN_HEIGHT 11
+# define SCREEN_WIDTH 10
+# define SCREEN_HEIGHT 10
 
 # define INTER_MAX 
 
@@ -60,6 +60,14 @@ typedef struct s_scene_val
 	int	light;
 }			t_scene_val;
 
+/* BUFFER */
+
+void		start_buffer(void);
+void		draw_pixel(t_buffer *buffer, int x, int y, int color);
+void		draw_pixel_rgb(t_buffer *buffer, int x, int y, t_rgb color_rgb);
+int			get_pixel_from_buffer(t_buffer *buffer, int x, int y);
+void		buffer_to_mlx_img(t_buffer *buffer, t_mlx_img *img);
+
 /* control */
 
 t_data		*data(void);
@@ -67,6 +75,7 @@ t_light		*light(void);
 t_world		*world(void);
 t_list		*objects(void);
 t_camera	*camera(void);
+t_buffer	*buffer(void);
 
 /* args.c file */
 
