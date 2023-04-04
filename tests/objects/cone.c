@@ -29,6 +29,7 @@ void	intersecting_cone(t_object *cone, t_p3d point, t_v3d dir, double t0, double
 	
 	inter = xs.intersections->next->content;
 	mu_assert_double_eq(t1, inter->t);
+	ft_lstclear(&xs.intersections, free);
 }
 
 MU_TEST(intersect_cone_tst) {
@@ -47,6 +48,7 @@ MU_TEST(parallel_halves_intersect) {
 	
 	inter = xs.intersections->content;
 	mu_assert_double_eq(0.35355, inter->t);
+	ft_lstclear(&xs.intersections, free);
 }
 
 void	intersect_end_caps(t_object *cone, t_p3d point, t_v3d dir, int count) {
@@ -57,6 +59,7 @@ void	intersect_end_caps(t_object *cone, t_p3d point, t_v3d dir, int count) {
 	xs = cone->intersect(cone, r);
 
 	mu_assert_int_eq(count, xs.count);
+	ft_lstclear(&xs.intersections, free);
 }
 
 MU_TEST(intersect_end_caps_tst) {

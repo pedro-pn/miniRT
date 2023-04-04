@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:46:00 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/04 16:58:15 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/04 19:47:12 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_bool	check_cap(t_ray ray, double t)
 	return (pow(x, 2) + pow(z, 2) <= 1);
 }
 
-void	intersect_caps(t_object *cylinder, t_ray ray, t_intxs *xs)
+void	intersect_caps_cy(t_object *cylinder, t_ray ray, t_intxs *xs)
 {
 	double	t;
 

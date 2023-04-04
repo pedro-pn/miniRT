@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 19:44:47 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/04 19:47:21 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ t_v3d			cube_normal_at(t_object cube, t_p3d point);
 t_object		*cylinder(void);
 t_intxs			intersect_cylinder(t_object *cylinder, t_ray ray);
 t_v3d			cylinder_normal_at(t_object object, t_p3d point);
-void			intersect_caps(t_object *cylinder, t_ray ray, t_intxs *xs);
+void			intersect_caps_cy(t_object *cylinder, t_ray ray, t_intxs *xs);
 
 // cones
 
