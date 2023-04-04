@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:18:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/16 18:25:40 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:07:11 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 	ray = ray_transf_inverse(cylinder->transform, ray);
 	params = cylinder_params(ray);
 	quad = quadratic(params);
+	intersect_caps(cylinder, ray, &xs);
 	if (comp(params.a, 0.0) == true)
 		return (xs);
 	if (quad.det < 0)
@@ -56,7 +57,13 @@ t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 
 t_v3d	cylinder_normal_at(t_object object, t_p3d point)
 {
-	(void)object;
+	double	dist;
+
+	dist = pow(point.x, 2) + pow(point.z, 2);
+	if (dist < 1 && point.y >= object.maximum - EPSILON)
+		return (vector(0, 1, 0));
+	else if (dist < 1 && point.y <= object.minimum + EPSILON)
+		return (vector(0, -1, 0));
 	return (vector(point.x, 0, point.z));
 }
 
@@ -71,5 +78,6 @@ t_object	*cylinder(void)
 	_cylinder->normal = cylinder_normal_at;
 	_cylinder->maximum = __DBL_MAX__;
 	_cylinder->minimum = -__DBL_MAX__;
+	_cylinder->closed = false;
 	return (_cylinder);
 }

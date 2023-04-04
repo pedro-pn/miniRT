@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_demo_v3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:28:30 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/15 19:09:40 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:21:23 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,20 @@ void	right_cylinder(void)
 	t_object	*right;
 	t_matrix	trans;
 	t_matrix	scal;
+	t_matrix	rot_x;
+	t_matrix	mx_1;
 
 	right = cylinder();
+	right->material.reflective = 1.0;
+	right->closed = true;
+	right->maximum = 2;
+	right->minimum = -2;
+	rotation_x(-MY_PI / 4, &rot_x);
 	translation(vector(1.5, 0.5, -0.5), &trans);
 	scaling(vector(0.5, 0.5, 0.5), &scal);
-	mx_product(trans, scal, &right->transform);
-	right->material.color = tcolor(0.5, 1, 0.1);
+	mx_product(trans, rot_x, &mx_1);
+	mx_product(mx_1, scal, &right->transform);
+	right->material.color = tcolor(0.5, 0.5, 0.5);
 	right->material.diffuse = 0.7;
 	right->material.specular = 0.3;
 	create_object(right);

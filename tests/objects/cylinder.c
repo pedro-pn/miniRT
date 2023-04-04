@@ -110,6 +110,52 @@ MU_TEST(truncated_cylinder_tst) {
 	test_truncated_cylinder(_cylinder,point(0, 1.5, -2), vector(0, 0, 1), 2);
 }
 
+MU_TEST(closed_cylinder_tst) {
+	_cylinder = cylinder();
+	
+	mu_check(_cylinder->closed == false);
+}
+
+void	intersect_closed_cylinder(t_object *cy, t_p3d point, t_v3d vector, int count) {
+	cy->maximum = 2;
+	cy->minimum = 1;
+	cy->closed = true;
+	r = ray(point, normalize(vector));
+	xs = cy->intersect(cy, r);
+
+	mu_assert_int_eq(count, xs.count);
+	ft_lstclear(&xs.intersections, free);
+}
+
+MU_TEST(intersect_closed_tst) {
+	_cylinder = cylinder();
+	intersect_closed_cylinder(_cylinder, point(0, 3, 0), vector(0, -1, 0), 2);
+	intersect_closed_cylinder(_cylinder, point(0, 3, -2), vector(0, -1, 2), 2);
+	intersect_closed_cylinder(_cylinder, point(0, 4, -2), vector(0, -1, 1), 2);
+	intersect_closed_cylinder(_cylinder, point(0, 0, -2), vector(0, 1, 2), 2);
+	intersect_closed_cylinder(_cylinder, point(0, -1, -2), vector(0, 1, 1), 2);
+}
+
+void	normal_end_caps(t_object *cy, t_p3d point, t_v3d expected)
+{
+	cy->maximum = 2;
+	cy->minimum = 1;
+	cy->closed = true;
+	normal = cy->normal(*cy, point);
+
+	assert_tuple_eq(expected, normal);
+}
+
+MU_TEST(normal_end_caps_tst) {
+	_cylinder = cylinder();
+	normal_end_caps(_cylinder, point(0, 1, 0), vector(0, -1, 0));
+	normal_end_caps(_cylinder, point(0.5, 1, 0), vector(0, -1, 0));
+	normal_end_caps(_cylinder, point(0, 1, 0.5), vector(0, -1, 0));
+	normal_end_caps(_cylinder, point(0, 2, 0), vector(0, 1, 0));
+	normal_end_caps(_cylinder, point(0.5, 2, 0), vector(0, 1, 0));
+	normal_end_caps(_cylinder, point(0, 2, 0.5), vector(0, 1, 0));
+}
+
 MU_TEST_SUITE(cylinder_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -118,7 +164,9 @@ MU_TEST_SUITE(cylinder_suite) {
 	MU_RUN_TEST(cylinder_normal_tst);
 	MU_RUN_TEST(cylinder_limits_tst);
 	MU_RUN_TEST(truncated_cylinder_tst);
-
+	MU_RUN_TEST(closed_cylinder_tst);
+	MU_RUN_TEST(intersect_closed_tst);
+	MU_RUN_TEST(normal_end_caps_tst);
 }
 
 int main(int argc, char *argv[]) {
