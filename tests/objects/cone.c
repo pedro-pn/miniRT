@@ -69,12 +69,27 @@ MU_TEST(intersect_end_caps_tst) {
 	intersect_end_caps(_cone, point(0, 0, -0.25), vector(0, 1, 0), 4);
 }
 
+void	cone_normal(t_object *cone, t_p3d point, t_v3d expected) {
+	normal = cone->normal(*cone, point);
+	
+	assert_tuple_eq(expected, normal);
+}
+
+MU_TEST(cone_normal_tst) {
+	_cone = cone();
+	
+	cone_normal(_cone, point(0, 0, 0), vector(0, 0, 0));
+	cone_normal(_cone, point(1, 1, 1), vector(1, -sqrt(2), 1));
+	cone_normal(_cone, point(-1, -1, 0), vector(-1, 1, 0));
+}
+
 MU_TEST_SUITE(cone_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(intersect_cone_tst);
 	MU_RUN_TEST(parallel_halves_intersect);
 	MU_RUN_TEST(intersect_end_caps_tst);
+	MU_RUN_TEST(cone_normal_tst);
 }
 
 int main(int argc, char *argv[]) {

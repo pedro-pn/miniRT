@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:18:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 19:47:32 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/04 19:59:11 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 	ray = ray_transf_inverse(cylinder->transform, ray);
 	params = cylinder_params(ray);
 	quad = quadratic(params);
-	intersect_caps_cy(cylinder, ray, &xs);
+	intersect_cy_caps(cylinder, ray, &xs);
 	if (comp(params.a, 0.0) == true)
 		return (xs);
 	if (quad.det < 0)

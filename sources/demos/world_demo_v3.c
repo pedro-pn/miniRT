@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:28:30 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 17:21:23 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/04 20:35:40 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,29 @@ void	left_sphere(void)
 	create_object(left);
 }
 
+void	left_cone(void)
+{
+	t_object	*left;
+	t_matrix	trans;
+	t_matrix	scal;
+
+	left = cone();
+	left->material.transparency = 0.8;
+	left->material.shininess = 200.0;
+	left->material.refractive_index = 1.52;
+	left->material.reflective = 0.5;
+	left->closed = true;
+	left->maximum = 0;
+	left->minimum = -1;
+	translation(vector(-1.25, 1, -1.75), &trans);
+	scaling(vector(0.5, 0.5, 0.5), &scal);
+	mx_product(trans, scal, &left->transform);
+	left->material.color = tcolor(1, 1, 1);
+	left->material.diffuse = 0.7;
+	left->material.specular = 0.3;
+	create_object(left);
+}
+
 static void create_world_objects(void)
 {
 	set_floor();
@@ -156,6 +179,7 @@ static void create_world_objects(void)
 //	right_wall();
 	middle_sphere();
 	background();
+	left_cone();
 	//left_sphere();
 	// right_sphere();
 	right_cylinder();
