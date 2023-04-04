@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 18:44:15 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/04 19:44:47 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ t_intxs			intersect_cone(t_object *cone, t_ray ray);
 t_intx			*new_intersection(double t, t_object *obj);
 void			create_intersection(t_intxs *xs, double t, t_object *obj);
 t_intxs			empty_intersection(void);
+t_bool			check_valid_intersection(t_object cy, t_ray ray, double t);
 
 
 t_intx			*hit(t_intxs intersections);

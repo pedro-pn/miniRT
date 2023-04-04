@@ -49,11 +49,29 @@ MU_TEST(parallel_halves_intersect) {
 	mu_assert_double_eq(0.35355, inter->t);
 }
 
+void	intersect_end_caps(t_object *cone, t_p3d point, t_v3d dir, int count) {
+	cone->minimum = -0.5;
+	cone->maximum = 0.5;
+	cone->closed = true;
+	r = ray(point, normalize(dir));
+	xs = cone->intersect(cone, r);
+
+	mu_assert_int_eq(count, xs.count);
+}
+
+MU_TEST(intersect_end_caps_tst) {
+	_cone = cone();
+	intersect_end_caps(_cone, point(0, 0, -5), vector(0, 1, 0), 0);
+	intersect_end_caps(_cone, point(0, 0, -0.25), vector(0, 1, 1), 2);
+	intersect_end_caps(_cone, point(0, 0, -0.25), vector(0, 1, 0), 4);
+}
+
 MU_TEST_SUITE(cone_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(intersect_cone_tst);
 	MU_RUN_TEST(parallel_halves_intersect);
+	MU_RUN_TEST(intersect_end_caps_tst);
 }
 
 int main(int argc, char *argv[]) {

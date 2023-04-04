@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 18:31:57 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/04 18:46:22 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/04 19:45:19 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,29 @@ static t_quad_param	cone_params(t_ray ray)
 	return (params);
 }
 
-static t_bool	check_valid_intersection(t_object cy, t_ray ray, double t)
+static t_bool	check_cap(t_ray ray, double t, double y)
 {
-	double	y;
+	double	x;
+	double	z;
 
-	y = ray.origin.y + t * ray.direction.y;
-	if (cy.minimum < y && y < cy.maximum)
-		return (true);
-	return (false);
-}	
+	x = ray.origin.x + t * ray.direction.x;
+	z = ray.origin.z + t * ray.direction.z;
+	return (pow(x, 2) + pow(z, 2) <= pow(y, 2));
+}
+
+void	intersect_caps(t_object *cone, t_ray ray, t_intxs *xs)
+{
+	double	t;
+
+	if (cone->closed == false || comp(ray.direction.y, 0))
+		return;
+	t = (cone->minimum - ray.origin.y) / ray.direction.y;
+	if (check_cap(ray, t, cone->minimum))
+		create_intersection(xs, t, cone);
+	t = (cone->maximum - ray.origin.y) / ray.direction.y;
+	if (check_cap(ray, t, cone->maximum))
+		create_intersection(xs, t, cone);
+}
 
 t_intxs	intersect_cone(t_object *cone, t_ray ray)
 {
@@ -46,7 +60,7 @@ t_intxs	intersect_cone(t_object *cone, t_ray ray)
 	ray = ray_transf_inverse(cone->transform, ray);
 	params = cone_params(ray);
 	quad = quadratic(params);
-	// intersect_caps(cone, ray, &xs);
+	intersect_caps(cone, ray, &xs);
 	if (comp(params.a, 0.0) && comp(params.b, 0.0))
 		return (xs);
 	if (quad.det < 0)

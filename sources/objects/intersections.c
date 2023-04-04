@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 12:42:58 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/16 18:25:52 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:54:11 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,14 @@ t_intxs	empty_intersection(void)
 	xs.intersections = NULL;
 	return (xs);
 }
+
+// for cylinder and cones intersections
+t_bool	check_valid_intersection(t_object cy, t_ray ray, double t)
+{
+	double	y;
+
+	y = ray.origin.y + t * ray.direction.y;
+	if (cy.minimum < y && y < cy.maximum)
+		return (true);
+	return (false);
+}	
