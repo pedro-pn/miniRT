@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 00:30:33 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:35:43 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_scene_val
 
 /* BUFFER */
 
-void		start_buffer(void);
+void		buffer_init(void);
 void		draw_pixel(t_buffer *buffer, int x, int y, int color);
 void		draw_pixel_rgb(t_buffer *buffer, int x, int y, t_rgb color_rgb);
 int			get_pixel_from_buffer(t_buffer *buffer, int x, int y);

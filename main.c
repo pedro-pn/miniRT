@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:24:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 00:15:00 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:35:56 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 void	initialize_minirt(void)
 {
 	start_mlx();
-	start_buffer();
 	// img_init();
-	
 }
 
 void	run(void)

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:21:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 10:59:37 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:36:08 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	set_camera(int hsize, int vsize, double field_of_view)
 	cam->pixel_size = cam->half_width * 2.0 / cam->hsize;
 	mx_identity(&cam->transform);
 	img_init();
+	buffer_init();
 }

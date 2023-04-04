@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:45:34 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 00:26:42 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:37:04 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	start_mlx(void)
 	// 		"minirt");
 }
 
-void	start_buffer(void)
+void	buffer_init(void)
 {
 	t_buffer	*_buffer;
 
 	_buffer = buffer();
-	_buffer->_height = SCREEN_HEIGHT;
-	_buffer->_width = SCREEN_WIDTH;
+	_buffer->_height = camera()->vsize;
+	_buffer->_width = camera()->hsize;
 	_buffer->line_length = _buffer->_width * sizeof(int);
 	_buffer->img = ft_calloc(_buffer->_height * _buffer->_width, sizeof(int));
 }
