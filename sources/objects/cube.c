@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 21:51:07 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/16 18:26:44 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:46:21 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static	void	check_axis(double origin, double direction, double *t)
 
 static void	get_cube_t(t_p3d min, t_p3d max, double *t)
 {
-	t_tuple min_tuple;
+	t_tuple	min_tuple;
 	t_tuple	max_tuple;
 	int		i;
 
@@ -90,7 +90,7 @@ t_v3d	cube_normal_at(t_object cube, t_p3d point)
 	tuple.point = point;
 	maxc = -__DBL_MAX__;
 	i = 0;
-	while(i < 3)
+	while (i < 3)
 	{
 		if (abs_double(tuple.points[i]) > maxc)
 			maxc = abs_double(tuple.points[i]);

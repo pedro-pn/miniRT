@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 12:42:58 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 19:57:39 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/04 20:47:32 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,4 @@ t_bool	check_valid_intersection(t_object object, t_ray ray, double t)
 	if (object.minimum < y && y < object.maximum)
 		return (true);
 	return (false);
-}	
+}

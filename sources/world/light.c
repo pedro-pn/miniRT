@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:43:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/30 21:41:58 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:50:30 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_c3d	lighting(t_object obj, t_light light, t_lgt_param params)
 	lgt.params = params;
 	lgt.ambient_color = scalar_times(obj.material.ambient, lgt.effective_color);
 	if (params.in_shadow == true)
-		return(lgt.ambient_color);
+		return (lgt.ambient_color);
 	get_diff_spec_color(obj.material, light, &lgt);
 	result = add(lgt.ambient_color, lgt.diffuse_color);
 	result = add(result, lgt.specular_color);

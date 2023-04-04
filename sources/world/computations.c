@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   computations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:20:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/07 18:40:28 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:50:23 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static double	get_refractive_index(t_list *containers)
 	if (containers == NULL)
 		return (1.0);
 	obj = ft_lstlast(containers)->content;
-	return obj->material.refractive_index;
-	
+	return (obj->material.refractive_index);
 }
 
 static void	compute_refractive_index(t_comp *comps, t_intx *intx, t_intxs xs)

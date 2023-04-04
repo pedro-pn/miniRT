@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:58:28 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/04 19:58:54 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/04 20:45:50 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	intersect_cone_caps(t_object *cone, t_ray ray, t_intxs *xs)
 	double	t;
 
 	if (cone->closed == false || comp(ray.direction.y, 0))
-		return;
+		return ;
 	t = (cone->minimum - ray.origin.y) / ray.direction.y;
 	if (check_cap(ray, t, cone->minimum))
 		create_intersection(xs, t, cone);

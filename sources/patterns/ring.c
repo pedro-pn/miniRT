@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ring.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 21:45:21 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/30 21:50:57 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:47:54 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ t_c3d	ring_at(t_patt patt, t_p3d point)
 
 	section = sqrt(pow(point.x, 2) + pow(point.z, 2));
 	if ((int)floor(section) % 2 == 0)
-		return(patt.a);
+		return (patt.a);
 	return (patt.b);
 }

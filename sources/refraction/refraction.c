@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refraction.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:47:58 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/08 11:46:35 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:48:39 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ t_c3d	refracted_color(t_comp comps, int remaining)
 
 	snell_law(&comps);
 	if (comps.object->material.transparency == 0 || remaining == 0
-			|| comps.sin2_t > 1)
+		|| comps.sin2_t > 1)
 		return (black());
 	direction = sub(scalar_times(comps.n_ratio * comps.cos_i - comps.cos_t,
-		comps.normalv), scalar_times(comps.n_ratio, comps.eyev));
+				comps.normalv), scalar_times(comps.n_ratio, comps.eyev));
 	refract_ray = ray(comps.under_point, direction);
 	result = scalar_times(comps.object->material.transparency,
-		color_at(refract_ray, remaining - 1));
+			color_at(refract_ray, remaining - 1));
 	return (result);
 }

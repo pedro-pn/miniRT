@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 21:44:26 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 13:53:35 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:47:37 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int object_count(void)
+int	object_count(void)
 {
 	static int	id = 0;
 

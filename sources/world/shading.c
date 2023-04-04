@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:55:05 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/08 12:29:57 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:50:42 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_c3d	sum_ref_colors(t_comp comps, int remaining)
 	{
 		reflectance = schlick(comps);
 		return (add(scalar_times(reflectance, reflected),
-			scalar_times(1 - reflectance, refracted)));
+				scalar_times(1 - reflectance, refracted)));
 	}
 	return (add(reflected, refracted));
 }

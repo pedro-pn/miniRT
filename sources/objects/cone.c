@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 18:31:57 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/04 20:13:51 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/04 20:46:40 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ static t_quad_param	cone_params(t_ray ray)
 	params.b = 2 * ray.origin.x * ray.direction.x
 		- 2 * ray.origin.y * ray.direction.y
 		+ 2 * ray.origin.z * ray.direction.z;
-	params.c = pow(ray.origin.x, 2)  - pow (ray.origin.y, 2)
+	params.c = pow(ray.origin.x, 2) - pow (ray.origin.y, 2)
 		+ pow(ray.origin.z, 2);
 	return (params);
 }
 
 t_intxs	intersect_cone(t_object *cone, t_ray ray)
 {
-	t_intxs	xs;
-	t_quad	quad;
-	t_quad_param params;
-	
+	t_intxs			xs;
+	t_quad			quad;
+	t_quad_param	params;
+
 	xs = empty_intersection();
 	ray = ray_transf_inverse(cone->transform, ray);
 	params = cone_params(ray);
@@ -42,7 +42,7 @@ t_intxs	intersect_cone(t_object *cone, t_ray ray)
 	if (quad.det < 0)
 		return (xs);
 	if (comp(params.a, 0.0))
-		create_intersection(&xs, -params.c/(2 * params.b), cone);
+		create_intersection(&xs, -params.c / (2 * params.b), cone);
 	if (check_valid_intersection(*cone, ray, quad.root_b))
 		create_intersection(&xs, quad.root_b, cone);
 	if (check_valid_intersection(*cone, ray, quad.root_a))
@@ -58,7 +58,8 @@ t_v3d	cone_normal_at(t_object object, t_p3d point)
 	dist = pow(point.x, 2) + pow(point.z, 2);
 	if (dist < pow(object.maximum, 2) && point.y >= object.maximum - EPSILON)
 		return (vector(0, 1, 0));
-	else if (dist < pow(object.minimum, 2) && point.y <= object.minimum + EPSILON)
+	else if (dist < pow(object.minimum, 2)
+		&& point.y <= object.minimum + EPSILON)
 		return (vector(0, -1, 0));
 	y = sqrt(pow(point.x, 2) + pow(point.z, 2));
 	if (point.y > 0)

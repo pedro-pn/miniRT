@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:18:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 19:59:11 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/04 20:47:17 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ static t_quad_param	cylinder_params(t_ray ray)
 	t_quad_param	params;
 
 	params.a = pow(ray.direction.x, 2) + pow(ray.direction.z, 2);
-	params.b = 2 * ray.origin.x * ray.direction.x +
-		2 * ray.origin.z * ray.direction.z;
+	params.b = 2 * ray.origin.x * ray.direction.x
+		+ 2 * ray.origin.z * ray.direction.z;
 	params.c = pow(ray.origin.x, 2) + pow(ray.origin.z, 2) - 1;
 	return (params);
 }
 
 t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 {
-	t_intxs	xs;
-	t_quad	quad;
-	t_quad_param params;
-	
+	t_intxs			xs;
+	t_quad			quad;
+	t_quad_param	params;
+
 	xs = empty_intersection();
 	ray = ray_transf_inverse(cylinder->transform, ray);
 	params = cylinder_params(ray);

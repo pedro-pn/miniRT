@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:46:00 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/04 19:59:11 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/04 20:47:23 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	intersect_cy_caps(t_object *cylinder, t_ray ray, t_intxs *xs)
 	double	t;
 
 	if (cylinder->closed == false || comp(ray.direction.y, 0))
-		return;
+		return ;
 	t = (cylinder->minimum - ray.origin.y) / ray.direction.y;
 	if (check_cap(ray, t))
 		create_intersection(xs, t, cylinder);

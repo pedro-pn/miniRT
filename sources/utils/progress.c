@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   progress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:48:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/22 13:27:39 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:50:03 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static char *write_int(int n, char *dest)
+static char	*write_int(int n, char *dest)
 {
 	char	num;
 	char	num_str[2];
@@ -37,7 +37,7 @@ static char	*write_double(double n, char *buffer)
 	fpart = n - (double) intpart;
 	if (fpart < 0)
 		fpart *= -1.0;
-	fi_part = (int) (fpart * (int)pow(10, 1));
+	fi_part = (int)(fpart *(int) pow(10, 1));
 	cursor = write_int(intpart, buffer);
 	cursor = ft_strcpy_end(cursor, ".");
 	cursor = write_int(fi_part, cursor);
@@ -51,14 +51,14 @@ void	print_progress(void)
 	char			*cursor;
 	double			percentage;
 	static int		counter = 1;
-	
+
 	cam = *camera();
 	if (buffer == NULL)
 		buffer = malloc(10 * sizeof(char));
 	ft_bzero(buffer, 10);
 	cursor = ft_strcpy_end(buffer, "\r");
-	percentage = ((double)(counter)) * 100.0 /
-		(double)(cam.vsize * cam.hsize);
+	percentage = ((double)(counter)) * 100.0
+		/ (double)(cam.vsize * cam.hsize);
 	cursor = write_double(percentage, cursor);
 	*cursor++ = '%';
 	if (counter == (cam.hsize * cam.hsize))

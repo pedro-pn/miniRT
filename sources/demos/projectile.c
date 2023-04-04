@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   projectile.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 20:23:34 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/25 13:42:08 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:44:44 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	projectile_demo(void)
 		proj = tick(env, proj);
 		mlx_draw_pixel_rgb(image(), (int) proj.position.x,
 			(int)(image()->_height - proj.position.y),
-				(t_rgb){255, 255, 255});
+			(t_rgb){255, 255, 255});
 	}
 	mlx_save_img_to_ppm(image(), "projectile.ppm");
 }

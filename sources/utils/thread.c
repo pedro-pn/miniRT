@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:30:51 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/22 15:54:22 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:49:38 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	join_threads(pthread_t *threads)
 	int	i;
 
 	i = 0;
-	while(i < THREAD_NUM)
+	while (i < THREAD_NUM)
 	{
 		pthread_join(threads[i], NULL);
 		i++;
