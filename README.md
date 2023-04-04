@@ -25,10 +25,11 @@ This project is a Ray Tracer coded in C using [minilibx](https://github.com/42Pa
 - [x] Reflection;
 - [x] Refraction;
 - [x] Multi-thread renderization;
+- [X] Cylinders;
+- [X] Cones;
 
 ### To implement:
 
-- [ ] Cylinders;
 - [ ] Multiple lights;
 - [ ] Groups;
 - [ ] Triangles;
