@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 19:59:16 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/06 22:07:01 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,12 @@ t_bool			check_valid_intersection(t_object cy, t_ray ray, double t);
 
 t_intx			*hit(t_intxs intersections);
 t_ray			transform(t_matrix mx, t_ray _ray);
+
+/* GROUP */
+
+t_group			*group(void);
+void			add_child(t_group *group, t_object *object);
+void			free_group(t_group *group);
 
 /* LIGHT */
 
