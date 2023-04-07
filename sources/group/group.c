@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 21:09:25 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/06 22:17:41 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/06 22:55:41 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_group	*group(void)
 
 	g = ft_calloc(1, sizeof(*g));
 	g->type = GROUP;
+	g->intersect = intersect_group;
 	mx_identity(&g->transform);
 	return (g);
 }

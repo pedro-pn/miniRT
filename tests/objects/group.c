@@ -6,18 +6,26 @@ t_group		*g3;
 t_group		*g4;
 t_group		*g5;
 t_group		*g6;
+t_object	*s;
+t_object	*s2;
+t_object	*s3;
 t_matrix	id;
 t_object	*s;
 t_object	*child;
 t_group		*parent;
+t_intx		*inter;
+t_intxs		xs;
+t_ray		r;
 
 void test_setup(void) {
 	g = group();
+	xs.intersections = NULL;
 }
 
 void test_teardown(void) {
 	/* Nothing */
 	free_group(g);
+	ft_lstclear(&xs.intersections, free);
 }
 
 MU_TEST(create_group_tst) {
@@ -64,6 +72,52 @@ MU_TEST(group_tree_free_tst) {
 	add_child(g, sphere());
 }
 
+MU_TEST(ray_intersecting_empty_group_tst) {
+	r = ray(point(0, 0, 0), vector(0, 0, 1));
+	xs = g->intersect(g, r);
+	
+	mu_assert_int_eq(xs.count, 0);
+	mu_check(xs.intersections == NULL);
+}
+
+MU_TEST(ray_intersecting_nonempty_group_tst) {
+	s = sphere();
+	s2 = sphere();
+	translation(vector(0, 0, -3), &s2->transform);
+	s3 = sphere();
+	translation(vector(5, 0, 0), &s3->transform);
+	add_child(g, s);
+	add_child(g, s2);
+	add_child(g, s3);
+	r = ray(point(0, 0, -5), vector(0, 0, 1));
+	xs = g->intersect(g, r);
+
+	mu_assert_int_eq(4, xs.count);
+
+	inter = xs.intersections->content;
+	mu_check(inter->object == s2);
+
+	inter = xs.intersections->next->content;
+	mu_check(inter->object == s2);
+
+	inter = xs.intersections->next->next->content;
+	mu_check(inter->object == s);
+
+	inter = xs.intersections->next->next->next->content;
+	mu_check(inter->object == s);
+}
+
+MU_TEST(interscting_transformed_group_tst) {
+	scaling(vector(2, 2, 2), &g->transform);
+	s = sphere();
+	translation(vector(5, 0, 0), &s->transform);
+	add_child(g, s);
+	r = ray(point(10, 0, -10), vector(0, 0, 1));
+	xs = intersect_group(g, r);
+	
+	mu_assert_int_eq(2, xs.count);
+}
+
 MU_TEST_SUITE(group_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -71,6 +125,9 @@ MU_TEST_SUITE(group_suite) {
 	MU_RUN_TEST(parent_attribute_tst);
 	MU_RUN_TEST(add_child_to_group_tst);
 	MU_RUN_TEST(group_tree_free_tst);
+	MU_RUN_TEST(ray_intersecting_empty_group_tst);
+	MU_RUN_TEST(ray_intersecting_nonempty_group_tst);
+	MU_RUN_TEST(interscting_transformed_group_tst);
 }
 
 int main(int argc, char *argv[]) {
