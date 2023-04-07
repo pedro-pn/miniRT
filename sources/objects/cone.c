@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 18:31:57 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/04 20:46:40 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/06 21:04:23 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_object	*cone(void)
 	t_object	*_cone;
 
 	_cone = ft_calloc(1, sizeof(*_cone));
+	_cone->type = CONE;
 	_cone->material = material();
 	mx_identity(&_cone->transform);
 	_cone->intersect = intersect_cone;

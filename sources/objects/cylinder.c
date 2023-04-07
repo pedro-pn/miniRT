@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:18:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 20:47:17 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/06 21:04:00 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_object	*cylinder(void)
 	t_object	*_cylinder;
 
 	_cylinder = ft_calloc(1, sizeof(*_cylinder));
+	_cylinder->type = CYLINDER;
 	_cylinder->material = material();
 	mx_identity(&_cylinder->transform);
 	_cylinder->intersect = intersect_cylinder;

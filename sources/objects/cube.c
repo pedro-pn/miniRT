@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 21:51:07 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 20:46:21 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/06 21:04:40 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ t_object	*cube(void)
 	t_object	*_cube;
 
 	_cube = ft_calloc(1, sizeof(*_cube));
+	_cube->type = CUBE;
 	_cube->material = material();
 	mx_identity(&_cube->transform);
 	_cube->intersect = intersect_cube;

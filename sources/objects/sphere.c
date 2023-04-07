@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/16 18:25:11 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/06 21:03:43 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_object	*glass_sphere(void)
 	t_object	*s;
 
 	s = ft_calloc(1, sizeof(*s));
+	s->type = SPHERE;
 	s->origin = point(0, 0, 0);
 	s->radius = 1.0;
 	mx_identity(&s->transform);

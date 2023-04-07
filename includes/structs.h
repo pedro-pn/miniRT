@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 16:29:30 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/06 21:04:37 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,16 @@ typedef enum e_objs
 	COLOR,
 	SPHERE,
 	PLANE,
+	CUBE,
 	CYLINDER,
-
+	CONE,
+	GROUP,
+	OBJECT,
 }		t_objs;
 
 typedef struct s_object	t_object;
 typedef struct s_intxs	t_intxs;
+typedef struct s_object	t_group;
 
 typedef t_intxs	(*t_intersect)(t_object *, t_ray);
 typedef t_v3d	(*t_normal_at)(t_object, t_p3d);
@@ -110,7 +114,12 @@ struct s_object
 
 	t_intersect	intersect;
 	t_normal_at	normal;
+	
+	t_list		*group;
+	t_object	*parent;
 };
+
+
 
 /* INTERSECTIONS */
 
