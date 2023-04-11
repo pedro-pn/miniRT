@@ -128,7 +128,7 @@ MU_TEST(converting_point_from_world_to_object_space_tst) {
 	s = sphere();
 	translation(vector(5, 0, 0), &s->transform);
 	add_child(g2, s);
-	p = world_to_object(s, point(-2, 0, -10));
+	p = world_to_object(*s, point(-2, 0, -10));
 	
 	assert_tuple_eq(point(0, 0, -1), p);
 }
@@ -146,6 +146,19 @@ MU_TEST(converting_normal_vector_from_object_to_world_space_tst) {
 	assert_tuple_eq(vector(0.2857, 0.4286, -0.8571), n);
 }
 
+MU_TEST(finding_normal_on_child_object_tst) {
+	rotation_y(MY_PI / 2, &g->transform);
+	g2 = group();
+	scaling(vector(1, 2, 3), &g2->transform);
+	add_child(g, g2);
+	s = sphere();
+	translation(vector(5, 0, 0), &s->transform);
+	add_child(g2, s);
+	n = normal_at(*s, point(1.7321, 1.1547, -5.5774));
+	
+	assert_tuple_eq(vector(0.2857, 0.4286, -0.8571), n);
+}
+
 MU_TEST_SUITE(group_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -158,6 +171,7 @@ MU_TEST_SUITE(group_suite) {
 	MU_RUN_TEST(interscting_transformed_group_tst);
 	MU_RUN_TEST(converting_point_from_world_to_object_space_tst);
 	MU_RUN_TEST(converting_normal_vector_from_object_to_world_space_tst);
+	MU_RUN_TEST(finding_normal_on_child_object_tst);
 }
 
 int main(int argc, char *argv[]) {

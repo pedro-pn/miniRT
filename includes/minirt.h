@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/11 00:04:11 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/11 00:35:35 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ t_ray			transform(t_matrix mx, t_ray _ray);
 t_group			*group(void);
 void			add_child(t_group *group, t_object *object);
 void			free_group(t_group *group);
-t_p3d			world_to_object(t_object *shape, t_p3d point);
+t_p3d			world_to_object(t_object shape, t_p3d point);
 t_v3d			normal_to_world(t_object object, t_v3d normal);
 
 // intersection

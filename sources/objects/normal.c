@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:23:10 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 12:55:06 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/11 00:43:12 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,10 @@
 
 t_v3d	normal_at(t_object obj, t_p3d _point)
 {
-	t_matrix	transpose;
-	t_matrix	inverse;
-	t_v3d		normal;
+	t_v3d	normal;
 
-	mx_inverse(obj.transform, &inverse);
-	_point = mx_tuple_product(inverse, _point);
+	_point = world_to_object(obj, _point);
 	normal = obj.normal(obj, _point);
-	mx_transpose(inverse, &transpose);
-	normal = mx_tuple_product(transpose, normal);
-	normal.w = 0;
+	normal = normal_to_world(obj, normal);
 	return (normalize(normal));
 }
