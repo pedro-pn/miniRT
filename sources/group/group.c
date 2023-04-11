@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 21:09:25 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/06 22:55:41 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/10 23:52:07 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ t_group	*group(void)
 
 	g = ft_calloc(1, sizeof(*g));
 	g->type = GROUP;
+	g->parent = NULL;
 	g->intersect = intersect_group;
+	g->group = NULL;
 	mx_identity(&g->transform);
 	return (g);
 }
@@ -29,25 +31,12 @@ void	add_child(t_group *group, t_object *object)
 	object->parent = group;
 }
 
-static void	free_group_tree(t_group *group)
+t_p3d	world_to_object(t_object *shape, t_p3d point)
 {
-	t_group	*g;
-	t_list	*g_node;
-	
-	g_node = group->group;
-	while (g_node)
-	{
-		g = g_node->content;
-		if (g->type == GROUP)
-			free_group_tree(g);
-		g_node = g_node->next;
-	}
-	ft_lstclear(&group->group, free);
-}
+	t_matrix	inverse;
 
-void	free_group(t_group *group)
-{
-	free_group_tree(group);
-	free(group);
-	group = NULL;
+	if (shape->parent)
+		point = world_to_object(shape->parent, point);
+	mx_inverse(shape->transform, &inverse);
+	return (mx_tuple_product(inverse, point));
 }

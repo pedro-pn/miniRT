@@ -16,6 +16,7 @@ t_group		*parent;
 t_intx		*inter;
 t_intxs		xs;
 t_ray		r;
+t_p3d		p;
 
 void test_setup(void) {
 	g = group();
@@ -118,6 +119,19 @@ MU_TEST(interscting_transformed_group_tst) {
 	mu_assert_int_eq(2, xs.count);
 }
 
+MU_TEST(converting_point_from_world_to_object_space_tst) {
+	rotation_y(MY_PI / 2, &g->transform);
+	g2 = group();
+	scaling(vector(2, 2, 2), &g2->transform);
+	add_child(g, g2);
+	s = sphere();
+	translation(vector(5, 0, 0), &s->transform);
+	add_child(g2, s);
+	p = world_to_object(s, point(-2, 0, -10));
+	
+	assert_tuple_eq(point(0, 0, -1), p);
+}
+
 MU_TEST_SUITE(group_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -128,6 +142,7 @@ MU_TEST_SUITE(group_suite) {
 	MU_RUN_TEST(ray_intersecting_empty_group_tst);
 	MU_RUN_TEST(ray_intersecting_nonempty_group_tst);
 	MU_RUN_TEST(interscting_transformed_group_tst);
+	MU_RUN_TEST(converting_point_from_world_to_object_space_tst);
 }
 
 int main(int argc, char *argv[]) {
