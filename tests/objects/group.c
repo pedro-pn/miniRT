@@ -17,6 +17,7 @@ t_intx		*inter;
 t_intxs		xs;
 t_ray		r;
 t_p3d		p;
+t_v3d		n;
 
 void test_setup(void) {
 	g = group();
@@ -132,6 +133,19 @@ MU_TEST(converting_point_from_world_to_object_space_tst) {
 	assert_tuple_eq(point(0, 0, -1), p);
 }
 
+MU_TEST(converting_normal_vector_from_object_to_world_space_tst) {
+	rotation_y(MY_PI / 2, &g->transform);
+	g2 = group();
+	scaling(vector(1, 2, 3), &g2->transform);
+	add_child(g, g2);
+	s = sphere();
+	translation(vector(5, 0, 0), &s->transform);
+	add_child(g2, s);
+	n = normal_to_world(*s, vector(sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3));
+	
+	assert_tuple_eq(vector(0.2857, 0.4286, -0.8571), n);
+}
+
 MU_TEST_SUITE(group_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -143,6 +157,7 @@ MU_TEST_SUITE(group_suite) {
 	MU_RUN_TEST(ray_intersecting_nonempty_group_tst);
 	MU_RUN_TEST(interscting_transformed_group_tst);
 	MU_RUN_TEST(converting_point_from_world_to_object_space_tst);
+	MU_RUN_TEST(converting_normal_vector_from_object_to_world_space_tst);
 }
 
 int main(int argc, char *argv[]) {

@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 21:09:25 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/10 23:52:07 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/11 00:28:30 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,28 @@ void	add_child(t_group *group, t_object *object)
 	object->parent = group;
 }
 
-t_p3d	world_to_object(t_object *shape, t_p3d point)
+t_p3d	world_to_object(t_object *object, t_p3d point)
 {
 	t_matrix	inverse;
 
-	if (shape->parent)
-		point = world_to_object(shape->parent, point);
-	mx_inverse(shape->transform, &inverse);
+	if (object->parent)
+		point = world_to_object(object->parent, point);
+	mx_inverse(object->transform, &inverse);
 	return (mx_tuple_product(inverse, point));
+}
+
+t_v3d	normal_to_world(t_object object, t_v3d normal)
+{
+	t_matrix	transpose;
+	t_matrix	inverse;
+
+	mx_transpose(inverse, &transpose);
+	normal = mx_tuple_product(transpose, normal);
+	mx_inverse(object.transform, &inverse);
+	normal = mx_tuple_product(inverse, normal);
+	normal.w = 0;
+	normal = normalize(normal);
+	if (object.parent)
+		 normal = normal_to_world(*object.parent, normal);
+	return (normal);
 }
