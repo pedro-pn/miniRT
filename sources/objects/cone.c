@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 18:31:57 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/06 21:04:23 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/11 21:11:34 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ t_object	*cone(void)
 	_cone->maximum = __DBL_MAX__;
 	_cone->minimum = -__DBL_MAX__;
 	_cone->closed = false;
+	_cone->clean = free;
 	return (_cone);
 }

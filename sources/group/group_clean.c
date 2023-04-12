@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 23:51:36 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/10 23:51:57 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/11 21:15:06 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	free_group_tree(t_group *group)
 	ft_lstclear(&group->group, free);
 }
 
-void	free_group(t_group *group)
+void	free_group(void *group)
 {
 	free_group_tree(group);
 	free(group);

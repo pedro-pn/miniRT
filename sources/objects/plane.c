@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:50:49 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/16 18:25:22 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:12:55 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ t_object	*plane(void)
 	_plane->intersect = intersect_plane;
 	_plane->normal = plane_normal_at;
 	mx_identity(&_plane->transform);
+	_plane->clean = free;
 	return (_plane);
 }

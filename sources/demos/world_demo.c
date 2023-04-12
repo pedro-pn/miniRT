@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_demo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 12:34:27 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 14:31:06 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:21:09 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,5 @@ void	world_demo(void)
 	create_world_objects();
 	create_world_camera();
 	render();
-	ft_lstclear(&world()->objects, free);
 	mlx_save_img_to_ppm(image(), "world_demo.ppm");
 }

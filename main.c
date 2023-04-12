@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:24:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/15 18:46:43 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:21:49 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	run(void)
 	// world_demo_v2();
 	world_demo_v3();
 	// book_cover();
-	clean_program();
+	// hexagon_demo();
 }
 
 int	main(int argc, char *argv[])
@@ -42,7 +42,9 @@ int	main(int argc, char *argv[])
 	
 	initialize_minirt();
 	run();
+	clean_program();
 	// if (check_args(argc, argv))
 	// 	exit(ERRARG);
 //	file = check_file(argv[1]);
+	return (0);
 }

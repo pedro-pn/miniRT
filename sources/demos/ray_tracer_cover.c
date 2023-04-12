@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tracer_cover.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:02:25 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/13 19:05:27 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:21:19 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,6 +274,5 @@ void	book_cover(void)
 	create_world_objects();
 	create_world_camera();
 	render();
-	ft_lstclear(&world()->objects, free);
 	mlx_save_img_to_ppm(image(), "book_cover.ppm");
 }

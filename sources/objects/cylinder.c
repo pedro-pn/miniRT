@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:18:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/06 21:04:00 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/11 21:12:35 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ t_object	*cylinder(void)
 	_cylinder->maximum = __DBL_MAX__;
 	_cylinder->minimum = -__DBL_MAX__;
 	_cylinder->closed = false;
+	_cylinder->clean = free;
 	return (_cylinder);
 }

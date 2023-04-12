@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:28:30 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 20:35:40 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/11 21:20:50 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,5 @@ void	world_demo_v3(void)
 	create_world_objects();
 	create_world_camera();
 	render();
-	ft_lstclear(&world()->objects, free);
 	mlx_save_img_to_ppm(image(), "world_demo_refs2.ppm");
 }
