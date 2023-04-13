@@ -55,6 +55,15 @@ MU_TEST(plane_bounding_box_tst) {
 	free(obj);
 }
 
+MU_TEST(cube_bounding_box_tst) {
+	obj = cube();
+	box = obj->bound_of(*obj);
+	
+	assert_tuple_eq(point(-1, -1, -1), box.min);
+	assert_tuple_eq(point(1, 1, 1), box.max);
+	free(obj);
+}
+
 MU_TEST_SUITE(bounding_box_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -63,6 +72,7 @@ MU_TEST_SUITE(bounding_box_suite) {
 	MU_RUN_TEST(adding_points_to_bounding_box);
 	MU_RUN_TEST(sphere_bounding_box_tst);
 	MU_RUN_TEST(plane_bounding_box_tst);
+	MU_RUN_TEST(cube_bounding_box_tst);
 }
 
 int main(int argc, char *argv[]) {
