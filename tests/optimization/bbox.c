@@ -15,8 +15,8 @@ void test_teardown(void) {
 MU_TEST(empty_bounding_box_tst) {
 	box = empty_bounding_box();
 	
-	assert_tuple_eq(point(__DBL_MAX__, __DBL_MAX__, __DBL_MAX__), box.min);
-	assert_tuple_eq(point(-__DBL_MAX__, -__DBL_MAX__, -__DBL_MAX__), box.max);
+	assert_tuple_eq(point(INF, INF, INF), box.min);
+	assert_tuple_eq(point(-INF, -INF, -INF), box.max);
 }
 
 MU_TEST(creating_bbox_with_volume) {
@@ -46,6 +46,15 @@ MU_TEST(sphere_bounding_box_tst) {
 	free(obj);
 }
 
+MU_TEST(plane_bounding_box_tst) {
+	obj = plane();
+	box = obj->bound_of(*obj);
+	
+	assert_tuple_eq(point(-INF, 0, -INF), box.min);
+	assert_tuple_eq(point(INF, 0, INF), box.max);
+	free(obj);
+}
+
 MU_TEST_SUITE(bounding_box_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -53,6 +62,7 @@ MU_TEST_SUITE(bounding_box_suite) {
 	MU_RUN_TEST(creating_bbox_with_volume);
 	MU_RUN_TEST(adding_points_to_bounding_box);
 	MU_RUN_TEST(sphere_bounding_box_tst);
+	MU_RUN_TEST(plane_bounding_box_tst);
 }
 
 int main(int argc, char *argv[]) {

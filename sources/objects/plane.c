@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:50:49 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/11 21:12:55 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/13 16:42:57 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_object	*plane(void)
 	_plane->material = material();
 	_plane->intersect = intersect_plane;
 	_plane->normal = plane_normal_at;
+	_plane->bound_of = plane_bounding_box;
 	mx_identity(&_plane->transform);
 	_plane->clean = free;
 	return (_plane);
