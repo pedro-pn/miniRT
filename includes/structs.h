@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/11 21:12:11 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/13 15:55:15 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ typedef struct s_material
 	double	transparency;
 	double	refractive_index;
 }			t_material;
+
+/* BOUNDING BOX */
+
+typedef struct s_box
+{
+	t_p3d	min;
+	t_p3d	max;
+}			t_box;
 
 /* OBJECTS */
 

@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/11 21:15:41 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/13 16:14:25 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,12 @@ t_ray			ray_for_pixel(int x, int y);
 /* MATERIAL */
 
 t_material		material(void);
+
+/* BOUNDING BOX */
+
+t_box	empty_bounding_box(void);
+t_box	bounding_box(t_p3d min, t_p3d max);
+void	add_point(t_box *box, t_p3d point);
 
 /* OBJECTS */
 
