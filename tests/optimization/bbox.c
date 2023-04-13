@@ -1,8 +1,9 @@
 #include "../test.h"
 
-t_box	box;
-t_p3d	p1;
-t_p3d	p2;
+t_box		box;
+t_p3d		p1;
+t_p3d		p2;
+t_object	*obj;
 
 void test_setup(void) {
 }
@@ -36,12 +37,22 @@ MU_TEST(adding_points_to_bounding_box) {
 	assert_tuple_eq(point(7, 2, 0), box.max);
 }
 
+MU_TEST(sphere_bounding_box_tst) {
+	obj = sphere();
+	box = obj->bound_of(*obj);
+	
+	assert_tuple_eq(point(-1, -1, -1), box.min);
+	assert_tuple_eq(point(1, 1, 1), box.max);
+	free(obj);
+}
+
 MU_TEST_SUITE(bounding_box_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(empty_bounding_box_tst);
 	MU_RUN_TEST(creating_bbox_with_volume);
 	MU_RUN_TEST(adding_points_to_bounding_box);
+	MU_RUN_TEST(sphere_bounding_box_tst);
 }
 
 int main(int argc, char *argv[]) {
