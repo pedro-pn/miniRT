@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/27 20:54:52 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:16:40 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include "my_mlx.h"
 # include <fcntl.h>
 # include <pthread.h>
-
-# define EPSILON 1E-4
 
 # define ERRARG 1
 # define ERRFMT 2
@@ -114,6 +112,7 @@ t_box		sphere_bounding_box(t_object sphere);
 t_box		plane_bounding_box(t_object plane);
 t_box		cube_bounding_box(t_object cube);
 t_box		cylinder_bounding_box(t_object cylinder);
+t_box		cone_bounding_box(t_object obj);
 
 /* OBJECTS */
 

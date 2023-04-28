@@ -84,6 +84,26 @@ MU_TEST(bounded_cylinder_bounding_box_tst) {
 	free(obj);
 }
 
+MU_TEST(unbonded_cone__bounding_box_tst) {
+	obj = cone();
+	box = obj->bound_of(*obj);
+	
+	assert_tuple_eq(point(-INF, -INF, -INF), box.min);
+	assert_tuple_eq(point(INF, INF, INF), box.max);
+	free(obj);
+}
+
+MU_TEST(bounded_cone_bounding_box_tst) {
+	obj = cone();
+	obj->maximum = 3;
+	obj->minimum = -5;
+	box = obj->bound_of(*obj);
+	
+	assert_tuple_eq(point(-5, -5, -5), box.min);
+	assert_tuple_eq(point(5, 3, 5), box.max);
+	free(obj);
+}
+
 MU_TEST_SUITE(bounding_box_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -95,6 +115,8 @@ MU_TEST_SUITE(bounding_box_suite) {
 	MU_RUN_TEST(cube_bounding_box_tst);
 	MU_RUN_TEST(unbounded_cylinder_bounding_box_tst);
 	MU_RUN_TEST(bounded_cylinder_bounding_box_tst);
+	MU_RUN_TEST(unbonded_cone__bounding_box_tst);
+	MU_RUN_TEST(bounded_cone_bounding_box_tst);
 }
 
 int main(int argc, char *argv[]) {
