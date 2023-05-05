@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 21:51:07 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/13 17:20:43 by pedro            ###   ########.fr       */
+/*   Updated: 2023/05/05 17:49:39 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static	void	check_axis(double origin, double direction, double *t)
+void	check_axis(double origin, double direction, double *t, double *limits)
 {
 	double	tmin_num;
 	double	tmax_num;
 
-	tmin_num = (-1 - origin);
-	tmax_num = (1 - origin);
+	tmin_num = (limits[0] - origin);
+	tmax_num = (limits[1] - origin);
 	if ((abs_double(direction) >= EPSILON))
 	{
 		t[0] = tmin_num / direction;
@@ -33,7 +33,7 @@ static	void	check_axis(double origin, double direction, double *t)
 		ft_swap_double(&t[0], &t[1]);
 }
 
-static void	get_cube_t(t_p3d min, t_p3d max, double *t)
+void	get_cube_t(t_p3d min, t_p3d max, double *t)
 {
 	t_tuple	min_tuple;
 	t_tuple	max_tuple;
@@ -63,13 +63,13 @@ t_intxs	intersect_cube(t_object *cube, t_ray ray)
 
 	xs = empty_intersection();
 	ray = ray_transf_inverse(cube->transform, ray);
-	check_axis(ray.origin.x, ray.direction.x, t);
+	check_axis(ray.origin.x, ray.direction.x, t, (double [2]){-1, 1});
 	min.x = t[0];
 	max.x = t[1];
-	check_axis(ray.origin.y, ray.direction.y, t);
+	check_axis(ray.origin.y, ray.direction.y, t, (double [2]){-1, 1});
 	min.y = t[0];
 	max.y = t[1];
-	check_axis(ray.origin.z, ray.direction.z, t);
+	check_axis(ray.origin.z, ray.direction.z, t, (double [2]){-1, 1});
 	min.z = t[0];
 	max.z = t[1];
 	get_cube_t(min, max, t);
