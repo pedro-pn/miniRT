@@ -2,6 +2,7 @@
 
 t_box		box;
 t_box		box_2;
+t_box		b1;
 t_p3d		p1;
 t_p3d		p2;
 t_object	*obj;
@@ -132,6 +133,20 @@ MU_TEST(check_if_box_contains_a_given_point) {
 	check_box_contains_point(box, point(8, 1, 8), false);
 }
 
+void	check_box_contains_box(t_p3d min, t_p3d max, t_bool result) {
+	b1 = bounding_box(point(5, -2, 0), point(11, 4, 7));
+	box = bounding_box(min, max);
+	
+	mu_check(box_contains_box(b1, box) == result);
+}
+
+MU_TEST(check_if_box_contains_another_box) {
+	check_box_contains_box(point(5, -2, 0), point(11, 4, 7), true);
+	check_box_contains_box(point(6, -1, 1), point(10, 3, 6), true);
+	check_box_contains_box(point(4, -3, -1), point(10, 3, 6), false);
+	check_box_contains_box(point(6, -1, 1), point(12, 5, 8), false);
+}
+
 MU_TEST_SUITE(bounding_box_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -147,6 +162,7 @@ MU_TEST_SUITE(bounding_box_suite) {
 	MU_RUN_TEST(bounded_cone_bounding_box_tst);
 	MU_RUN_TEST(adding_bounding_box_to_another);
 	MU_RUN_TEST(check_if_box_contains_a_given_point);
+	MU_RUN_TEST(check_if_box_contains_another_box);
 }
 
 int main(int argc, char *argv[]) {

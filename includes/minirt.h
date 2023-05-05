@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/03 20:41:36 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:22:29 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ t_box		bounding_box(t_p3d min, t_p3d max);
 void		add_point(t_box *box, t_p3d point);
 void		add_bounding_box(t_box *dest, t_box src);
 t_bool		box_contains_point(t_box box, t_p3d point);
+t_bool		box_contains_box(t_box b1, t_box b2);
 
 t_box		sphere_bounding_box(t_object sphere);
 t_box		plane_bounding_box(t_object plane);
