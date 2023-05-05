@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/05 14:22:29 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:01:39 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,26 @@ t_material		material(void);
 
 /* BOUNDING BOX */
 
+typedef struct	s_bbox
+{
+	t_p3d	p1;
+	t_p3d	p2;
+	t_p3d	p3;
+	t_p3d	p4;
+	t_p3d	p5;
+	t_p3d	p6;
+	t_p3d	p7;
+	t_p3d	p8;
+}			t_bbox;
+
 t_box		empty_bounding_box(void);
 t_box		bounding_box(t_p3d min, t_p3d max);
 void		add_point(t_box *box, t_p3d point);
 void		add_bounding_box(t_box *dest, t_box src);
 t_bool		box_contains_point(t_box box, t_p3d point);
 t_bool		box_contains_box(t_box b1, t_box b2);
+t_bbox		bounding_box_corners(t_box box);
+t_box		transform_bbox(t_box box, t_matrix mx);
 
 t_box		sphere_bounding_box(t_object sphere);
 t_box		plane_bounding_box(t_object plane);
