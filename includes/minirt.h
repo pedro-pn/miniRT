@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/05 15:01:39 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:09:37 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,12 +124,14 @@ t_bool		box_contains_point(t_box box, t_p3d point);
 t_bool		box_contains_box(t_box b1, t_box b2);
 t_bbox		bounding_box_corners(t_box box);
 t_box		transform_bbox(t_box box, t_matrix mx);
+t_box		parent_space_bounds_of(t_object obj);
 
 t_box		sphere_bounding_box(t_object sphere);
 t_box		plane_bounding_box(t_object plane);
 t_box		cube_bounding_box(t_object cube);
 t_box		cylinder_bounding_box(t_object cylinder);
 t_box		cone_bounding_box(t_object obj);
+t_box		group_bounding_box(t_object obj);
 
 /* OBJECTS */
 

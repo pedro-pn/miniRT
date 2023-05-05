@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:17:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/05 15:06:20 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:45:04 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,9 @@ t_box	transform_bbox(t_box box, t_matrix mx)
 	add_point(&result, mx_tuple_product(mx, bbox.p7));
 	add_point(&result, mx_tuple_product(mx, bbox.p8));
 	return (result);
+}
+
+t_box	parent_space_bounds_of(t_object obj)
+{
+	return (transform_bbox(obj.bound_of(obj), obj.transform));
 }

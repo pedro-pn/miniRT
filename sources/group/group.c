@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   group.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 21:09:25 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/11 21:13:14 by pedro            ###   ########.fr       */
+/*   Updated: 2023/05/05 16:09:50 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_group	*group(void)
 	g->type = GROUP;
 	g->parent = NULL;
 	g->intersect = intersect_group;
+	g->bound_of = group_bounding_box;
 	g->group = NULL;
 	g->clean = free_group;
 	mx_identity(&g->transform);
