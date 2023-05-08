@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:17:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/05 17:46:13 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:04:37 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_bool	intersect_bounding_box(t_box box, t_ray ray)
 	double	t[2];
 	double	limits[2];
 
-	// ray = ray_transf_inverse(cube->transform, ray);
 	limits[0] = box.min.x;
 	limits[1] = box.max.x;
 	check_axis(ray.origin.x, ray.direction.x, t, limits);

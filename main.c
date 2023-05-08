@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:24:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/11 21:21:49 by pedro            ###   ########.fr       */
+/*   Updated: 2023/05/08 14:15:50 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ void	run(void)
 	// sphere_3d_demo();
 	//world_demo();
 	// world_demo_v2();
-	world_demo_v3();
+	// world_demo_v3();
 	// book_cover();
 	// hexagon_demo();
+	group_test();
 }
 
 int	main(int argc, char *argv[])
