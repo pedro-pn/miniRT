@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/08 14:16:02 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:50:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,17 @@ t_box			cube_bounding_box(t_object cube);
 t_box			cylinder_bounding_box(t_object cylinder);
 t_box			cone_bounding_box(t_object obj);
 t_box			group_bounding_box(t_object obj);
+
+// Bounding Volume Hierarchies
+
+typedef struct s_boxd
+{
+	double	dx;
+	double	dy;
+	double	dz;
+}			t_boxd;
+
+t_sbox			split_bounds(t_box box);
 
 /* OBJECTS */
 
