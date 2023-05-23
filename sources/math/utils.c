@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   comp.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:04:32 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/12 22:56:22 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:10:02 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "my_math.h"
 
 double	abs_double(double a)
 {
@@ -27,4 +27,11 @@ t_bool	comp(double a, double b)
 	if (abs_double(diff) <= EPSILON)
 		return (true);
 	return (false);
+}
+
+double	max(double a, double b)
+{
+	if (a >= b)
+		return (a);
+	return (b);
 }

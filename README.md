@@ -16,6 +16,7 @@ This project is a Ray Tracer coded in C using [minilibx](https://github.com/42Pa
 
 
 ### Implemented:
+
 - [x] Spheres;
 - [x] Planes;
 - [x] Cubes;
@@ -28,10 +29,11 @@ This project is a Ray Tracer coded in C using [minilibx](https://github.com/42Pa
 - [X] Cylinders;
 - [X] Cones;
 - [X] Groups;
+- [X] Bounding boxes optmization;
 
 ### To implement:
 
-- [ ] Bounding boxes optmization;
+- [ ] Bounding Volume Hierarchies (BVH);
 - [ ] Multiple lights;
 - [ ] Triangles;
 - [ ] CSG;

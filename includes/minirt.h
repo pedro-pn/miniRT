@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/11 21:15:41 by pedro            ###   ########.fr       */
+/*   Updated: 2023/05/08 14:16:02 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include <fcntl.h>
 # include <pthread.h>
 
-# define EPSILON 1E-4
-
 # define ERRARG 1
 # define ERRFMT 2
 # define ERRFILE 3
@@ -34,7 +32,7 @@
 # define ITER_MAX 5
 # define THREAD_NUM 12
 
-typedef	struct s_data
+typedef struct s_data
 {
 	void		*mlx;
 	void		*mlx_win;
@@ -42,7 +40,6 @@ typedef	struct s_data
 	t_world		world;
 	t_camera	camera;
 }			t_data;
-
 
 typedef struct s_file
 {
@@ -52,7 +49,6 @@ typedef struct s_file
 	t_list	*sphere;
 	t_list	*plane;
 	t_list	*cylinder;
-	
 }			t_file;
 
 typedef struct s_scene_val
@@ -104,6 +100,38 @@ t_ray			ray_for_pixel(int x, int y);
 
 t_material		material(void);
 
+/* BOUNDING BOX */
+
+typedef struct s_bbox
+{
+	t_p3d	p1;
+	t_p3d	p2;
+	t_p3d	p3;
+	t_p3d	p4;
+	t_p3d	p5;
+	t_p3d	p6;
+	t_p3d	p7;
+	t_p3d	p8;
+}			t_bbox;
+
+t_box			empty_bounding_box(void);
+t_box			bounding_box(t_p3d min, t_p3d max);
+void			add_point(t_box *box, t_p3d point);
+void			add_bounding_box(t_box *dest, t_box src);
+t_bool			box_contains_point(t_box box, t_p3d point);
+t_bool			box_contains_box(t_box b1, t_box b2);
+t_bbox			bounding_box_corners(t_box box);
+t_box			transform_bbox(t_box box, t_matrix mx);
+t_box			parent_space_bounds_of(t_object obj);
+t_bool			intersect_bounding_box(t_box box, t_ray ray);
+
+t_box			sphere_bounding_box(t_object sphere);
+t_box			plane_bounding_box(t_object plane);
+t_box			cube_bounding_box(t_object cube);
+t_box			cylinder_bounding_box(t_object cylinder);
+t_box			cone_bounding_box(t_object obj);
+t_box			group_bounding_box(t_object obj);
+
 /* OBJECTS */
 
 int				object_count(void);
@@ -130,6 +158,10 @@ t_object		*cube(void);
 t_intxs			intersect_cube(t_object *cube, t_ray ray);
 t_v3d			cube_normal_at(t_object cube, t_p3d point);
 
+void			check_axis(double origin, double direction,
+					double *t, double *limits);
+void			get_cube_t(t_p3d min, t_p3d max, double *t);
+
 // cylinders
 
 t_object		*cylinder(void);
@@ -151,7 +183,6 @@ void			create_intersection(t_intxs *xs, double t, t_object *obj);
 t_intxs			empty_intersection(void);
 t_bool			check_valid_intersection(t_object cy, t_ray ray, double t);
 
-
 t_intx			*hit(t_intxs intersections);
 t_ray			transform(t_matrix mx, t_ray _ray);
 
@@ -170,15 +201,15 @@ t_intxs			intersect_group(t_object *object, t_ray ray);
 
 typedef struct s_lgt
 {
-	t_c3d		effective_color;;
+	t_c3d		effective_color;
 	t_c3d		diffuse_color;
 	t_c3d		specular_color;
 	t_c3d		ambient_color;
 	t_c3d		result_color;
-	t_v3d		lightv;;
+	t_v3d		lightv;
 	double		light_dot_normal;
 	t_lgt_param	params;
-}			t_lgt;
+}				t_lgt;
 
 void			point_light(t_p3d position, t_c3d color);
 t_c3d			lighting(t_object obj, t_light light, t_lgt_param params);
@@ -221,7 +252,6 @@ t_patt			sphere_checkers(double wdt, double hgt, t_c3d color_a,
 					t_c3d color_b);
 t_c3d			sphere_checkers_at(t_patt patt, t_p3d point);
 t_p3d			spherical_map(t_p3d	point);
-
 
 // radial
 
@@ -275,7 +305,6 @@ void			render_task(t_task task);
 int				*task_count(void);
 void			start_threads(t_task *tasks);
 
-
 /* CAMERA */
 
 void			set_camera(int hsize, int vsize, double field_of_view);
@@ -324,5 +353,6 @@ void			world_demo_v2(void);
 void			world_demo_v3(void);
 void			book_cover(void);
 void			hexagon_demo(void);
+void			group_test(void);
 
 #endif

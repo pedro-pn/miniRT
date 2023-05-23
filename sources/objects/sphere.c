@@ -6,7 +6,7 @@
 /*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/11 21:13:03 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/13 16:35:14 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_object	*sphere(void)
 	_sphere->material = material();
 	_sphere->intersect = intersect_sphere;
 	_sphere->normal = sphere_normal_at;
+	_sphere->bound_of = sphere_bounding_box;
 	_sphere->clean = free;
 	mx_identity(&_sphere->transform);
 	return (_sphere);

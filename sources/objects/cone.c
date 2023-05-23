@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 18:31:57 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/11 21:11:34 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/28 16:12:20 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_object	*cone(void)
 	mx_identity(&_cone->transform);
 	_cone->intersect = intersect_cone;
 	_cone->normal = cone_normal_at;
+	_cone->bound_of = cone_bounding_box;
 	_cone->maximum = __DBL_MAX__;
 	_cone->minimum = -__DBL_MAX__;
 	_cone->closed = false;

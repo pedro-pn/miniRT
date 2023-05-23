@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:18:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/11 21:12:35 by pedro            ###   ########.fr       */
+/*   Updated: 2023/04/27 20:55:36 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_object	*cylinder(void)
 	mx_identity(&_cylinder->transform);
 	_cylinder->intersect = intersect_cylinder;
 	_cylinder->normal = cylinder_normal_at;
+	_cylinder->bound_of = cylinder_bounding_box;
 	_cylinder->maximum = __DBL_MAX__;
 	_cylinder->minimum = -__DBL_MAX__;
 	_cylinder->closed = false;

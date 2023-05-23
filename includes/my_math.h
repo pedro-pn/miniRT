@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:10:28 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/03/09 13:03:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:12:54 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <math.h>
 
 # define MY_PI 3.14159265358979323846
+# define INF __DBL_MAX__
+# define EPSILON 1e-4
 
 /* bool type */
 
@@ -28,6 +30,7 @@ typedef enum e_bool
 
 t_bool	comp(double a, double b);
 double	abs_double(double a);
+double	max(double a, double b);
 
 /* QUADRATIC */
 

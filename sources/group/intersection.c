@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 22:45:08 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/06 23:06:47 by pedro            ###   ########.fr       */
+/*   Updated: 2023/05/08 15:10:28 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ t_intxs	intersect_group(t_object *object, t_ray ray)
 	t_intxs		xs;
 
 	ray = ray_transf_inverse(object->transform, ray);
+	result = empty_intersection();
+	if (intersect_bounding_box(object->bound_of(*object), ray) == false)
+		return (result);
 	node_objs = object->group;
-	result.intersections = NULL;
-	result.count = 0;
 	while (node_objs != NULL)
 	{
 		obj = node_objs->content;
