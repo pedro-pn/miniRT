@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/23 16:50:35 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/05/26 00:34:20 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,14 @@ typedef struct s_boxd
 	double	dz;
 }			t_boxd;
 
+typedef struct s_bucks
+{
+	t_list	*left;
+	t_list	*right;
+}			t_bucks;
+
 t_sbox			split_bounds(t_box box);
+t_bucks			partition_children(t_group *g);
 
 /* OBJECTS */
 
