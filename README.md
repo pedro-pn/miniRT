@@ -30,10 +30,10 @@ This project is a Ray Tracer coded in C using [minilibx](https://github.com/42Pa
 - [X] Cones;
 - [X] Groups;
 - [X] Bounding boxes optmization;
+- [X] Bounding Volume Hierarchies (BVH);
 
 ### To implement:
 
-- [ ] Bounding Volume Hierarchies (BVH);
 - [ ] Multiple lights;
 - [ ] Triangles;
 - [ ] CSG;
