@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:37:26 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/26 12:02:21 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/08 23:19:50 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,36 @@ t_bucks	partition_children(t_group *g)
 			node = node->next;
 	}
 	return (bucket);
+}
+
+void	make_subgroup(t_group *g, t_list *objs)
+{
+	t_group	*subgroup;
+
+	subgroup = group();
+	subgroup->group = objs;
+	ft_lstadd_back(&g->group, ft_lstnew(subgroup));
+}
+
+void	divide(t_group *g, int threashold)
+{
+	t_bucks		buckets;
+	t_object	*child;
+	t_list		*node;
+
+	if (threashold <= ft_lstsize(g->group))
+	{
+		buckets = partition_children(g);
+		if (buckets.left)
+			make_subgroup(g, buckets.left);
+		if (buckets.right)
+			make_subgroup(g, buckets.right);
+	}
+	node = g->group;
+	while (node)
+	{
+		child = node->content;
+		divide(child, threashold);
+		node = node->next;
+	}
 }
