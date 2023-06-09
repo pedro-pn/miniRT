@@ -5,7 +5,9 @@ t_p3d		p1;
 t_p3d		p2;
 t_p3d		p3;
 t_v3d		v;
-t_v3d		n;
+t_v3d		n1;
+t_v3d		n2;
+t_v3d		n3;
 
 
 void test_setup(void) {
@@ -30,12 +32,22 @@ MU_TEST(creating_triangle_tst) {
 	free(t);
 }
 
+MU_TEST(finding_normal_on_a_triangle_tst) {
+	t = triangle(point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0));
+	n1 = t->normal(*t, point(0, 0.5, 0));
+	n2 = t->normal(*t, point(-0.5, 0.75, 0));
+	n3 = t->normal(*t, point(0.5, 0.25, 0));
+
+	assert_tuple_eq(t->normalv, n1);
+	assert_tuple_eq(t->normalv, n2);
+	assert_tuple_eq(t->normalv, n3);
+}
 
 MU_TEST_SUITE(triangle_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(creating_triangle_tst);
-
+	MU_RUN_TEST(finding_normal_on_a_triangle_tst);
 }
 
 int main(int argc, char *argv[]) {
