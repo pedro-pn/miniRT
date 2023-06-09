@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:50:49 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/13 16:42:57 by pedro            ###   ########.fr       */
+/*   Updated: 2023/06/08 23:18:19 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ t_object	*plane(void)
 	_plane->bound_of = plane_bounding_box;
 	mx_identity(&_plane->transform);
 	_plane->clean = free;
+	_plane->group = NULL;
 	return (_plane);
 }
