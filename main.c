@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:24:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/08 14:15:50 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/09 00:13:43 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	run(void)
 	// world_demo_v3();
 	// book_cover();
 	// hexagon_demo();
-	group_test();
+	// group_test();
+	bvh_test();
 }
 
 int	main(int argc, char *argv[])
