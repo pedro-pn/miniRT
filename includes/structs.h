@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/09 18:08:53 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:18:34 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef enum e_objs
 	CUBE,
 	CYLINDER,
 	CONE,
+	TRIANGLE,
 	GROUP,
 	OBJECT,
 }		t_objs;
@@ -123,6 +124,13 @@ struct s_object
 	double		maximum;
 	double		minimum;
 	t_bool		closed;
+
+	t_p3d		p1;
+	t_p3d		p2;
+	t_p3d		p3;
+	t_v3d		e1;
+	t_v3d		e2;
+	t_v3d		normalv;
 
 	t_intersect	intersect;
 	t_normal_at	normal;

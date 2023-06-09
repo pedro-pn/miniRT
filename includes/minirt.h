@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/09 00:13:43 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:24:33 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,10 @@ t_object		*cone(void);
 t_intxs			intersect_cone(t_object *cone, t_ray ray);
 void			intersect_cone_caps(t_object *cone, t_ray ray, t_intxs *xs);
 t_v3d			cone_normal_at(t_object object, t_p3d point);
+
+// triangles
+
+t_object		*triangle(t_p3d p1, t_p3d p2, t_p3d p3);
 
 // intersection
 
