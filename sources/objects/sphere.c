@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/08 23:04:35 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:07:22 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ t_object	*sphere(void)
 	_sphere->type = SPHERE;
 	_sphere->origin = point(0, 0, 0);
 	_sphere->radius = 1.0;
-	_sphere->color = color_rgb(255, 0, 0);
 	_sphere->material = material();
 	_sphere->intersect = intersect_sphere;
 	_sphere->normal = sphere_normal_at;

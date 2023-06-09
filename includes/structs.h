@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/23 16:24:46 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:08:53 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,32 +114,26 @@ struct s_object
 	int			id;
 	int			type;
 
-	t_p3d		origin;
+	t_material	material;
+	t_patt		pattern;
 
+	t_p3d		origin;
 	double		radius;
-	t_rgb		color;
 
 	double		maximum;
 	double		minimum;
 	t_bool		closed;
 
-	t_matrix	transform;
-
-	t_material	material;
-	t_patt		pattern;
-
 	t_intersect	intersect;
 	t_normal_at	normal;
+	t_bound		bound_of;
 	
 	t_list		*group;
 	t_object	*parent;
 
-	t_bound		bound_of;
-
+	t_matrix	transform;
 	t_clean		clean;
 };
-
-
 
 /* INTERSECTIONS */
 
