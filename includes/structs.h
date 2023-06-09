@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/13 16:36:34 by pedro            ###   ########.fr       */
+/*   Updated: 2023/05/23 16:24:46 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,12 @@ typedef struct s_box
 	t_p3d	min;
 	t_p3d	max;
 }			t_box;
+
+typedef struct s_sbox
+{
+	t_box	left;
+	t_box	right;
+}			t_sbox;
 
 /* OBJECTS */
 

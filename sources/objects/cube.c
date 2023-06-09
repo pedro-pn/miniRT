@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 21:51:07 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/05 17:49:39 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/08 23:18:01 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ t_object	*cube(void)
 	_cube->normal = cube_normal_at;
 	_cube->bound_of = cube_bounding_box;
 	_cube->clean = free;
+	_cube->group = NULL;
 	return (_cube);
 }

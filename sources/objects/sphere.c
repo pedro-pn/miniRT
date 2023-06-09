@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/13 16:35:14 by pedro            ###   ########.fr       */
+/*   Updated: 2023/06/08 23:04:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_object	*sphere(void)
 	_sphere->normal = sphere_normal_at;
 	_sphere->bound_of = sphere_bounding_box;
 	_sphere->clean = free;
+	_sphere->group = NULL;
 	mx_identity(&_sphere->transform);
 	return (_sphere);
 }

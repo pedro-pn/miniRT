@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 18:31:57 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/28 16:12:20 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/08 23:17:41 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ t_object	*cone(void)
 	_cone->minimum = -__DBL_MAX__;
 	_cone->closed = false;
 	_cone->clean = free;
+	_cone->group = NULL;
 	return (_cone);
 }
