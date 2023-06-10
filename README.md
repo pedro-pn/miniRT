@@ -31,11 +31,12 @@ This project is a Ray Tracer coded in C using [minilibx](https://github.com/42Pa
 - [X] Groups;
 - [X] Bounding boxes optmization;
 - [X] Bounding Volume Hierarchies (BVH);
+- [X] Triangles;
 
 ### To implement:
 
+- [ ] Wavefront OBJ file parser;
 - [ ] Multiple lights;
-- [ ] Triangles;
 - [ ] CSG;
 - [ ] Focal Blur;
 - [ ] Soft shadows;
