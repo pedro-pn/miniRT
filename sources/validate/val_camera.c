@@ -6,42 +6,42 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:11:52 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 14:32:57 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/11 12:25:44 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
+#include "minirt.h"
 
 int	camera_count(char id)
 {
 	static int	count = 0;
 
 	if (id != 'C')
-		return (FALSE);
+		return (false);
 	count++;
 	if (count > 1)
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
 
 int	validate_camera(char *line)
 {
-	if (camera_count(*line) == FALSE)
-		return (FALSE);
+	if (camera_count(*line) == false)
+		return (false);
 	line++;
 	line = jump_spaces(line);
-	if (check_coordinate(line) == FALSE)
-		return (FALSE);
+	if (check_coordinate(line) == false)
+		return (false);
 	line = get_next_info(line);
-	if (check_norm_coordinate(line) == FALSE)
-		return (FALSE);
+	if (check_norm_coordinate(line) == false)
+		return (false);
 	line = get_next_info(line);
-	if (validate_fov(line) == FALSE)
-		return (FALSE);
+	if (validate_fov(line) == false)
+		return (false);
 	line = jump_info(line);
 	if ((!ft_strchr(" \n", *line)))
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
 
 int	validate_fov(char *line)
@@ -51,13 +51,13 @@ int	validate_fov(char *line)
 
 	line_hold = line;
 	if (!ft_isdigit(*line))
-		return (FALSE);
+		return (false);
 	while (ft_isdigit(*line))
 		line++;
 	if ((!ft_strchr(" \t\n", *line)) && !*line)
-		return (FALSE);
+		return (false);
 	fov = ft_atoi(line_hold);
 	if (fov < 0 || fov > 255)
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }

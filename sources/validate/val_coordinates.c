@@ -6,21 +6,21 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:58:20 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 14:34:49 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/11 12:28:39 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
+#include "minirt.h"
 
 static int	val_norm_coordinate(char *line);
 
 int	check_norm_coordinate(char *line)
 {
-	if (check_coordinate(line) == FALSE)
-		return (FALSE);
-	if (val_norm_coordinate(line) == FALSE)
-		return (FALSE);
-	return (TRUE);
+	if (check_coordinate(line) == false)
+		return (false);
+	if (val_norm_coordinate(line) == false)
+		return (false);
+	return (true);
 }
 
 static int	val_norm_coordinate(char *line)
@@ -34,29 +34,29 @@ static int	val_norm_coordinate(char *line)
 	x = ft_atof(cord[0]);
 	y = ft_atof(cord[1]);
 	z = ft_atof(cord[2]);
-	free_array((void **)cord);
+	ft_clean_array((void **)cord, free);
 	if (x < -1 || x > 1)
-		return (FALSE);
+		return (false);
 	if (y < -1 || y > 1)
-		return (FALSE);
+		return (false);
 	if (z < -1 || z > 1)
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
 
 int	check_coordinate(char *line)
 {
 	if (!*line)
-		return (FALSE);
-	if (ft_isfloat(&line) == FALSE)
-		return (FALSE);
+		return (false);
+	if (ft_isfloat(&line) == false)
+		return (false);
 	line++;
-	if (ft_isfloat(&line) == FALSE)
-		return (FALSE);
+	if (ft_isfloat(&line) == false)
+		return (false);
 	line++;
-	if (ft_isfloat(&line) == FALSE)
-		return (FALSE);
+	if (ft_isfloat(&line) == false)
+		return (false);
 	if (*line != ' ' && *line != '\t')
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
