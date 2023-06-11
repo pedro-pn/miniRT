@@ -36,6 +36,7 @@ This project is a Ray Tracer coded in C using [minilibx](https://github.com/42Pa
 ### To implement:
 
 - [ ] Wavefront OBJ file parser;
+- [ ] Smooth Triangles;
 - [ ] Multiple lights;
 - [ ] CSG;
 - [ ] Focal Blur;
