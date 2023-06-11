@@ -103,6 +103,7 @@ MU_TEST(ray_strikes_a_triangle_tst) {
 	mu_assert_double_eq(2, inter->t);
 	mu_check(inter->object == t);
 	free(t);
+	ft_lstclear(&xs.intersections, free);
 }
 
 MU_TEST_SUITE(triangle_suite) {

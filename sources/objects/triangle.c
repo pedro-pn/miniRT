@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 18:16:48 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/10 20:43:59 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/10 21:20:10 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,36 @@ static void	calculate_triangle_normal(t_object *t)
 	t->normalv = normalize(cross(t->e2, t->e1));
 }
 
+static t_bool	has_ray_missed(t_object *obj, t_tri_params *params, t_ray ray)
+{
+	params->dir_cross_e2 = cross(ray.direction, obj->e2);
+	params->det = dotp(obj->e1, params->dir_cross_e2);
+	if (fabs(params->det) < EPSILON)
+		return (true);
+	params->p1_to_origin = sub(ray.origin, obj->p1);
+	params->f = 1.0 / params->det;
+	params->u = params->f * dotp(params->p1_to_origin, params->dir_cross_e2);
+	if (params->u < 0 || params->u > 1)
+		return (true);
+	params->origin_cross_e1 = cross(params->p1_to_origin, obj->e1);
+	params->v = params->f * dotp(ray.direction, params->origin_cross_e1);
+	if (params->v < 0 || (params->u + params->v) > 1)
+		return (true);
+	return (false);
+}
+
 t_intxs	intersect_triangle(t_object *obj, t_ray _ray)
 {
-	t_intxs	xs;
-	t_v3d	origin_cross_e1;
-	t_v3d	dir_cross_e2;
-	t_v3d	p1_to_origin;
-	double	det;
-	double	f;
-	double	u;
-	double	v;
-	double	t;
+	t_intxs			xs;
+	t_ray			transformed_ray;
+	t_tri_params	params;
+	double			t;
 
+	transformed_ray = ray_transf_inverse(obj->transform, _ray);
 	xs = empty_intersection();
-	dir_cross_e2 = cross(_ray.direction, obj->e2);
-	det = dotp(obj->e1, dir_cross_e2);
-	if (fabs(det) < EPSILON)
+	if (has_ray_missed(obj, &params, transformed_ray))
 		return (xs);
-	p1_to_origin = sub(_ray.origin, obj->p1);
-	f = 1.0 / det;
-	u = f * dotp(p1_to_origin, dir_cross_e2);
-	if (u < 0 || u > 1)
-		return (xs);
-	origin_cross_e1 = cross(p1_to_origin, obj->e1);
-	v = f * dotp(_ray.direction, origin_cross_e1);
-	if (v < 0 || (u + v) > 1) 
-		return (xs);
-	t = f * dotp(obj->e2, origin_cross_e1);
+	t = params.f * dotp(obj->e2, params.origin_cross_e1);
 	create_intersection(&xs, t, obj);
 	return (xs);
 }
