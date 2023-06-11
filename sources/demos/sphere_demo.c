@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:47:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/26 12:11:42 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:07:55 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	draw_sdemo(t_mlx_img *img, t_sdemo sdemo)
 			if (inter != NULL)
 			{
 				ft_lstclear(&xs()->intersections, free);
-				mlx_draw_pixel_rgb(img, x, y, sdemo._sphere->color);
+				mlx_draw_pixel_rgb(img, x, y, color_rgb(255, 0, 0));
 			}
 			y++;
 		}
