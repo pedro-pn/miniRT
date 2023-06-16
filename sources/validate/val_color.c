@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:27:26 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/11 12:25:38 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/16 10:40:53 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_color(char *line)
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
-	free_array((void **)rgb);
+	ft_clean_array((void **)rgb, free);
 	if (r < 0 || r > 255)
 		return (false);
 	if (g < 0 || g > 255)

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/11 12:16:33 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:36:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,13 +214,5 @@ typedef struct s_camera
 	t_matrix	transform;
 	t_mlx_img	img;
 }			t_camera;
-
-/* PARSER */
-
-typedef struct s_parser
-{
-	t_p3d	*vertexes;
-	size_t	count;
-}			t_parser;
 
 #endif

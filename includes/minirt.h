@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/11 12:28:58 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/16 10:37:36 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,6 @@ pthread_mutex_t	*task_mutex(void);
 
 int				check_args(int argc, char **argv);
 void			file_init(t_file *file);
-
-/* PARSER */
-
-t_parser		parser_obj_file(int file);
 
 /* UTILS */
 

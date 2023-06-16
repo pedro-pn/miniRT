@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:58:20 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/11 12:28:39 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:24:14 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	check_coordinate(char *line)
 	line++;
 	if (ft_isfloat(&line) == false)
 		return (false);
-	if (*line != ' ' && *line != '\t')
+	if (*line != ' ' && *line != '\t' && *line != '\n')
 		return (false);
 	return (true);
 }

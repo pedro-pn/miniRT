@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/11 12:35:17 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/16 10:39:00 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,43 @@
 
 # include "libft.h"
 
+/* PARSER */
+
+// .rt files
+
 void	validate_scene(char *filename);
 int		validate_line(char *line);
-char	*jump_spaces(char *line);
-int		ft_isfloat(char **nptr);
-char	*jump_info(char *line);
 int		validate_camera(char *line);
 int		check_coordinate(char *line);
 int		check_norm_coordinate(char *line);
 int		validate_fov(char *line);
 void	error_validate(char *line, int fd);
-void	free_array(void **array);
 int		validate_ambient(char *line);
 int		check_color(char *line);
-int		is_rgb(char *line);
 int		check_amb_light(char *line);
-char	*get_next_info(char *line);
 int		validate_light(char *line);
 int		validate_sphere(char *line);
 int		validate_plane(char *line);
 int		validate_cylinder(char *line);
+
+// .obj files
+
+/* PARSER */
+
+typedef struct s_parser
+{
+	t_p3d	*vertexes;
+	size_t	count;
+}			t_parser;
+
+t_parser		parser_obj_file(int file);
+
+// utils
+
+char			*jump_spaces(char *line);
+char			*jump_info(char *line);
+char			*get_next_info(char *line);
+int				ft_isfloat(char **nptr);
+int				is_rgb(char *line);
 
 #endif
