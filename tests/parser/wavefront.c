@@ -2,6 +2,8 @@
 
 t_parser	parser;
 int			file;
+t_group		*g;
+t_object	*t;
 
 void test_setup(void) {
 }
@@ -9,13 +11,14 @@ void test_setup(void) {
 void test_teardown(void) {
 	/* Nothing */
 	ft_clean_gnl(file);
+
 }
 
 MU_TEST(ignoring_unrecognized_lines_tst) {
 	file = open("./tests/parser/gibberish.obj", O_RDONLY);
 	parser = parser_obj_file(file);
 
-	mu_check(parser.vertexes == NULL);
+	mu_check(parser.vertices == NULL);
 	close(file);
 }
 
@@ -23,12 +26,33 @@ MU_TEST(vertex_records_tst) {
 	file = open("./tests/parser/vertex.obj", O_RDONLY);
 	parser = parser_obj_file(file);
 
-	assert_tuple_eq(vector(-1, 1, 0), parser.vertexes[0]);
-	assert_tuple_eq(vector(-1, 0.5, 0), parser.vertexes[1]);
-	assert_tuple_eq(vector(1, 0, 0), parser.vertexes[2]);
-	assert_tuple_eq(vector(1, 1, 0), parser.vertexes[3]);
+	assert_tuple_eq(vector(-1, 1, 0), parser.vertices[0]);
+	assert_tuple_eq(vector(-1, 0.5, 0), parser.vertices[1]);
+	assert_tuple_eq(vector(1, 0, 0), parser.vertices[2]);
+	assert_tuple_eq(vector(1, 1, 0), parser.vertices[3]);
 	close(file);
-	free(parser.vertexes);
+	free(parser.vertices);
+}
+
+MU_TEST(parsing_simple_triangle_tst) {
+	file = open("./tests/parser/simple_triangle.obj", O_RDONLY);
+	parser = parser_obj_file(file);
+
+	g = default_group(parser);
+
+	t = g->group->content;
+	assert_tuple_eq(parser.vertices[0], t->p1);
+	assert_tuple_eq(parser.vertices[1], t->p2);
+	assert_tuple_eq(parser.vertices[2], t->p3);
+
+	t = g->group->next->content;
+	assert_tuple_eq(parser.vertices[0], t->p1);
+	assert_tuple_eq(parser.vertices[2], t->p2);
+	assert_tuple_eq(parser.vertices[3], t->p3);
+	free_group(g);
+	free(parser.vertices);
+	ft_lstclear(&parser.faces, clean_faces);
+	close(file);
 }
 
 MU_TEST_SUITE(wavefront_suite) {
@@ -36,6 +60,7 @@ MU_TEST_SUITE(wavefront_suite) {
 
 	MU_RUN_TEST(ignoring_unrecognized_lines_tst);
 	MU_RUN_TEST(vertex_records_tst);
+	MU_RUN_TEST(parsing_simple_triangle_tst);
 
 }
 
