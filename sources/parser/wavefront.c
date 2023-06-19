@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 09:53:45 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/19 13:44:59 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:58:50 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,7 @@ t_parser	parser_obj_file(int file)
 	t_parser	parser;
 	char		*line;
 
-	parser.vertices = NULL;
-	parser.faces = NULL;
-	parser.count = 0;
+	parser = (t_parser){0};
 	line = get_next_line(file);
 	while (line)
 	{
