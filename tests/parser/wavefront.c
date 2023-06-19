@@ -49,6 +49,34 @@ MU_TEST(parsing_simple_triangle_tst) {
 	assert_tuple_eq(parser.vertices[0], t->p1);
 	assert_tuple_eq(parser.vertices[2], t->p2);
 	assert_tuple_eq(parser.vertices[3], t->p3);
+
+	free_group(g);
+	free(parser.vertices);
+	ft_lstclear(&parser.faces, clean_faces);
+	close(file);
+}
+
+MU_TEST(triangulating_polygons_tst) {
+	file = open("./tests/parser/polygon.obj", O_RDONLY);
+	parser = parser_obj_file(file);
+
+	g = default_group(parser);
+
+	t = g->group->content;
+	assert_tuple_eq(parser.vertices[0], t->p1);
+	assert_tuple_eq(parser.vertices[1], t->p2);
+	assert_tuple_eq(parser.vertices[2], t->p3);
+
+	t = g->group->next->content;
+	assert_tuple_eq(parser.vertices[0], t->p1);
+	assert_tuple_eq(parser.vertices[2], t->p2);
+	assert_tuple_eq(parser.vertices[3], t->p3);
+
+	t = g->group->next->next->content;
+	assert_tuple_eq(parser.vertices[0], t->p1);
+	assert_tuple_eq(parser.vertices[3], t->p2);
+	assert_tuple_eq(parser.vertices[4], t->p3);
+
 	free_group(g);
 	free(parser.vertices);
 	ft_lstclear(&parser.faces, clean_faces);
@@ -61,6 +89,7 @@ MU_TEST_SUITE(wavefront_suite) {
 	MU_RUN_TEST(ignoring_unrecognized_lines_tst);
 	MU_RUN_TEST(vertex_records_tst);
 	MU_RUN_TEST(parsing_simple_triangle_tst);
+	MU_RUN_TEST(triangulating_polygons_tst);
 
 }
 
