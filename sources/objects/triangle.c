@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 18:16:48 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/10 21:20:10 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 01:07:15 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_object	*triangle(t_p3d p1, t_p3d p2, t_p3d p3)
 	_triangle->p3 = p3;
 	_triangle->normal = triangle_normal_at;
 	_triangle->intersect = intersect_triangle;
+	_triangle->bound_of = triangle_bounding_box;
 	calculate_triangle_normal(_triangle);
 	return (_triangle);
 }
