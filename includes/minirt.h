@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 01:06:55 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:32:10 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,12 @@ typedef struct s_tri_params
 t_object		*triangle(t_p3d p1, t_p3d p2, t_p3d p3);
 t_intxs			intersect_triangle(t_object *obj, t_ray _ray);
 t_v3d			triangle_normal_at(t_object obj, t_p3d point);
+void			calculate_triangle_normal(t_object *t);
+
+// smooth triangles
+
+t_object		*smooth_triangle(t_tri_p p, t_tri_n n);
+
 
 // intersection
 

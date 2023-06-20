@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/16 11:36:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:31:43 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef enum e_objs
 	CYLINDER,
 	CONE,
 	TRIANGLE,
+	SMOOTH_TRIANGLE,
 	GROUP,
 	OBJECT,
 }		t_objs;
@@ -105,10 +106,30 @@ typedef struct s_object	t_object;
 typedef struct s_intxs	t_intxs;
 typedef struct s_object	t_group;
 
+typedef struct s_vertex_n	t_vertex_n;
+typedef struct s_vertex_p	t_vertex_p;
+
 typedef t_intxs	(*t_intersect)(t_object *, t_ray);
 typedef t_v3d	(*t_normal_at)(t_object, t_p3d);
 typedef t_box	(*t_bound)(t_object);
 typedef void	(*t_clean)(void *);
+
+
+// triangle vertex and normal
+
+typedef struct s_tri_p
+{
+	t_p3d	p1;
+	t_p3d	p2;
+	t_p3d	p3;
+}			t_tri_p;
+
+typedef struct s_tri_n
+{
+	t_v3d	n1;
+	t_v3d	n2;
+	t_v3d	n3;
+}			t_tri_n;
 
 struct s_object
 {
@@ -131,6 +152,8 @@ struct s_object
 	t_v3d		e1;
 	t_v3d		e2;
 	t_v3d		normalv;
+	t_tri_p	p;
+	t_tri_n	n;
 
 	t_intersect	intersect;
 	t_normal_at	normal;

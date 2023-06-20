@@ -6,13 +6,13 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 18:16:48 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 01:07:15 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:27:48 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	calculate_triangle_normal(t_object *t)
+void	calculate_triangle_normal(t_object *t)
 {
 	t->e1 = sub(t->p2, t->p1);
 	t->e2 = sub(t->p3, t->p1);
