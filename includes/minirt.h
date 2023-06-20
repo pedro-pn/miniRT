@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/19 12:55:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 01:06:55 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ t_box			sphere_bounding_box(t_object sphere);
 t_box			plane_bounding_box(t_object plane);
 t_box			cube_bounding_box(t_object cube);
 t_box			cylinder_bounding_box(t_object cylinder);
+t_box			triangle_bounding_box(t_object triangle);
 t_box			cone_bounding_box(t_object obj);
 t_box			group_bounding_box(t_object obj);
 
@@ -394,5 +395,6 @@ void			book_cover(void);
 void			hexagon_demo(void);
 void			group_test(void);
 void			bvh_test(void);
+void			teapot(void);
 
 #endif
