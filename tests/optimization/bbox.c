@@ -86,7 +86,7 @@ MU_TEST(bounded_cylinder_bounding_box_tst) {
 	free(obj);
 }
 
-MU_TEST(unbonded_cone__bounding_box_tst) {
+MU_TEST(unbonded_cone_bounding_box_tst) {
 	obj = cone();
 	box = obj->bound_of(*obj);
 	
@@ -103,6 +103,15 @@ MU_TEST(bounded_cone_bounding_box_tst) {
 	
 	assert_tuple_eq(point(-5, -5, -5), box.min);
 	assert_tuple_eq(point(5, 3, 5), box.max);
+	free(obj);
+}
+
+MU_TEST(triangle_bounding_box_tst) {
+	obj = triangle(point(-3, 7, 2), point(6, 2, -4), point(2, -1, -1));
+	box = obj->bound_of(*obj);
+
+	assert_tuple_eq(point(-3, -1, -4), box.min);
+	assert_tuple_eq(point(6, 7, 2), box.max);
 	free(obj);
 }
 
@@ -158,8 +167,9 @@ MU_TEST_SUITE(bounding_box_suite) {
 	MU_RUN_TEST(cube_bounding_box_tst);
 	MU_RUN_TEST(unbounded_cylinder_bounding_box_tst);
 	MU_RUN_TEST(bounded_cylinder_bounding_box_tst);
-	MU_RUN_TEST(unbonded_cone__bounding_box_tst);
+	MU_RUN_TEST(unbonded_cone_bounding_box_tst);
 	MU_RUN_TEST(bounded_cone_bounding_box_tst);
+	MU_RUN_TEST(triangle_bounding_box_tst);
 	MU_RUN_TEST(adding_bounding_box_to_another);
 	MU_RUN_TEST(check_if_box_contains_a_given_point);
 	MU_RUN_TEST(check_if_box_contains_another_box);

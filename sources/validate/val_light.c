@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   val_sphere.c                                       :+:      :+:    :+:   */
+/*   val_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 15:43:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/12 18:49:08 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2022/12/12 13:17:03 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/06/11 12:24:27 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
+#include "minirt.h"
 
-int	validate_sphere(char *line)
+int	light_counter(char id)
 {
-	if (ft_strncmp(line, "sp ", 3) && ft_strncmp(line, "sp\t", 3))
-		return (FALSE);
+	static int	count = 0;
+
+	if (id != 'L')
+		return (false);
+	count++;
+	if (count > 1)
+		return (false);
+	return (true);
+}
+
+int	validate_light(char *line)
+{
+	if (light_counter(*line) == false)
+		return (false);
+	line++;
+	line = jump_spaces(line);
+	if (check_coordinate(line) == false)
+		return (false);
 	line = get_next_info(line);
-	if (check_coordinate(line) == FALSE)
-		return (FALSE);
-	line = get_next_info(line);
-	if (ft_isfloat(&line) == FALSE)
-		return (FALSE);
-	line = get_next_info(line);
-	if (check_color(line) == FALSE)
-		return (FALSE);
+	if (check_amb_light(line) == false)
+		return (false);
 	line = get_next_info(line);
 	if (*line && !ft_strchr("\n", *line))
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }

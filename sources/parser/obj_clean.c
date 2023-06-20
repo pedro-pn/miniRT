@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   obj_clean.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 12:04:57 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 13:31:39 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/06/20 10:29:33 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/06/20 10:31:31 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
+#include "minirt.h"
 
-void	free_array(void **array)
+void	clean_parser(t_parser *parser)
 {
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		array[i] = NULL;
-		i++;
-	}
-	free(array);
-	array = NULL;
+	ft_lstclear(&parser->faces, clean_faces);
+	free(parser->vertices);
+	parser->vertices = NULL;
 }

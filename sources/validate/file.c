@@ -6,11 +6,11 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:13:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 13:31:30 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/11 12:26:33 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
+#include "minirt.h"
 
 // void	file_init(t_file *file)
 // {
@@ -31,7 +31,7 @@ void	validate_scene(char *filename)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (validate_line(line) == FALSE)
+		if (validate_line(line) == false)
 			error_validate(line, fd);
 		free(line);
 		line = get_next_line(fd);
@@ -42,22 +42,22 @@ int	validate_line(char *line)
 {
 	line = jump_spaces(line);
 	if (*line == '#')
-		return (TRUE);
+		return (true);
 	else if (*line == '\n' || !*line)
-		return (TRUE);
-	if (validate_camera(line) == TRUE)
-		return (TRUE);
+		return (true);
+	if (validate_camera(line) == true)
+		return (true);
 	if (validate_light(line))
-		return (TRUE);
+		return (true);
 	if (validate_ambient(line))
-		return (TRUE);
+		return (true);
 	if (validate_sphere(line))
-		return (TRUE);
+		return (true);
 	if (validate_plane(line))
-		return (TRUE);
+		return (true);
 	if (validate_cylinder(line))
-		return (TRUE);
-	return (FALSE);
+		return (true);
+	return (false);
 }
 
 void	error_validate(char *line, int fd)

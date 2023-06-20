@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   val_light.c                                        :+:      :+:    :+:   */
+/*   val_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 13:17:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/01/05 14:34:48 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2022/12/12 19:35:56 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/06/11 12:24:12 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
+#include "minirt.h"
 
-int	light_counter(char id)
+int	validate_plane(char *line)
 {
-	static int	count = 0;
-
-	if (id != 'L')
-		return (FALSE);
-	count++;
-	if (count > 1)
-		return (FALSE);
-	return (TRUE);
-}
-
-int	validate_light(char *line)
-{
-	if (light_counter(*line) == FALSE)
-		return (FALSE);
-	line++;
-	line = jump_spaces(line);
-	if (check_coordinate(line) == FALSE)
-		return (FALSE);
+	if (ft_strncmp(line, "pl ", 3) && ft_strncmp(line, "pl\t", 3))
+		return (false);
 	line = get_next_info(line);
-	if (check_amb_light(line) == FALSE)
-		return (FALSE);
+	if (check_coordinate(line) == false)
+		return (false);
+	line = get_next_info(line);
+	if (check_norm_coordinate(line) == false)
+		return (false);
+	line = get_next_info(line);
+	if (check_color(line) == false)
+		return (false);
 	line = get_next_info(line);
 	if (*line && !ft_strchr("\n", *line))
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
