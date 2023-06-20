@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:43:29 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 00:59:32 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 19:52:28 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	fan_triangulation(t_group *g, t_p3d const *vertices,
 	index = 1;
 	while (index < face->size - 1)
 	{
-		tri = triangle(vertices[face->faces[0] - 1],
+		tri = triangle((t_tri_p){vertices[face->faces[0] - 1],
 			vertices[face->faces[index] - 1],
-			vertices[face->faces[index + 1] - 1]);
+			vertices[face->faces[index + 1] - 1]});
 		tri->id = face->id;
 		add_child(g, tri);
 		index++;

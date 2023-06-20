@@ -43,14 +43,14 @@ MU_TEST(parsing_simple_triangle_tst) {
 	g = default_group(parser);
 
 	t = g->group->content;
-	assert_tuple_eq(parser.vertices[0], t->p1);
-	assert_tuple_eq(parser.vertices[1], t->p2);
-	assert_tuple_eq(parser.vertices[2], t->p3);
+	assert_tuple_eq(parser.vertices[0], t->p.p1);
+	assert_tuple_eq(parser.vertices[1], t->p.p2);
+	assert_tuple_eq(parser.vertices[2], t->p.p3);
 
 	t = g->group->next->content;
-	assert_tuple_eq(parser.vertices[0], t->p1);
-	assert_tuple_eq(parser.vertices[2], t->p2);
-	assert_tuple_eq(parser.vertices[3], t->p3);
+	assert_tuple_eq(parser.vertices[0], t->p.p1);
+	assert_tuple_eq(parser.vertices[2], t->p.p2);
+	assert_tuple_eq(parser.vertices[3], t->p.p3);
 
 	free_group(g);
 	free(parser.vertices);
@@ -65,19 +65,19 @@ MU_TEST(triangulating_polygons_tst) {
 	g = default_group(parser);
 
 	t = g->group->content;
-	assert_tuple_eq(parser.vertices[0], t->p1);
-	assert_tuple_eq(parser.vertices[1], t->p2);
-	assert_tuple_eq(parser.vertices[2], t->p3);
+	assert_tuple_eq(parser.vertices[0], t->p.p1);
+	assert_tuple_eq(parser.vertices[1], t->p.p2);
+	assert_tuple_eq(parser.vertices[2], t->p.p3);
 
 	t = g->group->next->content;
-	assert_tuple_eq(parser.vertices[0], t->p1);
-	assert_tuple_eq(parser.vertices[2], t->p2);
-	assert_tuple_eq(parser.vertices[3], t->p3);
+	assert_tuple_eq(parser.vertices[0], t->p.p1);
+	assert_tuple_eq(parser.vertices[2], t->p.p2);
+	assert_tuple_eq(parser.vertices[3], t->p.p3);
 
 	t = g->group->next->next->content;
-	assert_tuple_eq(parser.vertices[0], t->p1);
-	assert_tuple_eq(parser.vertices[3], t->p2);
-	assert_tuple_eq(parser.vertices[4], t->p3);
+	assert_tuple_eq(parser.vertices[0], t->p.p1);
+	assert_tuple_eq(parser.vertices[3], t->p.p2);
+	assert_tuple_eq(parser.vertices[4], t->p.p3);
 
 	free_group(g);
 	free(parser.vertices);
@@ -93,15 +93,15 @@ MU_TEST(triangles_in_groups_tst) {
 
 	subg = g->group->content;
 	t = subg->group->content;
-	assert_tuple_eq(parser.vertices[0], t->p1);
-	assert_tuple_eq(parser.vertices[1], t->p2);
-	assert_tuple_eq(parser.vertices[2], t->p3);
+	assert_tuple_eq(parser.vertices[0], t->p.p1);
+	assert_tuple_eq(parser.vertices[1], t->p.p2);
+	assert_tuple_eq(parser.vertices[2], t->p.p3);
 
 	subg = g->group->next->content;
 	t = subg->group->content;
-	assert_tuple_eq(parser.vertices[0], t->p1);
-	assert_tuple_eq(parser.vertices[2], t->p2);
-	assert_tuple_eq(parser.vertices[3], t->p3);
+	assert_tuple_eq(parser.vertices[0], t->p.p1);
+	assert_tuple_eq(parser.vertices[2], t->p.p2);
+	assert_tuple_eq(parser.vertices[3], t->p.p3);
 
 	free_group(g);
 	free(parser.vertices);

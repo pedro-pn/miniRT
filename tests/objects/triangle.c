@@ -25,11 +25,11 @@ MU_TEST(creating_triangle_tst) {
 	p1 = point(0, 1, 0);
 	p2 = point(-1, 0, 0);
 	p3 = point(1, 0, 0);
-	t = triangle(p1, p2, p3);
+	t = triangle((t_tri_p){p1, p2, p3});
 
-	assert_tuple_eq(p1, t->p1);
-	assert_tuple_eq(p2, t->p2);
-	assert_tuple_eq(p3, t->p3);
+	assert_tuple_eq(p1, t->p.p1);
+	assert_tuple_eq(p2, t->p.p2);
+	assert_tuple_eq(p3, t->p.p3);
 	assert_tuple_eq(vector(-1, -1, 0), t->e1);
 	assert_tuple_eq(vector(1, -1, 0), t->e2);
 	assert_tuple_eq(vector(0, 0, -1), t->normalv);
@@ -37,7 +37,7 @@ MU_TEST(creating_triangle_tst) {
 }
 
 MU_TEST(finding_normal_on_a_triangle_tst) {
-	t = triangle(point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0));
+	t = triangle((t_tri_p){point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0)});
 	n1 = t->normal(*t, point(0, 0.5, 0));
 	n2 = t->normal(*t, point(-0.5, 0.75, 0));
 	n3 = t->normal(*t, point(0.5, 0.25, 0));
@@ -49,7 +49,7 @@ MU_TEST(finding_normal_on_a_triangle_tst) {
 }
 
 MU_TEST(intersecting_a_ray_parallel_to_the_triangle_tst) {
-	t = triangle(point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0));
+	t = triangle((t_tri_p){point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0)});
 	r = ray(point(0, -1, -2), vector(0, 1, 0));
 	
 	xs = t->intersect(t, r);
@@ -60,7 +60,7 @@ MU_TEST(intersecting_a_ray_parallel_to_the_triangle_tst) {
 }
 
 MU_TEST(ray_misses_the_p1_p3_edge_tst) {
-	t = triangle(point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0));
+	t = triangle((t_tri_p){point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0)});
 	r = ray(point(1, 1, -2), vector(0, 0, 1));
 	
 	xs = t->intersect(t, r);
@@ -71,7 +71,7 @@ MU_TEST(ray_misses_the_p1_p3_edge_tst) {
 }
 
 MU_TEST(ray_misses_the_p1_p2_edge_tst) {
-	t = triangle(point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0));
+	t = triangle((t_tri_p){point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0)});
 	r = ray(point(-1, 1, -2), vector(0, 0, 1));
 	
 	xs = t->intersect(t, r);
@@ -82,7 +82,7 @@ MU_TEST(ray_misses_the_p1_p2_edge_tst) {
 }
 
 MU_TEST(ray_misses_the_p2_p3_edge_tst) {
-	t = triangle(point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0));
+	t = triangle((t_tri_p){point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0)});
 	r = ray(point(0, -1, -2), vector(0, 0, 1));
 	
 	xs = t->intersect(t, r);
@@ -93,7 +93,7 @@ MU_TEST(ray_misses_the_p2_p3_edge_tst) {
 }
 
 MU_TEST(ray_strikes_a_triangle_tst) {
-	t = triangle(point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0));
+	t = triangle((t_tri_p){point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0)});
 	r = ray(point(0, 0.5, -2), vector(0, 0, 1));
 	
 	xs = t->intersect(t, r);

@@ -107,7 +107,7 @@ MU_TEST(bounded_cone_bounding_box_tst) {
 }
 
 MU_TEST(triangle_bounding_box_tst) {
-	obj = triangle(point(-3, 7, 2), point(6, 2, -4), point(2, -1, -1));
+	obj = triangle((t_tri_p){point(-3, 7, 2), point(6, 2, -4), point(2, -1, -1)});
 	box = obj->bound_of(*obj);
 
 	assert_tuple_eq(point(-3, -1, -4), box.min);
