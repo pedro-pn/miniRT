@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 09:53:45 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 00:59:49 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:32:13 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ t_parser	parser_obj_file(int file)
 			ft_putstr_fd("failed to parser at line: ", 2);
 			ft_putnbr_fd(line_count(false), 2);
 			ft_putendl_fd("", 2);
-			ft_lstclear(&parser.faces, clean_faces);
-			free(parser.vertices);
+			clean_parser(&parser);
 			free(line);
+			ft_clean_gnl(file);
 			break ;
 		}
 		free(line);

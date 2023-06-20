@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 00:58:47 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:30:48 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_bool			parse_group(char *line);
 t_group			*default_group(t_parser parser);
 t_group			*obj_to_group(t_parser parser);
 
+void			clean_parser(t_parser *parser);
 void			clean_faces(void *face);
 int				obj_group_id(t_bool increment);
 
