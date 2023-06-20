@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/19 13:25:12 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 00:58:47 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,20 @@ typedef struct s_parser
 typedef	struct s_face
 {
 	int		*faces;
+	size_t	id;
 	size_t	size;
 }			t_face;
 
-
 t_parser		parser_obj_file(int file);
+
 t_bool			parse_faces(t_parser *parser, char *line);
-void			clean_faces(void *face);
+t_bool			parse_group(char *line);
+
 t_group			*default_group(t_parser parser);
+t_group			*obj_to_group(t_parser parser);
+
+void			clean_faces(void *face);
+int				obj_group_id(t_bool increment);
 
 // utils
 

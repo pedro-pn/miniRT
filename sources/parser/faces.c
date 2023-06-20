@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:48:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/19 19:57:27 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 00:53:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@ static t_bool	make_faces(t_parser *parser, char *line)
 	int			vertex;
 
 	face = ft_calloc(1, sizeof(*face));
+	face->id = obj_group_id(false);
 	while (*line != '\0')
 	{
 		vertex = ft_atoi(line);
 		if (vertex == 0 || vertex > (int) parser->count)
 			return (clean_parse_faces(parser, face));
 		add_faces(face, vertex);
-		line = jump_spaces(++line);
+		line = jump_info(line);
+		line = jump_spaces(line);
 	}
 	if (face->size < 3)
 		return (clean_parse_faces(parser, face));

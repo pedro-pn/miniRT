@@ -3,6 +3,8 @@
 t_parser	parser;
 int			file;
 t_group		*g;
+t_group		*subg;
+t_group		*g2;
 t_object	*t;
 
 void test_setup(void) {
@@ -83,6 +85,30 @@ MU_TEST(triangulating_polygons_tst) {
 	close(file);
 }
 
+MU_TEST(triangles_in_groups_tst) {
+	file = open("./tests/parser/groups.obj", O_RDONLY);
+	parser = parser_obj_file(file);
+
+	g = obj_to_group(parser);
+
+	subg = g->group->content;
+	t = subg->group->content;
+	assert_tuple_eq(parser.vertices[0], t->p1);
+	assert_tuple_eq(parser.vertices[1], t->p2);
+	assert_tuple_eq(parser.vertices[2], t->p3);
+
+	subg = g->group->next->content;
+	t = subg->group->content;
+	assert_tuple_eq(parser.vertices[0], t->p1);
+	assert_tuple_eq(parser.vertices[2], t->p2);
+	assert_tuple_eq(parser.vertices[3], t->p3);
+
+	free_group(g);
+	free(parser.vertices);
+	ft_lstclear(&parser.faces, clean_faces);
+	close(file);
+}
+
 MU_TEST_SUITE(wavefront_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -90,6 +116,7 @@ MU_TEST_SUITE(wavefront_suite) {
 	MU_RUN_TEST(vertex_records_tst);
 	MU_RUN_TEST(parsing_simple_triangle_tst);
 	MU_RUN_TEST(triangulating_polygons_tst);
+	MU_RUN_TEST(triangles_in_groups_tst);
 
 }
 
