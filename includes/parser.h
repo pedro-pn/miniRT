@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 10:30:48 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 22:11:43 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ int		validate_cylinder(char *line);
 typedef struct s_parser
 {
 	t_p3d	*vertices;
-	size_t	count;
+	t_v3d	*normals;
+	size_t	vtx_count;
+	size_t	n_count;
 	t_list	*faces;
 }			t_parser;
 
@@ -55,6 +57,7 @@ typedef	struct s_face
 t_parser		parser_obj_file(int file);
 
 t_bool			parse_faces(t_parser *parser, char *line);
+t_bool			parse_normals(t_parser *parser, char *line);
 t_bool			parse_group(char *line);
 
 t_group			*default_group(t_parser parser);

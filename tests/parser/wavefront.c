@@ -28,10 +28,10 @@ MU_TEST(vertex_records_tst) {
 	file = open("./tests/parser/vertex.obj", O_RDONLY);
 	parser = parser_obj_file(file);
 
-	assert_tuple_eq(vector(-1, 1, 0), parser.vertices[0]);
-	assert_tuple_eq(vector(-1, 0.5, 0), parser.vertices[1]);
-	assert_tuple_eq(vector(1, 0, 0), parser.vertices[2]);
-	assert_tuple_eq(vector(1, 1, 0), parser.vertices[3]);
+	assert_tuple_eq(point(-1, 1, 0), parser.vertices[0]);
+	assert_tuple_eq(point(-1, 0.5, 0), parser.vertices[1]);
+	assert_tuple_eq(point(1, 0, 0), parser.vertices[2]);
+	assert_tuple_eq(point(1, 1, 0), parser.vertices[3]);
 	close(file);
 	free(parser.vertices);
 }
@@ -53,8 +53,7 @@ MU_TEST(parsing_simple_triangle_tst) {
 	assert_tuple_eq(parser.vertices[3], t->p.p3);
 
 	free_group(g);
-	free(parser.vertices);
-	ft_lstclear(&parser.faces, clean_faces);
+	clean_parser(&parser);
 	close(file);
 }
 
@@ -80,8 +79,7 @@ MU_TEST(triangulating_polygons_tst) {
 	assert_tuple_eq(parser.vertices[4], t->p.p3);
 
 	free_group(g);
-	free(parser.vertices);
-	ft_lstclear(&parser.faces, clean_faces);
+	clean_parser(&parser);
 	close(file);
 }
 
@@ -103,9 +101,20 @@ MU_TEST(triangles_in_groups_tst) {
 	assert_tuple_eq(parser.vertices[2], t->p.p2);
 	assert_tuple_eq(parser.vertices[3], t->p.p3);
 
+	clean_parser(&parser);
 	free_group(g);
-	free(parser.vertices);
-	ft_lstclear(&parser.faces, clean_faces);
+	close(file);
+}
+
+MU_TEST(vextex_normal_records_tst) {
+	file = open("./tests/parser/vertex_records.obj", O_RDONLY);
+	parser = parser_obj_file(file);
+
+	assert_tuple_eq(vector(0, 0, 1), parser.normals[0]);
+	assert_tuple_eq(vector(0.707, 0, -0.707), parser.normals[1]);
+	assert_tuple_eq(vector(1, 2, 3), parser.normals[2]);
+
+	clean_parser(&parser);
 	close(file);
 }
 
@@ -117,7 +126,7 @@ MU_TEST_SUITE(wavefront_suite) {
 	MU_RUN_TEST(parsing_simple_triangle_tst);
 	MU_RUN_TEST(triangulating_polygons_tst);
 	MU_RUN_TEST(triangles_in_groups_tst);
-
+	MU_RUN_TEST(vextex_normal_records_tst);
 }
 
 int main(int argc, char *argv[]) {
