@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_group.c                                        :+:      :+:    :+:   */
+/*   wavefront_obj_group.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:43:29 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/21 11:28:18 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:42:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static void	fan_triangulation(t_group *g, t_parser parser,
 	t_tri_n		tri_normals;
 
 	index = 1;
-	while (index < face->faces_size - 1)
+	while (index < face->vtx_indexes_size - 1)
 	{
-		tri_vertexes = (t_tri_p){parser.vertices[face->f_indexes[0] - 1],
-			parser.vertices[face->f_indexes[index] - 1],
-			parser.vertices[face->f_indexes[index + 1] - 1]};
-		if (face->normals_size > 0)
+		tri_vertexes = (t_tri_p){parser.vertices[face->vtx_indexes[0] - 1],
+			parser.vertices[face->vtx_indexes[index] - 1],
+			parser.vertices[face->vtx_indexes[index + 1] - 1]};
+		if (face->n_indexes_size > 0)
 		{
 			tri_normals = (t_tri_n){parser.normals[face->n_indexes[0] - 1],
 			parser.normals[face->n_indexes[index] - 1],

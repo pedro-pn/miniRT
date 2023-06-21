@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_clean.c                                        :+:      :+:    :+:   */
+/*   wavefront_obj_clean.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:29:33 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/21 15:22:51 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:41:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	clean_faces(void *face)
 	_face = face;
 	if (face == NULL)
 		return ;
-	free(_face->f_indexes);
+	free(_face->vtx_indexes);
 	free(_face->n_indexes);
 	free(_face);
 	_face = NULL;

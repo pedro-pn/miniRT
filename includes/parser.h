@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/21 11:31:15 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:36:16 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,20 @@ typedef struct s_parser
 
 typedef	struct s_face
 {
-	int		*f_indexes;
+	int		*vtx_indexes;
 	int		*n_indexes;
-	size_t	faces_size;
-	size_t	normals_size;
+	size_t	vtx_indexes_size;
+	size_t	n_indexes_size;
 	size_t	id;
 }			t_face;
 
 t_parser		parser_obj_file(int file);
 
-t_bool			parse_faces(t_parser *parser, char *line);
+t_bool			parse_vertices(t_parser *parser, char *line);
 t_bool			parse_normals(t_parser *parser, char *line);
+t_bool			parse_faces(t_parser *parser, char *line);
 t_bool			parse_group(char *line);
-t_bool			make_face_normals(t_parser *parser, t_face *face, char **line);
+t_bool			parse_face_normal(t_face *face, char **line, size_t n_count);
 
 t_group			*default_group(t_parser parser);
 t_group			*obj_to_group(t_parser parser);
