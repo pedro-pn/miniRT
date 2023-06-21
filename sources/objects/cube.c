@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 21:51:07 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/08 23:18:01 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 20:52:49 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,14 @@ t_intxs	intersect_cube(t_object *cube, t_ray ray)
 	return (xs);
 }
 
-t_v3d	cube_normal_at(t_object cube, t_p3d point)
+t_v3d	cube_normal_at(t_object cube, t_p3d point, t_intx inter)
 {
 	t_tuple	tuple;
 	double	maxc;
 	int		i;
 
 	(void)cube;
+	(void)inter;
 	tuple.point = point;
 	maxc = -__DBL_MAX__;
 	i = 0;

@@ -19,13 +19,13 @@ void test_teardown(void) {
 MU_TEST(plane_normal_tst) {
 	_plane = plane();
 	
-	normal = plane_normal_at(*_plane, point(0, 0,  0));
+	normal = plane_normal_at(*_plane, point(0, 0,  0), (t_intx){0});
 	assert_tuple_eq(vector(0, 1, 0), normal);
 
-	normal = plane_normal_at(*_plane, point(10, 0,  -10));
+	normal = plane_normal_at(*_plane, point(10, 0,  -10), (t_intx){0});
 	assert_tuple_eq(vector(0, 1, 0), normal);
 
-	normal = plane_normal_at(*_plane, point(-5, 0,  150));
+	normal = plane_normal_at(*_plane, point(-5, 0,  150), (t_intx){0});
 	assert_tuple_eq(vector(0, 1, 0), normal);
 }
 

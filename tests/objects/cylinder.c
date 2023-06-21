@@ -68,7 +68,7 @@ MU_TEST(ray_strikes_cylinder_tst) {
 void	test_cylinder_normal(t_p3d point, t_v3d expected) {
 	_cylinder = cylinder();
 
-	normal = _cylinder->normal(*_cylinder, point);
+	normal = _cylinder->normal(*_cylinder, point, (t_intx){0});
 	assert_tuple_eq(expected, normal);
 	free(_cylinder);
 }
@@ -141,7 +141,7 @@ void	normal_end_caps(t_object *cy, t_p3d point, t_v3d expected)
 	cy->maximum = 2;
 	cy->minimum = 1;
 	cy->closed = true;
-	normal = cy->normal(*cy, point);
+	normal = cy->normal(*cy, point, (t_intx){0});
 
 	assert_tuple_eq(expected, normal);
 }

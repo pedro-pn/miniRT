@@ -38,9 +38,9 @@ MU_TEST(creating_triangle_tst) {
 
 MU_TEST(finding_normal_on_a_triangle_tst) {
 	t = triangle((t_tri_p){point(0, 1, 0), point(-1, 0, 0), point(1, 0, 0)});
-	n1 = t->normal(*t, point(0, 0.5, 0));
-	n2 = t->normal(*t, point(-0.5, 0.75, 0));
-	n3 = t->normal(*t, point(0.5, 0.25, 0));
+	n1 = t->normal(*t, point(0, 0.5, 0), (t_intx){0});
+	n2 = t->normal(*t, point(-0.5, 0.75, 0), (t_intx){0});
+	n3 = t->normal(*t, point(0.5, 0.25, 0), (t_intx){0});
 
 	assert_tuple_eq(t->normalv, n1);
 	assert_tuple_eq(t->normalv, n2);

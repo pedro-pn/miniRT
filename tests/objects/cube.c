@@ -36,7 +36,7 @@ void	cube_intersect(t_p3d origin, t_v3d direction, double t1, double t2, double 
 void	cube_normal(t_p3d p, t_v3d expected)
 {
 	_cube = cube();
-	normal = _cube->normal(*_cube, p);
+	normal = _cube->normal(*_cube, p, (t_intx){0});
 
 	assert_tuple_eq(expected, normal);
 	free(_cube);

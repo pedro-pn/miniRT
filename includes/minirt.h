@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 19:51:09 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 20:53:36 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ void			divide(t_group *g, int threashold);
 /* OBJECTS */
 
 int				object_count(void);
-t_v3d			normal_at(t_object obj, t_p3d _point);
+t_v3d			normal_at(t_object obj, t_p3d _point, t_intx inter);
 t_v3d			reflect(t_v3d in, t_v3d normal);
 
 // spheres
@@ -166,20 +166,20 @@ t_object		*sphere(void);
 t_object		*glass_sphere(void);
 
 t_intxs			intersect_sphere(t_object *obj, t_ray _ray);
-t_v3d			sphere_normal_at(t_object obj, t_p3d point);
+t_v3d			sphere_normal_at(t_object obj, t_p3d point, t_intx inter);
 
 // planes
 
 t_object		*plane(void);
 
-t_v3d			plane_normal_at(t_object plane, t_p3d point);
+t_v3d			plane_normal_at(t_object plane, t_p3d point, t_intx inter);
 t_intxs			intersect_plane(t_object *plane, t_ray ray);
 
 // cubes
 
 t_object		*cube(void);
 t_intxs			intersect_cube(t_object *cube, t_ray ray);
-t_v3d			cube_normal_at(t_object cube, t_p3d point);
+t_v3d			cube_normal_at(t_object cube, t_p3d point, t_intx inter);
 
 void			check_axis(double origin, double direction,
 					double *t, double *limits);
@@ -189,7 +189,7 @@ void			get_cube_t(t_p3d min, t_p3d max, double *t);
 
 t_object		*cylinder(void);
 t_intxs			intersect_cylinder(t_object *cylinder, t_ray ray);
-t_v3d			cylinder_normal_at(t_object object, t_p3d point);
+t_v3d			cylinder_normal_at(t_object object, t_p3d point, t_intx inter);
 void			intersect_cy_caps(t_object *cylinder, t_ray ray, t_intxs *xs);
 
 // cones
@@ -197,7 +197,7 @@ void			intersect_cy_caps(t_object *cylinder, t_ray ray, t_intxs *xs);
 t_object		*cone(void);
 t_intxs			intersect_cone(t_object *cone, t_ray ray);
 void			intersect_cone_caps(t_object *cone, t_ray ray, t_intxs *xs);
-t_v3d			cone_normal_at(t_object object, t_p3d point);
+t_v3d			cone_normal_at(t_object object, t_p3d point, t_intx inter);
 
 // triangles
 
@@ -214,12 +214,16 @@ typedef struct s_tri_params
 
 t_object		*triangle(t_tri_p p);
 t_intxs			intersect_triangle(t_object *obj, t_ray _ray);
-t_v3d			triangle_normal_at(t_object obj, t_p3d point);
+t_v3d			triangle_normal_at(t_object obj, t_p3d point, t_intx inter);
 void			calculate_triangle_normal(t_object *t);
 
 // smooth triangles
 
 t_object		*smooth_triangle(t_tri_p p, t_tri_n n);
+void			intersect_with_uv(t_intxs *xs, double u, double v);
+t_v3d			smooth_triangle_normal_at(t_object obj, t_p3d point,
+										t_intx inter);
+
 
 
 // intersection

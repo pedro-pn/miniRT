@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 18:16:48 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 19:49:53 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 20:50:22 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,15 @@ t_intxs	intersect_triangle(t_object *obj, t_ray _ray)
 		return (xs);
 	t = params.f * dotp(obj->e2, params.origin_cross_e1);
 	create_intersection(&xs, t, obj);
+	if (obj->type == SMOOTH_TRIANGLE)
+		intersect_with_uv(&xs, params.u, params.v);
 	return (xs);
 }
 
-t_v3d	triangle_normal_at(t_object obj, t_p3d point)
+t_v3d	triangle_normal_at(t_object obj, t_p3d point, t_intx inter)
 {
 	(void)point;
+	(void)inter;
 	return (obj.normalv);
 }
 

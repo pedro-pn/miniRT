@@ -6,16 +6,17 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 13:50:49 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/08 23:18:19 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 20:40:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_v3d	plane_normal_at(t_object plane, t_p3d point)
+t_v3d	plane_normal_at(t_object plane, t_p3d point, t_intx inter)
 {
 	(void)plane;
 	(void)point;
+	(void)inter;
 	return (vector(0.0, 1.0, 0.0));
 }
 

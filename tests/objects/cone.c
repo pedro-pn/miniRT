@@ -70,7 +70,7 @@ MU_TEST(intersect_end_caps_tst) {
 }
 
 void	cone_normal(t_object *cone, t_p3d point, t_v3d expected) {
-	normal = cone->normal(*cone, point);
+	normal = cone->normal(*cone, point, (t_intx){0});
 	
 	assert_tuple_eq(expected, normal);
 }

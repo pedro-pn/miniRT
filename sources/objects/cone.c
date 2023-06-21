@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 18:31:57 by pedro             #+#    #+#             */
-/*   Updated: 2023/06/08 23:17:41 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 20:39:56 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,12 @@ t_intxs	intersect_cone(t_object *cone, t_ray ray)
 	return (xs);
 }	
 
-t_v3d	cone_normal_at(t_object object, t_p3d point)
+t_v3d	cone_normal_at(t_object object, t_p3d point, t_intx inter)
 {
 	double	dist;
 	double	y;
 
+	(void)inter;
 	dist = pow(point.x, 2) + pow(point.z, 2);
 	if (dist < pow(object.maximum, 2) && point.y >= object.maximum - EPSILON)
 		return (vector(0, 1, 0));
