@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 20:53:36 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/21 12:33:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define ERRARG 1
 # define ERRFMT 2
 # define ERRFILE 3
-# define SPACES " \t\n"
+# define SPACES " \t\r\n"
 
 # define SCREEN_WIDTH 11
 # define SCREEN_HEIGHT 11

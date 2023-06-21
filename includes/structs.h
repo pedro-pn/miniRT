@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 20:51:26 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:19:23 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,6 @@ typedef struct s_object	t_object;
 typedef struct s_intxs	t_intxs;
 typedef struct s_object	t_group;
 typedef struct s_intx	t_intx;
-
-
-typedef struct s_vertex_n	t_vertex_n;
-typedef struct s_vertex_p	t_vertex_p;
 
 typedef t_intxs	(*t_intersect)(t_object *, t_ray);
 typedef t_v3d	(*t_normal_at)(t_object, t_p3d, t_intx);

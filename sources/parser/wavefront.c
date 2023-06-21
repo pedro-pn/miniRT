@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 09:53:45 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 22:19:51 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/21 13:13:26 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static t_bool	parser_obj_line(t_parser *parser, char *line)
 		return (true);
 	if (ft_strncmp(line, "vn", 2) == 0)
 		return (parse_normals(parser, line));
+	else if (ft_strncmp(line, "vt", 2) == 0)
+		return (true);
 	else if (ft_strncmp(line, "v", 1) == 0)
 		return (parse_vertex(parser, line));
 	else if (ft_strncmp(line, "f", 1) == 0)

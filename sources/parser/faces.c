@@ -6,37 +6,28 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:48:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 21:56:51 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:28:26 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	clean_faces(void *face)
+static	void	add_faces_index(t_face *face, int vertex_index)
 {
-	t_face	*_face;
-
-	_face = face;
-	if (face == NULL)
-		return ;
-	free(_face->faces);
-	free(_face);
-	_face = NULL;
+	face->f_indexes = ft_realloc(face->f_indexes, sizeof(vertex_index)
+			* face->faces_size,
+				(face->faces_size + 1) * sizeof(vertex_index));
+	face->f_indexes[face->faces_size] = vertex_index;
+	face->faces_size++;
 }
 
-static t_bool	clean_parse_faces(t_parser *parser, t_face *face)
+static t_bool	parse_face_normals(char **line)
 {
-	ft_lstclear(&parser->faces, clean_faces);
-	free(face);
-	return (false);
-}
-
-static	void	add_faces(t_face *face, int vertex)
-{
-	face->faces = ft_realloc(face->faces, sizeof(vertex) * face->size,
-			(face->size + 1) * sizeof(vertex));
-	face->faces[face->size] = vertex;
-	face->size++;
+	while (ft_isdigit(**line))
+		(*line)++;
+	if (**line != '/')
+		return (false);
+	return (true);
 }
 
 static t_bool	make_faces(t_parser *parser, char *line)
@@ -50,13 +41,18 @@ static t_bool	make_faces(t_parser *parser, char *line)
 	{
 		vertex = ft_atoi(line);
 		if (vertex == 0 || vertex > (int) parser->vtx_count)
-			return (clean_parse_faces(parser, face));
-		add_faces(face, vertex);
+			return (clean_faces(face), false);
+		add_faces_index(face, vertex);
+		if (parse_face_normals(&line))
+		{
+			if (make_face_normals(parser, face, &line) == false)
+				return (false);
+		}
 		line = jump_info(line);
 		line = jump_spaces(line);
 	}
-	if (face->size < 3)
-		return (clean_parse_faces(parser, face));
+	if (face->faces_size < 3)
+		return (clean_faces(face), false);
 	ft_lstadd_back(&parser->faces, ft_lstnew(face));
 	return (true);
 }

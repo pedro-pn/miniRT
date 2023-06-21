@@ -118,6 +118,34 @@ MU_TEST(vextex_normal_records_tst) {
 	close(file);
 }
 
+MU_TEST(faces_with_normal_tst) {
+	file = open("./tests/parser/faces_normal.obj", O_RDONLY);
+	parser = parser_obj_file(file);
+
+	g = default_group(parser);
+
+
+	t = g->group->content;
+	assert_tuple_eq(parser.vertices[0], t->p.p1);
+	assert_tuple_eq(parser.vertices[1], t->p.p2);
+	assert_tuple_eq(parser.vertices[2], t->p.p3);
+	assert_tuple_eq(parser.normals[2], t->n.n1);
+	assert_tuple_eq(parser.normals[0], t->n.n2);
+	assert_tuple_eq(parser.normals[1], t->n.n3);
+
+	t = g->group->next->content;
+	assert_tuple_eq(parser.vertices[0], t->p.p1);
+	assert_tuple_eq(parser.vertices[1], t->p.p2);
+	assert_tuple_eq(parser.vertices[2], t->p.p3);
+	assert_tuple_eq(parser.normals[2], t->n.n1);
+	assert_tuple_eq(parser.normals[0], t->n.n2);
+	assert_tuple_eq(parser.normals[1], t->n.n3);
+
+	clean_parser(&parser);
+	free_group(g);
+	close(file);
+}
+
 MU_TEST_SUITE(wavefront_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -127,6 +155,7 @@ MU_TEST_SUITE(wavefront_suite) {
 	MU_RUN_TEST(triangulating_polygons_tst);
 	MU_RUN_TEST(triangles_in_groups_tst);
 	MU_RUN_TEST(vextex_normal_records_tst);
+	MU_RUN_TEST(faces_with_normal_tst);
 }
 
 int main(int argc, char *argv[]) {
