@@ -6,20 +6,11 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:48:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/21 16:47:22 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:36:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-static	void	add_faces_index(t_face *face, int vertex_index)
-{
-	face->vtx_indexes = ft_realloc(face->vtx_indexes, sizeof(vertex_index)
-			* face->vtx_indexes_size,
-				(face->vtx_indexes_size + 1) * sizeof(vertex_index));
-	face->vtx_indexes[face->vtx_indexes_size] = vertex_index;
-	face->vtx_indexes_size++;
-}
 
 static t_bool	check_for_normals(char **line)
 {
@@ -37,7 +28,9 @@ static	t_bool	parse_face_vertice(t_face *face, char *line, size_t vtx_count)
 	vertex = ft_atoi(line);
 	if (vertex == 0 || vertex > (int) vtx_count)
 		return (clean_faces(face), false);
-	add_faces_index(face, vertex);
+	if (ft_arradd_int(&face->vtx_indexes, vertex, face->vtx_indexes_size))
+		return (clean_faces(face), false);
+	face->vtx_indexes_size++;
 	return (true);
 }
 
