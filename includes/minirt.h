@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/21 15:30:51 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:37:09 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -407,5 +407,6 @@ void			group_test(void);
 void			bvh_test(void);
 void			teapot(void);
 void			smooth_teapot(void);
+void			dragon(void);
 
 #endif
