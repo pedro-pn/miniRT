@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
+/*   die.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 11:30:20 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/06 14:36:27 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/07/06 14:28:52 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/07/06 14:59:05 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	*mlx(void)
+static void	print_error(char *error_message)
 {
-	return (data()->mlx);
+	ft_putstr_fd("minirt: ", 2);
+	ft_putendl_fd(error_message, 2);
 }
 
-t_mlx_img	*image(void)
-{	
-	return (&(data()->camera.img));
-}
-
-void	*window(void)
+void	die(char *error_message)
 {
-	return (data()->mlx_win);
+	print_error(error_message);
+	clean_program();
+	exit(EXIT_FAILURE);
 }

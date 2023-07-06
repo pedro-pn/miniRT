@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 11:30:20 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/06 14:36:27 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/07/06 14:57:24 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/07/06 16:19:45 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef DEFINES_H
+# define DEFINES_H
 
-void	*mlx(void)
-{
-	return (data()->mlx);
-}
+# define MLX_ERROR "Fail to initialize mlx"
+# define GNL_ERROR "Fail to get line of required file"
 
-t_mlx_img	*image(void)
-{	
-	return (&(data()->camera.img));
-}
-
-void	*window(void)
-{
-	return (data()->mlx_win);
-}
+#endif /* DEFINES_H */

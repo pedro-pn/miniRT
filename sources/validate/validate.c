@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file.c                                             :+:      :+:    :+:   */
+/*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:13:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/11 12:26:33 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:10:08 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// void	file_init(t_file *file)
-// {
-// 	file->ambient = NULL;
-// 	file->camera = NULL;
-// 	file->cylinder = NULL;
-// 	file->light = NULL;
-// 	file->plane = NULL;
-// 	file->sphere = NULL;
-// }
+static	int	line_count(t_bool increment)
+{
+	static int line = 1;
+
+	if (increment)
+		line++;
+	return (line);
+}
 
 void	validate_scene(char *filename)
 {
@@ -29,12 +28,15 @@ void	validate_scene(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	line = get_next_line(fd);
+	if (line == NULL)
+		die(GNL_ERROR);
 	while (line)
 	{
 		if (validate_line(line) == false)
 			error_validate(line, fd);
 		free(line);
 		line = get_next_line(fd);
+		line_count(true);
 	}
 }
 
@@ -62,8 +64,13 @@ int	validate_line(char *line)
 
 void	error_validate(char *line, int fd)
 {
-	free(line);
 	close(fd);
-	ft_putendl_fd("Error\nminirt: Invalid scene file.", 2);
+	ft_putendl_fd("Error\n Invalid scene file.", 2);
+	ft_putstr_fd("line ", 2);
+	ft_putnbr_fd(line_count(false), 2);
+	ft_putendl_fd(":", 2);
+	ft_putstr_fd("\t", 2);
+	ft_putendl_fd(line, 2);
+	free(line);
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/30 17:37:09 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:58:16 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "structs.h"
 # include "my_mlx.h"
 # include "parser.h"
+# include "defines.h"
 # include <fcntl.h>
 # include <pthread.h>
 
@@ -72,6 +73,7 @@ t_light			*light(void);
 t_world			*world(void);
 t_list			*objects(void);
 t_camera		*camera(void);
+void			*mlx(void);
 pthread_mutex_t	*buffer_mutex(void);
 pthread_mutex_t	*task_mutex(void);
 
@@ -361,6 +363,7 @@ void			set_camera(int hsize, int vsize, double field_of_view);
 
 /* CLEAN*/
 
+void			die(char *error_message);
 void			clean_program(void);
 
 /* DEMOS*/
