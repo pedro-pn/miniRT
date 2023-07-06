@@ -6,11 +6,18 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:45:34 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/06 14:58:25 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:54:06 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	initialize_args(int argc, char *argv[])
+{
+	set_argc(argc);
+	set_argv(argv);
+	set_scene(argv[1]);
+}
 
 void	img_init(void)
 {

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/21 16:36:16 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:51:37 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 // .rt files
 
-void	validate_scene(char *filename);
+void	validate_scene(void);
 int		validate_line(char *line);
 int		validate_camera(char *line);
 int		check_coordinate(char *line);

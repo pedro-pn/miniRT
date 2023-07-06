@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/06 14:58:16 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:54:13 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*mlx_win;
+
+	int			argc;
+	char		**argv;
+
+	char		*scene;
 
 	t_world		world;
 	t_camera	camera;
@@ -74,13 +79,19 @@ t_world			*world(void);
 t_list			*objects(void);
 t_camera		*camera(void);
 void			*mlx(void);
+int				argc(void);
+char			**argv(void);
+void			set_argc(int argc);
+void			set_argv(char **argv);
+char			*scene(void);
+void			set_scene(char *scene);
 pthread_mutex_t	*buffer_mutex(void);
 pthread_mutex_t	*task_mutex(void);
 
-/* args.c file */
+/* ARGUMENTS*/
 
-int				check_args(int argc, char **argv);
-void			file_init(t_file *file);
+void			initialize_args(int argc, char *argv[]);
+void			check_scene_ext(void);
 
 /* UTILS */
 

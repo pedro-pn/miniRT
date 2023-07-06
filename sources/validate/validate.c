@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:13:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/06 15:10:08 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:47:31 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ static	int	line_count(t_bool increment)
 	return (line);
 }
 
-void	validate_scene(char *filename)
+void	validate_scene()
 {
 	int		fd;
 	char	*line;
 
-	fd = open(filename, O_RDONLY);
+	check_scene_ext();
+	fd = open(scene(), O_RDONLY);
 	line = get_next_line(fd);
 	if (line == NULL)
 		die(GNL_ERROR);
