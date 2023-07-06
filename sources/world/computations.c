@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   computations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:20:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 20:50:23 by pedro            ###   ########.fr       */
+/*   Updated: 2023/06/20 20:49:55 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_comp	prepare_computations(t_intx *inter, t_ray ray, t_intxs xs)
 	comps.object = inter->object;
 	comps.point = position(comps.t, ray);
 	comps.eyev = neg(ray.direction);
-	comps.normalv = normal_at(*comps.object, comps.point);
+	comps.normalv = normal_at(*comps.object, comps.point, *inter);
 	if (dotp(comps.eyev, comps.normalv) < 0)
 	{
 		comps.inside = true;

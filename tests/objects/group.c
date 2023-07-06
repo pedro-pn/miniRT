@@ -154,7 +154,7 @@ MU_TEST(finding_normal_on_child_object_tst) {
 	s = sphere();
 	translation(vector(5, 0, 0), &s->transform);
 	add_child(g2, s);
-	n = normal_at(*s, point(1.7321, 1.1547, -5.5774));
+	n = normal_at(*s, point(1.7321, 1.1547, -5.5774), (t_intx){0});
 	
 	assert_tuple_eq(vector(0.2857, 0.4286, -0.8571), n);
 }

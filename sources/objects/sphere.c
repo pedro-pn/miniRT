@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:11:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/09 18:07:22 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 20:40:41 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ t_intxs	intersect_sphere(t_object *obj, t_ray _ray)
 	return (intxs);
 }
 
-t_v3d	sphere_normal_at(t_object obj, t_p3d point)
+t_v3d	sphere_normal_at(t_object obj, t_p3d point, t_intx inter)
 {
+	(void)inter;
 	return (sub(point, obj.origin));
 }
 

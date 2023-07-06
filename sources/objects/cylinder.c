@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:18:37 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/08 23:18:10 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/06/20 20:40:28 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 	return (xs);
 }
 
-t_v3d	cylinder_normal_at(t_object object, t_p3d point)
+t_v3d	cylinder_normal_at(t_object object, t_p3d point, t_intx inter)
 {
 	double	dist;
 
+	(void)inter;
 	dist = pow(point.x, 2) + pow(point.z, 2);
 	if (dist < 1 && point.y >= object.maximum - EPSILON)
 		return (vector(0, 1, 0));
