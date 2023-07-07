@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hexagon.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 19:00:17 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/11 21:19:56 by pedro            ###   ########.fr       */
+/*   Updated: 2023/07/07 14:19:05 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ static	void	hexagon(void) {
 static void create_world_objects(void)
 {
 	hexagon();
-	point_light(point(-10, 10, -10), tcolor(1, 1, 1));
+	set_light(point(-10, 10, -10), 1.0);
+	set_ambient_light(1.0, white_rgb());
 }
 
 static void	create_world_camera(void)

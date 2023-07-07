@@ -15,13 +15,13 @@ t_comp		comps;
 t_c3d		result_color;
 t_intx		intx;
 t_view		view;
-void		*mlx;
 t_mlx_img	img;
 t_rgb		_color;
 
 
 void test_setup(void) {
-	point_light(point(-10.0, 10.0, -10.0), tcolor(1.0, 1.0, 1.0));
+	set_light(point(-10.0, 10.0, -10.0), 1.0);
+	set_ambient_light(1.0, white_rgb());
 	_sphere = sphere();
 	xs.intersections = NULL;
 }
@@ -66,10 +66,10 @@ MU_TEST(default_word){
 	default_world();
 	_world = world();
 
-	expected_light.color = tcolor(1, 1, 1);
+	expected_light.color_3d = tcolor(1, 1, 1);
 	expected_light.position = point(-10, 10, -10);
 
-	assert_tuple_eq(expected_light.color, _world->light.color);
+	assert_tuple_eq(expected_light.color_3d, _world->light.color_3d);
 	assert_tuple_eq(expected_light.position, _world->light.position);
 
 	_objects = _world->objects;
@@ -158,7 +158,7 @@ MU_TEST(shading_tst){
 MU_TEST(shading_inside_tst){
 	default_world();
 	_ray = ray(point(0, 0, 0), vector(0, 0, 1));
-	point_light(point(0, 0.25, 0), tcolor(1, 1, 1));
+	set_light(point(0, 0.25, 0), 1.0);
 	_object = world()->objects->next->content;
 	create_intersection(&xs, 0.5, _object);
 	inter = xs.intersections->content;
@@ -170,7 +170,7 @@ MU_TEST(shading_inside_tst){
 
 MU_TEST(shadow_intersection_tst){
 	default_world();
-	point_light(point(0, 0, -10), tcolor(1, 1, 1));
+	set_light(point(0, 0, -10), 1.0);
 	_object = sphere();
 	create_object(_object);
 	_object = sphere();

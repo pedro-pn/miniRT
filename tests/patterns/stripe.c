@@ -93,7 +93,8 @@ MU_TEST(lighting_patt_tst){
 	params.eyev = vector(0, 0, -1);
 	params.normalv = vector(0, 0, -1);
 	params.position = point(0.9, 0, 0);
-	point_light(point(0, 0, -10), white());
+	set_light(point(0, 0, -10), 1.0);
+	set_ambient_light(1.0, white_rgb());
 
 	result = lighting(*obj, *light(), params);
 	assert_tuple_eq(white(), result);

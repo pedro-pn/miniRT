@@ -76,7 +76,8 @@ void	sphere_3d_demo(void)
 
 	set_camera(1000, 1000, MY_PI / 2);
 	img = image();
-	point_light(point(5, 0, -5), tcolor(1.0, 1.0, 1.0));
+	set_light(point(5, 0, -5), 1.0);
+	set_ambient_light(1.0, white_rgb());
 	sdemo = sdemo_init(img->_width);
 	draw_sdemo(img, sdemo);
 	free(sdemo._sphere);

@@ -6,20 +6,11 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:43:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/07 13:50:34 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:10:45 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void	point_light(t_p3d position, t_c3d color)
-{
-	t_light	*_light;
-
-	_light = light();
-	_light->position = position;
-	_light->color_3d = color;
-}
 
 static	t_c3d	get_diffuse_color(t_material m, t_lgt lgt)
 {

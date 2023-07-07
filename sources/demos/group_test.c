@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:28:30 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/05/08 15:10:56 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:19:08 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ static void create_world_objects(void)
 	create_group(vector(1 ,-1 ,1));
 	create_group(vector(-1 ,3 ,1));
 	create_group(vector(1 ,3 ,1));
-	point_light(point(-10, 10, -10), tcolor(1, 1, 1));
+	set_light(point(-10, 10, -10), 1.0);
+	set_ambient_light(1.0, white_rgb());
 }
 
 static void	create_world_camera(void)

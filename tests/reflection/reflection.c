@@ -19,7 +19,8 @@ t_intxs		xs;
 
 void test_setup(void) {
 	default_world();
-	point_light(point(-10, 10, -10), tcolor(1, 1, 1));
+	set_light(point(-10, 10, -10), 1.0);
+	set_ambient_light(1.0, white_rgb());
 	xs.intersections = NULL;
 }
 

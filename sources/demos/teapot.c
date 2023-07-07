@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 00:35:46 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/20 11:13:42 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:18:56 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void	create_wavefront_object(void)
 static void create_world_objects(void)
 {
 	create_wavefront_object();
-	point_light(point(0, -1, -25), tcolor(1, 1, 1));
+	set_light(point(0, -1, -25), 1.0);
+	set_ambient_light(1.0, white_rgb());
 }
 
 static void	create_world_camera(void)

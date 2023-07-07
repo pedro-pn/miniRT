@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_demo_v3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:28:30 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/11 21:20:50 by pedro            ###   ########.fr       */
+/*   Updated: 2023/07/07 14:18:44 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,8 @@ static void create_world_objects(void)
 	//left_sphere();
 	// right_sphere();
 	right_cylinder();
-	point_light(point(-10, 10, -10), tcolor(1, 1, 1));
+	set_light(point(-10, 10, -10), 1.0);
+	set_ambient_light(1.0, white_rgb());
 }
 
 static void	create_world_camera(void)

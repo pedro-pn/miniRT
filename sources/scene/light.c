@@ -6,13 +6,13 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:45:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/07 12:59:38 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:26:54 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_light	create_point_light(t_p3d position, double brightness, t_rgb color_rgb)
+static t_light	point_light(t_p3d position, double brightness, t_rgb color_rgb)
 {
 	t_light	new_light;
 
@@ -29,6 +29,6 @@ void	set_light(t_p3d origin, double brightness)
 {
 	t_light	_light;
 
-	_light = create_point_light(origin, brightness, white_rgb());
+	_light = point_light(origin, brightness, white_rgb());
 	world()->light = _light;
 }

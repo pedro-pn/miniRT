@@ -26,12 +26,12 @@ void test_teardown(void) {
 	free(_sphere);
 }
 
-MU_TEST(point_light_tst){
+MU_TEST(set_light_tst){
 	_light = light();
-	point_light(point(0, 0,  0), tcolor(1, 1, 1));
+	set_light(point(0, 0,  0), 1.0);
 
 	assert_tuple_eq(point(0, 0, 0), _light->position);
-	assert_tuple_eq(tcolor(1, 1, 1), _light->color);
+	assert_tuple_eq(tcolor(1, 1, 1), _light->color_3d);
 }
 
 MU_TEST(material_tst){
@@ -49,7 +49,8 @@ MU_TEST(eye_btwn_light_surf_tst){
 	params.eyev = vector(0, 0, -1);
 	params.normalv = vector(0, 0, -1);
 	params.in_shadow = true;
-	point_light(point(0, 0, -10), tcolor(1, 1, 1));
+	set_light(point(0, 0, -10), 1.0);
+	set_ambient_light(1.0, white_rgb());
 	_sphere->material = material();
 	intensity = lighting(*_sphere, *light(), params);
 
@@ -61,7 +62,8 @@ MU_TEST(eye_45_degree_tst){
 	params.eyev = vector(0, sqrt(2) / 2, -sqrt(2) / 2);
 	params.normalv = vector(0, 0, -1);
 	params.in_shadow = false;
-	point_light(point(0, 0, -10), tcolor(1, 1, 1));
+	set_light(point(0, 0, -10), 1.0);
+	set_ambient_light(1.0, white_rgb());
 	_sphere->material = material();
 	intensity = lighting(*_sphere, *light(), params);
 
@@ -73,7 +75,8 @@ MU_TEST(light_45_degree_tst){
 	params.eyev = vector(0, 0, -1);
 	params.normalv = vector(0, 0, -1);
 	params.in_shadow = false;
-	point_light(point(0, 10, -10), tcolor(1, 1, 1));
+	set_light(point(0, 10, -10), 1.0);
+	set_ambient_light(1.0, white_rgb());
 	_sphere->material = material();
 	intensity = lighting(*_sphere, *light(), params);
 
@@ -85,7 +88,8 @@ MU_TEST(eye_in_light_path_tst){
 	params.eyev = vector(0, -sqrt(2) / 2, -sqrt(2) / 2);
 	params.normalv = vector(0, 0, -1);
 	params.in_shadow = false;
-	point_light(point(0, 10, -10), tcolor(1, 1, 1));
+	set_light(point(0, 10, -10), 1.0);
+	set_ambient_light(1.0, white_rgb());
 	_sphere->material = material();
 	intensity = lighting(*_sphere, *light(), params);
 
@@ -97,7 +101,8 @@ MU_TEST(light_behind_surface_tst){
 	params.eyev = vector(0, 0, -1);
 	params.normalv = vector(0, 0, -1);
 	params.in_shadow = false;
-	point_light(point(0, 0, 10), tcolor(1, 1, 1));
+	set_light(point(0, 0, 10), 1.0);
+	set_ambient_light(1.0, white_rgb());
 	_sphere->material = material();
 	intensity = lighting(*_sphere, *light(), params);
 
@@ -107,7 +112,7 @@ MU_TEST(light_behind_surface_tst){
 MU_TEST_SUITE(light_suite) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
-	MU_RUN_TEST(point_light_tst);
+	MU_RUN_TEST(set_light_tst);
 	MU_RUN_TEST(material_tst);
 	MU_RUN_TEST(eye_btwn_light_surf_tst);
 	MU_RUN_TEST(eye_45_degree_tst);

@@ -5,7 +5,8 @@ t_rgb		_color;
 
 
 void test_setup(void) {
-	point_light(point(-10.0, 10.0, -10.0), tcolor(1.0, 1.0, 1.0));
+	set_light(point(-10.0, 10.0, -10.0), 1.0);
+	set_ambient_light(1.0, white_rgb());
 	start_mlx();
 }
 

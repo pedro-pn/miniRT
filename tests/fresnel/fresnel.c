@@ -12,7 +12,8 @@ t_c3d		result_color;
 
 void test_setup(void) {
 	default_world();
-	point_light(point(-10, 10, -10), white());
+	set_light(point(-10, 10, -10), 1);
+	set_ambient_light(1, white_rgb());
 	obj = glass_sphere();
 
 }

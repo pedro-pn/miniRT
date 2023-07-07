@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tracer_cover.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:02:25 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/11 21:21:19 by pedro            ###   ########.fr       */
+/*   Updated: 2023/07/07 14:18:35 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,7 +255,8 @@ static void create_world_objects(void)
 	background();
 	add_sphere();
 	add_cubes();
-	point_light(point(50, 100, -50), tcolor(1, 1, 1));
+	set_light(point(50, 100, -50), 1.0);
+	set_ambient_light(1.0, white_rgb());
 }
 
 static void	create_world_camera(void)

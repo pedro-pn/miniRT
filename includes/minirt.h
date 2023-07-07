@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/07 14:01:31 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:27:41 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,10 +300,7 @@ typedef struct s_lgt
 	t_lgt_param	params;
 }				t_lgt;
 
-void			point_light(t_p3d position, t_c3d color);
 void			set_light(t_p3d origin, double brightness);
-t_light			create_point_light(t_p3d position, double brightness,
-									t_rgb color_rgb);
 t_c3d			lighting(t_object obj, t_light light, t_lgt_param params);
 
 /* COLORS */
