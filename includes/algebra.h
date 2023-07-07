@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:43:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/12 22:56:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/07 11:43:38 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "my_math.h"
 # include "libft.h"
 # include <stdio.h>
+
+# define VECTOR 0
+# define POINT 1
 
 /* TUPLE */
 
