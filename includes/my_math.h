@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:10:28 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/28 16:12:54 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/07 12:31:05 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef enum e_bool
 t_bool	comp(double a, double b);
 double	abs_double(double a);
 double	max(double a, double b);
+double	degrees_to_radians(double degrees);
 
 /* QUADRATIC */
 
