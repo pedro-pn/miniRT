@@ -34,16 +34,21 @@ This project is a Ray Tracer coded in C using [minilibx](https://github.com/42Pa
 - [X] Triangles;
 - [X] Wavefront OBJ file parser;
 - [X] Smooth Triangles;
+- [X] Parser scene;
 
 ### To implement:
 
+- [ ] Cones in scene;
+- [ ] Groups in scene;
+- [ ] Triangles in scene;
+- [ ] Patterns in scene;
+- [ ] Wavefront in scene;
 - [ ] Multiple lights;
 - [ ] CSG;
 - [ ] Focal Blur;
 - [ ] Soft shadows;
 - [ ] Anti-aliasing;
 - [ ] Texture maps;
-- [ ] Parser scene;
 
 ---
 #### Work in progress...
