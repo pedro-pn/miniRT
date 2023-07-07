@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:24:18 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/06 16:54:06 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:53:24 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	initialize_minirt(int argc, char *argv[])
 	initialize_args(argc, argv);
 	validate_scene();
 	start_mlx();
+	parse_scene();
 	// img_init();
 	
 }
@@ -41,7 +42,9 @@ void	run(void)
 	// bvh_test();
 	// teapot();
 	// smooth_teapot();
-	dragon();
+	// dragon();
+	render();
+	mlx_save_img_to_ppm(image(), "minirt_test.ppm");
 }
 
 int	main(int argc, char *argv[])

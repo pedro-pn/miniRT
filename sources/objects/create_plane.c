@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   default_colors.c                                   :+:      :+:    :+:   */
+/*   create_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 09:29:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/07 14:00:25 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/07/07 12:17:49 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/07/07 12:32:51 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_c3d	black(void)
+static void	set_plane(t_object *plane, t_p3d origin, t_p3d normal, t_rgb color)
 {
-	return ((t_c3d){0, 0, 0, COLOR});
+	plane->material.color = rgb_to_tcolor(color);
+	translate_object(plane, origin);
+	fast_rotate_object(plane, normal);
 }
 
-t_c3d	white(void)
+void	create_plane(t_p3d origin, t_p3d normal, t_rgb color)
 {
-	return ((t_c3d){1, 1, 1, COLOR});
-}
+	t_object	*_plane;
 
-t_rgb	white_rgb(void)
-{
-	return ((t_rgb){255, 255, 255});
+	(void)normal;
+	_plane = plane();
+	set_plane(_plane, origin, normal, color);
+	create_object(_plane);
 }

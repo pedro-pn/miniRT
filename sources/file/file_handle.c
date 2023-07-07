@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   default_colors.c                                   :+:      :+:    :+:   */
+/*   file_handle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 09:29:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/07 14:00:25 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/07/07 11:15:17 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/07/07 11:23:04 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_c3d	black(void)
+int	safe_open(char const *file_path)
 {
-	return ((t_c3d){0, 0, 0, COLOR});
+	int	fd;
+
+	fd = open(file_path, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("couldn't open ", 2);
+		ft_putendl_fd(file_path, 2);
+		die(OPEN_ERROR);
+	}
+	return (fd);
 }
 
-t_c3d	white(void)
+void	safe_close(int fd)
 {
-	return ((t_c3d){1, 1, 1, COLOR});
-}
+	int status;
 
-t_rgb	white_rgb(void)
-{
-	return ((t_rgb){255, 255, 255});
+	status = close(fd);
+	if (status < 0)
+		die (CLOSE_ERROR);
 }

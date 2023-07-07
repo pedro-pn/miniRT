@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   default_colors.c                                   :+:      :+:    :+:   */
+/*   ambient_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 09:29:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/07 14:00:25 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/07/07 13:44:13 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/07/07 13:45:00 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_c3d	black(void)
+t_amb_light	ambient_light(void)
 {
-	return ((t_c3d){0, 0, 0, COLOR});
-}
-
-t_c3d	white(void)
-{
-	return ((t_c3d){1, 1, 1, COLOR});
-}
-
-t_rgb	white_rgb(void)
-{
-	return ((t_rgb){255, 255, 255});
+	return (world()->ambient_light);
 }

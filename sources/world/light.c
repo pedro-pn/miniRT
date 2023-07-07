@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:43:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/04/04 20:50:30 by pedro            ###   ########.fr       */
+/*   Updated: 2023/07/07 13:50:34 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	point_light(t_p3d position, t_c3d color)
 
 	_light = light();
 	_light->position = position;
-	_light->color = color;
+	_light->color_3d = color;
 }
 
 static	t_c3d	get_diffuse_color(t_material m, t_lgt lgt)
@@ -44,7 +44,7 @@ static t_c3d	get_specular_color(t_material m, t_light light, t_lgt lgt)
 	else
 	{
 		factor = pow(reflect_dot_eye, m.shininess);
-		specular_color = scalar_times(factor * m.specular, light.color);
+		specular_color = scalar_times(factor * m.specular, light.color_3d);
 	}
 	return (specular_color);
 }
@@ -72,7 +72,8 @@ t_c3d	lighting(t_object obj, t_light light, t_lgt_param params)
 	if (obj.pattern.has_pattern == true)
 		obj.material.color = pattern_at(obj, params.position);
 	lgt.lightv = normalize(sub(light.position, params.position));
-	lgt.effective_color = haddamard(obj.material.color, light.color);
+	lgt.effective_color = haddamard(obj.material.color, light.intensity);
+	lgt.effective_color = haddamard(lgt.effective_color, ambient_light().intensity);
 	lgt.params = params;
 	lgt.ambient_color = scalar_times(obj.material.ambient, lgt.effective_color);
 	if (params.in_shadow == true)

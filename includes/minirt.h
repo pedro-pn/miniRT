@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/06 16:54:13 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:01:31 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define ERRFILE 3
 # define SPACES " \t\r\n"
 
-# define SCREEN_WIDTH 11
-# define SCREEN_HEIGHT 11
+# define SCREEN_WIDTH 200
+# define SCREEN_HEIGHT 200
 
 # define ITER_MAX 5
 # define THREAD_NUM 12
@@ -78,6 +78,7 @@ t_light			*light(void);
 t_world			*world(void);
 t_list			*objects(void);
 t_camera		*camera(void);
+t_amb_light		ambient_light(void);
 void			*mlx(void);
 int				argc(void);
 char			**argv(void);
@@ -92,6 +93,11 @@ pthread_mutex_t	*task_mutex(void);
 
 void			initialize_args(int argc, char *argv[]);
 void			check_scene_ext(void);
+
+/* FILE */
+
+int				safe_open(char const *file_path);
+void			safe_close(int fd);
 
 /* UTILS */
 
@@ -174,9 +180,17 @@ int				object_count(void);
 t_v3d			normal_at(t_object obj, t_p3d _point, t_intx inter);
 t_v3d			reflect(t_v3d in, t_v3d normal);
 
+// transformations
+
+void			multiply_transform(t_object *object, t_matrix mx);
+void			translate_object(t_object *object, t_p3d new_origin);
+void			fast_rotate_object(t_object *object, t_v3d new_normal);
+void			scale_object(t_object *object, t_v3d new_scale);
+
 // spheres
 t_object		*sphere(void);
 t_object		*glass_sphere(void);
+void			create_sphere(t_p3d origin, double diameter, t_rgb color);
 
 t_intxs			intersect_sphere(t_object *obj, t_ray _ray);
 t_v3d			sphere_normal_at(t_object obj, t_p3d point, t_intx inter);
@@ -184,6 +198,7 @@ t_v3d			sphere_normal_at(t_object obj, t_p3d point, t_intx inter);
 // planes
 
 t_object		*plane(void);
+void			create_plane(t_p3d origin, t_p3d normal, t_rgb color);
 
 t_v3d			plane_normal_at(t_object plane, t_p3d point, t_intx inter);
 t_intxs			intersect_plane(t_object *plane, t_ray ray);
@@ -200,7 +215,18 @@ void			get_cube_t(t_p3d min, t_p3d max, double *t);
 
 // cylinders
 
+typedef struct s_create_cylinder
+{
+	t_p3d		origin;
+	t_p3d		normal;
+	double		diameter;
+	double		height;
+	t_rgb		color;
+}				t_create_cylinder;
+
 t_object		*cylinder(void);
+void			create_cylinder(t_create_cylinder params);
+
 t_intxs			intersect_cylinder(t_object *cylinder, t_ray ray);
 t_v3d			cylinder_normal_at(t_object object, t_p3d point, t_intx inter);
 void			intersect_cy_caps(t_object *cylinder, t_ray ray, t_intxs *xs);
@@ -275,12 +301,16 @@ typedef struct s_lgt
 }				t_lgt;
 
 void			point_light(t_p3d position, t_c3d color);
+void			set_light(t_p3d origin, double brightness);
+t_light			create_point_light(t_p3d position, double brightness,
+									t_rgb color_rgb);
 t_c3d			lighting(t_object obj, t_light light, t_lgt_param params);
 
 /* COLORS */
 
 t_rgb			tcolor_to_rgb(t_c3d color);
 t_c3d			rgb_to_tcolor(t_rgb rgb);
+t_rgb			white_rgb(void);
 t_c3d			black(void);
 t_c3d			white(void);
 
@@ -368,9 +398,17 @@ void			render_task(t_task task);
 int				*task_count(void);
 void			start_threads(t_task *tasks);
 
-/* CAMERA */
+/* SCENE */
+
+// camera
 
 void			set_camera(int hsize, int vsize, double field_of_view);
+void			set_scene_camera(t_p3d origin, t_v3d orientation,
+									double horz_fov_deg);
+
+// ambient light
+
+void			set_ambient_light(double brightness, t_rgb color);
 
 /* CLEAN*/
 

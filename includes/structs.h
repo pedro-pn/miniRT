@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:00:47 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/21 11:19:23 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:45:25 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,28 @@
 # include "algebra.h"
 # include "my_mlx.h"
 
+/* AMBIENT LIGHT */
+
+typedef struct s_amb_light
+{
+	double				brightness;
+	t_rgb				color_rgb;
+
+	t_c3d				intensity;
+}						t_amb_light;
+
 /* LIGHT */
+
 typedef struct s_light
 {
 	t_p3d	position;
-	t_c3d	color;
 
+	double	brightness;
+
+	t_rgb	color_rgb;
+	t_c3d	color_3d;
+
+	t_c3d	intensity;
 }			t_light;
 
 /* PATTERN */
@@ -139,6 +155,7 @@ struct s_object
 
 	t_p3d		origin;
 	double		radius;
+	double		diameter;
 
 	double		maximum;
 	double		minimum;
@@ -181,8 +198,9 @@ struct s_intxs
 
 typedef struct s_world
 {
-	t_list	*objects;
-	t_light	light;
+	t_list		*objects;
+	t_light		light;
+	t_amb_light	ambient_light;
 }			t_world;
 
 typedef struct s_comp
@@ -220,8 +238,14 @@ typedef struct s_camera
 	int			hsize;
 	int			vsize;
 
+	t_p3d		origin;
+	t_v3d		orientation;
+
 	double		half_width;
 	double		half_height;
+
+	double		fov_deg;
+	double		fov_rad;
 
 	double		field_of_view;
 	double		pixel_size;

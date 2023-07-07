@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/06 16:51:37 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:03:28 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 
-/* PARSER */
+/* VALIDATE */
 
 // .rt files
 
@@ -34,9 +34,10 @@ int		validate_sphere(char *line);
 int		validate_plane(char *line);
 int		validate_cylinder(char *line);
 
-// .obj files
 
 /* PARSER */
+
+// .obj (wavefront) files
 
 typedef struct s_parser
 {
@@ -71,8 +72,24 @@ void			clean_parser(t_parser *parser);
 void			clean_faces(void *face);
 int				obj_group_id(t_bool increment);
 
+// .rt files
+
+void			parse_scene(void);
+t_rgb			parse_color(char *line);
+t_v3d			parse_vector(char *line);
+t_p3d			parse_point(char *line);
+
+void			parse_ambient_light(char *line);
+void			parse_camera(char *line);
+void			parse_light(char *line);
+
+void			parse_sphere(char *line);
+void			parse_cylinder(char *line);
+void			parse_plane(char *line);
+
 // utils
 
+char			*skip_field(char *line);
 char			*jump_spaces(char *line);
 char			*jump_info(char *line);
 char			*get_next_info(char *line);

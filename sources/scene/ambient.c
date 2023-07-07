@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   default_colors.c                                   :+:      :+:    :+:   */
+/*   ambient.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 09:29:23 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/07 14:00:25 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/07/07 12:40:01 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/07/07 13:45:38 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_c3d	black(void)
+void	set_ambient_light(double brightness, t_rgb color)
 {
-	return ((t_c3d){0, 0, 0, COLOR});
-}
+	t_c3d	intensity;
 
-t_c3d	white(void)
-{
-	return ((t_c3d){1, 1, 1, COLOR});
-}
-
-t_rgb	white_rgb(void)
-{
-	return ((t_rgb){255, 255, 255});
+	world()->ambient_light.brightness = brightness;
+	world()->ambient_light.color_rgb = color;
+	intensity = scalar_times(brightness, rgb_to_tcolor(color));
+	world()->ambient_light.intensity = intensity;
 }
