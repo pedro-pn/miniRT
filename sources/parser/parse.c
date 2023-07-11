@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:10:21 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/07 13:30:10 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:32:52 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ static	t_bool	line_starts_with(char const *line, char const *preffix)
 	return (false);
 }
 
-static void	parse_line(char *line)
+static void	parse_line(char **pline)
 {
+	char	*line;
+
+	line = *pline;
 	line = jump_spaces(line);
 	if (*line == '\0')
 		return ;
@@ -43,7 +46,16 @@ static void	parse_line(char *line)
 		return (parse_plane(line));
 	if (line_starts_with(line, "cy"))
 		return (parse_cylinder(line));
-	free(line);
+	if (line_starts_with(line, "cb"))
+		return (parse_cube(line));
+	free(*pline);
+	*pline = NULL;
+}
+
+static void	parser_error(int fd)
+{
+	ft_clean_gnl(fd);
+	safe_close(fd);
 	die(UNIMPLEMENTED_PARSER_ERR);
 }
 
@@ -58,7 +70,9 @@ void	parse_scene(void)
 		die(GNL_ERROR);
 	while (line)
 	{
-		parse_line(line);
+		parse_line(&line);
+		if (line == NULL)
+			parser_error(fd);
 		free(line);
 		line = get_next_line(fd);
 	}

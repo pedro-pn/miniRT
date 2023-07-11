@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/07 14:27:41 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:04:01 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void			safe_close(int fd);
 /* UTILS */
 
 void			print_progress(void);
-int				ft_isfloat(char **nptr);
 
 /* utils_temp*/
 
@@ -205,7 +204,18 @@ t_intxs			intersect_plane(t_object *plane, t_ray ray);
 
 // cubes
 
+typedef struct s_create_cube
+{
+	t_p3d		origin;
+	t_p3d		normal;
+	double		width;
+	double		height;
+	double		length;
+	t_rgb		color;
+}			t_create_cube;
+
 t_object		*cube(void);
+void			create_cube(t_create_cube params);
 t_intxs			intersect_cube(t_object *cube, t_ray ray);
 t_v3d			cube_normal_at(t_object cube, t_p3d point, t_intx inter);
 

@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:00:21 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/07 12:00:40 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 09:48:26 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,23 @@ void	parse_cylinder(char *line)
 	line = skip_field(line);
 	p.color = parse_color(line);
 	create_cylinder(p);
+}
+
+void	parse_cube(char *line)
+{
+	t_create_cube	p;
+
+	line = skip_field(line);
+	p.origin = parse_point(line);
+	line = skip_field(line);
+	p.normal = parse_vector(line);
+	line = skip_field(line);
+	p.width = ft_atof(line);
+	line = skip_field(line);
+	p.height = ft_atof(line);
+	line = skip_field(line);
+	p.length = ft_atof(line);
+	line = skip_field(line);
+	p.color = parse_color(line);
+	create_cube(p);
 }
