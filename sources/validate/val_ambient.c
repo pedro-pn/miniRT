@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:55:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/11 12:26:21 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:06:52 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ambient_count(char id)
 	return (true);
 }
 
-int	validate_ambient(char *line)
+t_bool	validate_ambient(char *line)
 {
 	if (ambient_count(*line) == false)
 		return (false);
@@ -44,13 +44,13 @@ int	validate_ambient(char *line)
 	return (true);
 }
 
-int	check_amb_light(char *line)
+t_bool	check_amb_light(char *line)
 {
 	char	*hold_line;
 	double	ambient_light;
 
 	hold_line = line;
-	if (ft_isfloat(&line) == false)
+	if (isfloat(&line) == false)
 		return (false);
 	ambient_light = ft_atof(hold_line);
 	if (ambient_light < 0 || ambient_light > 1)

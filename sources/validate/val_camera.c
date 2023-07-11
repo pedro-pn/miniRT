@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:11:52 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/11 12:25:44 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 09:59:38 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	camera_count(char id)
 	return (true);
 }
 
-int	validate_camera(char *line)
+t_bool	validate_camera(char *line)
 {
 	if (camera_count(*line) == false)
 		return (false);
@@ -44,7 +44,7 @@ int	validate_camera(char *line)
 	return (true);
 }
 
-int	validate_fov(char *line)
+t_bool	validate_fov(char *line)
 {
 	char	*line_hold;
 	int		fov;

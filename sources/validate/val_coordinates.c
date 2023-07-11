@@ -6,15 +6,15 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:58:20 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/06 16:18:23 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:05:39 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int	val_norm_coordinate(char *line);
+static t_bool	val_norm_coordinate(char *line);
 
-int	check_norm_coordinate(char *line)
+t_bool	check_norm_coordinate(char *line)
 {
 	if (check_coordinate(line) == false)
 		return (false);
@@ -23,7 +23,7 @@ int	check_norm_coordinate(char *line)
 	return (true);
 }
 
-static int	val_norm_coordinate(char *line)
+static t_bool	val_norm_coordinate(char *line)
 {
 	char		**cord;
 	double		x;
@@ -42,17 +42,17 @@ static int	val_norm_coordinate(char *line)
 	return (false);
 }
 
-int	check_coordinate(char *line)
+t_bool	check_coordinate(char *line)
 {
 	if (!*line)
 		return (false);
-	if (ft_isfloat(&line) == false)
+	if (isfloat(&line) == false)
 		return (false);
 	line++;
-	if (ft_isfloat(&line) == false)
+	if (isfloat(&line) == false)
 		return (false);
 	line++;
-	if (ft_isfloat(&line) == false)
+	if (isfloat(&line) == false)
 		return (false);
 	if (ft_strchr(SPACES, *line) == NULL)
 		return (false);

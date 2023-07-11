@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:17:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/11 12:24:27 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:05:24 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	light_counter(char id)
 	return (true);
 }
 
-int	validate_light(char *line)
+t_bool	validate_light(char *line)
 {
 	if (light_counter(*line) == false)
 		return (false);

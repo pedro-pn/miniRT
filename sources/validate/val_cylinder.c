@@ -6,15 +6,15 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:03:39 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/11 12:24:58 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:36:45 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int	check_cy_dimension(char **line);
+static t_bool	check_cy_dimension(char **line);
 
-int	validate_cylinder(char *line)
+t_bool	validate_cylinder(char *line)
 {
 	if (ft_strncmp(line, "cy ", 3) && ft_strncmp(line, "cy\t", 3))
 		return (false);
@@ -36,12 +36,12 @@ int	validate_cylinder(char *line)
 	return (true);
 }
 
-static int	check_cy_dimension(char **line)
+static t_bool	check_cy_dimension(char **line)
 {
-	if (ft_isfloat(line) == false)
+	if (isfloat(line) == false)
 		return (false);
 	*line = get_next_info(*line);
-	if (ft_isfloat(line) == false)
+	if (isfloat(line) == false)
 		return (false);
 	return (true);
 }

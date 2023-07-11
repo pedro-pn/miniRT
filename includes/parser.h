@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/07 13:03:28 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:33:03 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,21 @@
 
 // .rt files
 
-void	validate_scene(void);
-int		validate_line(char *line);
-int		validate_camera(char *line);
-int		check_coordinate(char *line);
-int		check_norm_coordinate(char *line);
-int		validate_fov(char *line);
-void	error_validate(char *line, int fd);
-int		validate_ambient(char *line);
-int		check_color(char *line);
-int		check_amb_light(char *line);
-int		validate_light(char *line);
-int		validate_sphere(char *line);
-int		validate_plane(char *line);
-int		validate_cylinder(char *line);
+void			validate_scene(void);
+void			error_validate(char *line, int fd);
+t_bool			validate_line(char *line);
+t_bool			validate_camera(char *line);
+t_bool			check_coordinate(char *line);
+t_bool			check_norm_coordinate(char *line);
+t_bool			validate_fov(char *line);
+t_bool			validate_ambient(char *line);
+t_bool			check_color(char *line);
+t_bool			check_amb_light(char *line);
+t_bool			validate_light(char *line);
+t_bool			validate_sphere(char *line);
+t_bool			validate_plane(char *line);
+t_bool			validate_cylinder(char *line);
+t_bool			validate_cube(char *line);
 
 
 /* PARSER */
@@ -86,6 +87,7 @@ void			parse_light(char *line);
 void			parse_sphere(char *line);
 void			parse_cylinder(char *line);
 void			parse_plane(char *line);
+void			parse_cube(char *line);
 
 // utils
 
@@ -93,7 +95,7 @@ char			*skip_field(char *line);
 char			*jump_spaces(char *line);
 char			*jump_info(char *line);
 char			*get_next_info(char *line);
-int				ft_isfloat(char **nptr);
-int				is_rgb(char *line);
+t_bool			is_rgb(char *line);
+t_bool			isfloat(char **nptr);
 
 #endif

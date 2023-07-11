@@ -6,13 +6,13 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:35:56 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/11 12:24:12 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 09:58:33 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	validate_plane(char *line)
+t_bool	validate_plane(char *line)
 {
 	if (ft_strncmp(line, "pl ", 3) && ft_strncmp(line, "pl\t", 3))
 		return (false);

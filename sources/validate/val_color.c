@@ -6,13 +6,13 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:27:26 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/16 10:40:53 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 09:59:08 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	check_color(char *line)
+t_bool	check_color(char *line)
 {
 	char	**rgb;
 	int		r;
@@ -35,7 +35,7 @@ int	check_color(char *line)
 	return (true);
 }
 
-int	is_rgb(char *line)
+t_bool	is_rgb(char *line)
 {
 	while (ft_isdigit(*line))
 		line++;

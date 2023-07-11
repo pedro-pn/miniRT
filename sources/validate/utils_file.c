@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:52:45 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/06/21 12:06:27 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:06:21 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*jump_spaces(char *line)
 	return (line);
 }
 
-int	ft_isfloat(char **nptr)
+t_bool	isfloat(char **nptr)
 {
 	if (ft_strchr("-+", **nptr))
 		(*nptr)++;
