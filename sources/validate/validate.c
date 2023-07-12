@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:13:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/11 10:08:28 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:27:23 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_bool	validate_line(char *line)
 	if (validate_cylinder(line))
 		return (true);
 	if (validate_cube(line))
+		return (true);
+	if (validate_cone(line))
 		return (true);
 	return (false);
 }

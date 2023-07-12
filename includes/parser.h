@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/11 10:33:03 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:29:53 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_bool			validate_sphere(char *line);
 t_bool			validate_plane(char *line);
 t_bool			validate_cylinder(char *line);
 t_bool			validate_cube(char *line);
+t_bool			validate_cone(char *line);
 
 
 /* PARSER */
