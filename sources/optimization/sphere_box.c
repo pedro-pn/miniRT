@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_box.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:32:22 by pedro             #+#    #+#             */
-/*   Updated: 2023/04/13 16:43:25 by pedro            ###   ########.fr       */
+/*   Updated: 2023/07/12 19:45:13 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_box	sphere_bounding_box(t_object sphere)
 	t_box	box;
 
 	(void)sphere;
-	box.min = point(-1, -1, -1);
-	box.max = point(1, 1, 1);
+	box.min = point(-sphere.radius, -sphere.radius, -sphere.radius);
+	box.max = point(sphere.radius, sphere.radius, sphere.radius);
 	return (box);
 }
