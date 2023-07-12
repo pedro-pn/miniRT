@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/12 12:11:17 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:58:21 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,26 @@
 # define ERRFILE 3
 # define SPACES " \t\r\n"
 
-# define SCREEN_WIDTH 250
-# define SCREEN_HEIGHT 250
+# define SCREEN_WIDTH 200
+# define SCREEN_HEIGHT 200
 
 # define ITER_MAX 5
 # define THREAD_NUM 12
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*mlx_win;
+	void			*mlx;
+	void			*mlx_win;
 
-	int			argc;
-	char		**argv;
+	int				argc;
+	char			**argv;
 
-	char		*scene;
+	char			*scene;
 
-	t_world		world;
-	t_camera	camera;
+	t_world			world;
+	t_camera		camera;
+
+	t_input_data	input;
 }			t_data;
 
 typedef struct s_file
@@ -79,6 +81,8 @@ t_world			*world(void);
 t_list			*objects(void);
 t_camera		*camera(void);
 t_amb_light		ambient_light(void);
+t_input_data	*input_data(void);
+t_group			*rt_objects(void);
 void			*mlx(void);
 int				argc(void);
 char			**argv(void);

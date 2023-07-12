@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/12 11:44:02 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:38:05 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ t_bool			validate_cone(char *line);
 
 
 /* PARSER */
+
+typedef struct s_input_data
+{
+	t_group	*rt_objects;
+}			t_input_data;
 
 // .obj (wavefront) files
 

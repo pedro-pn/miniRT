@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_sphere.c                                    :+:      :+:    :+:   */
+/*   input_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 12:06:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/12 19:45:55 by ppaulo-d         ###   ########.fr       */
+/*   Created: 2023/07/12 12:38:45 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2023/07/12 20:00:07 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	set_sphere(t_object *sphere,
-				t_p3d origin, double diameter, t_rgb color)
+t_input_data	*input_data(void)
 {
-	sphere->diameter = diameter;
-	sphere->radius = diameter / 2.0;
-	sphere->material.color = rgb_to_tcolor(color);
-	translate_object(sphere, origin);
+	return (&data()->input);
 }
 
-void	create_sphere(t_p3d origin, double diameter, t_rgb color)
+t_group	*rt_objects(void)
 {
-	t_object	*_sphere;
-
-	_sphere = sphere();
-	set_sphere(_sphere, origin, diameter, color);
-	add_child(rt_objects(), _sphere);
+	return (data()->input.rt_objects);
 }

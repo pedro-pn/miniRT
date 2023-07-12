@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:10:21 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/12 11:43:50 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:03:32 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	parse_scene(void)
 	line = get_next_line(fd);
 	if (line == NULL)
 		die(GNL_ERROR);
+	input_data()->rt_objects = group();
+	create_object(rt_objects());
 	while (line)
 	{
 		parse_line(&line);
@@ -79,4 +81,5 @@ void	parse_scene(void)
 		line = get_next_line(fd);
 	}
 	safe_close(fd);
+	divide(rt_objects(), 1);
 }

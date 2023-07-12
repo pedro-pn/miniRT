@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:23:51 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/11 09:54:28 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:57:04 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	create_cylinder(t_create_cylinder params)
 
 	_cylinder = cylinder();
 	set_cylinder(_cylinder, params);
-	create_object(_cylinder);
+	add_child(rt_objects(), _cylinder);
 }

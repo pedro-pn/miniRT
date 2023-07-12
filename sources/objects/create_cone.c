@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:42:10 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/12 12:09:26 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:57:28 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	create_cone(t_create_cylinder params)
 
 	_cone = cone();
 	set_cone(_cone, params);
-	create_object(_cone);
+	add_child(rt_objects(), _cone);
 }
