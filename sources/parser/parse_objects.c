@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:00:21 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/11 09:48:26 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:00:10 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,21 @@ void	parse_cube(char *line)
 	line = skip_field(line);
 	p.color = parse_color(line);
 	create_cube(p);
+}
+
+void	parse_cone(char *line)
+{
+	t_create_cone	p;
+
+	line = skip_field(line);
+	p.origin = parse_point(line);
+	line = skip_field(line);
+	p.normal = parse_vector(line);
+	line = skip_field(line);
+	p.diameter = ft_atof(line);
+	line = skip_field(line);
+	p.height = ft_atof(line);
+	line = skip_field(line);
+	p.color = parse_color(line);
+	create_cone(p);
 }

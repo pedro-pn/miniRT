@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/11 10:04:01 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:11:17 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define ERRFILE 3
 # define SPACES " \t\r\n"
 
-# define SCREEN_WIDTH 200
-# define SCREEN_HEIGHT 200
+# define SCREEN_WIDTH 250
+# define SCREEN_HEIGHT 250
 
 # define ITER_MAX 5
 # define THREAD_NUM 12
@@ -243,7 +243,10 @@ void			intersect_cy_caps(t_object *cylinder, t_ray ray, t_intxs *xs);
 
 // cones
 
+typedef	t_create_cylinder	t_create_cone;
+
 t_object		*cone(void);
+void			create_cone(t_create_cone param);
 t_intxs			intersect_cone(t_object *cone, t_ray ray);
 void			intersect_cone_caps(t_object *cone, t_ray ray, t_intxs *xs);
 t_v3d			cone_normal_at(t_object object, t_p3d point, t_intx inter);

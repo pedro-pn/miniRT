@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:10:21 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/11 10:32:52 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:43:50 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static void	parse_line(char **pline)
 		return (parse_cylinder(line));
 	if (line_starts_with(line, "cb"))
 		return (parse_cube(line));
+	if (line_starts_with(line, "cn"))
+		return (parse_cone(line));
 	free(*pline);
 	*pline = NULL;
 }

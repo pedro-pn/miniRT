@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/12 11:29:53 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:44:02 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void			parse_sphere(char *line);
 void			parse_cylinder(char *line);
 void			parse_plane(char *line);
 void			parse_cube(char *line);
+void			parse_cone(char *line);
 
 // utils
 
