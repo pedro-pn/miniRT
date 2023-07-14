@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:55:54 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/12 12:38:05 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:45:44 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ t_bool			validate_cylinder(char *line);
 t_bool			validate_cube(char *line);
 t_bool			validate_cone(char *line);
 
+int				ambient_count(t_bool increment);
+int				camera_count(t_bool increment);
+int				light_count(t_bool increment);
+
+t_bool			check_scene_status(void);
+void			check_scene_validation(void);
 
 /* PARSER */
 

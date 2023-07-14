@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:13:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/12 11:27:23 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:48:41 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	validate_scene()
 		line = get_next_line(fd);
 		line_count(true);
 	}
+	safe_close(fd);
+	check_scene_validation();
 }
 
 t_bool	validate_line(char *line)
@@ -64,14 +66,18 @@ t_bool	validate_line(char *line)
 		return (true);
 	if (validate_cone(line))
 		return (true);
+	if (check_scene_status() == false)
+		return (false);
 	return (false);
 }
 
 void	error_validate(char *line, int fd)
 {
 	ft_clean_gnl(fd);
-	close(fd);
+	safe_close(fd);
 	ft_putendl_fd("Error\n Invalid scene file.", 2);
+	if (*val_error())
+		ft_putendl_fd(*val_error(), 2);
 	ft_putstr_fd("line ", 2);
 	ft_putnbr_fd(line_count(false), 2);
 	ft_putendl_fd(":", 2);

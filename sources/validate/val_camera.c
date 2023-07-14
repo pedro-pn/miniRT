@@ -6,27 +6,34 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:11:52 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/11 09:59:38 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:52:44 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	camera_count(char id)
+int	camera_count(t_bool increment)
 {
 	static int	count = 0;
 
-	if (id != 'C')
+	if (increment)
+		count++;
+	return (count);
+}
+
+static t_bool	check_camera_status(char *line)
+{
+	if (*line != 'C')
 		return (false);
-	count++;
-	if (count > 1)
+	camera_count(true);
+	if (camera_count(false) > 1)
 		return (false);
 	return (true);
 }
 
 t_bool	validate_camera(char *line)
 {
-	if (camera_count(*line) == false)
+	if (check_camera_status(line) == false)
 		return (false);
 	line++;
 	line = jump_spaces(line);

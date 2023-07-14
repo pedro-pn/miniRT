@@ -6,29 +6,34 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:55:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/11 10:06:52 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:53:07 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int	ambient_count(char id);
-
-static int	ambient_count(char id)
+int	ambient_count(t_bool increment)
 {
 	static int	count = 0;
 
-	if (id != 'A')
+	if (increment)
+		count++;
+	return (count);
+}
+
+static t_bool	check_amb_status(char *line)
+{
+	if (*line != 'A')
 		return (false);
-	count++;
-	if (count > 1)
+	ambient_count(true);
+	if (ambient_count(false) > 1)
 		return (false);
 	return (true);
 }
 
 t_bool	validate_ambient(char *line)
 {
-	if (ambient_count(*line) == false)
+	if (check_amb_status(line) == false)
 		return (false);
 	line++;
 	line = jump_spaces(line);

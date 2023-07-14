@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:23:14 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/12 19:58:21 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:37:36 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "structs.h"
 # include "my_mlx.h"
 # include "parser.h"
-# include "defines.h"
+# include "errors.h"
 # include <fcntl.h>
 # include <pthread.h>
 
@@ -90,6 +90,7 @@ void			set_argc(int argc);
 void			set_argv(char **argv);
 char			*scene(void);
 void			set_scene(char *scene);
+char			**val_error(void);
 pthread_mutex_t	*buffer_mutex(void);
 pthread_mutex_t	*task_mutex(void);
 
