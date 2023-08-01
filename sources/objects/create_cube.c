@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 09:48:39 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/07/12 12:57:13 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:56:07 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ void	create_cube(t_create_cube params)
 
 	_cube = cube();
 	set_cube(_cube, params);
-	create_object(_cube);
 	add_child(rt_objects(), _cube);
 }
