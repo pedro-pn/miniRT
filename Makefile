@@ -21,7 +21,7 @@ L_GREEN = \33[1;92m
 L_PURPLE = \33[1;35m
 NC = \033[0m
 
-all: ${NAME}
+all: m
 
 bonus: ${BONUS}
 
